@@ -771,12 +771,21 @@ function generateMessagingThemes(
     });
   }
 
-  // Ensure we always have at least 3 themes
+  // Ensure we always have at least 3 themes with fallbacks
   if (themes.length < 3) {
     themes.push({
       topic: "Patient support programs and resources",
       rationale:
         "All HCPs value patient support resources that improve outcomes and adherence",
+      priority: "tertiary",
+    });
+  }
+
+  if (themes.length < 3) {
+    themes.push({
+      topic: "Emerging treatment guidelines and best practices",
+      rationale:
+        "Staying current with evolving treatment guidelines is a universal priority for practicing physicians",
       priority: "tertiary",
     });
   }
