@@ -3,8 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AI HCP Field Force",
-  description:
-    "AI-powered pharma field force for engaging Healthcare Professionals",
+  description: "AI-powered pharma field force for engaging Healthcare Professionals",
 };
 
 export default function RootLayout({

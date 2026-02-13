@@ -44,7 +44,7 @@ export async function getHcpWithRelations(id: string) {
  * Search HCP profiles with filters and pagination.
  */
 export async function searchHcps(
-  filters: HcpSearchFilters = {}
+  filters: HcpSearchFilters = {},
 ): Promise<PaginatedResult<HcpProfile>> {
   const {
     specialty,
@@ -105,13 +105,7 @@ export async function searchHcps(
  * Return aggregate stats about HCP profiles.
  */
 export async function getHcpStats(): Promise<HcpStats> {
-  const [
-    total,
-    enrichmentGroups,
-    npiGroups,
-    specialtyGroups,
-    demoCount,
-  ] = await Promise.all([
+  const [total, enrichmentGroups, npiGroups, specialtyGroups, demoCount] = await Promise.all([
     prisma.hcpProfile.count(),
     prisma.hcpProfile.groupBy({
       by: ["enrichmentStatus"],
@@ -156,10 +150,7 @@ export async function getHcpStats(): Promise<HcpStats> {
 /**
  * Update the enrichment status of an HCP profile.
  */
-export async function updateHcpEnrichmentStatus(
-  hcpId: string,
-  status: string
-) {
+export async function updateHcpEnrichmentStatus(hcpId: string, status: string) {
   return prisma.hcpProfile.update({
     where: { id: hcpId },
     data: { enrichmentStatus: status },

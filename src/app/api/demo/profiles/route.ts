@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
       (p) =>
         p.firstName.toLowerCase().includes(search) ||
         p.lastName.toLowerCase().includes(search) ||
-        p.npi.includes(search)
+        p.npi.includes(search),
     );
   }
 

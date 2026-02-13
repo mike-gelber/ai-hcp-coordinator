@@ -1,8 +1,4 @@
-import {
-  isValidNpiFormat,
-  isValidNpiCheckDigit,
-  validateNpi,
-} from "@/lib/npi";
+import { isValidNpiFormat, isValidNpiCheckDigit, validateNpi } from "@/lib/npi";
 
 describe("isValidNpiFormat", () => {
   it("accepts a valid 10-digit NPI", () => {

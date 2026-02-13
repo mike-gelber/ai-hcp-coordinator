@@ -29,15 +29,11 @@ async function main() {
 
   // Fetch existing NPIs so we can skip duplicates
   const existingNpis = new Set(
-    (await prisma.hcpProfile.findMany({ select: { npi: true } })).map(
-      (r) => r.npi,
-    ),
+    (await prisma.hcpProfile.findMany({ select: { npi: true } })).map((r) => r.npi),
   );
 
   const toInsert = entries.filter((e) => !existingNpis.has(e.npi));
-  console.log(
-    `⏭️  Skipping ${entries.length - toInsert.length} already-existing NPIs`,
-  );
+  console.log(`⏭️  Skipping ${entries.length - toInsert.length} already-existing NPIs`);
   console.log(`➕ Inserting ${toInsert.length} new demo HCP profiles…`);
 
   // Batch insert in chunks for performance

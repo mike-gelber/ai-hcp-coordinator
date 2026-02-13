@@ -7,15 +7,7 @@ import { HcpTable } from "@/components/HcpTable";
 import { HcpProfilePanel } from "@/components/HcpProfilePanel";
 import { SpecialtyChart } from "@/components/SpecialtyChart";
 import type { DemoHcpProfile } from "@/lib/demo-seed";
-import {
-  FlaskConical,
-  Users,
-  TrendingUp,
-  Award,
-  BarChart3,
-  Upload,
-  RotateCcw,
-} from "lucide-react";
+import { FlaskConical, Users, TrendingUp, Award, BarChart3, Upload, RotateCcw } from "lucide-react";
 
 interface DemoStats {
   total: number;
@@ -65,20 +57,14 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Demo Banner */}
-      {demoActive && stats && (
-        <DemoBanner onReset={resetDemo} profileCount={stats.total} />
-      )}
+      {demoActive && stats && <DemoBanner onReset={resetDemo} profileCount={stats.total} />}
 
       {/* Header */}
       <header className="border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              AI HCP Field Force
-            </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Campaign Dashboard
-            </p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">AI HCP Field Force</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Campaign Dashboard</p>
           </div>
           <div className="flex items-center gap-3">
             {!demoActive && (
@@ -110,8 +96,8 @@ export default function DashboardPage() {
               No HCP profiles loaded
             </h2>
             <p className="mt-2 max-w-md text-sm text-gray-500 dark:text-gray-400">
-              Upload an NPI target list to get started, or enter Demo Mode to
-              explore the platform with 1,000 sample HCP profiles.
+              Upload an NPI target list to get started, or enter Demo Mode to explore the platform
+              with 1,000 sample HCP profiles.
             </p>
             <div className="mt-8 flex gap-4">
               <button
@@ -206,7 +192,9 @@ export default function DashboardPage() {
                   { label: "Outreach Active", count: 0, color: "bg-purple-500" },
                 ].map((stage, i) => (
                   <div key={stage.label} className="flex flex-1 flex-col items-center">
-                    <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white ${stage.count > 0 ? stage.color : "bg-gray-300 dark:bg-gray-700"}`}>
+                    <div
+                      className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white ${stage.count > 0 ? stage.color : "bg-gray-300 dark:bg-gray-700"}`}
+                    >
                       {stage.count > 0 ? "✓" : i + 1}
                     </div>
                     <p className="mt-2 text-center text-xs text-gray-600 dark:text-gray-400">
@@ -215,9 +203,7 @@ export default function DashboardPage() {
                     <p className="text-xs font-medium text-gray-900 dark:text-white">
                       {stage.count.toLocaleString()}
                     </p>
-                    {i < 4 && (
-                      <div className="absolute" />
-                    )}
+                    {i < 4 && <div className="absolute" />}
                   </div>
                 ))}
               </div>
@@ -251,10 +237,7 @@ export default function DashboardPage() {
             className="fixed inset-0 z-40 bg-black/30"
             onClick={() => setSelectedProfile(null)}
           />
-          <HcpProfilePanel
-            profile={selectedProfile}
-            onClose={() => setSelectedProfile(null)}
-          />
+          <HcpProfilePanel profile={selectedProfile} onClose={() => setSelectedProfile(null)} />
         </>
       )}
     </div>

@@ -21,13 +21,7 @@ const eslintConfig = [
     },
   },
   {
-    ignores: [
-      "node_modules/",
-      ".next/",
-      "out/",
-      "coverage/",
-      "prisma/seed.ts",
-    ],
+    ignores: ["node_modules/", ".next/", "out/", "coverage/", "prisma/seed.ts"],
   },
 ];
 

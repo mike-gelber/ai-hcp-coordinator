@@ -33,12 +33,10 @@ describe("searchHcps", () => {
         orderBy: { lastName: "asc" },
         skip: 0,
         take: 20,
-      })
+      }),
     );
 
-    expect(mockCount).toHaveBeenCalledWith(
-      expect.objectContaining({ where: {} })
-    );
+    expect(mockCount).toHaveBeenCalledWith(expect.objectContaining({ where: {} }));
   });
 
   it("applies specialty filter", async () => {
@@ -49,7 +47,7 @@ describe("searchHcps", () => {
         where: expect.objectContaining({
           primarySpecialty: "Cardiology",
         }),
-      })
+      }),
     );
   });
 
@@ -61,7 +59,7 @@ describe("searchHcps", () => {
         where: expect.objectContaining({
           locations: { some: { state: "CA" } },
         }),
-      })
+      }),
     );
   });
 
@@ -73,7 +71,7 @@ describe("searchHcps", () => {
         where: expect.objectContaining({
           enrichmentStatus: "complete",
         }),
-      })
+      }),
     );
   });
 
@@ -85,7 +83,7 @@ describe("searchHcps", () => {
         where: expect.objectContaining({
           npiStatus: "validated",
         }),
-      })
+      }),
     );
   });
 
@@ -97,7 +95,7 @@ describe("searchHcps", () => {
         where: expect.objectContaining({
           isDemo: true,
         }),
-      })
+      }),
     );
   });
 
@@ -109,7 +107,7 @@ describe("searchHcps", () => {
         where: expect.objectContaining({
           isDemo: false,
         }),
-      })
+      }),
     );
   });
 
@@ -122,7 +120,7 @@ describe("searchHcps", () => {
       expect.objectContaining({
         skip: 20,
         take: 10,
-      })
+      }),
     );
   });
 
@@ -132,7 +130,7 @@ describe("searchHcps", () => {
     expect(mockFindMany).toHaveBeenCalledWith(
       expect.objectContaining({
         orderBy: { createdAt: "desc" },
-      })
+      }),
     );
   });
 
@@ -168,7 +166,7 @@ describe("searchHcps", () => {
           isDemo: false,
           locations: { some: { state: "NY" } },
         }),
-      })
+      }),
     );
   });
 });
@@ -220,10 +218,7 @@ describe("getHcpStats", () => {
       .mockResolvedValueOnce(0) // total
       .mockResolvedValueOnce(0); // demoCount
 
-    mockGroupBy
-      .mockResolvedValueOnce([])
-      .mockResolvedValueOnce([])
-      .mockResolvedValueOnce([]);
+    mockGroupBy.mockResolvedValueOnce([]).mockResolvedValueOnce([]).mockResolvedValueOnce([]);
 
     const stats = await getHcpStats();
 
