@@ -42,19 +42,25 @@ model HcpProfile {
   isDemo            Boolean  @default(false)
 
   // Relations
-  locations       HcpLocation[]
-  affiliations    HcpAffiliation[]
-  publications    HcpPublication[]
-  socialProfiles  HcpSocialProfile[]
-  prescribingData HcpPrescribingData[]
-  outreachPlans   OutreachPlan[]
-  enrichmentLogs  EnrichmentLog[]
-  npiUploadItems  NpiUploadItem[]
+  locations        HcpLocation[]
+  affiliations     HcpAffiliation[]
+  publications     HcpPublication[]
+  socialProfiles   HcpSocialProfile[]
+  prescribingData  HcpPrescribingData[]
+  outreachPlans    OutreachPlan[]
+  enrichmentLogs   EnrichmentLog[]
+  npiUploadItems   NpiUploadItem[]
+  clinicalTrials   ClinicalTrial[]
+  conversationLogs ConversationLog[]
+  proprietaryData  ProprietaryData[]
 
   @@index([primarySpecialty])
   @@index([npiStatus])
   @@index([enrichmentStatus])
   @@index([isDemo])
+  @@index([lastName, firstName])
+  @@index([createdAt])
+  @@index([updatedAt])
 }
 
 // ─── Practice Locations ──────────────────────────────────────────────
@@ -76,6 +82,7 @@ model HcpLocation {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([hcpId])
   @@index([state])
   @@index([zipCode])
 }
@@ -94,6 +101,9 @@ model HcpAffiliation {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([hcpId])
+  @@index([type])
 }
 
 // ─── Publications ────────────────────────────────────────────────────
@@ -112,6 +122,9 @@ model HcpPublication {
   therapeuticArea String?
 
   createdAt DateTime @default(now())
+
+  @@index([hcpId])
+  @@index([year])
 }
 
 // ─── Social Profiles ─────────────────────────────────────────────────
@@ -130,6 +143,9 @@ model HcpSocialProfile {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([hcpId])
+  @@index([platform])
 }
 
 // ─── Prescribing Data ────────────────────────────────────────────────
@@ -150,6 +166,7 @@ model HcpPrescribingData {
 
   createdAt DateTime @default(now())
 
+  @@index([hcpId])
   @@index([therapeuticArea])
   @@index([source])
 }
@@ -218,6 +235,66 @@ model EnrichmentLog {
   duration   Int?     // milliseconds
 
   createdAt DateTime @default(now())
+
+  @@index([hcpId])
+  @@index([stage])
+}
+
+// ─── Clinical Trials ─────────────────────────────────────────────────
+
+model ClinicalTrial {
+  id        String   @id @default(cuid())
+  hcpId     String
+  hcp       HcpProfile @relation(fields: [hcpId], references: [id], onDelete: Cascade)
+
+  trialId      String   // ClinicalTrials.gov NCT number
+  title        String
+  phase        String?
+  condition    String?
+  intervention String?
+  sponsor      String?
+  status       String?  // recruiting, completed, etc.
+  role         String?  // PI, sub-investigator, etc.
+
+  createdAt DateTime @default(now())
+
+  @@unique([hcpId, trialId])
+}
+
+// ─── Conversation Logs ──────────────────────────────────────────────
+
+model ConversationLog {
+  id        String   @id @default(cuid())
+  hcpId     String
+  hcp       HcpProfile @relation(fields: [hcpId], references: [id], onDelete: Cascade)
+
+  channel    String   // email, sms, chat, social
+  role       String   // user, assistant, system
+  content    String
+  metadata   Json?
+  tokenCount Int?
+
+  createdAt DateTime @default(now())
+
+  @@index([hcpId, channel])
+  @@index([createdAt])
+}
+
+// ─── Proprietary Data ───────────────────────────────────────────────
+
+model ProprietaryData {
+  id        String   @id @default(cuid())
+  hcpId     String
+  hcp       HcpProfile @relation(fields: [hcpId], references: [id], onDelete: Cascade)
+
+  source      String   // e.g. "iqvia", "symphony", "internal_crm"
+  dataType    String   // e.g. "prescribing", "call_log", "contact_info"
+  rawData     Json
+  processedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([hcpId, source])
 }
 
 // ─── App Settings ────────────────────────────────────────────────────
