@@ -1,8 +1,9 @@
 "use client";
 
 import type { DemoHcpProfile } from "@/lib/demo-seed";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, Bot } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 interface HcpTableProps {
   onProfileClick?: (profile: DemoHcpProfile) => void;
@@ -63,6 +64,7 @@ const STATES = [
 ];
 
 export function HcpTable({ onProfileClick }: HcpTableProps) {
+  const router = useRouter();
   const [data, setData] = useState<DemoHcpProfile[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -183,12 +185,15 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
               <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
                 Pubs
               </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                AI Agents
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
             {loading ? (
               <tr>
-                <td colSpan={8} className="px-4 py-12 text-center text-gray-400">
+                <td colSpan={9} className="px-4 py-12 text-center text-gray-400">
                   <div className="flex items-center justify-center gap-2">
                     <div className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
                     Loading profiles...
@@ -197,7 +202,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
               </tr>
             ) : data.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-4 py-12 text-center text-gray-400">
+                <td colSpan={9} className="px-4 py-12 text-center text-gray-400">
                   No profiles match your filters.
                 </td>
               </tr>
@@ -205,7 +210,10 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
               data.map((profile) => (
                 <tr
                   key={profile.npi}
-                  onClick={() => onProfileClick?.(profile)}
+                  onClick={() => {
+                    onProfileClick?.(profile);
+                    router.push(`/hcp/${profile.npi}`);
+                  }}
                   className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 >
                   <td className="whitespace-nowrap px-4 py-3 font-mono text-xs text-gray-500 dark:text-gray-400">
@@ -242,6 +250,11 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-center text-gray-600 dark:text-gray-400">
                     {profile.digitalPresence.publicationCount}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3 text-center">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
+                      <Bot className="h-3 w-3" />2 Active
+                    </span>
                   </td>
                 </tr>
               ))

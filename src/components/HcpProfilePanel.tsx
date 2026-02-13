@@ -1,7 +1,17 @@
 "use client";
 
 import type { DemoHcpProfile } from "@/lib/demo-seed";
-import { X, MapPin, GraduationCap, Building2, Globe, TrendingUp, Award } from "lucide-react";
+import {
+  X,
+  MapPin,
+  GraduationCap,
+  Building2,
+  Globe,
+  TrendingUp,
+  Award,
+  ExternalLink,
+} from "lucide-react";
+import Link from "next/link";
 
 interface HcpProfilePanelProps {
   profile: DemoHcpProfile;
@@ -137,6 +147,15 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
             pipeline is connected.
           </p>
         </div>
+
+        {/* View Full Profile Link */}
+        <Link
+          href={`/hcp/${profile.npi}`}
+          className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+        >
+          <ExternalLink className="h-4 w-4" />
+          View Full Profile
+        </Link>
       </div>
     </div>
   );
