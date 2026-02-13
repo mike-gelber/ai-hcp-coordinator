@@ -157,7 +157,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
                   key={profile.npi}
                   onClick={() => {
                     onProfileClick?.(profile);
-                    router.push(`/dashboard/hcp/${profile.npi}`);
+                    router.push(`/hcp/${profile.npi}`);
                   }}
                   className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 >
