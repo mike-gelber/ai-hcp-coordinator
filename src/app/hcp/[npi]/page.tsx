@@ -11,6 +11,7 @@ import { DigitalFootprintTab } from "@/components/hcp-profile/DigitalFootprintTa
 import { AiPersonaTab } from "@/components/hcp-profile/AiPersonaTab";
 import { OutreachTab } from "@/components/hcp-profile/OutreachTab";
 import { DataSourcesTab } from "@/components/hcp-profile/DataSourcesTab";
+import { AiFieldForceTab } from "@/components/hcp-profile/AiFieldForceTab";
 import {
   Briefcase,
   Pill,
@@ -19,6 +20,7 @@ import {
   Brain,
   Send,
   Database,
+  Bot,
 } from "lucide-react";
 
 const TABS = [
@@ -28,6 +30,7 @@ const TABS = [
   { id: "digital", label: "Digital Footprint", icon: Globe },
   { id: "persona", label: "AI Persona", icon: Brain },
   { id: "outreach", label: "Outreach", icon: Send },
+  { id: "field_force", label: "AI Field Force", icon: Bot },
   { id: "sources", label: "Data Sources", icon: Database },
 ] as const;
 
@@ -133,6 +136,7 @@ export default function HcpProfilePage() {
         {activeTab === "digital" && <DigitalFootprintTab profile={profile} />}
         {activeTab === "persona" && <AiPersonaTab profile={profile} />}
         {activeTab === "outreach" && <OutreachTab profile={profile} />}
+        {activeTab === "field_force" && <AiFieldForceTab profile={profile} />}
         {activeTab === "sources" && <DataSourcesTab profile={profile} />}
       </main>
     </div>

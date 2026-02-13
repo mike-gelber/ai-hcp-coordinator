@@ -1,7 +1,7 @@
 "use client";
 
 import type { DemoHcpProfile } from "@/lib/demo-seed";
-import { ChevronLeft, ChevronRight, Search, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, Bot } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
@@ -132,7 +132,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
               <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Volume</th>
               <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">KOL</th>
               <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Pubs</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400"></th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">AI Agents</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
@@ -155,7 +155,10 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
               data.map((profile) => (
                 <tr
                   key={profile.npi}
-                  onClick={() => router.push(`/hcp/${profile.npi}`)}
+                  onClick={() => {
+                    onProfileClick?.(profile);
+                    router.push(`/hcp/${profile.npi}`);
+                  }}
                   className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 >
                   <td className="whitespace-nowrap px-4 py-3 font-mono text-xs text-gray-500 dark:text-gray-400">
@@ -192,9 +195,9 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
                     {profile.digitalPresence.publicationCount}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-center">
-                    <span className="inline-flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
-                      <ExternalLink className="h-3 w-3" />
-                      View
+                    <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
+                      <Bot className="h-3 w-3" />
+                      2 Active
                     </span>
                   </td>
                 </tr>
