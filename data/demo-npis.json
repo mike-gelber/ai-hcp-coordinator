@@ -1,0 +1,7002 @@
+[
+  {
+    "npi": "1620308191",
+    "firstName": "Louis",
+    "lastName": "Evans",
+    "specialty": "Allergy & Immunology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1594257234",
+    "firstName": "Deepa",
+    "lastName": "Perez",
+    "specialty": "Family Medicine",
+    "state": "AR"
+  },
+  {
+    "npi": "1064220308",
+    "firstName": "Richard",
+    "lastName": "Morgan",
+    "specialty": "Psychiatry",
+    "state": "ME"
+  },
+  {
+    "npi": "1620403349",
+    "firstName": "Linda",
+    "lastName": "Castillo",
+    "specialty": "General Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1233936677",
+    "firstName": "Jessica",
+    "lastName": "Wilson",
+    "specialty": "General Practice",
+    "state": "SC"
+  },
+  {
+    "npi": "1828474191",
+    "firstName": "Judith",
+    "lastName": "Mohammed",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "IL"
+  },
+  {
+    "npi": "1970317107",
+    "firstName": "Eric",
+    "lastName": "Long",
+    "specialty": "Pulmonary Critical Care",
+    "state": "FL"
+  },
+  {
+    "npi": "1857452399",
+    "firstName": "Jennifer",
+    "lastName": "Hernandez",
+    "specialty": "Pathology",
+    "state": "GA"
+  },
+  {
+    "npi": "1148311701",
+    "firstName": "Judith",
+    "lastName": "Mitchell",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "AZ"
+  },
+  {
+    "npi": "1077419475",
+    "firstName": "Alejandro",
+    "lastName": "Sullivan",
+    "specialty": "Pulmonary Disease",
+    "state": "CA"
+  },
+  {
+    "npi": "1543030831",
+    "firstName": "Larry",
+    "lastName": "Nakamura",
+    "specialty": "Gastroenterology",
+    "state": "MI"
+  },
+  {
+    "npi": "1209179591",
+    "firstName": "Arthur",
+    "lastName": "Jenkins",
+    "specialty": "Emergency Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1257164842",
+    "firstName": "Daniel",
+    "lastName": "Kaplan",
+    "specialty": "Family Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1901408363",
+    "firstName": "Fernando",
+    "lastName": "Bailey",
+    "specialty": "General Practice",
+    "state": "VA"
+  },
+  {
+    "npi": "1488350590",
+    "firstName": "Shirley",
+    "lastName": "Wu",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "ME"
+  },
+  {
+    "npi": "1310446137",
+    "firstName": "Rafael",
+    "lastName": "Ahmad",
+    "specialty": "Radiation Oncology",
+    "state": "UT"
+  },
+  {
+    "npi": "1963038603",
+    "firstName": "Mary",
+    "lastName": "Sullivan",
+    "specialty": "General Practice",
+    "state": "TX"
+  },
+  {
+    "npi": "1739774259",
+    "firstName": "Betty",
+    "lastName": "Anderson",
+    "specialty": "Medical Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1682572130",
+    "firstName": "Jessica",
+    "lastName": "Collins",
+    "specialty": "Emergency Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1746924848",
+    "firstName": "Joseph",
+    "lastName": "Russell",
+    "specialty": "Cardiovascular Disease",
+    "state": "AR"
+  },
+  {
+    "npi": "1343724609",
+    "firstName": "Joseph",
+    "lastName": "Gutierrez",
+    "specialty": "Nephrology",
+    "state": "IL"
+  },
+  {
+    "npi": "1664399908",
+    "firstName": "Ahmed",
+    "lastName": "Carter",
+    "specialty": "Pain Medicine",
+    "state": "KS"
+  },
+  {
+    "npi": "1858646312",
+    "firstName": "Peter",
+    "lastName": "Parker",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "WI"
+  },
+  {
+    "npi": "1707648477",
+    "firstName": "Richard",
+    "lastName": "Campbell",
+    "specialty": "Ophthalmology",
+    "state": "IN"
+  },
+  {
+    "npi": "1944607898",
+    "firstName": "Ali",
+    "lastName": "Thompson",
+    "specialty": "Cardiovascular Disease",
+    "state": "TX"
+  },
+  {
+    "npi": "1021825645",
+    "firstName": "Raj",
+    "lastName": "Carter",
+    "specialty": "General Surgery",
+    "state": "TN"
+  },
+  {
+    "npi": "1274243975",
+    "firstName": "Denise",
+    "lastName": "Taylor",
+    "specialty": "Dermatology",
+    "state": "DE"
+  },
+  {
+    "npi": "1886704901",
+    "firstName": "Brenda",
+    "lastName": "James",
+    "specialty": "Psychiatry",
+    "state": "HI"
+  },
+  {
+    "npi": "1837237845",
+    "firstName": "Michelle",
+    "lastName": "Jones",
+    "specialty": "Medical Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1294104983",
+    "firstName": "Eric",
+    "lastName": "Yamamoto",
+    "specialty": "Dermatology",
+    "state": "SC"
+  },
+  {
+    "npi": "1471426118",
+    "firstName": "Laura",
+    "lastName": "Powell",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "FL"
+  },
+  {
+    "npi": "1668368040",
+    "firstName": "Brian",
+    "lastName": "Foster",
+    "specialty": "Gynecologic Oncology",
+    "state": "WI"
+  },
+  {
+    "npi": "1605988496",
+    "firstName": "Scott",
+    "lastName": "Young",
+    "specialty": "Nephrology",
+    "state": "CA"
+  },
+  {
+    "npi": "1287435089",
+    "firstName": "Catherine",
+    "lastName": "Mendoza",
+    "specialty": "Psychiatry",
+    "state": "OH"
+  },
+  {
+    "npi": "1625370279",
+    "firstName": "Steven",
+    "lastName": "Rodriguez",
+    "specialty": "Hematology/Oncology",
+    "state": "LA"
+  },
+  {
+    "npi": "1855388256",
+    "firstName": "Yusuf",
+    "lastName": "Thompson",
+    "specialty": "Dermatology",
+    "state": "ME"
+  },
+  {
+    "npi": "1793722590",
+    "firstName": "Daniel",
+    "lastName": "Martin",
+    "specialty": "Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1950878557",
+    "firstName": "Eric",
+    "lastName": "Gonzalez",
+    "specialty": "Pulmonary Disease",
+    "state": "ME"
+  },
+  {
+    "npi": "1197020609",
+    "firstName": "Vincent",
+    "lastName": "Morgan",
+    "specialty": "Nephrology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1142811201",
+    "firstName": "Pamela",
+    "lastName": "Vasquez",
+    "specialty": "Neurological Surgery",
+    "state": "TX"
+  },
+  {
+    "npi": "1175574262",
+    "firstName": "John",
+    "lastName": "Johnson",
+    "specialty": "Family Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1434615781",
+    "firstName": "Anthony",
+    "lastName": "Kumar",
+    "specialty": "Rheumatology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1710153564",
+    "firstName": "Nicholas",
+    "lastName": "Vasquez",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "CT"
+  },
+  {
+    "npi": "1152773721",
+    "firstName": "Sanjay",
+    "lastName": "Long",
+    "specialty": "Cardiovascular Disease",
+    "state": "TX"
+  },
+  {
+    "npi": "1741548667",
+    "firstName": "Jesse",
+    "lastName": "Powell",
+    "specialty": "Sports Medicine",
+    "state": "VT"
+  },
+  {
+    "npi": "1299433783",
+    "firstName": "Alejandro",
+    "lastName": "Ortiz",
+    "specialty": "Orthopedic Surgery",
+    "state": "CO"
+  },
+  {
+    "npi": "1118682040",
+    "firstName": "John",
+    "lastName": "Moore",
+    "specialty": "Internal Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1391584400",
+    "firstName": "Louis",
+    "lastName": "Williams",
+    "specialty": "Neurology",
+    "state": "TX"
+  },
+  {
+    "npi": "1716667476",
+    "firstName": "Mary",
+    "lastName": "Green",
+    "specialty": "Pulmonary Critical Care",
+    "state": "NY"
+  },
+  {
+    "npi": "1800106860",
+    "firstName": "Paul",
+    "lastName": "Williams",
+    "specialty": "Addiction Psychiatry",
+    "state": "SD"
+  },
+  {
+    "npi": "1517493460",
+    "firstName": "Denise",
+    "lastName": "Reyes",
+    "specialty": "Infectious Disease",
+    "state": "CO"
+  },
+  {
+    "npi": "1920791971",
+    "firstName": "Ruth",
+    "lastName": "Yang",
+    "specialty": "Internal Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1747451478",
+    "firstName": "Alejandro",
+    "lastName": "Turner",
+    "specialty": "Sports Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1214630075",
+    "firstName": "Betty",
+    "lastName": "Anderson",
+    "specialty": "Pulmonary Disease",
+    "state": "WY"
+  },
+  {
+    "npi": "1468596063",
+    "firstName": "Sanjay",
+    "lastName": "Ali",
+    "specialty": "Surgical Oncology",
+    "state": "OH"
+  },
+  {
+    "npi": "1544320504",
+    "firstName": "Sandra",
+    "lastName": "Gray",
+    "specialty": "Nephrology",
+    "state": "AR"
+  },
+  {
+    "npi": "1029179094",
+    "firstName": "Louis",
+    "lastName": "Wood",
+    "specialty": "Cardiovascular Disease",
+    "state": "NJ"
+  },
+  {
+    "npi": "1918553573",
+    "firstName": "Alexander",
+    "lastName": "Torres",
+    "specialty": "Rheumatology",
+    "state": "FL"
+  },
+  {
+    "npi": "1417834334",
+    "firstName": "Emma",
+    "lastName": "Green",
+    "specialty": "Psychiatry",
+    "state": "CA"
+  },
+  {
+    "npi": "1279124931",
+    "firstName": "Wei",
+    "lastName": "Ibrahim",
+    "specialty": "Diagnostic Radiology",
+    "state": "SD"
+  },
+  {
+    "npi": "1076994783",
+    "firstName": "Scott",
+    "lastName": "Young",
+    "specialty": "Gastroenterology",
+    "state": "CA"
+  },
+  {
+    "npi": "1703409189",
+    "firstName": "Samantha",
+    "lastName": "Sullivan",
+    "specialty": "Orthopedic Surgery",
+    "state": "PA"
+  },
+  {
+    "npi": "1478627916",
+    "firstName": "Alexander",
+    "lastName": "Cook",
+    "specialty": "Sports Medicine",
+    "state": "AR"
+  },
+  {
+    "npi": "1184087983",
+    "firstName": "Priya",
+    "lastName": "Schwartz",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "OH"
+  },
+  {
+    "npi": "1888341074",
+    "firstName": "Ralph",
+    "lastName": "Chavez",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "GA"
+  },
+  {
+    "npi": "1491963108",
+    "firstName": "Gregory",
+    "lastName": "Allen",
+    "specialty": "Electrophysiology",
+    "state": "MD"
+  },
+  {
+    "npi": "1689144446",
+    "firstName": "Margaret",
+    "lastName": "Ahmad",
+    "specialty": "Dermatology",
+    "state": "IL"
+  },
+  {
+    "npi": "1639751506",
+    "firstName": "Meena",
+    "lastName": "Murphy",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "CA"
+  },
+  {
+    "npi": "1908365616",
+    "firstName": "Diego",
+    "lastName": "Morales",
+    "specialty": "Sports Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1490951815",
+    "firstName": "David",
+    "lastName": "Thompson",
+    "specialty": "Pain Medicine",
+    "state": "LA"
+  },
+  {
+    "npi": "1771983842",
+    "firstName": "Aaron",
+    "lastName": "Ruiz",
+    "specialty": "Surgical Oncology",
+    "state": "OH"
+  },
+  {
+    "npi": "1845319288",
+    "firstName": "Bruce",
+    "lastName": "Kim",
+    "specialty": "Cardiovascular Disease",
+    "state": "CO"
+  },
+  {
+    "npi": "1323985774",
+    "firstName": "Jessica",
+    "lastName": "White",
+    "specialty": "Pediatrics",
+    "state": "CT"
+  },
+  {
+    "npi": "1149561338",
+    "firstName": "Samuel",
+    "lastName": "Peterson",
+    "specialty": "Rheumatology",
+    "state": "MO"
+  },
+  {
+    "npi": "1664847583",
+    "firstName": "Paul",
+    "lastName": "White",
+    "specialty": "Cardiovascular Disease",
+    "state": "HI"
+  },
+  {
+    "npi": "1278843051",
+    "firstName": "Rosa",
+    "lastName": "Richardson",
+    "specialty": "Hematology/Oncology",
+    "state": "CT"
+  },
+  {
+    "npi": "1883432522",
+    "firstName": "Lauren",
+    "lastName": "Kim",
+    "specialty": "Surgical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1690448448",
+    "firstName": "Dylan",
+    "lastName": "Rogers",
+    "specialty": "Diagnostic Radiology",
+    "state": "NV"
+  },
+  {
+    "npi": "1013969617",
+    "firstName": "Christopher",
+    "lastName": "Powell",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "MI"
+  },
+  {
+    "npi": "1553625629",
+    "firstName": "Sunita",
+    "lastName": "Bailey",
+    "specialty": "Urology",
+    "state": "TX"
+  },
+  {
+    "npi": "1807532258",
+    "firstName": "Raj",
+    "lastName": "Robinson",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NC"
+  },
+  {
+    "npi": "1066224738",
+    "firstName": "Diane",
+    "lastName": "Taylor",
+    "specialty": "Psychiatry",
+    "state": "CO"
+  },
+  {
+    "npi": "1280577838",
+    "firstName": "Ann",
+    "lastName": "Walker",
+    "specialty": "Urology",
+    "state": "WA"
+  },
+  {
+    "npi": "1378247807",
+    "firstName": "Madison",
+    "lastName": "Myers",
+    "specialty": "Interventional Cardiology",
+    "state": "TX"
+  },
+  {
+    "npi": "1287383255",
+    "firstName": "Benjamin",
+    "lastName": "Reyes",
+    "specialty": "Pulmonary Disease",
+    "state": "NC"
+  },
+  {
+    "npi": "1902105745",
+    "firstName": "Joyce",
+    "lastName": "Schwartz",
+    "specialty": "Internal Medicine",
+    "state": "AZ"
+  },
+  {
+    "npi": "1303232395",
+    "firstName": "Patrick",
+    "lastName": "Murphy",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "NJ"
+  },
+  {
+    "npi": "1236523696",
+    "firstName": "Jordan",
+    "lastName": "Wilson",
+    "specialty": "Sports Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1891596490",
+    "firstName": "Joseph",
+    "lastName": "Gonzalez",
+    "specialty": "Neurology",
+    "state": "TX"
+  },
+  {
+    "npi": "1193162983",
+    "firstName": "Donna",
+    "lastName": "Coleman",
+    "specialty": "Gynecologic Oncology",
+    "state": "DC"
+  },
+  {
+    "npi": "1772260653",
+    "firstName": "Jack",
+    "lastName": "McCarthy",
+    "specialty": "Nephrology",
+    "state": "OH"
+  },
+  {
+    "npi": "1172420253",
+    "firstName": "Matthew",
+    "lastName": "Hernandez",
+    "specialty": "Internal Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1620023998",
+    "firstName": "Christopher",
+    "lastName": "Chavez",
+    "specialty": "Gynecologic Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1806253187",
+    "firstName": "Patrick",
+    "lastName": "Rosenberg",
+    "specialty": "Urology",
+    "state": "TX"
+  },
+  {
+    "npi": "1617266311",
+    "firstName": "Cheryl",
+    "lastName": "Rogers",
+    "specialty": "Gastroenterology",
+    "state": "NV"
+  },
+  {
+    "npi": "1535295004",
+    "firstName": "Yusuf",
+    "lastName": "Wood",
+    "specialty": "Orthopedic Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1610962619",
+    "firstName": "Ibrahim",
+    "lastName": "Rogers",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "NJ"
+  },
+  {
+    "npi": "1309495269",
+    "firstName": "Ann",
+    "lastName": "Foster",
+    "specialty": "Addiction Psychiatry",
+    "state": "MI"
+  },
+  {
+    "npi": "1091342414",
+    "firstName": "Mary",
+    "lastName": "Taylor",
+    "specialty": "Radiation Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1416274797",
+    "firstName": "Olivia",
+    "lastName": "Patel",
+    "specialty": "Infectious Disease",
+    "state": "OK"
+  },
+  {
+    "npi": "1574400747",
+    "firstName": "Nicholas",
+    "lastName": "Bennett",
+    "specialty": "Pediatrics",
+    "state": "WA"
+  },
+  {
+    "npi": "1750803680",
+    "firstName": "Amit",
+    "lastName": "Liu",
+    "specialty": "Neurology",
+    "state": "CT"
+  },
+  {
+    "npi": "1781703198",
+    "firstName": "Ronald",
+    "lastName": "Bell",
+    "specialty": "Neurology",
+    "state": "CA"
+  },
+  {
+    "npi": "1303116259",
+    "firstName": "Albert",
+    "lastName": "Phillips",
+    "specialty": "Nephrology",
+    "state": "PA"
+  },
+  {
+    "npi": "1971599752",
+    "firstName": "Janet",
+    "lastName": "Flores",
+    "specialty": "Child Neurology",
+    "state": "MA"
+  },
+  {
+    "npi": "1272549837",
+    "firstName": "Sharon",
+    "lastName": "Barnes",
+    "specialty": "Cardiovascular Disease",
+    "state": "PA"
+  },
+  {
+    "npi": "1682912781",
+    "firstName": "Nathan",
+    "lastName": "Torres",
+    "specialty": "Neurology",
+    "state": "TN"
+  },
+  {
+    "npi": "1195015510",
+    "firstName": "Teresa",
+    "lastName": "Fitzgerald",
+    "specialty": "Internal Medicine",
+    "state": "VA"
+  },
+  {
+    "npi": "1296968864",
+    "firstName": "Alejandro",
+    "lastName": "Myers",
+    "specialty": "Family Medicine",
+    "state": "SC"
+  },
+  {
+    "npi": "1906808765",
+    "firstName": "Paul",
+    "lastName": "Collins",
+    "specialty": "General Surgery",
+    "state": "WI"
+  },
+  {
+    "npi": "1595756986",
+    "firstName": "Rachel",
+    "lastName": "Huang",
+    "specialty": "Neurology",
+    "state": "WV"
+  },
+  {
+    "npi": "1580825424",
+    "firstName": "Raymond",
+    "lastName": "Hassan",
+    "specialty": "Pulmonary Critical Care",
+    "state": "NY"
+  },
+  {
+    "npi": "1339128625",
+    "firstName": "Debra",
+    "lastName": "Hassan",
+    "specialty": "Neurological Surgery",
+    "state": "NY"
+  },
+  {
+    "npi": "1694971544",
+    "firstName": "Gregory",
+    "lastName": "Smith",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "CA"
+  },
+  {
+    "npi": "1758425528",
+    "firstName": "Gloria",
+    "lastName": "Evans",
+    "specialty": "Emergency Medicine",
+    "state": "DC"
+  },
+  {
+    "npi": "1960172637",
+    "firstName": "Russell",
+    "lastName": "Campbell",
+    "specialty": "Orthopedic Surgery",
+    "state": "OK"
+  },
+  {
+    "npi": "1701863866",
+    "firstName": "Jennifer",
+    "lastName": "Aguilar",
+    "specialty": "Gastroenterology",
+    "state": "WI"
+  },
+  {
+    "npi": "1772169474",
+    "firstName": "Lawrence",
+    "lastName": "Wu",
+    "specialty": "Interventional Cardiology",
+    "state": "DE"
+  },
+  {
+    "npi": "1328731546",
+    "firstName": "Ahmed",
+    "lastName": "Coleman",
+    "specialty": "Diagnostic Radiology",
+    "state": "KY"
+  },
+  {
+    "npi": "1714859372",
+    "firstName": "Peter",
+    "lastName": "Collins",
+    "specialty": "Internal Medicine",
+    "state": "AZ"
+  },
+  {
+    "npi": "1615689456",
+    "firstName": "Susan",
+    "lastName": "Garcia",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1307755516",
+    "firstName": "Judith",
+    "lastName": "Hughes",
+    "specialty": "Orthopedic Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1050091622",
+    "firstName": "Andrew",
+    "lastName": "Alvarez",
+    "specialty": "Geriatric Medicine",
+    "state": "AL"
+  },
+  {
+    "npi": "1148703824",
+    "firstName": "Grace",
+    "lastName": "Brooks",
+    "specialty": "Rheumatology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1069181349",
+    "firstName": "Sharon",
+    "lastName": "Smith",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "FL"
+  },
+  {
+    "npi": "1126290059",
+    "firstName": "Michael",
+    "lastName": "Desai",
+    "specialty": "Rheumatology",
+    "state": "FL"
+  },
+  {
+    "npi": "1431329394",
+    "firstName": "Fernando",
+    "lastName": "Howard",
+    "specialty": "Interventional Cardiology",
+    "state": "MA"
+  },
+  {
+    "npi": "1038078022",
+    "firstName": "Lawrence",
+    "lastName": "Carter",
+    "specialty": "Electrophysiology",
+    "state": "MA"
+  },
+  {
+    "npi": "1914516749",
+    "firstName": "Kyle",
+    "lastName": "Smith",
+    "specialty": "Gynecologic Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1204280782",
+    "firstName": "Susan",
+    "lastName": "Coleman",
+    "specialty": "Medical Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1440193864",
+    "firstName": "Ibrahim",
+    "lastName": "Barnes",
+    "specialty": "Dermatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1544460599",
+    "firstName": "Gerald",
+    "lastName": "Hill",
+    "specialty": "Sports Medicine",
+    "state": "AR"
+  },
+  {
+    "npi": "1270037876",
+    "firstName": "Deborah",
+    "lastName": "Wu",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "OR"
+  },
+  {
+    "npi": "1787882707",
+    "firstName": "Peter",
+    "lastName": "O'Neill",
+    "specialty": "Family Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1346853892",
+    "firstName": "Emily",
+    "lastName": "Fitzgerald",
+    "specialty": "Cardiovascular Disease",
+    "state": "NY"
+  },
+  {
+    "npi": "1575454289",
+    "firstName": "Miguel",
+    "lastName": "Murphy",
+    "specialty": "Emergency Medicine",
+    "state": "MO"
+  },
+  {
+    "npi": "1052142696",
+    "firstName": "Ryan",
+    "lastName": "Lee",
+    "specialty": "Neurological Surgery",
+    "state": "OR"
+  },
+  {
+    "npi": "1911570301",
+    "firstName": "Priya",
+    "lastName": "O'Brien",
+    "specialty": "Cardiovascular Disease",
+    "state": "AL"
+  },
+  {
+    "npi": "1454338066",
+    "firstName": "Andrew",
+    "lastName": "Ahmad",
+    "specialty": "General Practice",
+    "state": "VA"
+  },
+  {
+    "npi": "1599185877",
+    "firstName": "Yuki",
+    "lastName": "Mohammed",
+    "specialty": "Medical Oncology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1966869905",
+    "firstName": "Grace",
+    "lastName": "Vasquez",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "IL"
+  },
+  {
+    "npi": "1791690658",
+    "firstName": "Ryan",
+    "lastName": "Coleman",
+    "specialty": "Internal Medicine",
+    "state": "NH"
+  },
+  {
+    "npi": "1052813403",
+    "firstName": "Rebecca",
+    "lastName": "Watson",
+    "specialty": "Internal Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1576435964",
+    "firstName": "Brenda",
+    "lastName": "Mitchell",
+    "specialty": "Neurology",
+    "state": "VA"
+  },
+  {
+    "npi": "1141804835",
+    "firstName": "Bruce",
+    "lastName": "Aguilar",
+    "specialty": "Psychiatry",
+    "state": "KY"
+  },
+  {
+    "npi": "1483002683",
+    "firstName": "Ann",
+    "lastName": "Ross",
+    "specialty": "Orthopedic Surgery",
+    "state": "AR"
+  },
+  {
+    "npi": "1468178722",
+    "firstName": "Diane",
+    "lastName": "Gupta",
+    "specialty": "Medical Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1008816567",
+    "firstName": "Anna",
+    "lastName": "Collins",
+    "specialty": "Electrophysiology",
+    "state": "FL"
+  },
+  {
+    "npi": "1237955749",
+    "firstName": "Deborah",
+    "lastName": "Gomez",
+    "specialty": "Addiction Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1532960931",
+    "firstName": "Amit",
+    "lastName": "Bell",
+    "specialty": "Electrophysiology",
+    "state": "IN"
+  },
+  {
+    "npi": "1126919681",
+    "firstName": "Patrick",
+    "lastName": "Price",
+    "specialty": "Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1616846113",
+    "firstName": "Benjamin",
+    "lastName": "Yilmaz",
+    "specialty": "Medical Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1291899007",
+    "firstName": "Frank",
+    "lastName": "Jenkins",
+    "specialty": "Dermatology",
+    "state": "TX"
+  },
+  {
+    "npi": "1461177804",
+    "firstName": "Victoria",
+    "lastName": "Davis",
+    "specialty": "Family Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1473760530",
+    "firstName": "Timothy",
+    "lastName": "Green",
+    "specialty": "Radiation Oncology",
+    "state": "LA"
+  },
+  {
+    "npi": "1830829101",
+    "firstName": "Brenda",
+    "lastName": "Clark",
+    "specialty": "Urology",
+    "state": "MA"
+  },
+  {
+    "npi": "1587592241",
+    "firstName": "Alejandro",
+    "lastName": "Bell",
+    "specialty": "Gynecologic Oncology",
+    "state": "MS"
+  },
+  {
+    "npi": "1460337375",
+    "firstName": "Patrick",
+    "lastName": "Bennett",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "VT"
+  },
+  {
+    "npi": "1837417801",
+    "firstName": "Carolyn",
+    "lastName": "Sharma",
+    "specialty": "Internal Medicine",
+    "state": "OR"
+  },
+  {
+    "npi": "1699448969",
+    "firstName": "Rachel",
+    "lastName": "McCarthy",
+    "specialty": "Family Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1241881873",
+    "firstName": "Christopher",
+    "lastName": "Nguyen",
+    "specialty": "Hematology/Oncology",
+    "state": "RI"
+  },
+  {
+    "npi": "1062413434",
+    "firstName": "Dylan",
+    "lastName": "Foster",
+    "specialty": "Urology",
+    "state": "CO"
+  },
+  {
+    "npi": "1954740639",
+    "firstName": "Patrick",
+    "lastName": "Reddy",
+    "specialty": "Neurology",
+    "state": "WA"
+  },
+  {
+    "npi": "1995847377",
+    "firstName": "Eric",
+    "lastName": "Hill",
+    "specialty": "Nephrology",
+    "state": "WI"
+  },
+  {
+    "npi": "1265270300",
+    "firstName": "Jennifer",
+    "lastName": "Goldberg",
+    "specialty": "Medical Oncology",
+    "state": "MO"
+  },
+  {
+    "npi": "1007522919",
+    "firstName": "Samuel",
+    "lastName": "Yamamoto",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "OH"
+  },
+  {
+    "npi": "1849840594",
+    "firstName": "Kathryn",
+    "lastName": "Goldberg",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1525003939",
+    "firstName": "Aaron",
+    "lastName": "Kelly",
+    "specialty": "Nephrology",
+    "state": "MA"
+  },
+  {
+    "npi": "1104020270",
+    "firstName": "Gregory",
+    "lastName": "Lee",
+    "specialty": "Gastroenterology",
+    "state": "PA"
+  },
+  {
+    "npi": "1005716646",
+    "firstName": "Dennis",
+    "lastName": "Collins",
+    "specialty": "Urology",
+    "state": "MN"
+  },
+  {
+    "npi": "1213487543",
+    "firstName": "Jonathan",
+    "lastName": "Kim",
+    "specialty": "Rheumatology",
+    "state": "GA"
+  },
+  {
+    "npi": "1456994221",
+    "firstName": "Brandon",
+    "lastName": "Peterson",
+    "specialty": "Pulmonary Critical Care",
+    "state": "VA"
+  },
+  {
+    "npi": "1514249279",
+    "firstName": "Kevin",
+    "lastName": "Cruz",
+    "specialty": "Pulmonary Critical Care",
+    "state": "CA"
+  },
+  {
+    "npi": "1511251880",
+    "firstName": "Rachel",
+    "lastName": "Singh",
+    "specialty": "Nephrology",
+    "state": "GA"
+  },
+  {
+    "npi": "1044009664",
+    "firstName": "Harry",
+    "lastName": "Ortiz",
+    "specialty": "Nephrology",
+    "state": "DC"
+  },
+  {
+    "npi": "1596156004",
+    "firstName": "Samantha",
+    "lastName": "Perry",
+    "specialty": "Rheumatology",
+    "state": "MO"
+  },
+  {
+    "npi": "1790352995",
+    "firstName": "Albert",
+    "lastName": "Richardson",
+    "specialty": "Emergency Medicine",
+    "state": "VA"
+  },
+  {
+    "npi": "1271635678",
+    "firstName": "Bryan",
+    "lastName": "Phillips",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1619882438",
+    "firstName": "Louis",
+    "lastName": "Cox",
+    "specialty": "Rheumatology",
+    "state": "NY"
+  },
+  {
+    "npi": "1940318938",
+    "firstName": "Emma",
+    "lastName": "Coleman",
+    "specialty": "Ophthalmology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1522422959",
+    "firstName": "Steven",
+    "lastName": "Bailey",
+    "specialty": "Dermatology",
+    "state": "MA"
+  },
+  {
+    "npi": "1644252102",
+    "firstName": "Jun",
+    "lastName": "Sullivan",
+    "specialty": "Surgical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1581153958",
+    "firstName": "Yuki",
+    "lastName": "Walker",
+    "specialty": "Pulmonary Disease",
+    "state": "SD"
+  },
+  {
+    "npi": "1857431435",
+    "firstName": "Karen",
+    "lastName": "Lewis",
+    "specialty": "Urology",
+    "state": "CA"
+  },
+  {
+    "npi": "1547040547",
+    "firstName": "Jack",
+    "lastName": "Brooks",
+    "specialty": "Family Medicine",
+    "state": "MO"
+  },
+  {
+    "npi": "1377450139",
+    "firstName": "Emily",
+    "lastName": "Howard",
+    "specialty": "Diagnostic Radiology",
+    "state": "NY"
+  },
+  {
+    "npi": "1029597527",
+    "firstName": "Karen",
+    "lastName": "Kaplan",
+    "specialty": "Nephrology",
+    "state": "AR"
+  },
+  {
+    "npi": "1388501276",
+    "firstName": "Thomas",
+    "lastName": "Garcia",
+    "specialty": "General Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1217735764",
+    "firstName": "George",
+    "lastName": "Yang",
+    "specialty": "Ophthalmology",
+    "state": "GA"
+  },
+  {
+    "npi": "1832716066",
+    "firstName": "Elena",
+    "lastName": "Stewart",
+    "specialty": "Internal Medicine",
+    "state": "IA"
+  },
+  {
+    "npi": "1750676094",
+    "firstName": "Deborah",
+    "lastName": "Cook",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "FL"
+  },
+  {
+    "npi": "1260043298",
+    "firstName": "Deborah",
+    "lastName": "Lopez",
+    "specialty": "Sports Medicine",
+    "state": "WY"
+  },
+  {
+    "npi": "1419274174",
+    "firstName": "Alejandro",
+    "lastName": "Henderson",
+    "specialty": "Neurological Surgery",
+    "state": "CA"
+  },
+  {
+    "npi": "1393423581",
+    "firstName": "Diego",
+    "lastName": "Walker",
+    "specialty": "Pediatrics",
+    "state": "MA"
+  },
+  {
+    "npi": "1447444039",
+    "firstName": "Sanjay",
+    "lastName": "Adams",
+    "specialty": "Dermatology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1640723668",
+    "firstName": "Wei",
+    "lastName": "Gupta",
+    "specialty": "Emergency Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1153260132",
+    "firstName": "Ethan",
+    "lastName": "Jones",
+    "specialty": "Ophthalmology",
+    "state": "MD"
+  },
+  {
+    "npi": "1862826611",
+    "firstName": "Christine",
+    "lastName": "Brown",
+    "specialty": "Cardiovascular Disease",
+    "state": "NY"
+  },
+  {
+    "npi": "1772865204",
+    "firstName": "Priya",
+    "lastName": "Thompson",
+    "specialty": "Geriatric Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1637913389",
+    "firstName": "Grace",
+    "lastName": "Moore",
+    "specialty": "Family Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1289176574",
+    "firstName": "Brenda",
+    "lastName": "Sharma",
+    "specialty": "Gastroenterology",
+    "state": "MD"
+  },
+  {
+    "npi": "1083257240",
+    "firstName": "Kevin",
+    "lastName": "Green",
+    "specialty": "Addiction Psychiatry",
+    "state": "VA"
+  },
+  {
+    "npi": "1599914805",
+    "firstName": "Andrew",
+    "lastName": "Lewis",
+    "specialty": "Pathology",
+    "state": "IN"
+  },
+  {
+    "npi": "1570043715",
+    "firstName": "Eugene",
+    "lastName": "Khan",
+    "specialty": "Surgical Oncology",
+    "state": "OH"
+  },
+  {
+    "npi": "1962471805",
+    "firstName": "Patricia",
+    "lastName": "Reed",
+    "specialty": "Orthopedic Surgery",
+    "state": "TX"
+  },
+  {
+    "npi": "1818702676",
+    "firstName": "Kyle",
+    "lastName": "Yang",
+    "specialty": "Family Medicine",
+    "state": "ME"
+  },
+  {
+    "npi": "1270666500",
+    "firstName": "Charles",
+    "lastName": "Collins",
+    "specialty": "Internal Medicine",
+    "state": "MD"
+  },
+  {
+    "npi": "1758365179",
+    "firstName": "Anil",
+    "lastName": "Campbell",
+    "specialty": "Pathology",
+    "state": "MN"
+  },
+  {
+    "npi": "1184677759",
+    "firstName": "Timothy",
+    "lastName": "Green",
+    "specialty": "Pathology",
+    "state": "FL"
+  },
+  {
+    "npi": "1795382583",
+    "firstName": "Sanjay",
+    "lastName": "Thomas",
+    "specialty": "Orthopedic Surgery",
+    "state": "CA"
+  },
+  {
+    "npi": "1542635309",
+    "firstName": "Stephanie",
+    "lastName": "Green",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "TN"
+  },
+  {
+    "npi": "1303112225",
+    "firstName": "Douglas",
+    "lastName": "Harris",
+    "specialty": "Family Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1031527439",
+    "firstName": "Joshua",
+    "lastName": "Fisher",
+    "specialty": "Infectious Disease",
+    "state": "PA"
+  },
+  {
+    "npi": "1909964987",
+    "firstName": "Nicholas",
+    "lastName": "Rodriguez",
+    "specialty": "Nephrology",
+    "state": "NC"
+  },
+  {
+    "npi": "1144125774",
+    "firstName": "Alice",
+    "lastName": "Hall",
+    "specialty": "Neurology",
+    "state": "TX"
+  },
+  {
+    "npi": "1019805393",
+    "firstName": "Wei",
+    "lastName": "Phillips",
+    "specialty": "General Surgery",
+    "state": "AK"
+  },
+  {
+    "npi": "1724561455",
+    "firstName": "Alice",
+    "lastName": "Wilson",
+    "specialty": "Medical Oncology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1243529967",
+    "firstName": "Bryan",
+    "lastName": "Simmons",
+    "specialty": "Pathology",
+    "state": "DC"
+  },
+  {
+    "npi": "1056022886",
+    "firstName": "Peter",
+    "lastName": "Zhang",
+    "specialty": "Child Neurology",
+    "state": "OH"
+  },
+  {
+    "npi": "1476097294",
+    "firstName": "Ali",
+    "lastName": "Yamamoto",
+    "specialty": "Radiation Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1848570879",
+    "firstName": "Andrea",
+    "lastName": "Perez",
+    "specialty": "Addiction Psychiatry",
+    "state": "KY"
+  },
+  {
+    "npi": "1828579874",
+    "firstName": "Deborah",
+    "lastName": "Powell",
+    "specialty": "Interventional Cardiology",
+    "state": "NY"
+  },
+  {
+    "npi": "1355766712",
+    "firstName": "Sanjay",
+    "lastName": "Chavez",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1822463505",
+    "firstName": "Kelly",
+    "lastName": "Cooper",
+    "specialty": "Ophthalmology",
+    "state": "TN"
+  },
+  {
+    "npi": "1343136721",
+    "firstName": "Rafael",
+    "lastName": "Butler",
+    "specialty": "Addiction Psychiatry",
+    "state": "CA"
+  },
+  {
+    "npi": "1862158288",
+    "firstName": "Charles",
+    "lastName": "Rogers",
+    "specialty": "Radiation Oncology",
+    "state": "UT"
+  },
+  {
+    "npi": "1322581871",
+    "firstName": "Nathan",
+    "lastName": "Carter",
+    "specialty": "Nephrology",
+    "state": "CO"
+  },
+  {
+    "npi": "1112619725",
+    "firstName": "Cynthia",
+    "lastName": "Garcia",
+    "specialty": "Orthopedic Surgery",
+    "state": "NY"
+  },
+  {
+    "npi": "1816088714",
+    "firstName": "Gloria",
+    "lastName": "Campbell",
+    "specialty": "Pediatrics",
+    "state": "CO"
+  },
+  {
+    "npi": "1437060167",
+    "firstName": "Deepa",
+    "lastName": "Evans",
+    "specialty": "Orthopedic Surgery",
+    "state": "MI"
+  },
+  {
+    "npi": "1747235640",
+    "firstName": "Megan",
+    "lastName": "Gomez",
+    "specialty": "Emergency Medicine",
+    "state": "AL"
+  },
+  {
+    "npi": "1162464907",
+    "firstName": "Andrea",
+    "lastName": "Adams",
+    "specialty": "Family Medicine",
+    "state": "KS"
+  },
+  {
+    "npi": "1935638456",
+    "firstName": "Jun",
+    "lastName": "Joshi",
+    "specialty": "Surgical Oncology",
+    "state": "WA"
+  },
+  {
+    "npi": "1434728287",
+    "firstName": "Paul",
+    "lastName": "Rivera",
+    "specialty": "Surgical Oncology",
+    "state": "OK"
+  },
+  {
+    "npi": "1028737611",
+    "firstName": "Kimberly",
+    "lastName": "Gutierrez",
+    "specialty": "General Surgery",
+    "state": "PA"
+  },
+  {
+    "npi": "1803090947",
+    "firstName": "Raj",
+    "lastName": "Mohammed",
+    "specialty": "Rheumatology",
+    "state": "AL"
+  },
+  {
+    "npi": "1193693508",
+    "firstName": "Ahmed",
+    "lastName": "Richardson",
+    "specialty": "Cardiovascular Disease",
+    "state": "MT"
+  },
+  {
+    "npi": "1355861349",
+    "firstName": "Philip",
+    "lastName": "Peterson",
+    "specialty": "Urology",
+    "state": "AL"
+  },
+  {
+    "npi": "1526606532",
+    "firstName": "Daniel",
+    "lastName": "Nakamura",
+    "specialty": "Surgical Oncology",
+    "state": "ME"
+  },
+  {
+    "npi": "1963266378",
+    "firstName": "Elizabeth",
+    "lastName": "Williams",
+    "specialty": "Family Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1730604323",
+    "firstName": "Jun",
+    "lastName": "Walsh",
+    "specialty": "Infectious Disease",
+    "state": "IN"
+  },
+  {
+    "npi": "1183260342",
+    "firstName": "Deborah",
+    "lastName": "Khan",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "MA"
+  },
+  {
+    "npi": "1732865658",
+    "firstName": "Thomas",
+    "lastName": "Mendoza",
+    "specialty": "Internal Medicine",
+    "state": "MO"
+  },
+  {
+    "npi": "1545713095",
+    "firstName": "Omar",
+    "lastName": "Peterson",
+    "specialty": "Diagnostic Radiology",
+    "state": "OH"
+  },
+  {
+    "npi": "1539755284",
+    "firstName": "Evelyn",
+    "lastName": "Jackson",
+    "specialty": "Pulmonary Disease",
+    "state": "CT"
+  },
+  {
+    "npi": "1045335902",
+    "firstName": "James",
+    "lastName": "Reyes",
+    "specialty": "Medical Oncology",
+    "state": "MN"
+  },
+  {
+    "npi": "1649962705",
+    "firstName": "Maria",
+    "lastName": "Jenkins",
+    "specialty": "Nephrology",
+    "state": "OH"
+  },
+  {
+    "npi": "1442215350",
+    "firstName": "Madison",
+    "lastName": "Ibrahim",
+    "specialty": "Interventional Cardiology",
+    "state": "MT"
+  },
+  {
+    "npi": "1122441201",
+    "firstName": "Lisa",
+    "lastName": "Miller",
+    "specialty": "Neurology",
+    "state": "IN"
+  },
+  {
+    "npi": "1844921142",
+    "firstName": "Yusuf",
+    "lastName": "Hughes",
+    "specialty": "Urology",
+    "state": "GA"
+  },
+  {
+    "npi": "1808820322",
+    "firstName": "Carolyn",
+    "lastName": "Taylor",
+    "specialty": "Sports Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1589449754",
+    "firstName": "Priya",
+    "lastName": "Parker",
+    "specialty": "Neurology",
+    "state": "CA"
+  },
+  {
+    "npi": "1595171541",
+    "firstName": "Debra",
+    "lastName": "Simmons",
+    "specialty": "Pulmonary Critical Care",
+    "state": "NY"
+  },
+  {
+    "npi": "1986593550",
+    "firstName": "Anna",
+    "lastName": "Gomez",
+    "specialty": "Infectious Disease",
+    "state": "OH"
+  },
+  {
+    "npi": "1662077290",
+    "firstName": "Nancy",
+    "lastName": "Gray",
+    "specialty": "Psychiatry",
+    "state": "CA"
+  },
+  {
+    "npi": "1420217832",
+    "firstName": "Ryan",
+    "lastName": "Tanaka",
+    "specialty": "Cardiovascular Disease",
+    "state": "AZ"
+  },
+  {
+    "npi": "1700330131",
+    "firstName": "Aaron",
+    "lastName": "Liu",
+    "specialty": "Hematology/Oncology",
+    "state": "AL"
+  },
+  {
+    "npi": "1747348344",
+    "firstName": "Kathleen",
+    "lastName": "Alvarez",
+    "specialty": "Internal Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1390476582",
+    "firstName": "Laura",
+    "lastName": "Gupta",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "PA"
+  },
+  {
+    "npi": "1433750779",
+    "firstName": "Cheryl",
+    "lastName": "Collins",
+    "specialty": "Cardiovascular Disease",
+    "state": "OH"
+  },
+  {
+    "npi": "1706862160",
+    "firstName": "Ralph",
+    "lastName": "Ibrahim",
+    "specialty": "Dermatology",
+    "state": "OR"
+  },
+  {
+    "npi": "1935196430",
+    "firstName": "Lakshmi",
+    "lastName": "O'Connor",
+    "specialty": "Emergency Medicine",
+    "state": "ND"
+  },
+  {
+    "npi": "1182165153",
+    "firstName": "Michael",
+    "lastName": "Peterson",
+    "specialty": "Dermatology",
+    "state": "TX"
+  },
+  {
+    "npi": "1055458339",
+    "firstName": "Charles",
+    "lastName": "Patel",
+    "specialty": "Family Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1391154642",
+    "firstName": "Joyce",
+    "lastName": "Chowdhury",
+    "specialty": "Sports Medicine",
+    "state": "MI"
+  },
+  {
+    "npi": "1273892251",
+    "firstName": "Raj",
+    "lastName": "Baker",
+    "specialty": "Medical Oncology",
+    "state": "MD"
+  },
+  {
+    "npi": "1886251176",
+    "firstName": "Diane",
+    "lastName": "Sanders",
+    "specialty": "Neurology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1040571741",
+    "firstName": "Anna",
+    "lastName": "Jimenez",
+    "specialty": "General Practice",
+    "state": "MO"
+  },
+  {
+    "npi": "1532872722",
+    "firstName": "Elena",
+    "lastName": "Huang",
+    "specialty": "Geriatric Medicine",
+    "state": "OK"
+  },
+  {
+    "npi": "1484886357",
+    "firstName": "Elizabeth",
+    "lastName": "Castillo",
+    "specialty": "Sports Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1509311860",
+    "firstName": "Brian",
+    "lastName": "Thomas",
+    "specialty": "Dermatology",
+    "state": "NY"
+  },
+  {
+    "npi": "1311048270",
+    "firstName": "Jason",
+    "lastName": "Murphy",
+    "specialty": "Internal Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1079623785",
+    "firstName": "Carmen",
+    "lastName": "Brown",
+    "specialty": "Neurological Surgery",
+    "state": "CA"
+  },
+  {
+    "npi": "1544272812",
+    "firstName": "Sharon",
+    "lastName": "Murphy",
+    "specialty": "Anesthesiology",
+    "state": "CA"
+  },
+  {
+    "npi": "1141657704",
+    "firstName": "Carolyn",
+    "lastName": "Kim",
+    "specialty": "Nephrology",
+    "state": "NY"
+  },
+  {
+    "npi": "1114968492",
+    "firstName": "Gregory",
+    "lastName": "Friedman",
+    "specialty": "Gastroenterology",
+    "state": "TX"
+  },
+  {
+    "npi": "1426880419",
+    "firstName": "Anita",
+    "lastName": "Kumar",
+    "specialty": "Gynecologic Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1953619255",
+    "firstName": "Elena",
+    "lastName": "Rosenberg",
+    "specialty": "Neurological Surgery",
+    "state": "CA"
+  },
+  {
+    "npi": "1117137194",
+    "firstName": "Judith",
+    "lastName": "White",
+    "specialty": "Gastroenterology",
+    "state": "MI"
+  },
+  {
+    "npi": "1477987816",
+    "firstName": "Christina",
+    "lastName": "Torres",
+    "specialty": "Pathology",
+    "state": "MD"
+  },
+  {
+    "npi": "1269430116",
+    "firstName": "George",
+    "lastName": "Wang",
+    "specialty": "Surgical Oncology",
+    "state": "LA"
+  },
+  {
+    "npi": "1687268247",
+    "firstName": "Mohammed",
+    "lastName": "Gonzalez",
+    "specialty": "Medical Oncology",
+    "state": "OH"
+  },
+  {
+    "npi": "1428154201",
+    "firstName": "Andrew",
+    "lastName": "Wang",
+    "specialty": "Cardiovascular Disease",
+    "state": "NY"
+  },
+  {
+    "npi": "1044429938",
+    "firstName": "James",
+    "lastName": "Ramos",
+    "specialty": "Family Medicine",
+    "state": "DE"
+  },
+  {
+    "npi": "1085853558",
+    "firstName": "Alexander",
+    "lastName": "Morris",
+    "specialty": "Surgical Oncology",
+    "state": "PA"
+  },
+  {
+    "npi": "1841049293",
+    "firstName": "Jacqueline",
+    "lastName": "Bell",
+    "specialty": "Sports Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1799511948",
+    "firstName": "Steven",
+    "lastName": "Carter",
+    "specialty": "Addiction Psychiatry",
+    "state": "NH"
+  },
+  {
+    "npi": "1434886333",
+    "firstName": "Hassan",
+    "lastName": "Williams",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "KS"
+  },
+  {
+    "npi": "1465084675",
+    "firstName": "Brenda",
+    "lastName": "Liu",
+    "specialty": "Neurology",
+    "state": "OR"
+  },
+  {
+    "npi": "1987699588",
+    "firstName": "Sandra",
+    "lastName": "Young",
+    "specialty": "Dermatology",
+    "state": "VA"
+  },
+  {
+    "npi": "1385943059",
+    "firstName": "Carol",
+    "lastName": "Hall",
+    "specialty": "Medical Oncology",
+    "state": "ID"
+  },
+  {
+    "npi": "1433972217",
+    "firstName": "Miguel",
+    "lastName": "James",
+    "specialty": "Psychiatry",
+    "state": "CA"
+  },
+  {
+    "npi": "1450864669",
+    "firstName": "Anil",
+    "lastName": "White",
+    "specialty": "Pediatrics",
+    "state": "KY"
+  },
+  {
+    "npi": "1074251574",
+    "firstName": "Amanda",
+    "lastName": "Thomas",
+    "specialty": "Internal Medicine",
+    "state": "MI"
+  },
+  {
+    "npi": "1630118622",
+    "firstName": "Helen",
+    "lastName": "Sanders",
+    "specialty": "Infectious Disease",
+    "state": "WI"
+  },
+  {
+    "npi": "1041108923",
+    "firstName": "Vincent",
+    "lastName": "Ward",
+    "specialty": "Cardiovascular Disease",
+    "state": "IL"
+  },
+  {
+    "npi": "1717118248",
+    "firstName": "Amanda",
+    "lastName": "Gonzalez",
+    "specialty": "Cardiovascular Disease",
+    "state": "AZ"
+  },
+  {
+    "npi": "1105283067",
+    "firstName": "Donald",
+    "lastName": "Martinez",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "AZ"
+  },
+  {
+    "npi": "1440584641",
+    "firstName": "Lisa",
+    "lastName": "Martinez",
+    "specialty": "Radiation Oncology",
+    "state": "SC"
+  },
+  {
+    "npi": "1047528413",
+    "firstName": "Diego",
+    "lastName": "Castillo",
+    "specialty": "Surgical Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1911941825",
+    "firstName": "Peter",
+    "lastName": "Adams",
+    "specialty": "Urology",
+    "state": "NY"
+  },
+  {
+    "npi": "1921774976",
+    "firstName": "Rafael",
+    "lastName": "Rivera",
+    "specialty": "Pathology",
+    "state": "OH"
+  },
+  {
+    "npi": "1898915347",
+    "firstName": "Virginia",
+    "lastName": "Simmons",
+    "specialty": "Cardiovascular Disease",
+    "state": "MA"
+  },
+  {
+    "npi": "1347963740",
+    "firstName": "Jordan",
+    "lastName": "Hughes",
+    "specialty": "Cardiovascular Disease",
+    "state": "VT"
+  },
+  {
+    "npi": "1620403166",
+    "firstName": "Albert",
+    "lastName": "Khan",
+    "specialty": "Ophthalmology",
+    "state": "DC"
+  },
+  {
+    "npi": "1445730785",
+    "firstName": "Jordan",
+    "lastName": "Chen",
+    "specialty": "Emergency Medicine",
+    "state": "IN"
+  },
+  {
+    "npi": "1640413955",
+    "firstName": "Paul",
+    "lastName": "Cho",
+    "specialty": "Internal Medicine",
+    "state": "OR"
+  },
+  {
+    "npi": "1589955610",
+    "firstName": "Priya",
+    "lastName": "Kelly",
+    "specialty": "Psychiatry",
+    "state": "GA"
+  },
+  {
+    "npi": "1819892633",
+    "firstName": "Kathleen",
+    "lastName": "Yang",
+    "specialty": "Emergency Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1184248171",
+    "firstName": "Aaron",
+    "lastName": "Cox",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "AZ"
+  },
+  {
+    "npi": "1893124622",
+    "firstName": "Christina",
+    "lastName": "Kumar",
+    "specialty": "Dermatology",
+    "state": "ME"
+  },
+  {
+    "npi": "1594287587",
+    "firstName": "Amanda",
+    "lastName": "Vasquez",
+    "specialty": "Orthopedic Surgery",
+    "state": "ND"
+  },
+  {
+    "npi": "1172318655",
+    "firstName": "Christina",
+    "lastName": "Reyes",
+    "specialty": "Gastroenterology",
+    "state": "TN"
+  },
+  {
+    "npi": "1028777849",
+    "firstName": "Ethan",
+    "lastName": "Baker",
+    "specialty": "Internal Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1327590828",
+    "firstName": "Grace",
+    "lastName": "Gomez",
+    "specialty": "Hematology/Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1076908288",
+    "firstName": "Margaret",
+    "lastName": "Ahmad",
+    "specialty": "Medical Oncology",
+    "state": "MO"
+  },
+  {
+    "npi": "1612502033",
+    "firstName": "Carlos",
+    "lastName": "Sanchez",
+    "specialty": "Infectious Disease",
+    "state": "WY"
+  },
+  {
+    "npi": "1939676254",
+    "firstName": "Cheryl",
+    "lastName": "Aguilar",
+    "specialty": "Pathology",
+    "state": "IL"
+  },
+  {
+    "npi": "1182932495",
+    "firstName": "Carl",
+    "lastName": "Ortiz",
+    "specialty": "Surgical Oncology",
+    "state": "VA"
+  },
+  {
+    "npi": "1384733105",
+    "firstName": "Nicole",
+    "lastName": "Butler",
+    "specialty": "Orthopedic Surgery",
+    "state": "MI"
+  },
+  {
+    "npi": "1285563403",
+    "firstName": "Jean",
+    "lastName": "Russell",
+    "specialty": "Nephrology",
+    "state": "WA"
+  },
+  {
+    "npi": "1477185080",
+    "firstName": "Dylan",
+    "lastName": "Martin",
+    "specialty": "Medical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1751520572",
+    "firstName": "Abigail",
+    "lastName": "Stewart",
+    "specialty": "Medical Oncology",
+    "state": "PA"
+  },
+  {
+    "npi": "1995824020",
+    "firstName": "Frances",
+    "lastName": "Gupta",
+    "specialty": "Medical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1603227905",
+    "firstName": "Gary",
+    "lastName": "Huang",
+    "specialty": "Hematology/Oncology",
+    "state": "NM"
+  },
+  {
+    "npi": "1944957871",
+    "firstName": "Debra",
+    "lastName": "Mehta",
+    "specialty": "Medical Oncology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1879126831",
+    "firstName": "Cynthia",
+    "lastName": "Cooper",
+    "specialty": "Surgical Oncology",
+    "state": "PA"
+  },
+  {
+    "npi": "1222431466",
+    "firstName": "Jesse",
+    "lastName": "Wu",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NY"
+  },
+  {
+    "npi": "1634131829",
+    "firstName": "Samuel",
+    "lastName": "Foster",
+    "specialty": "Medical Oncology",
+    "state": "AR"
+  },
+  {
+    "npi": "1595091285",
+    "firstName": "Mary",
+    "lastName": "Brooks",
+    "specialty": "General Surgery",
+    "state": "VA"
+  },
+  {
+    "npi": "1199228101",
+    "firstName": "Zachary",
+    "lastName": "Tanaka",
+    "specialty": "Neurological Surgery",
+    "state": "TX"
+  },
+  {
+    "npi": "1162036002",
+    "firstName": "Timothy",
+    "lastName": "Alvarez",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "MD"
+  },
+  {
+    "npi": "1485149193",
+    "firstName": "Mary",
+    "lastName": "Liu",
+    "specialty": "Diagnostic Radiology",
+    "state": "IL"
+  },
+  {
+    "npi": "1294506344",
+    "firstName": "Laura",
+    "lastName": "Gupta",
+    "specialty": "Ophthalmology",
+    "state": "TX"
+  },
+  {
+    "npi": "1423232481",
+    "firstName": "Jacob",
+    "lastName": "Harris",
+    "specialty": "Neurology",
+    "state": "CA"
+  },
+  {
+    "npi": "1182068787",
+    "firstName": "Hannah",
+    "lastName": "Harris",
+    "specialty": "Medical Oncology",
+    "state": "MI"
+  },
+  {
+    "npi": "1178133470",
+    "firstName": "Wei",
+    "lastName": "Gupta",
+    "specialty": "Dermatology",
+    "state": "IN"
+  },
+  {
+    "npi": "1615368960",
+    "firstName": "Sophia",
+    "lastName": "Wright",
+    "specialty": "Medical Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1964492817",
+    "firstName": "Emma",
+    "lastName": "Alvarez",
+    "specialty": "Neurological Surgery",
+    "state": "MA"
+  },
+  {
+    "npi": "1712052673",
+    "firstName": "Deborah",
+    "lastName": "Jimenez",
+    "specialty": "Psychiatry",
+    "state": "NJ"
+  },
+  {
+    "npi": "1740244045",
+    "firstName": "Justin",
+    "lastName": "Yilmaz",
+    "specialty": "Rheumatology",
+    "state": "TN"
+  },
+  {
+    "npi": "1662388275",
+    "firstName": "Brian",
+    "lastName": "Ibrahim",
+    "specialty": "Urology",
+    "state": "AL"
+  },
+  {
+    "npi": "1657155226",
+    "firstName": "Diane",
+    "lastName": "Thompson",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "CO"
+  },
+  {
+    "npi": "1475966853",
+    "firstName": "Sophia",
+    "lastName": "Bell",
+    "specialty": "Nephrology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1388588604",
+    "firstName": "Victoria",
+    "lastName": "Campbell",
+    "specialty": "Surgical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1364369284",
+    "firstName": "Jose",
+    "lastName": "Yilmaz",
+    "specialty": "Psychiatry",
+    "state": "LA"
+  },
+  {
+    "npi": "1983332507",
+    "firstName": "Matthew",
+    "lastName": "Martin",
+    "specialty": "Rheumatology",
+    "state": "OH"
+  },
+  {
+    "npi": "1733890853",
+    "firstName": "Sophia",
+    "lastName": "Walker",
+    "specialty": "Family Medicine",
+    "state": "IN"
+  },
+  {
+    "npi": "1567508845",
+    "firstName": "Rafael",
+    "lastName": "Ortiz",
+    "specialty": "Surgical Oncology",
+    "state": "VT"
+  },
+  {
+    "npi": "1141022941",
+    "firstName": "Mary",
+    "lastName": "Reed",
+    "specialty": "Family Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1189448156",
+    "firstName": "Ryan",
+    "lastName": "Liu",
+    "specialty": "Radiation Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1750089587",
+    "firstName": "Kathryn",
+    "lastName": "Sanders",
+    "specialty": "Infectious Disease",
+    "state": "AZ"
+  },
+  {
+    "npi": "1056317047",
+    "firstName": "Peter",
+    "lastName": "Kaplan",
+    "specialty": "Pain Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1583668904",
+    "firstName": "Carol",
+    "lastName": "Mohammed",
+    "specialty": "Surgical Oncology",
+    "state": "MD"
+  },
+  {
+    "npi": "1973479045",
+    "firstName": "Catherine",
+    "lastName": "Morgan",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "AL"
+  },
+  {
+    "npi": "1072588571",
+    "firstName": "Larry",
+    "lastName": "Martinez",
+    "specialty": "Orthopedic Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1546438312",
+    "firstName": "Megan",
+    "lastName": "Bell",
+    "specialty": "Psychiatry",
+    "state": "IL"
+  },
+  {
+    "npi": "1223762265",
+    "firstName": "Nancy",
+    "lastName": "Sanders",
+    "specialty": "Medical Oncology",
+    "state": "DC"
+  },
+  {
+    "npi": "1949869808",
+    "firstName": "Bryan",
+    "lastName": "Goldberg",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "MN"
+  },
+  {
+    "npi": "1109013064",
+    "firstName": "Denise",
+    "lastName": "Rogers",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "ME"
+  },
+  {
+    "npi": "1132062328",
+    "firstName": "Albert",
+    "lastName": "Diaz",
+    "specialty": "Geriatric Medicine",
+    "state": "NH"
+  },
+  {
+    "npi": "1473592966",
+    "firstName": "Sara",
+    "lastName": "Perry",
+    "specialty": "Gynecologic Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1792845061",
+    "firstName": "Henry",
+    "lastName": "Wright",
+    "specialty": "Medical Oncology",
+    "state": "MO"
+  },
+  {
+    "npi": "1168666075",
+    "firstName": "Thomas",
+    "lastName": "Khan",
+    "specialty": "Pathology",
+    "state": "NY"
+  },
+  {
+    "npi": "1756131029",
+    "firstName": "Dorothy",
+    "lastName": "Green",
+    "specialty": "Gastroenterology",
+    "state": "NY"
+  },
+  {
+    "npi": "1054909522",
+    "firstName": "Alice",
+    "lastName": "Park",
+    "specialty": "Gynecologic Oncology",
+    "state": "TN"
+  },
+  {
+    "npi": "1213627791",
+    "firstName": "Deepa",
+    "lastName": "Hassan",
+    "specialty": "Internal Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1648100935",
+    "firstName": "Janet",
+    "lastName": "Cruz",
+    "specialty": "Gynecologic Oncology",
+    "state": "UT"
+  },
+  {
+    "npi": "1318442450",
+    "firstName": "Rebecca",
+    "lastName": "Turner",
+    "specialty": "Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1804498156",
+    "firstName": "Anna",
+    "lastName": "Li",
+    "specialty": "Pathology",
+    "state": "FL"
+  },
+  {
+    "npi": "1566620492",
+    "firstName": "Ronald",
+    "lastName": "O'Connor",
+    "specialty": "Allergy & Immunology",
+    "state": "TX"
+  },
+  {
+    "npi": "1158731483",
+    "firstName": "Robert",
+    "lastName": "Sharma",
+    "specialty": "Dermatology",
+    "state": "FL"
+  },
+  {
+    "npi": "1117454474",
+    "firstName": "Thomas",
+    "lastName": "Reddy",
+    "specialty": "Pediatrics",
+    "state": "PA"
+  },
+  {
+    "npi": "1460089356",
+    "firstName": "Melissa",
+    "lastName": "Li",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "IL"
+  },
+  {
+    "npi": "1078256579",
+    "firstName": "Vincent",
+    "lastName": "Diaz",
+    "specialty": "Ophthalmology",
+    "state": "MT"
+  },
+  {
+    "npi": "1971832971",
+    "firstName": "Mary",
+    "lastName": "Li",
+    "specialty": "Internal Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1140062740",
+    "firstName": "Kevin",
+    "lastName": "Anderson",
+    "specialty": "Cardiovascular Disease",
+    "state": "NC"
+  },
+  {
+    "npi": "1524315912",
+    "firstName": "Jonathan",
+    "lastName": "Powell",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "FL"
+  },
+  {
+    "npi": "1671885972",
+    "firstName": "Thomas",
+    "lastName": "O'Neill",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "MS"
+  },
+  {
+    "npi": "1092003254",
+    "firstName": "Arthur",
+    "lastName": "Singh",
+    "specialty": "Sports Medicine",
+    "state": "DE"
+  },
+  {
+    "npi": "1302957273",
+    "firstName": "Dylan",
+    "lastName": "James",
+    "specialty": "Medical Oncology",
+    "state": "VA"
+  },
+  {
+    "npi": "1810615025",
+    "firstName": "Richard",
+    "lastName": "Peterson",
+    "specialty": "Cardiovascular Disease",
+    "state": "IN"
+  },
+  {
+    "npi": "1828879449",
+    "firstName": "Ralph",
+    "lastName": "Nguyen",
+    "specialty": "Allergy & Immunology",
+    "state": "TX"
+  },
+  {
+    "npi": "1419151448",
+    "firstName": "Carol",
+    "lastName": "Anderson",
+    "specialty": "Sports Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1795551161",
+    "firstName": "Jean",
+    "lastName": "Wright",
+    "specialty": "Emergency Medicine",
+    "state": "DE"
+  },
+  {
+    "npi": "1750221966",
+    "firstName": "Martha",
+    "lastName": "Wright",
+    "specialty": "Allergy & Immunology",
+    "state": "CA"
+  },
+  {
+    "npi": "1449730781",
+    "firstName": "Raj",
+    "lastName": "Harris",
+    "specialty": "Dermatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1484299155",
+    "firstName": "Patrick",
+    "lastName": "Gomez",
+    "specialty": "Sports Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1288079837",
+    "firstName": "Linda",
+    "lastName": "Goldberg",
+    "specialty": "Medical Oncology",
+    "state": "MD"
+  },
+  {
+    "npi": "1182815948",
+    "firstName": "Betty",
+    "lastName": "Young",
+    "specialty": "Orthopedic Surgery",
+    "state": "MI"
+  },
+  {
+    "npi": "1056946001",
+    "firstName": "Kenneth",
+    "lastName": "Chowdhury",
+    "specialty": "Medical Oncology",
+    "state": "WI"
+  },
+  {
+    "npi": "1434708743",
+    "firstName": "Janice",
+    "lastName": "Park",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "MD"
+  },
+  {
+    "npi": "1932410057",
+    "firstName": "Peter",
+    "lastName": "Walsh",
+    "specialty": "Nephrology",
+    "state": "MT"
+  },
+  {
+    "npi": "1441238155",
+    "firstName": "Sunita",
+    "lastName": "Cox",
+    "specialty": "Urology",
+    "state": "MD"
+  },
+  {
+    "npi": "1647247026",
+    "firstName": "Philip",
+    "lastName": "Morgan",
+    "specialty": "Neurology",
+    "state": "OH"
+  },
+  {
+    "npi": "1015137981",
+    "firstName": "Kenneth",
+    "lastName": "Joshi",
+    "specialty": "Neurology",
+    "state": "AL"
+  },
+  {
+    "npi": "1212630267",
+    "firstName": "Kyle",
+    "lastName": "Gonzalez",
+    "specialty": "Child Neurology",
+    "state": "UT"
+  },
+  {
+    "npi": "1791177904",
+    "firstName": "Larry",
+    "lastName": "Turner",
+    "specialty": "Ophthalmology",
+    "state": "MI"
+  },
+  {
+    "npi": "1181622709",
+    "firstName": "Carl",
+    "lastName": "Thompson",
+    "specialty": "Surgical Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1481781163",
+    "firstName": "Ralph",
+    "lastName": "Green",
+    "specialty": "Interventional Cardiology",
+    "state": "MN"
+  },
+  {
+    "npi": "1402163814",
+    "firstName": "Raymond",
+    "lastName": "Kaplan",
+    "specialty": "Urology",
+    "state": "WA"
+  },
+  {
+    "npi": "1117268676",
+    "firstName": "Patricia",
+    "lastName": "Ahmad",
+    "specialty": "Sports Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1609780915",
+    "firstName": "Christine",
+    "lastName": "Kumar",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "GA"
+  },
+  {
+    "npi": "1021986330",
+    "firstName": "Patrick",
+    "lastName": "Reed",
+    "specialty": "Medical Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1115972345",
+    "firstName": "George",
+    "lastName": "Kelly",
+    "specialty": "Neurological Surgery",
+    "state": "NY"
+  },
+  {
+    "npi": "1344359751",
+    "firstName": "Sophia",
+    "lastName": "Mehta",
+    "specialty": "Nephrology",
+    "state": "FL"
+  },
+  {
+    "npi": "1072519089",
+    "firstName": "Meena",
+    "lastName": "Lopez",
+    "specialty": "Emergency Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1574841700",
+    "firstName": "Alexander",
+    "lastName": "Bennett",
+    "specialty": "General Practice",
+    "state": "NV"
+  },
+  {
+    "npi": "1352378792",
+    "firstName": "Betty",
+    "lastName": "Bailey",
+    "specialty": "Neurological Surgery",
+    "state": "NC"
+  },
+  {
+    "npi": "1061713404",
+    "firstName": "Robert",
+    "lastName": "Castillo",
+    "specialty": "Family Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1079514554",
+    "firstName": "Ashley",
+    "lastName": "Bennett",
+    "specialty": "Rheumatology",
+    "state": "IN"
+  },
+  {
+    "npi": "1938264771",
+    "firstName": "Laura",
+    "lastName": "Smith",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "IA"
+  },
+  {
+    "npi": "1031956919",
+    "firstName": "Margaret",
+    "lastName": "O'Connor",
+    "specialty": "Urology",
+    "state": "KS"
+  },
+  {
+    "npi": "1590188607",
+    "firstName": "Cheryl",
+    "lastName": "Kim",
+    "specialty": "Psychiatry",
+    "state": "OR"
+  },
+  {
+    "npi": "1346186764",
+    "firstName": "Katherine",
+    "lastName": "O'Connor",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "TX"
+  },
+  {
+    "npi": "1949157329",
+    "firstName": "Robert",
+    "lastName": "Sanchez",
+    "specialty": "General Surgery",
+    "state": "DE"
+  },
+  {
+    "npi": "1018722995",
+    "firstName": "Raymond",
+    "lastName": "Sullivan",
+    "specialty": "Interventional Cardiology",
+    "state": "PA"
+  },
+  {
+    "npi": "1620555270",
+    "firstName": "Edward",
+    "lastName": "Adams",
+    "specialty": "Dermatology",
+    "state": "TX"
+  },
+  {
+    "npi": "1525043018",
+    "firstName": "Louis",
+    "lastName": "Shah",
+    "specialty": "Geriatric Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1420363024",
+    "firstName": "Debra",
+    "lastName": "Ross",
+    "specialty": "Psychiatry",
+    "state": "CT"
+  },
+  {
+    "npi": "1057877437",
+    "firstName": "Stephanie",
+    "lastName": "Myers",
+    "specialty": "Internal Medicine",
+    "state": "LA"
+  },
+  {
+    "npi": "1237922921",
+    "firstName": "Ashley",
+    "lastName": "Mitchell",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "CA"
+  },
+  {
+    "npi": "1654299241",
+    "firstName": "Vikram",
+    "lastName": "Ross",
+    "specialty": "Pain Medicine",
+    "state": "AL"
+  },
+  {
+    "npi": "1630679060",
+    "firstName": "Deepa",
+    "lastName": "Smith",
+    "specialty": "Medical Oncology",
+    "state": "LA"
+  },
+  {
+    "npi": "1736107818",
+    "firstName": "Angela",
+    "lastName": "Friedman",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1383881780",
+    "firstName": "Jason",
+    "lastName": "Reed",
+    "specialty": "Rheumatology",
+    "state": "IL"
+  },
+  {
+    "npi": "1664774902",
+    "firstName": "Cynthia",
+    "lastName": "Ortiz",
+    "specialty": "Anesthesiology",
+    "state": "TN"
+  },
+  {
+    "npi": "1351698554",
+    "firstName": "George",
+    "lastName": "Ortiz",
+    "specialty": "Allergy & Immunology",
+    "state": "MI"
+  },
+  {
+    "npi": "1321617486",
+    "firstName": "Victoria",
+    "lastName": "Reddy",
+    "specialty": "Family Medicine",
+    "state": "HI"
+  },
+  {
+    "npi": "1594086195",
+    "firstName": "Joshua",
+    "lastName": "Coleman",
+    "specialty": "Dermatology",
+    "state": "NC"
+  },
+  {
+    "npi": "1879885485",
+    "firstName": "Douglas",
+    "lastName": "Anderson",
+    "specialty": "Internal Medicine",
+    "state": "WA"
+  },
+  {
+    "npi": "1640397810",
+    "firstName": "Luis",
+    "lastName": "Chen",
+    "specialty": "Family Medicine",
+    "state": "DE"
+  },
+  {
+    "npi": "1457531758",
+    "firstName": "Patricia",
+    "lastName": "Carter",
+    "specialty": "Ophthalmology",
+    "state": "OK"
+  },
+  {
+    "npi": "1057367223",
+    "firstName": "Jesse",
+    "lastName": "Mendoza",
+    "specialty": "Addiction Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1613999675",
+    "firstName": "Rachel",
+    "lastName": "Evans",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "TX"
+  },
+  {
+    "npi": "1849734581",
+    "firstName": "Shirley",
+    "lastName": "Cruz",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "NM"
+  },
+  {
+    "npi": "1638658819",
+    "firstName": "Albert",
+    "lastName": "Harris",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "TN"
+  },
+  {
+    "npi": "1844453443",
+    "firstName": "Katherine",
+    "lastName": "Yilmaz",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "TX"
+  },
+  {
+    "npi": "1756272823",
+    "firstName": "Brian",
+    "lastName": "Murphy",
+    "specialty": "Radiation Oncology",
+    "state": "WY"
+  },
+  {
+    "npi": "1635924511",
+    "firstName": "Mohammed",
+    "lastName": "Rivera",
+    "specialty": "Nephrology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1069607616",
+    "firstName": "Kevin",
+    "lastName": "Morgan",
+    "specialty": "Neurology",
+    "state": "FL"
+  },
+  {
+    "npi": "1210015438",
+    "firstName": "Pamela",
+    "lastName": "Patel",
+    "specialty": "Child Neurology",
+    "state": "MO"
+  },
+  {
+    "npi": "1040452496",
+    "firstName": "Ann",
+    "lastName": "Clark",
+    "specialty": "Urology",
+    "state": "WV"
+  },
+  {
+    "npi": "1115919502",
+    "firstName": "Brian",
+    "lastName": "Stewart",
+    "specialty": "Emergency Medicine",
+    "state": "KS"
+  },
+  {
+    "npi": "1635118932",
+    "firstName": "Ibrahim",
+    "lastName": "Perry",
+    "specialty": "Family Medicine",
+    "state": "MI"
+  },
+  {
+    "npi": "1147196392",
+    "firstName": "Diego",
+    "lastName": "Mehta",
+    "specialty": "Pathology",
+    "state": "FL"
+  },
+  {
+    "npi": "1050418684",
+    "firstName": "Harry",
+    "lastName": "Nakamura",
+    "specialty": "Anesthesiology",
+    "state": "MN"
+  },
+  {
+    "npi": "1825958865",
+    "firstName": "Nicole",
+    "lastName": "Goldberg",
+    "specialty": "General Practice",
+    "state": "FL"
+  },
+  {
+    "npi": "1344466572",
+    "firstName": "Mark",
+    "lastName": "Walsh",
+    "specialty": "Dermatology",
+    "state": "NY"
+  },
+  {
+    "npi": "1310479161",
+    "firstName": "Eugene",
+    "lastName": "Fitzgerald",
+    "specialty": "Cardiovascular Disease",
+    "state": "CA"
+  },
+  {
+    "npi": "1841398518",
+    "firstName": "Elizabeth",
+    "lastName": "Wilson",
+    "specialty": "Gastroenterology",
+    "state": "MI"
+  },
+  {
+    "npi": "1582893479",
+    "firstName": "Wei",
+    "lastName": "Roberts",
+    "specialty": "Anesthesiology",
+    "state": "TX"
+  },
+  {
+    "npi": "1054304187",
+    "firstName": "Benjamin",
+    "lastName": "Baker",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NY"
+  },
+  {
+    "npi": "1873640696",
+    "firstName": "Jerry",
+    "lastName": "Ibrahim",
+    "specialty": "Nephrology",
+    "state": "NC"
+  },
+  {
+    "npi": "1666218759",
+    "firstName": "Jose",
+    "lastName": "Stewart",
+    "specialty": "Pulmonary Disease",
+    "state": "MN"
+  },
+  {
+    "npi": "1455037360",
+    "firstName": "Yusuf",
+    "lastName": "Harris",
+    "specialty": "Orthopedic Surgery",
+    "state": "MT"
+  },
+  {
+    "npi": "1820692964",
+    "firstName": "Jason",
+    "lastName": "Alvarez",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "DC"
+  },
+  {
+    "npi": "1645706924",
+    "firstName": "Fernando",
+    "lastName": "Barnes",
+    "specialty": "Cardiovascular Disease",
+    "state": "LA"
+  },
+  {
+    "npi": "1664926130",
+    "firstName": "Karen",
+    "lastName": "Moore",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1119999930",
+    "firstName": "Christine",
+    "lastName": "Diaz",
+    "specialty": "Urology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1303240083",
+    "firstName": "Ronald",
+    "lastName": "Anderson",
+    "specialty": "Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1282665516",
+    "firstName": "Anil",
+    "lastName": "King",
+    "specialty": "Family Medicine",
+    "state": "NC"
+  },
+  {
+    "npi": "1447867692",
+    "firstName": "Deepa",
+    "lastName": "Gonzalez",
+    "specialty": "Surgical Oncology",
+    "state": "IA"
+  },
+  {
+    "npi": "1767598141",
+    "firstName": "Maria",
+    "lastName": "Peterson",
+    "specialty": "Internal Medicine",
+    "state": "MT"
+  },
+  {
+    "npi": "1072432010",
+    "firstName": "Amit",
+    "lastName": "Roberts",
+    "specialty": "Family Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1967696992",
+    "firstName": "Mohammed",
+    "lastName": "Li",
+    "specialty": "Anesthesiology",
+    "state": "WI"
+  },
+  {
+    "npi": "1870623521",
+    "firstName": "Larry",
+    "lastName": "Green",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "TX"
+  },
+  {
+    "npi": "1160355677",
+    "firstName": "Stephanie",
+    "lastName": "Johnson",
+    "specialty": "Orthopedic Surgery",
+    "state": "CA"
+  },
+  {
+    "npi": "1899039196",
+    "firstName": "Donna",
+    "lastName": "Wilson",
+    "specialty": "Dermatology",
+    "state": "TX"
+  },
+  {
+    "npi": "1050078181",
+    "firstName": "Michelle",
+    "lastName": "Evans",
+    "specialty": "Emergency Medicine",
+    "state": "NC"
+  },
+  {
+    "npi": "1749470054",
+    "firstName": "Jose",
+    "lastName": "Hall",
+    "specialty": "Family Medicine",
+    "state": "WA"
+  },
+  {
+    "npi": "1899605939",
+    "firstName": "Deepa",
+    "lastName": "Chowdhury",
+    "specialty": "Radiation Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1281574230",
+    "firstName": "Harry",
+    "lastName": "Rivera",
+    "specialty": "Surgical Oncology",
+    "state": "ME"
+  },
+  {
+    "npi": "1227461393",
+    "firstName": "Justin",
+    "lastName": "Adams",
+    "specialty": "Orthopedic Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1915579969",
+    "firstName": "Kathleen",
+    "lastName": "Howard",
+    "specialty": "Orthopedic Surgery",
+    "state": "OH"
+  },
+  {
+    "npi": "1909026464",
+    "firstName": "Jerry",
+    "lastName": "Sharma",
+    "specialty": "Family Medicine",
+    "state": "AZ"
+  },
+  {
+    "npi": "1577858974",
+    "firstName": "Edward",
+    "lastName": "Long",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "MD"
+  },
+  {
+    "npi": "1638440440",
+    "firstName": "Paul",
+    "lastName": "Joshi",
+    "specialty": "Pediatrics",
+    "state": "MS"
+  },
+  {
+    "npi": "1862106022",
+    "firstName": "Grace",
+    "lastName": "Yang",
+    "specialty": "Electrophysiology",
+    "state": "NC"
+  },
+  {
+    "npi": "1147619328",
+    "firstName": "Matthew",
+    "lastName": "Russell",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "VA"
+  },
+  {
+    "npi": "1406731814",
+    "firstName": "Samuel",
+    "lastName": "Thomas",
+    "specialty": "Emergency Medicine",
+    "state": "TN"
+  },
+  {
+    "npi": "1422548820",
+    "firstName": "Raj",
+    "lastName": "Singh",
+    "specialty": "Medical Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1941197539",
+    "firstName": "Shirley",
+    "lastName": "Khan",
+    "specialty": "Child Neurology",
+    "state": "OR"
+  },
+  {
+    "npi": "1621512460",
+    "firstName": "Kelly",
+    "lastName": "Martin",
+    "specialty": "Neurology",
+    "state": "FL"
+  },
+  {
+    "npi": "1973785599",
+    "firstName": "Laura",
+    "lastName": "Richardson",
+    "specialty": "Sports Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1528765864",
+    "firstName": "Gloria",
+    "lastName": "Johnson",
+    "specialty": "Addiction Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1870356411",
+    "firstName": "Emily",
+    "lastName": "Russell",
+    "specialty": "Pediatrics",
+    "state": "WA"
+  },
+  {
+    "npi": "1217786478",
+    "firstName": "Kenneth",
+    "lastName": "Lee",
+    "specialty": "Rheumatology",
+    "state": "MI"
+  },
+  {
+    "npi": "1389991468",
+    "firstName": "Sarah",
+    "lastName": "Ruiz",
+    "specialty": "Cardiovascular Disease",
+    "state": "SC"
+  },
+  {
+    "npi": "1355182910",
+    "firstName": "Ahmed",
+    "lastName": "Martinez",
+    "specialty": "Hematology/Oncology",
+    "state": "AL"
+  },
+  {
+    "npi": "1337516961",
+    "firstName": "Yuki",
+    "lastName": "Long",
+    "specialty": "Child Neurology",
+    "state": "IL"
+  },
+  {
+    "npi": "1173279070",
+    "firstName": "Russell",
+    "lastName": "Lopez",
+    "specialty": "Ophthalmology",
+    "state": "AL"
+  },
+  {
+    "npi": "1486421872",
+    "firstName": "Diego",
+    "lastName": "Nakamura",
+    "specialty": "Radiation Oncology",
+    "state": "OH"
+  },
+  {
+    "npi": "1851779649",
+    "firstName": "Donna",
+    "lastName": "Robinson",
+    "specialty": "Pain Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1424600876",
+    "firstName": "Benjamin",
+    "lastName": "Foster",
+    "specialty": "Child Neurology",
+    "state": "DE"
+  },
+  {
+    "npi": "1833738135",
+    "firstName": "Raymond",
+    "lastName": "Bennett",
+    "specialty": "General Surgery",
+    "state": "IA"
+  },
+  {
+    "npi": "1944676182",
+    "firstName": "Dennis",
+    "lastName": "Patel",
+    "specialty": "Electrophysiology",
+    "state": "MI"
+  },
+  {
+    "npi": "1551265543",
+    "firstName": "Dorothy",
+    "lastName": "White",
+    "specialty": "Pathology",
+    "state": "NH"
+  },
+  {
+    "npi": "1920567579",
+    "firstName": "Nathan",
+    "lastName": "Rivera",
+    "specialty": "Family Medicine",
+    "state": "SD"
+  },
+  {
+    "npi": "1455816037",
+    "firstName": "Daniel",
+    "lastName": "McCarthy",
+    "specialty": "Neurology",
+    "state": "TX"
+  },
+  {
+    "npi": "1515866832",
+    "firstName": "Judith",
+    "lastName": "Sharma",
+    "specialty": "Anesthesiology",
+    "state": "NH"
+  },
+  {
+    "npi": "1487222741",
+    "firstName": "Victoria",
+    "lastName": "Gonzalez",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "MI"
+  },
+  {
+    "npi": "1484261254",
+    "firstName": "Frances",
+    "lastName": "Young",
+    "specialty": "Emergency Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1571908304",
+    "firstName": "Nicholas",
+    "lastName": "Peterson",
+    "specialty": "Family Medicine",
+    "state": "OR"
+  },
+  {
+    "npi": "1950664528",
+    "firstName": "Henry",
+    "lastName": "Jones",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1437599750",
+    "firstName": "Joyce",
+    "lastName": "Wilson",
+    "specialty": "Pulmonary Disease",
+    "state": "WI"
+  },
+  {
+    "npi": "1078548710",
+    "firstName": "Jessica",
+    "lastName": "Jackson",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "IL"
+  },
+  {
+    "npi": "1350072868",
+    "firstName": "Judith",
+    "lastName": "Walsh",
+    "specialty": "Pediatrics",
+    "state": "GA"
+  },
+  {
+    "npi": "1953861428",
+    "firstName": "Aaron",
+    "lastName": "Cruz",
+    "specialty": "Urology",
+    "state": "FL"
+  },
+  {
+    "npi": "1989431378",
+    "firstName": "Carl",
+    "lastName": "Miller",
+    "specialty": "Rheumatology",
+    "state": "NY"
+  },
+  {
+    "npi": "1148669967",
+    "firstName": "Rafael",
+    "lastName": "Cox",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "AK"
+  },
+  {
+    "npi": "1765932235",
+    "firstName": "Nicole",
+    "lastName": "Johnson",
+    "specialty": "Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1476557065",
+    "firstName": "Mark",
+    "lastName": "Yamamoto",
+    "specialty": "Internal Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1200398240",
+    "firstName": "Raymond",
+    "lastName": "Miller",
+    "specialty": "Pulmonary Critical Care",
+    "state": "CA"
+  },
+  {
+    "npi": "1899474476",
+    "firstName": "Amanda",
+    "lastName": "Phillips",
+    "specialty": "Interventional Cardiology",
+    "state": "FL"
+  },
+  {
+    "npi": "1032196929",
+    "firstName": "William",
+    "lastName": "Bennett",
+    "specialty": "Internal Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1744403761",
+    "firstName": "Judith",
+    "lastName": "Wang",
+    "specialty": "General Practice",
+    "state": "NV"
+  },
+  {
+    "npi": "1646332035",
+    "firstName": "Albert",
+    "lastName": "Stewart",
+    "specialty": "Surgical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1576291227",
+    "firstName": "Raymond",
+    "lastName": "Sanders",
+    "specialty": "Neurological Surgery",
+    "state": "NY"
+  },
+  {
+    "npi": "1179912468",
+    "firstName": "Kevin",
+    "lastName": "Schwartz",
+    "specialty": "Urology",
+    "state": "TX"
+  },
+  {
+    "npi": "1789417031",
+    "firstName": "Amy",
+    "lastName": "Robinson",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "MI"
+  },
+  {
+    "npi": "1348392923",
+    "firstName": "Peter",
+    "lastName": "Nelson",
+    "specialty": "General Surgery",
+    "state": "TN"
+  },
+  {
+    "npi": "1012509893",
+    "firstName": "Emma",
+    "lastName": "Walker",
+    "specialty": "Dermatology",
+    "state": "MN"
+  },
+  {
+    "npi": "1907140028",
+    "firstName": "Philip",
+    "lastName": "Griffin",
+    "specialty": "Rheumatology",
+    "state": "TN"
+  },
+  {
+    "npi": "1034056774",
+    "firstName": "Jacqueline",
+    "lastName": "Liu",
+    "specialty": "Infectious Disease",
+    "state": "TX"
+  },
+  {
+    "npi": "1124085865",
+    "firstName": "Aaron",
+    "lastName": "Anderson",
+    "specialty": "Family Medicine",
+    "state": "MD"
+  },
+  {
+    "npi": "1819835491",
+    "firstName": "Nancy",
+    "lastName": "Russell",
+    "specialty": "Emergency Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1614655953",
+    "firstName": "Matthew",
+    "lastName": "Wu",
+    "specialty": "General Surgery",
+    "state": "TN"
+  },
+  {
+    "npi": "1411326659",
+    "firstName": "Bobby",
+    "lastName": "Shah",
+    "specialty": "Radiation Oncology",
+    "state": "NE"
+  },
+  {
+    "npi": "1615657230",
+    "firstName": "Ann",
+    "lastName": "Allen",
+    "specialty": "Dermatology",
+    "state": "OH"
+  },
+  {
+    "npi": "1138512029",
+    "firstName": "Melissa",
+    "lastName": "Perez",
+    "specialty": "Radiation Oncology",
+    "state": "AR"
+  },
+  {
+    "npi": "1098345873",
+    "firstName": "Mei",
+    "lastName": "Reed",
+    "specialty": "Geriatric Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1909465654",
+    "firstName": "Sanjay",
+    "lastName": "Rogers",
+    "specialty": "Geriatric Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1253756518",
+    "firstName": "Alejandro",
+    "lastName": "Simmons",
+    "specialty": "Neurological Surgery",
+    "state": "TN"
+  },
+  {
+    "npi": "1127028185",
+    "firstName": "Maria",
+    "lastName": "Brown",
+    "specialty": "Pathology",
+    "state": "MA"
+  },
+  {
+    "npi": "1115531737",
+    "firstName": "Miguel",
+    "lastName": "Wilson",
+    "specialty": "Rheumatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1158181085",
+    "firstName": "Carol",
+    "lastName": "Cook",
+    "specialty": "Rheumatology",
+    "state": "KS"
+  },
+  {
+    "npi": "1694408737",
+    "firstName": "Kathleen",
+    "lastName": "Ibrahim",
+    "specialty": "Gastroenterology",
+    "state": "OR"
+  },
+  {
+    "npi": "1363950258",
+    "firstName": "Patrick",
+    "lastName": "Sato",
+    "specialty": "Psychiatry",
+    "state": "MA"
+  },
+  {
+    "npi": "1944293186",
+    "firstName": "Sara",
+    "lastName": "Reed",
+    "specialty": "Pediatrics",
+    "state": "SC"
+  },
+  {
+    "npi": "1308744055",
+    "firstName": "Frances",
+    "lastName": "Ruiz",
+    "specialty": "Pulmonary Disease",
+    "state": "IL"
+  },
+  {
+    "npi": "1461546024",
+    "firstName": "Michelle",
+    "lastName": "Martinez",
+    "specialty": "Interventional Cardiology",
+    "state": "ND"
+  },
+  {
+    "npi": "1176640187",
+    "firstName": "Emily",
+    "lastName": "Robinson",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "IN"
+  },
+  {
+    "npi": "1483357368",
+    "firstName": "Daniel",
+    "lastName": "Green",
+    "specialty": "Nephrology",
+    "state": "NY"
+  },
+  {
+    "npi": "1754680712",
+    "firstName": "Ann",
+    "lastName": "Henderson",
+    "specialty": "Urology",
+    "state": "AL"
+  },
+  {
+    "npi": "1608018762",
+    "firstName": "Daniel",
+    "lastName": "Harris",
+    "specialty": "Gynecologic Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1312358553",
+    "firstName": "Aaron",
+    "lastName": "Shah",
+    "specialty": "Rheumatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1156204863",
+    "firstName": "Lauren",
+    "lastName": "Mendoza",
+    "specialty": "Rheumatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1259738197",
+    "firstName": "Ahmed",
+    "lastName": "O'Brien",
+    "specialty": "Anesthesiology",
+    "state": "IN"
+  },
+  {
+    "npi": "1861331076",
+    "firstName": "Amanda",
+    "lastName": "Bell",
+    "specialty": "Infectious Disease",
+    "state": "OH"
+  },
+  {
+    "npi": "1013788058",
+    "firstName": "Teresa",
+    "lastName": "Yamamoto",
+    "specialty": "Neurological Surgery",
+    "state": "NY"
+  },
+  {
+    "npi": "1304686425",
+    "firstName": "Kevin",
+    "lastName": "Clark",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NY"
+  },
+  {
+    "npi": "1039836394",
+    "firstName": "Anita",
+    "lastName": "Joshi",
+    "specialty": "Pain Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1067107932",
+    "firstName": "James",
+    "lastName": "Myers",
+    "specialty": "Surgical Oncology",
+    "state": "MA"
+  },
+  {
+    "npi": "1978870388",
+    "firstName": "Larry",
+    "lastName": "Reed",
+    "specialty": "Neurology",
+    "state": "MO"
+  },
+  {
+    "npi": "1624691659",
+    "firstName": "Patricia",
+    "lastName": "White",
+    "specialty": "Interventional Cardiology",
+    "state": "NY"
+  },
+  {
+    "npi": "1863819706",
+    "firstName": "Paul",
+    "lastName": "Chavez",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "TX"
+  },
+  {
+    "npi": "1415437437",
+    "firstName": "Diego",
+    "lastName": "Butler",
+    "specialty": "Interventional Cardiology",
+    "state": "TN"
+  },
+  {
+    "npi": "1599365495",
+    "firstName": "Diego",
+    "lastName": "Phillips",
+    "specialty": "Psychiatry",
+    "state": "ID"
+  },
+  {
+    "npi": "1624112227",
+    "firstName": "Jun",
+    "lastName": "Torres",
+    "specialty": "Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1585194164",
+    "firstName": "Matthew",
+    "lastName": "Griffin",
+    "specialty": "Medical Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1704373772",
+    "firstName": "Lauren",
+    "lastName": "Gomez",
+    "specialty": "Geriatric Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1671345126",
+    "firstName": "Jonathan",
+    "lastName": "Thompson",
+    "specialty": "Infectious Disease",
+    "state": "NH"
+  },
+  {
+    "npi": "1304027810",
+    "firstName": "Wei",
+    "lastName": "Cook",
+    "specialty": "Internal Medicine",
+    "state": "CT"
+  },
+  {
+    "npi": "1079322131",
+    "firstName": "Abigail",
+    "lastName": "Rodriguez",
+    "specialty": "Infectious Disease",
+    "state": "OR"
+  },
+  {
+    "npi": "1636596920",
+    "firstName": "Sunita",
+    "lastName": "Parker",
+    "specialty": "Neurological Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1675002608",
+    "firstName": "Linda",
+    "lastName": "Phillips",
+    "specialty": "Nephrology",
+    "state": "MI"
+  },
+  {
+    "npi": "1626312395",
+    "firstName": "Justin",
+    "lastName": "Jackson",
+    "specialty": "Diagnostic Radiology",
+    "state": "TX"
+  },
+  {
+    "npi": "1082556634",
+    "firstName": "Richard",
+    "lastName": "Goldberg",
+    "specialty": "Interventional Cardiology",
+    "state": "FL"
+  },
+  {
+    "npi": "1001538366",
+    "firstName": "Robert",
+    "lastName": "James",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "MI"
+  },
+  {
+    "npi": "1868309695",
+    "firstName": "Louis",
+    "lastName": "Edwards",
+    "specialty": "Pulmonary Disease",
+    "state": "MO"
+  },
+  {
+    "npi": "1584101368",
+    "firstName": "Jose",
+    "lastName": "Russell",
+    "specialty": "Internal Medicine",
+    "state": "MO"
+  },
+  {
+    "npi": "1236538686",
+    "firstName": "Ralph",
+    "lastName": "Gupta",
+    "specialty": "Neurology",
+    "state": "MA"
+  },
+  {
+    "npi": "1039895499",
+    "firstName": "David",
+    "lastName": "Kelly",
+    "specialty": "Addiction Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1958509113",
+    "firstName": "Susan",
+    "lastName": "Liu",
+    "specialty": "Psychiatry",
+    "state": "PA"
+  },
+  {
+    "npi": "1583928738",
+    "firstName": "Lakshmi",
+    "lastName": "Taylor",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "MD"
+  },
+  {
+    "npi": "1758208254",
+    "firstName": "Russell",
+    "lastName": "Anderson",
+    "specialty": "Emergency Medicine",
+    "state": "IN"
+  },
+  {
+    "npi": "1760753172",
+    "firstName": "Gregory",
+    "lastName": "Yamamoto",
+    "specialty": "Psychiatry",
+    "state": "IN"
+  },
+  {
+    "npi": "1210413732",
+    "firstName": "William",
+    "lastName": "Alvarez",
+    "specialty": "Neurological Surgery",
+    "state": "OH"
+  },
+  {
+    "npi": "1221879897",
+    "firstName": "Jose",
+    "lastName": "Williams",
+    "specialty": "Surgical Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1281486666",
+    "firstName": "Jesse",
+    "lastName": "Ibrahim",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1986287757",
+    "firstName": "Jack",
+    "lastName": "Rodriguez",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1702609763",
+    "firstName": "Donald",
+    "lastName": "Watson",
+    "specialty": "Pain Medicine",
+    "state": "AZ"
+  },
+  {
+    "npi": "1276784489",
+    "firstName": "Sharon",
+    "lastName": "Butler",
+    "specialty": "Rheumatology",
+    "state": "NC"
+  },
+  {
+    "npi": "1683376267",
+    "firstName": "Peter",
+    "lastName": "Yang",
+    "specialty": "Internal Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1610343232",
+    "firstName": "John",
+    "lastName": "Brooks",
+    "specialty": "Emergency Medicine",
+    "state": "GA"
+  },
+  {
+    "npi": "1618858215",
+    "firstName": "Jason",
+    "lastName": "Sanchez",
+    "specialty": "Internal Medicine",
+    "state": "VA"
+  },
+  {
+    "npi": "1212027779",
+    "firstName": "Matthew",
+    "lastName": "Rosenberg",
+    "specialty": "Neurology",
+    "state": "UT"
+  },
+  {
+    "npi": "1695777130",
+    "firstName": "Ashley",
+    "lastName": "Turner",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "WA"
+  },
+  {
+    "npi": "1689133548",
+    "firstName": "Fatima",
+    "lastName": "Shah",
+    "specialty": "Psychiatry",
+    "state": "IL"
+  },
+  {
+    "npi": "1841708948",
+    "firstName": "Lakshmi",
+    "lastName": "Hernandez",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "GA"
+  },
+  {
+    "npi": "1347761110",
+    "firstName": "Carol",
+    "lastName": "Desai",
+    "specialty": "Diagnostic Radiology",
+    "state": "MI"
+  },
+  {
+    "npi": "1386823367",
+    "firstName": "Meena",
+    "lastName": "Mehta",
+    "specialty": "Internal Medicine",
+    "state": "GA"
+  },
+  {
+    "npi": "1473639734",
+    "firstName": "Ming",
+    "lastName": "Reyes",
+    "specialty": "Gastroenterology",
+    "state": "RI"
+  },
+  {
+    "npi": "1524538406",
+    "firstName": "Raymond",
+    "lastName": "Bennett",
+    "specialty": "Family Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1023908753",
+    "firstName": "Patricia",
+    "lastName": "Vasquez",
+    "specialty": "Emergency Medicine",
+    "state": "GA"
+  },
+  {
+    "npi": "1251992420",
+    "firstName": "James",
+    "lastName": "Murphy",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "MA"
+  },
+  {
+    "npi": "1845951882",
+    "firstName": "Anna",
+    "lastName": "O'Connor",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1186081109",
+    "firstName": "Brian",
+    "lastName": "Green",
+    "specialty": "Orthopedic Surgery",
+    "state": "MN"
+  },
+  {
+    "npi": "1223266804",
+    "firstName": "George",
+    "lastName": "Sharma",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "WA"
+  },
+  {
+    "npi": "1200293714",
+    "firstName": "Mohammed",
+    "lastName": "Chowdhury",
+    "specialty": "Orthopedic Surgery",
+    "state": "MI"
+  },
+  {
+    "npi": "1900292016",
+    "firstName": "Nancy",
+    "lastName": "Kim",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1520296892",
+    "firstName": "Ahmed",
+    "lastName": "Ramirez",
+    "specialty": "Psychiatry",
+    "state": "MD"
+  },
+  {
+    "npi": "1060737727",
+    "firstName": "Yuki",
+    "lastName": "Jones",
+    "specialty": "Family Medicine",
+    "state": "MD"
+  },
+  {
+    "npi": "1984759054",
+    "firstName": "Yuki",
+    "lastName": "Sharma",
+    "specialty": "Psychiatry",
+    "state": "WV"
+  },
+  {
+    "npi": "1355213004",
+    "firstName": "Louis",
+    "lastName": "Peterson",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1983652755",
+    "firstName": "Carlos",
+    "lastName": "Mitchell",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "MN"
+  },
+  {
+    "npi": "1933809968",
+    "firstName": "Kelly",
+    "lastName": "Li",
+    "specialty": "Dermatology",
+    "state": "CO"
+  },
+  {
+    "npi": "1689620007",
+    "firstName": "Lisa",
+    "lastName": "Long",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "WV"
+  },
+  {
+    "npi": "1302607167",
+    "firstName": "Pamela",
+    "lastName": "Zhang",
+    "specialty": "Radiation Oncology",
+    "state": "DC"
+  },
+  {
+    "npi": "1591446079",
+    "firstName": "Anil",
+    "lastName": "Cruz",
+    "specialty": "Neurology",
+    "state": "NY"
+  },
+  {
+    "npi": "1202528133",
+    "firstName": "Jonathan",
+    "lastName": "Williams",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "NY"
+  },
+  {
+    "npi": "1319604595",
+    "firstName": "Russell",
+    "lastName": "Murphy",
+    "specialty": "Dermatology",
+    "state": "NC"
+  },
+  {
+    "npi": "1165663562",
+    "firstName": "Timothy",
+    "lastName": "Wu",
+    "specialty": "Pulmonary Disease",
+    "state": "PA"
+  },
+  {
+    "npi": "1279363380",
+    "firstName": "Samuel",
+    "lastName": "Rosenberg",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "NY"
+  },
+  {
+    "npi": "1925952388",
+    "firstName": "Brian",
+    "lastName": "Morris",
+    "specialty": "Pathology",
+    "state": "CT"
+  },
+  {
+    "npi": "1512077805",
+    "firstName": "Sharon",
+    "lastName": "Martinez",
+    "specialty": "Hematology/Oncology",
+    "state": "KY"
+  },
+  {
+    "npi": "1637617287",
+    "firstName": "Abigail",
+    "lastName": "Ross",
+    "specialty": "Addiction Psychiatry",
+    "state": "IN"
+  },
+  {
+    "npi": "1744848072",
+    "firstName": "Donna",
+    "lastName": "Walker",
+    "specialty": "Pulmonary Disease",
+    "state": "GA"
+  },
+  {
+    "npi": "1257562581",
+    "firstName": "Daniel",
+    "lastName": "Patel",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "NY"
+  },
+  {
+    "npi": "1525503300",
+    "firstName": "Bryan",
+    "lastName": "Aguilar",
+    "specialty": "Hematology/Oncology",
+    "state": "IL"
+  },
+  {
+    "npi": "1933691333",
+    "firstName": "Julie",
+    "lastName": "Young",
+    "specialty": "Addiction Psychiatry",
+    "state": "CT"
+  },
+  {
+    "npi": "1332198294",
+    "firstName": "Arthur",
+    "lastName": "Patel",
+    "specialty": "Emergency Medicine",
+    "state": "WA"
+  },
+  {
+    "npi": "1416317570",
+    "firstName": "Patrick",
+    "lastName": "Ramirez",
+    "specialty": "Child Neurology",
+    "state": "MN"
+  },
+  {
+    "npi": "1419400373",
+    "firstName": "Jun",
+    "lastName": "Hall",
+    "specialty": "Neurology",
+    "state": "TX"
+  },
+  {
+    "npi": "1869566616",
+    "firstName": "Harry",
+    "lastName": "Adams",
+    "specialty": "General Surgery",
+    "state": "CO"
+  },
+  {
+    "npi": "1464185820",
+    "firstName": "Denise",
+    "lastName": "Martinez",
+    "specialty": "General Practice",
+    "state": "NM"
+  },
+  {
+    "npi": "1681062042",
+    "firstName": "Miguel",
+    "lastName": "Gupta",
+    "specialty": "Cardiovascular Disease",
+    "state": "DC"
+  },
+  {
+    "npi": "1695056998",
+    "firstName": "Kyle",
+    "lastName": "Cooper",
+    "specialty": "Psychiatry",
+    "state": "CA"
+  },
+  {
+    "npi": "1722924325",
+    "firstName": "Heather",
+    "lastName": "Wu",
+    "specialty": "Surgical Oncology",
+    "state": "UT"
+  },
+  {
+    "npi": "1242710576",
+    "firstName": "Martin",
+    "lastName": "Schwartz",
+    "specialty": "Surgical Oncology",
+    "state": "KY"
+  },
+  {
+    "npi": "1516423302",
+    "firstName": "Nicholas",
+    "lastName": "Morgan",
+    "specialty": "Rheumatology",
+    "state": "CO"
+  },
+  {
+    "npi": "1895200388",
+    "firstName": "Mei",
+    "lastName": "Hall",
+    "specialty": "Radiation Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1163192945",
+    "firstName": "Cynthia",
+    "lastName": "Zhang",
+    "specialty": "Electrophysiology",
+    "state": "LA"
+  },
+  {
+    "npi": "1917094975",
+    "firstName": "Samantha",
+    "lastName": "Martin",
+    "specialty": "General Surgery",
+    "state": "CO"
+  },
+  {
+    "npi": "1499572539",
+    "firstName": "Lakshmi",
+    "lastName": "Hall",
+    "specialty": "Nephrology",
+    "state": "NV"
+  },
+  {
+    "npi": "1901410096",
+    "firstName": "Rafael",
+    "lastName": "Russell",
+    "specialty": "Sports Medicine",
+    "state": "MI"
+  },
+  {
+    "npi": "1795401953",
+    "firstName": "Jessica",
+    "lastName": "Bennett",
+    "specialty": "Urology",
+    "state": "NY"
+  },
+  {
+    "npi": "1973293081",
+    "firstName": "Katherine",
+    "lastName": "Wu",
+    "specialty": "Pulmonary Critical Care",
+    "state": "UT"
+  },
+  {
+    "npi": "1580062259",
+    "firstName": "Louis",
+    "lastName": "Fisher",
+    "specialty": "Anesthesiology",
+    "state": "FL"
+  },
+  {
+    "npi": "1804008484",
+    "firstName": "Betty",
+    "lastName": "Morris",
+    "specialty": "Addiction Psychiatry",
+    "state": "MN"
+  },
+  {
+    "npi": "1565268095",
+    "firstName": "Christine",
+    "lastName": "Jimenez",
+    "specialty": "Internal Medicine",
+    "state": "LA"
+  },
+  {
+    "npi": "1951912579",
+    "firstName": "Heather",
+    "lastName": "O'Connor",
+    "specialty": "Internal Medicine",
+    "state": "DC"
+  },
+  {
+    "npi": "1669246054",
+    "firstName": "Rafael",
+    "lastName": "Liu",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "PA"
+  },
+  {
+    "npi": "1156904082",
+    "firstName": "Sophia",
+    "lastName": "Mendoza",
+    "specialty": "Emergency Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1455676423",
+    "firstName": "Jeffrey",
+    "lastName": "Ward",
+    "specialty": "Internal Medicine",
+    "state": "NC"
+  },
+  {
+    "npi": "1583718980",
+    "firstName": "Ming",
+    "lastName": "Phillips",
+    "specialty": "Gynecologic Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1285185173",
+    "firstName": "Kimberly",
+    "lastName": "Morales",
+    "specialty": "Psychiatry",
+    "state": "AL"
+  },
+  {
+    "npi": "1909577763",
+    "firstName": "Jacqueline",
+    "lastName": "Edwards",
+    "specialty": "Psychiatry",
+    "state": "IL"
+  },
+  {
+    "npi": "1402485399",
+    "firstName": "Janet",
+    "lastName": "Yamamoto",
+    "specialty": "Orthopedic Surgery",
+    "state": "VA"
+  },
+  {
+    "npi": "1755006834",
+    "firstName": "Charles",
+    "lastName": "Sanders",
+    "specialty": "Cardiovascular Disease",
+    "state": "OR"
+  },
+  {
+    "npi": "1245287218",
+    "firstName": "Jacob",
+    "lastName": "Wilson",
+    "specialty": "Pediatrics",
+    "state": "PA"
+  },
+  {
+    "npi": "1989732882",
+    "firstName": "Meena",
+    "lastName": "Nakamura",
+    "specialty": "Medical Oncology",
+    "state": "IL"
+  },
+  {
+    "npi": "1191438500",
+    "firstName": "Arthur",
+    "lastName": "O'Brien",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "CA"
+  },
+  {
+    "npi": "1694966924",
+    "firstName": "Eric",
+    "lastName": "Perry",
+    "specialty": "Medical Oncology",
+    "state": "CA"
+  },
+  {
+    "npi": "1814757526",
+    "firstName": "Amit",
+    "lastName": "Castillo",
+    "specialty": "Emergency Medicine",
+    "state": "DE"
+  },
+  {
+    "npi": "1108863675",
+    "firstName": "Charles",
+    "lastName": "Barnes",
+    "specialty": "Rheumatology",
+    "state": "NY"
+  },
+  {
+    "npi": "1263519179",
+    "firstName": "Andrea",
+    "lastName": "Miller",
+    "specialty": "Orthopedic Surgery",
+    "state": "NJ"
+  },
+  {
+    "npi": "1884926449",
+    "firstName": "Frank",
+    "lastName": "Simmons",
+    "specialty": "Interventional Cardiology",
+    "state": "OH"
+  },
+  {
+    "npi": "1220068690",
+    "firstName": "Judy",
+    "lastName": "Liu",
+    "specialty": "General Practice",
+    "state": "GA"
+  },
+  {
+    "npi": "1907073773",
+    "firstName": "Sara",
+    "lastName": "Powell",
+    "specialty": "Pathology",
+    "state": "AL"
+  },
+  {
+    "npi": "1497260988",
+    "firstName": "Aaron",
+    "lastName": "Sato",
+    "specialty": "Interventional Cardiology",
+    "state": "OK"
+  },
+  {
+    "npi": "1986029175",
+    "firstName": "Gary",
+    "lastName": "Barnes",
+    "specialty": "Cardiovascular Disease",
+    "state": "OH"
+  },
+  {
+    "npi": "1786733901",
+    "firstName": "Patricia",
+    "lastName": "O'Brien",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "SC"
+  },
+  {
+    "npi": "1584685675",
+    "firstName": "Jessica",
+    "lastName": "Yang",
+    "specialty": "Hematology/Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1599048901",
+    "firstName": "Joshua",
+    "lastName": "Jenkins",
+    "specialty": "Radiation Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1500895796",
+    "firstName": "Yusuf",
+    "lastName": "Kim",
+    "specialty": "Pediatrics",
+    "state": "TN"
+  },
+  {
+    "npi": "1835807888",
+    "firstName": "Alejandro",
+    "lastName": "Hassan",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1400385898",
+    "firstName": "Lin",
+    "lastName": "Morgan",
+    "specialty": "Gastroenterology",
+    "state": "OH"
+  },
+  {
+    "npi": "1045359027",
+    "firstName": "Elizabeth",
+    "lastName": "Ahmad",
+    "specialty": "Medical Oncology",
+    "state": "WV"
+  },
+  {
+    "npi": "1613822943",
+    "firstName": "Anita",
+    "lastName": "Ahmad",
+    "specialty": "Anesthesiology",
+    "state": "CA"
+  },
+  {
+    "npi": "1966555835",
+    "firstName": "Ali",
+    "lastName": "Campbell",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "VT"
+  },
+  {
+    "npi": "1647479447",
+    "firstName": "Samuel",
+    "lastName": "Patel",
+    "specialty": "General Surgery",
+    "state": "UT"
+  },
+  {
+    "npi": "1820427551",
+    "firstName": "Melissa",
+    "lastName": "Yamamoto",
+    "specialty": "Addiction Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1646787576",
+    "firstName": "Debra",
+    "lastName": "Walker",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NJ"
+  },
+  {
+    "npi": "1089411122",
+    "firstName": "Charles",
+    "lastName": "Murphy",
+    "specialty": "Medical Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1172035432",
+    "firstName": "Grace",
+    "lastName": "Anderson",
+    "specialty": "Family Medicine",
+    "state": "MA"
+  },
+  {
+    "npi": "1019932924",
+    "firstName": "Raymond",
+    "lastName": "Hall",
+    "specialty": "Internal Medicine",
+    "state": "NM"
+  },
+  {
+    "npi": "1338387032",
+    "firstName": "Jacqueline",
+    "lastName": "Diaz",
+    "specialty": "Pulmonary Disease",
+    "state": "UT"
+  },
+  {
+    "npi": "1763999301",
+    "firstName": "Grace",
+    "lastName": "Reddy",
+    "specialty": "Family Medicine",
+    "state": "ND"
+  },
+  {
+    "npi": "1397308663",
+    "firstName": "Zachary",
+    "lastName": "Richardson",
+    "specialty": "Nephrology",
+    "state": "IN"
+  },
+  {
+    "npi": "1064457553",
+    "firstName": "George",
+    "lastName": "Smith",
+    "specialty": "Emergency Medicine",
+    "state": "CO"
+  },
+  {
+    "npi": "1791146727",
+    "firstName": "Christina",
+    "lastName": "Mendoza",
+    "specialty": "Neurological Surgery",
+    "state": "OH"
+  },
+  {
+    "npi": "1387464294",
+    "firstName": "Michael",
+    "lastName": "Watson",
+    "specialty": "Neurology",
+    "state": "IN"
+  },
+  {
+    "npi": "1669607412",
+    "firstName": "Larry",
+    "lastName": "Lopez",
+    "specialty": "Internal Medicine",
+    "state": "IN"
+  },
+  {
+    "npi": "1172334728",
+    "firstName": "Grace",
+    "lastName": "Rogers",
+    "specialty": "Family Medicine",
+    "state": "NC"
+  },
+  {
+    "npi": "1364629562",
+    "firstName": "Jean",
+    "lastName": "Taylor",
+    "specialty": "Child Neurology",
+    "state": "FL"
+  },
+  {
+    "npi": "1328782119",
+    "firstName": "Hannah",
+    "lastName": "Sanders",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1557384983",
+    "firstName": "Elena",
+    "lastName": "Howard",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "TX"
+  },
+  {
+    "npi": "1290629561",
+    "firstName": "Carolyn",
+    "lastName": "Scott",
+    "specialty": "Nephrology",
+    "state": "IL"
+  },
+  {
+    "npi": "1320717287",
+    "firstName": "Elizabeth",
+    "lastName": "O'Neill",
+    "specialty": "Radiation Oncology",
+    "state": "NY"
+  },
+  {
+    "npi": "1523526253",
+    "firstName": "Harry",
+    "lastName": "Myers",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "IN"
+  },
+  {
+    "npi": "1197971660",
+    "firstName": "Scott",
+    "lastName": "Hughes",
+    "specialty": "Psychiatry",
+    "state": "AR"
+  },
+  {
+    "npi": "1902899545",
+    "firstName": "Jose",
+    "lastName": "Richardson",
+    "specialty": "Infectious Disease",
+    "state": "CO"
+  },
+  {
+    "npi": "1008233318",
+    "firstName": "Mohammed",
+    "lastName": "Foster",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "HI"
+  },
+  {
+    "npi": "1367221854",
+    "firstName": "Sunita",
+    "lastName": "Thompson",
+    "specialty": "Neurology",
+    "state": "TN"
+  },
+  {
+    "npi": "1452071396",
+    "firstName": "Christina",
+    "lastName": "Harris",
+    "specialty": "Internal Medicine",
+    "state": "GA"
+  },
+  {
+    "npi": "1436704856",
+    "firstName": "Jack",
+    "lastName": "Ortiz",
+    "specialty": "Electrophysiology",
+    "state": "MD"
+  },
+  {
+    "npi": "1562399521",
+    "firstName": "Omar",
+    "lastName": "Allen",
+    "specialty": "Surgical Oncology",
+    "state": "SC"
+  },
+  {
+    "npi": "1525564500",
+    "firstName": "Carolyn",
+    "lastName": "Lee",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "AZ"
+  },
+  {
+    "npi": "1391897844",
+    "firstName": "Emma",
+    "lastName": "Sato",
+    "specialty": "Gastroenterology",
+    "state": "PA"
+  },
+  {
+    "npi": "1176718983",
+    "firstName": "Eugene",
+    "lastName": "Sanders",
+    "specialty": "Allergy & Immunology",
+    "state": "IL"
+  },
+  {
+    "npi": "1822758300",
+    "firstName": "Carl",
+    "lastName": "Rosenberg",
+    "specialty": "Pulmonary Disease",
+    "state": "AZ"
+  },
+  {
+    "npi": "1790733954",
+    "firstName": "Karen",
+    "lastName": "Moore",
+    "specialty": "Dermatology",
+    "state": "ME"
+  },
+  {
+    "npi": "1935733232",
+    "firstName": "Ruth",
+    "lastName": "Reed",
+    "specialty": "General Surgery",
+    "state": "MS"
+  },
+  {
+    "npi": "1337028348",
+    "firstName": "Carol",
+    "lastName": "Murphy",
+    "specialty": "Rheumatology",
+    "state": "MA"
+  },
+  {
+    "npi": "1445043395",
+    "firstName": "Ronald",
+    "lastName": "O'Neill",
+    "specialty": "Surgical Oncology",
+    "state": "ND"
+  },
+  {
+    "npi": "1676700044",
+    "firstName": "Jacqueline",
+    "lastName": "Yilmaz",
+    "specialty": "Emergency Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1201240896",
+    "firstName": "Dylan",
+    "lastName": "Cook",
+    "specialty": "Radiation Oncology",
+    "state": "WY"
+  },
+  {
+    "npi": "1590265231",
+    "firstName": "Robert",
+    "lastName": "Huang",
+    "specialty": "Dermatology",
+    "state": "OH"
+  },
+  {
+    "npi": "1781044254",
+    "firstName": "James",
+    "lastName": "Park",
+    "specialty": "Gastroenterology",
+    "state": "NY"
+  },
+  {
+    "npi": "1519577641",
+    "firstName": "Vikram",
+    "lastName": "Henderson",
+    "specialty": "Medical Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1111820316",
+    "firstName": "Deepa",
+    "lastName": "Goldberg",
+    "specialty": "Dermatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1252971688",
+    "firstName": "Margaret",
+    "lastName": "Hill",
+    "specialty": "Orthopedic Surgery",
+    "state": "PA"
+  },
+  {
+    "npi": "1544258993",
+    "firstName": "Benjamin",
+    "lastName": "Price",
+    "specialty": "Child Neurology",
+    "state": "CA"
+  },
+  {
+    "npi": "1466332610",
+    "firstName": "Jacqueline",
+    "lastName": "Ibrahim",
+    "specialty": "Internal Medicine",
+    "state": "CO"
+  },
+  {
+    "npi": "1397329149",
+    "firstName": "Edward",
+    "lastName": "Watson",
+    "specialty": "Medical Oncology",
+    "state": "IL"
+  },
+  {
+    "npi": "1199774112",
+    "firstName": "Megan",
+    "lastName": "Gutierrez",
+    "specialty": "Child Neurology",
+    "state": "AL"
+  },
+  {
+    "npi": "1784680781",
+    "firstName": "David",
+    "lastName": "Gutierrez",
+    "specialty": "Internal Medicine",
+    "state": "VT"
+  },
+  {
+    "npi": "1697881567",
+    "firstName": "Stephanie",
+    "lastName": "Joshi",
+    "specialty": "Neurological Surgery",
+    "state": "PA"
+  },
+  {
+    "npi": "1224662084",
+    "firstName": "Ahmed",
+    "lastName": "Cohen",
+    "specialty": "Neurology",
+    "state": "DC"
+  },
+  {
+    "npi": "1297814778",
+    "firstName": "David",
+    "lastName": "Gomez",
+    "specialty": "Nephrology",
+    "state": "IL"
+  },
+  {
+    "npi": "1017276076",
+    "firstName": "David",
+    "lastName": "Kaplan",
+    "specialty": "Cardiovascular Disease",
+    "state": "FL"
+  },
+  {
+    "npi": "1873645745",
+    "firstName": "Janet",
+    "lastName": "Roberts",
+    "specialty": "Interventional Cardiology",
+    "state": "IA"
+  },
+  {
+    "npi": "1572730780",
+    "firstName": "James",
+    "lastName": "Sanders",
+    "specialty": "General Surgery",
+    "state": "NC"
+  },
+  {
+    "npi": "1610697439",
+    "firstName": "Priya",
+    "lastName": "James",
+    "specialty": "General Surgery",
+    "state": "AZ"
+  },
+  {
+    "npi": "1172900338",
+    "firstName": "Wei",
+    "lastName": "Jones",
+    "specialty": "Anesthesiology",
+    "state": "OH"
+  },
+  {
+    "npi": "1304021649",
+    "firstName": "Ali",
+    "lastName": "Myers",
+    "specialty": "General Practice",
+    "state": "GA"
+  },
+  {
+    "npi": "1782632503",
+    "firstName": "Justin",
+    "lastName": "Morgan",
+    "specialty": "Family Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1136197542",
+    "firstName": "Ralph",
+    "lastName": "Tanaka",
+    "specialty": "Psychiatry",
+    "state": "AL"
+  },
+  {
+    "npi": "1389079264",
+    "firstName": "Mei",
+    "lastName": "Alvarez",
+    "specialty": "Child Neurology",
+    "state": "FL"
+  },
+  {
+    "npi": "1058207451",
+    "firstName": "Maria",
+    "lastName": "Lee",
+    "specialty": "Electrophysiology",
+    "state": "OH"
+  },
+  {
+    "npi": "1459936831",
+    "firstName": "Charles",
+    "lastName": "Williams",
+    "specialty": "General Surgery",
+    "state": "NH"
+  },
+  {
+    "npi": "1415414824",
+    "firstName": "Christine",
+    "lastName": "Gonzales",
+    "specialty": "Surgical Oncology",
+    "state": "MD"
+  },
+  {
+    "npi": "1051292781",
+    "firstName": "Michael",
+    "lastName": "O'Brien",
+    "specialty": "Pulmonary Disease",
+    "state": "FL"
+  },
+  {
+    "npi": "1387541430",
+    "firstName": "Cynthia",
+    "lastName": "Robinson",
+    "specialty": "Cardiovascular Disease",
+    "state": "MA"
+  },
+  {
+    "npi": "1003029679",
+    "firstName": "Andrew",
+    "lastName": "Edwards",
+    "specialty": "Medical Oncology",
+    "state": "NC"
+  },
+  {
+    "npi": "1457061996",
+    "firstName": "Rafael",
+    "lastName": "Yamamoto",
+    "specialty": "Family Medicine",
+    "state": "TN"
+  },
+  {
+    "npi": "1808517423",
+    "firstName": "James",
+    "lastName": "Nelson",
+    "specialty": "Medical Oncology",
+    "state": "IL"
+  },
+  {
+    "npi": "1326373630",
+    "firstName": "Gloria",
+    "lastName": "Lewis",
+    "specialty": "Emergency Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1135666992",
+    "firstName": "Gary",
+    "lastName": "Schwartz",
+    "specialty": "General Surgery",
+    "state": "TX"
+  },
+  {
+    "npi": "1858232246",
+    "firstName": "Shirley",
+    "lastName": "O'Neill",
+    "specialty": "Internal Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1588971535",
+    "firstName": "Ronald",
+    "lastName": "Lewis",
+    "specialty": "Neurology",
+    "state": "OH"
+  },
+  {
+    "npi": "1810903801",
+    "firstName": "Gloria",
+    "lastName": "Ramirez",
+    "specialty": "Neurology",
+    "state": "AL"
+  },
+  {
+    "npi": "1345308690",
+    "firstName": "Aisha",
+    "lastName": "O'Brien",
+    "specialty": "Medical Oncology",
+    "state": "MA"
+  },
+  {
+    "npi": "1605251739",
+    "firstName": "David",
+    "lastName": "Ibrahim",
+    "specialty": "Child Neurology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1193946427",
+    "firstName": "Maria",
+    "lastName": "Huang",
+    "specialty": "Rheumatology",
+    "state": "NC"
+  },
+  {
+    "npi": "1431280019",
+    "firstName": "Frank",
+    "lastName": "Bennett",
+    "specialty": "Pediatrics",
+    "state": "NV"
+  },
+  {
+    "npi": "1666842871",
+    "firstName": "Vincent",
+    "lastName": "Chen",
+    "specialty": "Rheumatology",
+    "state": "NM"
+  },
+  {
+    "npi": "1896727397",
+    "firstName": "Samuel",
+    "lastName": "Reddy",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "FL"
+  },
+  {
+    "npi": "1732132414",
+    "firstName": "Timothy",
+    "lastName": "O'Brien",
+    "specialty": "Medical Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1715196139",
+    "firstName": "Daniel",
+    "lastName": "King",
+    "specialty": "Pediatrics",
+    "state": "CA"
+  },
+  {
+    "npi": "1596763643",
+    "firstName": "Ali",
+    "lastName": "Li",
+    "specialty": "Diagnostic Radiology",
+    "state": "VA"
+  },
+  {
+    "npi": "1638554299",
+    "firstName": "Stephanie",
+    "lastName": "Coleman",
+    "specialty": "Urology",
+    "state": "GA"
+  },
+  {
+    "npi": "1453288049",
+    "firstName": "Stephen",
+    "lastName": "Yilmaz",
+    "specialty": "Gastroenterology",
+    "state": "TN"
+  },
+  {
+    "npi": "1510303344",
+    "firstName": "Andrea",
+    "lastName": "Kaplan",
+    "specialty": "Pulmonary Disease",
+    "state": "CT"
+  },
+  {
+    "npi": "1635476355",
+    "firstName": "Tyler",
+    "lastName": "Morgan",
+    "specialty": "Rheumatology",
+    "state": "PA"
+  },
+  {
+    "npi": "1236097550",
+    "firstName": "Judy",
+    "lastName": "Davis",
+    "specialty": "Allergy & Immunology",
+    "state": "IA"
+  },
+  {
+    "npi": "1519171809",
+    "firstName": "Carl",
+    "lastName": "Ruiz",
+    "specialty": "Family Medicine",
+    "state": "CO"
+  },
+  {
+    "npi": "1818416665",
+    "firstName": "Bruce",
+    "lastName": "Williams",
+    "specialty": "Interventional Cardiology",
+    "state": "WA"
+  },
+  {
+    "npi": "1587649306",
+    "firstName": "Zachary",
+    "lastName": "Ruiz",
+    "specialty": "Ophthalmology",
+    "state": "CA"
+  },
+  {
+    "npi": "1282913700",
+    "firstName": "Yusuf",
+    "lastName": "Rosenberg",
+    "specialty": "Gastroenterology",
+    "state": "NC"
+  },
+  {
+    "npi": "1882903101",
+    "firstName": "Mark",
+    "lastName": "Nguyen",
+    "specialty": "Neurology",
+    "state": "MS"
+  },
+  {
+    "npi": "1524315144",
+    "firstName": "Deepa",
+    "lastName": "Fitzgerald",
+    "specialty": "Interventional Cardiology",
+    "state": "MO"
+  },
+  {
+    "npi": "1566716332",
+    "firstName": "Helen",
+    "lastName": "Gomez",
+    "specialty": "Geriatric Medicine",
+    "state": "MD"
+  },
+  {
+    "npi": "1222075487",
+    "firstName": "Catherine",
+    "lastName": "Zhang",
+    "specialty": "Nephrology",
+    "state": "NC"
+  },
+  {
+    "npi": "1814573147",
+    "firstName": "Patricia",
+    "lastName": "Goldberg",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "ND"
+  },
+  {
+    "npi": "1051483497",
+    "firstName": "Rebecca",
+    "lastName": "Stewart",
+    "specialty": "Pediatrics",
+    "state": "FL"
+  },
+  {
+    "npi": "1246506319",
+    "firstName": "Jennifer",
+    "lastName": "Hernandez",
+    "specialty": "Electrophysiology",
+    "state": "MO"
+  },
+  {
+    "npi": "1861479651",
+    "firstName": "Alice",
+    "lastName": "Alvarez",
+    "specialty": "Anesthesiology",
+    "state": "TX"
+  },
+  {
+    "npi": "1006963858",
+    "firstName": "Joshua",
+    "lastName": "Jimenez",
+    "specialty": "Gastroenterology",
+    "state": "SC"
+  },
+  {
+    "npi": "1361916780",
+    "firstName": "Betty",
+    "lastName": "Barnes",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NE"
+  },
+  {
+    "npi": "1855045906",
+    "firstName": "Nathan",
+    "lastName": "Thomas",
+    "specialty": "Family Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1490616368",
+    "firstName": "Steven",
+    "lastName": "Yamamoto",
+    "specialty": "Family Medicine",
+    "state": "MO"
+  },
+  {
+    "npi": "1308010713",
+    "firstName": "Kevin",
+    "lastName": "Yilmaz",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "TX"
+  },
+  {
+    "npi": "1542491059",
+    "firstName": "Patricia",
+    "lastName": "Gonzalez",
+    "specialty": "Cardiovascular Disease",
+    "state": "CA"
+  },
+  {
+    "npi": "1487582912",
+    "firstName": "Aisha",
+    "lastName": "Wright",
+    "specialty": "Neurological Surgery",
+    "state": "AZ"
+  },
+  {
+    "npi": "1621396443",
+    "firstName": "Cynthia",
+    "lastName": "Yilmaz",
+    "specialty": "Pediatrics",
+    "state": "PA"
+  },
+  {
+    "npi": "1668836350",
+    "firstName": "Sophia",
+    "lastName": "Parker",
+    "specialty": "Rheumatology",
+    "state": "MA"
+  },
+  {
+    "npi": "1074442405",
+    "firstName": "Kathleen",
+    "lastName": "Phillips",
+    "specialty": "Interventional Cardiology",
+    "state": "NM"
+  },
+  {
+    "npi": "1600637593",
+    "firstName": "Andrew",
+    "lastName": "Nelson",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "CO"
+  },
+  {
+    "npi": "1296691847",
+    "firstName": "Bryan",
+    "lastName": "Scott",
+    "specialty": "Family Medicine",
+    "state": "VA"
+  },
+  {
+    "npi": "1038105767",
+    "firstName": "Kyle",
+    "lastName": "Desai",
+    "specialty": "Nephrology",
+    "state": "CA"
+  },
+  {
+    "npi": "1304665270",
+    "firstName": "Harry",
+    "lastName": "Phillips",
+    "specialty": "Family Medicine",
+    "state": "IA"
+  },
+  {
+    "npi": "1342105602",
+    "firstName": "Michael",
+    "lastName": "Henderson",
+    "specialty": "Anesthesiology",
+    "state": "NY"
+  },
+  {
+    "npi": "1943454318",
+    "firstName": "Christine",
+    "lastName": "King",
+    "specialty": "Internal Medicine",
+    "state": "NJ"
+  },
+  {
+    "npi": "1079228650",
+    "firstName": "Jesse",
+    "lastName": "Anderson",
+    "specialty": "Child Neurology",
+    "state": "VA"
+  },
+  {
+    "npi": "1857396331",
+    "firstName": "Alejandro",
+    "lastName": "Goldberg",
+    "specialty": "Anesthesiology",
+    "state": "TX"
+  },
+  {
+    "npi": "1688705841",
+    "firstName": "Omar",
+    "lastName": "Gomez",
+    "specialty": "Family Medicine",
+    "state": "TN"
+  },
+  {
+    "npi": "1252524941",
+    "firstName": "Daniel",
+    "lastName": "Goldberg",
+    "specialty": "Pulmonary Disease",
+    "state": "OH"
+  },
+  {
+    "npi": "1985721194",
+    "firstName": "Luis",
+    "lastName": "Chavez",
+    "specialty": "Internal Medicine",
+    "state": "AL"
+  },
+  {
+    "npi": "1926773106",
+    "firstName": "Carl",
+    "lastName": "Singh",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "OK"
+  },
+  {
+    "npi": "1740390897",
+    "firstName": "Megan",
+    "lastName": "Wood",
+    "specialty": "Diagnostic Radiology",
+    "state": "OH"
+  },
+  {
+    "npi": "1826041695",
+    "firstName": "Lin",
+    "lastName": "Park",
+    "specialty": "Internal Medicine",
+    "state": "CO"
+  },
+  {
+    "npi": "1150848228",
+    "firstName": "Wei",
+    "lastName": "Rodriguez",
+    "specialty": "Family Medicine",
+    "state": "DC"
+  },
+  {
+    "npi": "1342998881",
+    "firstName": "Ahmed",
+    "lastName": "Scott",
+    "specialty": "Psychiatry",
+    "state": "TX"
+  },
+  {
+    "npi": "1949456374",
+    "firstName": "Jun",
+    "lastName": "Butler",
+    "specialty": "Addiction Psychiatry",
+    "state": "PA"
+  },
+  {
+    "npi": "1384603787",
+    "firstName": "Gary",
+    "lastName": "Kaplan",
+    "specialty": "Infectious Disease",
+    "state": "ME"
+  },
+  {
+    "npi": "1603479274",
+    "firstName": "Dennis",
+    "lastName": "Huang",
+    "specialty": "Surgical Oncology",
+    "state": "IL"
+  },
+  {
+    "npi": "1907148781",
+    "firstName": "Michael",
+    "lastName": "Huang",
+    "specialty": "Rheumatology",
+    "state": "GA"
+  },
+  {
+    "npi": "1899168508",
+    "firstName": "Nicholas",
+    "lastName": "Miller",
+    "specialty": "Pulmonary Disease",
+    "state": "FL"
+  },
+  {
+    "npi": "1993070576",
+    "firstName": "Amanda",
+    "lastName": "Yang",
+    "specialty": "Gastroenterology",
+    "state": "CA"
+  },
+  {
+    "npi": "1495175527",
+    "firstName": "Maria",
+    "lastName": "Bailey",
+    "specialty": "Psychiatry",
+    "state": "MO"
+  },
+  {
+    "npi": "1223258926",
+    "firstName": "Lawrence",
+    "lastName": "Khan",
+    "specialty": "Medical Oncology",
+    "state": "WA"
+  },
+  {
+    "npi": "1112595180",
+    "firstName": "Deepa",
+    "lastName": "Patel",
+    "specialty": "Urology",
+    "state": "AL"
+  },
+  {
+    "npi": "1065789566",
+    "firstName": "Christopher",
+    "lastName": "Cruz",
+    "specialty": "Allergy & Immunology",
+    "state": "IN"
+  },
+  {
+    "npi": "1162252252",
+    "firstName": "Aaron",
+    "lastName": "White",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1463242762",
+    "firstName": "Ronald",
+    "lastName": "Chen",
+    "specialty": "Infectious Disease",
+    "state": "NJ"
+  },
+  {
+    "npi": "1339712386",
+    "firstName": "Patricia",
+    "lastName": "Ross",
+    "specialty": "Medical Oncology",
+    "state": "CT"
+  },
+  {
+    "npi": "1463919757",
+    "firstName": "Dorothy",
+    "lastName": "Hassan",
+    "specialty": "Neurology",
+    "state": "WV"
+  },
+  {
+    "npi": "1589780034",
+    "firstName": "Eugene",
+    "lastName": "Coleman",
+    "specialty": "Urology",
+    "state": "AR"
+  },
+  {
+    "npi": "1017627443",
+    "firstName": "Jordan",
+    "lastName": "Khan",
+    "specialty": "Infectious Disease",
+    "state": "FL"
+  },
+  {
+    "npi": "1522605835",
+    "firstName": "Amanda",
+    "lastName": "Campbell",
+    "specialty": "Pathology",
+    "state": "WA"
+  },
+  {
+    "npi": "1407593387",
+    "firstName": "Gloria",
+    "lastName": "Taylor",
+    "specialty": "Psychiatry",
+    "state": "ND"
+  },
+  {
+    "npi": "1275682981",
+    "firstName": "Helen",
+    "lastName": "Howard",
+    "specialty": "Psychiatry",
+    "state": "NC"
+  },
+  {
+    "npi": "1702150875",
+    "firstName": "Benjamin",
+    "lastName": "Cox",
+    "specialty": "Medical Oncology",
+    "state": "PA"
+  },
+  {
+    "npi": "1765299544",
+    "firstName": "Miguel",
+    "lastName": "Peterson",
+    "specialty": "Nephrology",
+    "state": "WI"
+  },
+  {
+    "npi": "1117850762",
+    "firstName": "Lisa",
+    "lastName": "King",
+    "specialty": "Medical Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1624929299",
+    "firstName": "Dennis",
+    "lastName": "Ross",
+    "specialty": "Medical Oncology",
+    "state": "WA"
+  },
+  {
+    "npi": "1547926067",
+    "firstName": "Emily",
+    "lastName": "Mendoza",
+    "specialty": "Anesthesiology",
+    "state": "IN"
+  },
+  {
+    "npi": "1848138297",
+    "firstName": "Edward",
+    "lastName": "Jimenez",
+    "specialty": "Pulmonary Disease",
+    "state": "MD"
+  },
+  {
+    "npi": "1625018944",
+    "firstName": "William",
+    "lastName": "Turner",
+    "specialty": "Nephrology",
+    "state": "NY"
+  },
+  {
+    "npi": "1388876074",
+    "firstName": "Betty",
+    "lastName": "Price",
+    "specialty": "Diagnostic Radiology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1168220535",
+    "firstName": "Vincent",
+    "lastName": "Henderson",
+    "specialty": "Allergy & Immunology",
+    "state": "WA"
+  },
+  {
+    "npi": "1688021819",
+    "firstName": "Lisa",
+    "lastName": "Park",
+    "specialty": "Pediatrics",
+    "state": "TX"
+  },
+  {
+    "npi": "1837638240",
+    "firstName": "Sandra",
+    "lastName": "Gonzales",
+    "specialty": "Neurology",
+    "state": "OH"
+  },
+  {
+    "npi": "1953816588",
+    "firstName": "Brenda",
+    "lastName": "Wright",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "CA"
+  },
+  {
+    "npi": "1356112486",
+    "firstName": "Diego",
+    "lastName": "Phillips",
+    "specialty": "Pulmonary Disease",
+    "state": "NY"
+  },
+  {
+    "npi": "1070180975",
+    "firstName": "Anita",
+    "lastName": "O'Neill",
+    "specialty": "Sports Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1738391022",
+    "firstName": "Ruth",
+    "lastName": "Shah",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "SC"
+  },
+  {
+    "npi": "1617329051",
+    "firstName": "Joseph",
+    "lastName": "Robinson",
+    "specialty": "Allergy & Immunology",
+    "state": "LA"
+  },
+  {
+    "npi": "1918116371",
+    "firstName": "Dylan",
+    "lastName": "White",
+    "specialty": "Family Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1245169903",
+    "firstName": "Abigail",
+    "lastName": "Howard",
+    "specialty": "Internal Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1406226476",
+    "firstName": "Stephen",
+    "lastName": "Roberts",
+    "specialty": "Psychiatry",
+    "state": "OH"
+  },
+  {
+    "npi": "1833928587",
+    "firstName": "Zachary",
+    "lastName": "Cohen",
+    "specialty": "Ophthalmology",
+    "state": "SC"
+  },
+  {
+    "npi": "1953340951",
+    "firstName": "Betty",
+    "lastName": "Flores",
+    "specialty": "Psychiatry",
+    "state": "MD"
+  },
+  {
+    "npi": "1433626573",
+    "firstName": "Brandon",
+    "lastName": "Campbell",
+    "specialty": "Gastroenterology",
+    "state": "FL"
+  },
+  {
+    "npi": "1876598149",
+    "firstName": "Eugene",
+    "lastName": "Hill",
+    "specialty": "Family Medicine",
+    "state": "GA"
+  },
+  {
+    "npi": "1906524255",
+    "firstName": "Ali",
+    "lastName": "Russell",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1965981453",
+    "firstName": "Elena",
+    "lastName": "Lopez",
+    "specialty": "Hematology/Oncology",
+    "state": "RI"
+  },
+  {
+    "npi": "1743827069",
+    "firstName": "Fernando",
+    "lastName": "Sanders",
+    "specialty": "Internal Medicine",
+    "state": "MS"
+  },
+  {
+    "npi": "1769033832",
+    "firstName": "Amy",
+    "lastName": "Gomez",
+    "specialty": "Family Medicine",
+    "state": "MD"
+  },
+  {
+    "npi": "1192938730",
+    "firstName": "Sanjay",
+    "lastName": "Anderson",
+    "specialty": "General Surgery",
+    "state": "TX"
+  },
+  {
+    "npi": "1140903216",
+    "firstName": "Albert",
+    "lastName": "Davis",
+    "specialty": "Medical Oncology",
+    "state": "KY"
+  },
+  {
+    "npi": "1687640361",
+    "firstName": "Diane",
+    "lastName": "Bailey",
+    "specialty": "Interventional Cardiology",
+    "state": "IA"
+  },
+  {
+    "npi": "1469630531",
+    "firstName": "Hassan",
+    "lastName": "Baker",
+    "specialty": "Diagnostic Radiology",
+    "state": "AZ"
+  },
+  {
+    "npi": "1788172512",
+    "firstName": "Stephanie",
+    "lastName": "Butler",
+    "specialty": "Addiction Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1317896995",
+    "firstName": "Mary",
+    "lastName": "Simmons",
+    "specialty": "Gastroenterology",
+    "state": "WA"
+  },
+  {
+    "npi": "1457445298",
+    "firstName": "Joyce",
+    "lastName": "Wood",
+    "specialty": "Surgical Oncology",
+    "state": "NJ"
+  },
+  {
+    "npi": "1746325467",
+    "firstName": "Sanjay",
+    "lastName": "Gomez",
+    "specialty": "Internal Medicine",
+    "state": "MN"
+  },
+  {
+    "npi": "1628155222",
+    "firstName": "Alexander",
+    "lastName": "Mitchell",
+    "specialty": "Urology",
+    "state": "DE"
+  },
+  {
+    "npi": "1327267823",
+    "firstName": "Ralph",
+    "lastName": "Cooper",
+    "specialty": "Allergy & Immunology",
+    "state": "PA"
+  },
+  {
+    "npi": "1369662311",
+    "firstName": "Aisha",
+    "lastName": "Hall",
+    "specialty": "Gastroenterology",
+    "state": "TX"
+  },
+  {
+    "npi": "1490945619",
+    "firstName": "Luis",
+    "lastName": "Kaplan",
+    "specialty": "General Practice",
+    "state": "NY"
+  },
+  {
+    "npi": "1717125300",
+    "firstName": "Jeffrey",
+    "lastName": "Hall",
+    "specialty": "Family Medicine",
+    "state": "CA"
+  },
+  {
+    "npi": "1803641848",
+    "firstName": "James",
+    "lastName": "Ross",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1661850473",
+    "firstName": "Peter",
+    "lastName": "Simmons",
+    "specialty": "Dermatology",
+    "state": "CO"
+  },
+  {
+    "npi": "1534512367",
+    "firstName": "Julie",
+    "lastName": "Barnes",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1095367193",
+    "firstName": "Angela",
+    "lastName": "Yilmaz",
+    "specialty": "Neurology",
+    "state": "MO"
+  },
+  {
+    "npi": "1416044794",
+    "firstName": "Justin",
+    "lastName": "Wood",
+    "specialty": "General Surgery",
+    "state": "FL"
+  },
+  {
+    "npi": "1031915840",
+    "firstName": "Susan",
+    "lastName": "Thomas",
+    "specialty": "Urology",
+    "state": "TX"
+  },
+  {
+    "npi": "1840796340",
+    "firstName": "Janice",
+    "lastName": "Hall",
+    "specialty": "Surgical Oncology",
+    "state": "IN"
+  },
+  {
+    "npi": "1902818537",
+    "firstName": "Larry",
+    "lastName": "Martinez",
+    "specialty": "Cardiovascular Disease",
+    "state": "NV"
+  },
+  {
+    "npi": "1304733664",
+    "firstName": "Jacob",
+    "lastName": "Nelson",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "NJ"
+  },
+  {
+    "npi": "1369229707",
+    "firstName": "Paul",
+    "lastName": "Gonzalez",
+    "specialty": "Family Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1040775508",
+    "firstName": "Deepa",
+    "lastName": "Ahmad",
+    "specialty": "Internal Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1899540987",
+    "firstName": "Albert",
+    "lastName": "Yamamoto",
+    "specialty": "Emergency Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1446288254",
+    "firstName": "Amanda",
+    "lastName": "Hill",
+    "specialty": "Surgical Oncology",
+    "state": "WA"
+  },
+  {
+    "npi": "1259594624",
+    "firstName": "Robert",
+    "lastName": "James",
+    "specialty": "Nephrology",
+    "state": "CA"
+  },
+  {
+    "npi": "1788434615",
+    "firstName": "Jose",
+    "lastName": "Davis",
+    "specialty": "Cardiovascular Disease",
+    "state": "OH"
+  },
+  {
+    "npi": "1551322518",
+    "firstName": "Brandon",
+    "lastName": "Lewis",
+    "specialty": "Rheumatology",
+    "state": "FL"
+  },
+  {
+    "npi": "1423413677",
+    "firstName": "Luis",
+    "lastName": "Thompson",
+    "specialty": "Psychiatry",
+    "state": "TX"
+  },
+  {
+    "npi": "1370651816",
+    "firstName": "Jun",
+    "lastName": "Wilson",
+    "specialty": "Pathology",
+    "state": "NV"
+  },
+  {
+    "npi": "1267347460",
+    "firstName": "Kenneth",
+    "lastName": "Liu",
+    "specialty": "Gastroenterology",
+    "state": "CA"
+  },
+  {
+    "npi": "1921183566",
+    "firstName": "Martin",
+    "lastName": "Tanaka",
+    "specialty": "Psychiatry",
+    "state": "NY"
+  },
+  {
+    "npi": "1482711250",
+    "firstName": "Timothy",
+    "lastName": "Morris",
+    "specialty": "Nephrology",
+    "state": "MD"
+  },
+  {
+    "npi": "1913208678",
+    "firstName": "Nicole",
+    "lastName": "Joshi",
+    "specialty": "Family Medicine",
+    "state": "SD"
+  },
+  {
+    "npi": "1101719585",
+    "firstName": "Carol",
+    "lastName": "Young",
+    "specialty": "Pulmonary Disease",
+    "state": "TN"
+  },
+  {
+    "npi": "1583896976",
+    "firstName": "Mark",
+    "lastName": "McCarthy",
+    "specialty": "Pulmonary Disease",
+    "state": "CA"
+  },
+  {
+    "npi": "1740917202",
+    "firstName": "Carol",
+    "lastName": "Torres",
+    "specialty": "Internal Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1424879769",
+    "firstName": "Ryan",
+    "lastName": "Richardson",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "MO"
+  },
+  {
+    "npi": "1793529151",
+    "firstName": "Jun",
+    "lastName": "Price",
+    "specialty": "Pulmonary Critical Care",
+    "state": "NM"
+  },
+  {
+    "npi": "1729594816",
+    "firstName": "Frank",
+    "lastName": "Coleman",
+    "specialty": "Hematology/Oncology",
+    "state": "FL"
+  },
+  {
+    "npi": "1890669611",
+    "firstName": "Hassan",
+    "lastName": "Perry",
+    "specialty": "Neurology",
+    "state": "CO"
+  },
+  {
+    "npi": "1338757002",
+    "firstName": "Daniel",
+    "lastName": "Gutierrez",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "OH"
+  },
+  {
+    "npi": "1484262740",
+    "firstName": "Yusuf",
+    "lastName": "Taylor",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "TX"
+  },
+  {
+    "npi": "1142854227",
+    "firstName": "Timothy",
+    "lastName": "Sato",
+    "specialty": "Child & Adolescent Psychiatry",
+    "state": "MA"
+  },
+  {
+    "npi": "1829194095",
+    "firstName": "Jose",
+    "lastName": "Brown",
+    "specialty": "Dermatology",
+    "state": "NE"
+  },
+  {
+    "npi": "1301487561",
+    "firstName": "Stephen",
+    "lastName": "Torres",
+    "specialty": "Pediatrics",
+    "state": "FL"
+  },
+  {
+    "npi": "1958204384",
+    "firstName": "George",
+    "lastName": "Sullivan",
+    "specialty": "Family Medicine",
+    "state": "WA"
+  },
+  {
+    "npi": "1651882411",
+    "firstName": "Benjamin",
+    "lastName": "Lewis",
+    "specialty": "Cardiovascular Disease",
+    "state": "NJ"
+  },
+  {
+    "npi": "1677901583",
+    "firstName": "Albert",
+    "lastName": "Chen",
+    "specialty": "Pediatrics",
+    "state": "NY"
+  },
+  {
+    "npi": "1860458193",
+    "firstName": "Ruth",
+    "lastName": "Hall",
+    "specialty": "Pediatrics",
+    "state": "FL"
+  },
+  {
+    "npi": "1208069611",
+    "firstName": "Janet",
+    "lastName": "Kaplan",
+    "specialty": "Orthopedic Surgery",
+    "state": "PA"
+  },
+  {
+    "npi": "1888165903",
+    "firstName": "Jason",
+    "lastName": "Desai",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "PA"
+  },
+  {
+    "npi": "1466195496",
+    "firstName": "Fatima",
+    "lastName": "Chowdhury",
+    "specialty": "Urology",
+    "state": "RI"
+  },
+  {
+    "npi": "1312639028",
+    "firstName": "Mary",
+    "lastName": "Yamamoto",
+    "specialty": "Emergency Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1420801106",
+    "firstName": "Russell",
+    "lastName": "White",
+    "specialty": "Family Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1727504981",
+    "firstName": "Wei",
+    "lastName": "Joshi",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "TX"
+  },
+  {
+    "npi": "1006121218",
+    "firstName": "Jonathan",
+    "lastName": "Ruiz",
+    "specialty": "Cardiovascular Disease",
+    "state": "SD"
+  },
+  {
+    "npi": "1496232335",
+    "firstName": "Benjamin",
+    "lastName": "Gonzalez",
+    "specialty": "Emergency Medicine",
+    "state": "PA"
+  },
+  {
+    "npi": "1619218443",
+    "firstName": "Hannah",
+    "lastName": "Bell",
+    "specialty": "Interventional Cardiology",
+    "state": "NC"
+  },
+  {
+    "npi": "1032030086",
+    "firstName": "Bryan",
+    "lastName": "Thompson",
+    "specialty": "Internal Medicine",
+    "state": "OH"
+  },
+  {
+    "npi": "1213948379",
+    "firstName": "Emma",
+    "lastName": "Russell",
+    "specialty": "Neurology",
+    "state": "TX"
+  },
+  {
+    "npi": "1340031958",
+    "firstName": "Daniel",
+    "lastName": "Mendoza",
+    "specialty": "Emergency Medicine",
+    "state": "SD"
+  },
+  {
+    "npi": "1433967076",
+    "firstName": "Ashley",
+    "lastName": "Turner",
+    "specialty": "Radiation Oncology",
+    "state": "DC"
+  },
+  {
+    "npi": "1142185119",
+    "firstName": "Alexander",
+    "lastName": "Desai",
+    "specialty": "Urology",
+    "state": "NY"
+  },
+  {
+    "npi": "1166309793",
+    "firstName": "Douglas",
+    "lastName": "Wood",
+    "specialty": "Pulmonary Critical Care",
+    "state": "CA"
+  },
+  {
+    "npi": "1290961840",
+    "firstName": "Andrew",
+    "lastName": "Powell",
+    "specialty": "Rheumatology",
+    "state": "CA"
+  },
+  {
+    "npi": "1178541748",
+    "firstName": "Frances",
+    "lastName": "Kumar",
+    "specialty": "Psychiatry",
+    "state": "DE"
+  },
+  {
+    "npi": "1350168112",
+    "firstName": "Judith",
+    "lastName": "Wang",
+    "specialty": "Neurology",
+    "state": "WY"
+  },
+  {
+    "npi": "1456041171",
+    "firstName": "Christopher",
+    "lastName": "Castillo",
+    "specialty": "Pathology",
+    "state": "VA"
+  },
+  {
+    "npi": "1934230156",
+    "firstName": "Ethan",
+    "lastName": "Cox",
+    "specialty": "Cardiovascular Disease",
+    "state": "NY"
+  },
+  {
+    "npi": "1489003768",
+    "firstName": "Henry",
+    "lastName": "Clark",
+    "specialty": "Advanced Heart Failure & Transplant",
+    "state": "MO"
+  },
+  {
+    "npi": "1487275251",
+    "firstName": "Jack",
+    "lastName": "Bennett",
+    "specialty": "Internal Medicine",
+    "state": "NJ"
+  },
+  {
+    "npi": "1101069692",
+    "firstName": "Eric",
+    "lastName": "Parker",
+    "specialty": "Cardiovascular Disease",
+    "state": "IL"
+  },
+  {
+    "npi": "1345147627",
+    "firstName": "Sharon",
+    "lastName": "Gray",
+    "specialty": "Emergency Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1956997500",
+    "firstName": "Wei",
+    "lastName": "Torres",
+    "specialty": "Sports Medicine",
+    "state": "MT"
+  },
+  {
+    "npi": "1872298066",
+    "firstName": "Russell",
+    "lastName": "Ramos",
+    "specialty": "Cardiovascular Disease",
+    "state": "SC"
+  },
+  {
+    "npi": "1424134587",
+    "firstName": "Ali",
+    "lastName": "Robinson",
+    "specialty": "Medical Oncology",
+    "state": "GA"
+  },
+  {
+    "npi": "1839468950",
+    "firstName": "Margaret",
+    "lastName": "Li",
+    "specialty": "Hospice & Palliative Medicine",
+    "state": "CT"
+  },
+  {
+    "npi": "1447614821",
+    "firstName": "Kimberly",
+    "lastName": "Wood",
+    "specialty": "Physical Medicine & Rehabilitation",
+    "state": "AZ"
+  },
+  {
+    "npi": "1546855648",
+    "firstName": "Charles",
+    "lastName": "Vasquez",
+    "specialty": "Ophthalmology",
+    "state": "PA"
+  },
+  {
+    "npi": "1316373434",
+    "firstName": "Hassan",
+    "lastName": "Goldberg",
+    "specialty": "Cardiovascular Disease",
+    "state": "GA"
+  },
+  {
+    "npi": "1562594675",
+    "firstName": "Alice",
+    "lastName": "Ortiz",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "AL"
+  },
+  {
+    "npi": "1434814004",
+    "firstName": "Bobby",
+    "lastName": "Desai",
+    "specialty": "Psychiatry",
+    "state": "CT"
+  },
+  {
+    "npi": "1003978941",
+    "firstName": "Bobby",
+    "lastName": "Jackson",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1231972617",
+    "firstName": "Deepa",
+    "lastName": "Rodriguez",
+    "specialty": "Pediatrics",
+    "state": "NY"
+  },
+  {
+    "npi": "1032981841",
+    "firstName": "Yusuf",
+    "lastName": "Allen",
+    "specialty": "Pulmonary Disease",
+    "state": "PA"
+  },
+  {
+    "npi": "1115602074",
+    "firstName": "Gerald",
+    "lastName": "Henderson",
+    "specialty": "Nephrology",
+    "state": "ME"
+  },
+  {
+    "npi": "1296477155",
+    "firstName": "Raj",
+    "lastName": "Peterson",
+    "specialty": "Surgical Oncology",
+    "state": "LA"
+  },
+  {
+    "npi": "1060954991",
+    "firstName": "Ahmed",
+    "lastName": "Thomas",
+    "specialty": "Emergency Medicine",
+    "state": "LA"
+  },
+  {
+    "npi": "1337825677",
+    "firstName": "Hassan",
+    "lastName": "Russell",
+    "specialty": "Pulmonary Disease",
+    "state": "NC"
+  },
+  {
+    "npi": "1620531370",
+    "firstName": "Tyler",
+    "lastName": "Bailey",
+    "specialty": "Cardiovascular Disease",
+    "state": "SD"
+  },
+  {
+    "npi": "1820391427",
+    "firstName": "Jeffrey",
+    "lastName": "Parker",
+    "specialty": "Internal Medicine",
+    "state": "NY"
+  },
+  {
+    "npi": "1383586439",
+    "firstName": "Ming",
+    "lastName": "Parker",
+    "specialty": "Medical Oncology",
+    "state": "MN"
+  },
+  {
+    "npi": "1985561657",
+    "firstName": "Alexander",
+    "lastName": "Morgan",
+    "specialty": "Internal Medicine",
+    "state": "IL"
+  },
+  {
+    "npi": "1902614167",
+    "firstName": "Tyler",
+    "lastName": "Brooks",
+    "specialty": "Internal Medicine",
+    "state": "TX"
+  },
+  {
+    "npi": "1690838861",
+    "firstName": "Margaret",
+    "lastName": "Vasquez",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1490058454",
+    "firstName": "Martha",
+    "lastName": "Li",
+    "specialty": "Neurology",
+    "state": "IA"
+  },
+  {
+    "npi": "1862145046",
+    "firstName": "Gerald",
+    "lastName": "Khan",
+    "specialty": "Addiction Psychiatry",
+    "state": "FL"
+  },
+  {
+    "npi": "1488649223",
+    "firstName": "Dylan",
+    "lastName": "Scott",
+    "specialty": "Dermatology",
+    "state": "NH"
+  },
+  {
+    "npi": "1187771856",
+    "firstName": "Bryan",
+    "lastName": "Yang",
+    "specialty": "Internal Medicine",
+    "state": "FL"
+  },
+  {
+    "npi": "1408603359",
+    "firstName": "Luis",
+    "lastName": "Reddy",
+    "specialty": "Psychiatry",
+    "state": "MN"
+  },
+  {
+    "npi": "1359516675",
+    "firstName": "Lakshmi",
+    "lastName": "Harris",
+    "specialty": "General Surgery",
+    "state": "OH"
+  },
+  {
+    "npi": "1078616426",
+    "firstName": "Robert",
+    "lastName": "Gupta",
+    "specialty": "Anesthesiology",
+    "state": "NH"
+  },
+  {
+    "npi": "1322732813",
+    "firstName": "Ahmed",
+    "lastName": "Howard",
+    "specialty": "Gastroenterology",
+    "state": "DC"
+  },
+  {
+    "npi": "1495485520",
+    "firstName": "Mark",
+    "lastName": "Perez",
+    "specialty": "Internal Medicine",
+    "state": "WI"
+  },
+  {
+    "npi": "1966172763",
+    "firstName": "Edward",
+    "lastName": "Li",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "OR"
+  },
+  {
+    "npi": "1884048194",
+    "firstName": "Ibrahim",
+    "lastName": "Bennett",
+    "specialty": "Interventional Cardiology",
+    "state": "ID"
+  },
+  {
+    "npi": "1530383581",
+    "firstName": "Catherine",
+    "lastName": "Ramos",
+    "specialty": "Interventional Cardiology",
+    "state": "TX"
+  },
+  {
+    "npi": "1732539329",
+    "firstName": "Yusuf",
+    "lastName": "Jimenez",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "IL"
+  },
+  {
+    "npi": "1542234004",
+    "firstName": "Samantha",
+    "lastName": "Hernandez",
+    "specialty": "Radiation Oncology",
+    "state": "NV"
+  },
+  {
+    "npi": "1119098212",
+    "firstName": "Kyle",
+    "lastName": "Cohen",
+    "specialty": "Neurology",
+    "state": "UT"
+  },
+  {
+    "npi": "1799170398",
+    "firstName": "Louis",
+    "lastName": "O'Neill",
+    "specialty": "Neurological Surgery",
+    "state": "VA"
+  },
+  {
+    "npi": "1216182620",
+    "firstName": "Philip",
+    "lastName": "Hill",
+    "specialty": "Medical Oncology",
+    "state": "MA"
+  },
+  {
+    "npi": "1874548112",
+    "firstName": "Dylan",
+    "lastName": "Davis",
+    "specialty": "Pediatrics",
+    "state": "NJ"
+  },
+  {
+    "npi": "1811905268",
+    "firstName": "Jose",
+    "lastName": "Martin",
+    "specialty": "General Practice",
+    "state": "NJ"
+  },
+  {
+    "npi": "1242492266",
+    "firstName": "Jing",
+    "lastName": "Reed",
+    "specialty": "Allergy & Immunology",
+    "state": "IN"
+  },
+  {
+    "npi": "1311494391",
+    "firstName": "William",
+    "lastName": "Thomas",
+    "specialty": "Nephrology",
+    "state": "NC"
+  },
+  {
+    "npi": "1548433881",
+    "firstName": "Denise",
+    "lastName": "Wilson",
+    "specialty": "Cardiovascular Disease",
+    "state": "OR"
+  },
+  {
+    "npi": "1203349604",
+    "firstName": "Ibrahim",
+    "lastName": "Rosenberg",
+    "specialty": "Rheumatology",
+    "state": "ND"
+  },
+  {
+    "npi": "1119061384",
+    "firstName": "Catherine",
+    "lastName": "Sato",
+    "specialty": "Dermatology",
+    "state": "OR"
+  },
+  {
+    "npi": "1519918464",
+    "firstName": "Andrew",
+    "lastName": "Gomez",
+    "specialty": "Family Medicine",
+    "state": "RI"
+  },
+  {
+    "npi": "1998111920",
+    "firstName": "Larry",
+    "lastName": "Jones",
+    "specialty": "Gynecologic Oncology",
+    "state": "TX"
+  },
+  {
+    "npi": "1021702893",
+    "firstName": "Tyler",
+    "lastName": "Walsh",
+    "specialty": "General Surgery",
+    "state": "IL"
+  },
+  {
+    "npi": "1058704820",
+    "firstName": "Carlos",
+    "lastName": "Davis",
+    "specialty": "Infectious Disease",
+    "state": "FL"
+  },
+  {
+    "npi": "1387706454",
+    "firstName": "Eugene",
+    "lastName": "Cho",
+    "specialty": "Pediatric Hematology-Oncology",
+    "state": "PA"
+  },
+  {
+    "npi": "1787636392",
+    "firstName": "Michael",
+    "lastName": "Li",
+    "specialty": "Addiction Psychiatry",
+    "state": "CO"
+  },
+  {
+    "npi": "1684931045",
+    "firstName": "Timothy",
+    "lastName": "Turner",
+    "specialty": "Internal Medicine",
+    "state": "MD"
+  },
+  {
+    "npi": "1326833047",
+    "firstName": "Gregory",
+    "lastName": "Morales",
+    "specialty": "Geriatric Medicine",
+    "state": "WA"
+  },
+  {
+    "npi": "1585871431",
+    "firstName": "Olivia",
+    "lastName": "Jones",
+    "specialty": "Neurology",
+    "state": "GA"
+  },
+  {
+    "npi": "1683413748",
+    "firstName": "Aisha",
+    "lastName": "Wang",
+    "specialty": "Orthopedic Surgery",
+    "state": "TX"
+  },
+  {
+    "npi": "1247906245",
+    "firstName": "Bryan",
+    "lastName": "Morgan",
+    "specialty": "Infectious Disease",
+    "state": "TX"
+  },
+  {
+    "npi": "1022581403",
+    "firstName": "Rosa",
+    "lastName": "Cox",
+    "specialty": "Nephrology",
+    "state": "PA"
+  },
+  {
+    "npi": "1914338383",
+    "firstName": "Steven",
+    "lastName": "Ibrahim",
+    "specialty": "Pain Medicine",
+    "state": "NC"
+  },
+  {
+    "npi": "1629954573",
+    "firstName": "Philip",
+    "lastName": "Mehta",
+    "specialty": "Medical Oncology",
+    "state": "MO"
+  },
+  {
+    "npi": "1977477722",
+    "firstName": "Jeffrey",
+    "lastName": "Yilmaz",
+    "specialty": "Orthopedic Surgery",
+    "state": "KY"
+  },
+  {
+    "npi": "1670076029",
+    "firstName": "Brandon",
+    "lastName": "Hassan",
+    "specialty": "Neurology",
+    "state": "FL"
+  },
+  {
+    "npi": "1391871179",
+    "firstName": "Michael",
+    "lastName": "Foster",
+    "specialty": "Internal Medicine",
+    "state": "TN"
+  },
+  {
+    "npi": "1585619129",
+    "firstName": "Emma",
+    "lastName": "Lewis",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "NY"
+  },
+  {
+    "npi": "1460328200",
+    "firstName": "Dorothy",
+    "lastName": "Bailey",
+    "specialty": "Family Medicine",
+    "state": "UT"
+  },
+  {
+    "npi": "1079094623",
+    "firstName": "Jack",
+    "lastName": "Bennett",
+    "specialty": "Medical Oncology",
+    "state": "MT"
+  },
+  {
+    "npi": "1841329588",
+    "firstName": "Kyle",
+    "lastName": "Clark",
+    "specialty": "Cardiovascular Disease",
+    "state": "NY"
+  },
+  {
+    "npi": "1515407504",
+    "firstName": "Anita",
+    "lastName": "Yilmaz",
+    "specialty": "Obstetrics & Gynecology",
+    "state": "MA"
+  },
+  {
+    "npi": "1358686750",
+    "firstName": "Gregory",
+    "lastName": "Joshi",
+    "specialty": "Internal Medicine",
+    "state": "DE"
+  },
+  {
+    "npi": "1287231942",
+    "firstName": "Justin",
+    "lastName": "Walker",
+    "specialty": "Radiation Oncology",
+    "state": "MA"
+  },
+  {
+    "npi": "1976615181",
+    "firstName": "Nathan",
+    "lastName": "Coleman",
+    "specialty": "Diagnostic Radiology",
+    "state": "NC"
+  },
+  {
+    "npi": "1558438176",
+    "firstName": "Harry",
+    "lastName": "O'Connor",
+    "specialty": "Ophthalmology",
+    "state": "KS"
+  },
+  {
+    "npi": "1729095988",
+    "firstName": "Rebecca",
+    "lastName": "Butler",
+    "specialty": "Interventional Cardiology",
+    "state": "CA"
+  },
+  {
+    "npi": "1916536232",
+    "firstName": "Janice",
+    "lastName": "Evans",
+    "specialty": "Nephrology",
+    "state": "WA"
+  },
+  {
+    "npi": "1504232715",
+    "firstName": "Vikram",
+    "lastName": "Ahmad",
+    "specialty": "Anesthesiology",
+    "state": "CT"
+  },
+  {
+    "npi": "1655818924",
+    "firstName": "Michael",
+    "lastName": "Miller",
+    "specialty": "Gastroenterology",
+    "state": "GA"
+  },
+  {
+    "npi": "1455306344",
+    "firstName": "Elena",
+    "lastName": "Hassan",
+    "specialty": "Medical Oncology",
+    "state": "CO"
+  },
+  {
+    "npi": "1154809952",
+    "firstName": "Hassan",
+    "lastName": "Reed",
+    "specialty": "Internal Medicine",
+    "state": "NJ"
+  },
+  {
+    "npi": "1530492044",
+    "firstName": "David",
+    "lastName": "Singh",
+    "specialty": "Gastroenterology",
+    "state": "OR"
+  },
+  {
+    "npi": "1560132247",
+    "firstName": "Nicholas",
+    "lastName": "Bennett",
+    "specialty": "Interventional Cardiology",
+    "state": "PA"
+  },
+  {
+    "npi": "1466895814",
+    "firstName": "Ethan",
+    "lastName": "Nguyen",
+    "specialty": "Anesthesiology",
+    "state": "NY"
+  },
+  {
+    "npi": "1735713871",
+    "firstName": "Philip",
+    "lastName": "Zhang",
+    "specialty": "Orthopedic Surgery",
+    "state": "FL"
+  },
+  {
+    "npi": "1736731161",
+    "firstName": "John",
+    "lastName": "Clark",
+    "specialty": "Endocrinology, Diabetes & Metabolism",
+    "state": "TN"
+  }
+]
