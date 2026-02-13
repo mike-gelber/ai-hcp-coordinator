@@ -9,6 +9,8 @@ import {
   validateNpiBatch,
   clearMemoryCache,
   getMemoryCacheSize,
+  invalidateNpiCache,
+  cleanupExpiredDbCache,
 } from "@/services/npi-validation";
 import * as nppesClient from "@/services/nppes-client";
 import type { NppesProviderInfo } from "@/types/nppes";
@@ -35,6 +37,18 @@ jest.mock("redis", () => ({
     get: jest.fn(),
     set: jest.fn(),
   })),
+}));
+
+// Mock Prisma DB (not available in test env)
+jest.mock("@/lib/db", () => ({
+  prisma: {
+    npiValidationCache: {
+      findUnique: jest.fn().mockResolvedValue(null),
+      upsert: jest.fn().mockResolvedValue({}),
+      delete: jest.fn().mockResolvedValue({}),
+      deleteMany: jest.fn().mockResolvedValue({ count: 0 }),
+    },
+  },
 }));
 
 // ─── Fixtures ────────────────────────────────────────────────────────────────
@@ -477,5 +491,46 @@ describe("cache management", () => {
 
     await validateNpiRegistry("1245319599");
     expect(getMemoryCacheSize()).toBe(2);
+  });
+
+  it("invalidateNpiCache removes entry from memory cache", async () => {
+    mockLookupNpi.mockResolvedValueOnce(makeProviderInfo({ npi: "1234567893" }));
+
+    await validateNpiRegistry("1234567893");
+    expect(getMemoryCacheSize()).toBe(1);
+
+    await invalidateNpiCache("1234567893");
+    expect(getMemoryCacheSize()).toBe(0);
+  });
+
+  it("invalidateNpiCache allows re-lookup from NPPES", async () => {
+    mockLookupNpi
+      .mockResolvedValueOnce(makeProviderInfo({ npi: "1234567893" }))
+      .mockResolvedValueOnce(
+        makeProviderInfo({
+          npi: "1234567893",
+          firstName: "Updated",
+          lastName: "Name",
+        })
+      );
+
+    // First call
+    const first = await validateNpiRegistry("1234567893");
+    expect(first.provider!.firstName).toBe("John");
+    expect(mockLookupNpi).toHaveBeenCalledTimes(1);
+
+    // Invalidate
+    await invalidateNpiCache("1234567893");
+
+    // Second call should hit NPPES again
+    const second = await validateNpiRegistry("1234567893");
+    expect(second.cached).toBe(false);
+    expect(second.provider!.firstName).toBe("Updated");
+    expect(mockLookupNpi).toHaveBeenCalledTimes(2);
+  });
+
+  it("cleanupExpiredDbCache runs without error", async () => {
+    const count = await cleanupExpiredDbCache();
+    expect(typeof count).toBe("number");
   });
 });
