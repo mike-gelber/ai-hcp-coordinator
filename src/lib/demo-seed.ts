@@ -93,74 +93,292 @@ const STATES = [
 ];
 
 const FIRST_NAMES_MALE = [
-  "James", "Robert", "John", "Michael", "David", "William", "Richard", "Joseph",
-  "Thomas", "Christopher", "Charles", "Daniel", "Matthew", "Anthony", "Mark",
-  "Steven", "Andrew", "Paul", "Joshua", "Kenneth", "Kevin", "Brian", "George",
-  "Timothy", "Ronald", "Edward", "Jason", "Jeffrey", "Ryan", "Jacob", "Gary",
-  "Nicholas", "Eric", "Jonathan", "Stephen", "Larry", "Justin", "Scott", "Brandon",
-  "Benjamin", "Samuel", "Raymond", "Gregory", "Frank", "Alexander", "Patrick",
-  "Jack", "Dennis", "Jerry", "Tyler", "Aaron", "Jose", "Adam", "Nathan", "Henry",
-  "Douglas", "Peter", "Zachary", "Kyle", "Raj", "Amit", "Wei", "Jin", "Ahmed",
-  "Omar", "Hassan", "Ali", "Mohammed", "Sanjay", "Vikram", "Carlos", "Luis",
+  "James",
+  "Robert",
+  "John",
+  "Michael",
+  "David",
+  "William",
+  "Richard",
+  "Joseph",
+  "Thomas",
+  "Christopher",
+  "Charles",
+  "Daniel",
+  "Matthew",
+  "Anthony",
+  "Mark",
+  "Steven",
+  "Andrew",
+  "Paul",
+  "Joshua",
+  "Kenneth",
+  "Kevin",
+  "Brian",
+  "George",
+  "Timothy",
+  "Ronald",
+  "Edward",
+  "Jason",
+  "Jeffrey",
+  "Ryan",
+  "Jacob",
+  "Gary",
+  "Nicholas",
+  "Eric",
+  "Jonathan",
+  "Stephen",
+  "Larry",
+  "Justin",
+  "Scott",
+  "Brandon",
+  "Benjamin",
+  "Samuel",
+  "Raymond",
+  "Gregory",
+  "Frank",
+  "Alexander",
+  "Patrick",
+  "Jack",
+  "Dennis",
+  "Jerry",
+  "Tyler",
+  "Aaron",
+  "Jose",
+  "Adam",
+  "Nathan",
+  "Henry",
+  "Douglas",
+  "Peter",
+  "Zachary",
+  "Kyle",
+  "Raj",
+  "Amit",
+  "Wei",
+  "Jin",
+  "Ahmed",
+  "Omar",
+  "Hassan",
+  "Ali",
+  "Mohammed",
+  "Sanjay",
+  "Vikram",
+  "Carlos",
+  "Luis",
 ];
 
 const FIRST_NAMES_FEMALE = [
-  "Mary", "Patricia", "Jennifer", "Linda", "Barbara", "Elizabeth", "Susan",
-  "Jessica", "Sarah", "Karen", "Lisa", "Nancy", "Betty", "Margaret", "Sandra",
-  "Ashley", "Dorothy", "Kimberly", "Emily", "Donna", "Michelle", "Carol",
-  "Amanda", "Melissa", "Deborah", "Stephanie", "Rebecca", "Sharon", "Laura",
-  "Cynthia", "Kathleen", "Amy", "Angela", "Shirley", "Anna", "Brenda", "Pamela",
-  "Emma", "Nicole", "Helen", "Samantha", "Katherine", "Christine", "Debra",
-  "Rachel", "Carolyn", "Janet", "Catherine", "Maria", "Heather", "Diane",
-  "Priya", "Anita", "Mei", "Yuki", "Fatima", "Aisha", "Sara", "Lakshmi",
+  "Mary",
+  "Patricia",
+  "Jennifer",
+  "Linda",
+  "Barbara",
+  "Elizabeth",
+  "Susan",
+  "Jessica",
+  "Sarah",
+  "Karen",
+  "Lisa",
+  "Nancy",
+  "Betty",
+  "Margaret",
+  "Sandra",
+  "Ashley",
+  "Dorothy",
+  "Kimberly",
+  "Emily",
+  "Donna",
+  "Michelle",
+  "Carol",
+  "Amanda",
+  "Melissa",
+  "Deborah",
+  "Stephanie",
+  "Rebecca",
+  "Sharon",
+  "Laura",
+  "Cynthia",
+  "Kathleen",
+  "Amy",
+  "Angela",
+  "Shirley",
+  "Anna",
+  "Brenda",
+  "Pamela",
+  "Emma",
+  "Nicole",
+  "Helen",
+  "Samantha",
+  "Katherine",
+  "Christine",
+  "Debra",
+  "Rachel",
+  "Carolyn",
+  "Janet",
+  "Catherine",
+  "Maria",
+  "Heather",
+  "Diane",
+  "Priya",
+  "Anita",
+  "Mei",
+  "Yuki",
+  "Fatima",
+  "Aisha",
+  "Sara",
+  "Lakshmi",
 ];
 
 const LAST_NAMES = [
-  "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-  "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-  "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson",
-  "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
-  "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen",
-  "Hill", "Flores", "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera",
-  "Campbell", "Mitchell", "Carter", "Roberts", "Patel", "Shah", "Kumar",
-  "Chen", "Wang", "Li", "Zhang", "Kim", "Park", "Singh", "Gupta", "Das",
-  "Reddy", "Khan", "Ali", "Hassan", "Cohen", "Rosenberg", "Goldstein",
-  "Fischer", "Weber", "Mueller", "O'Brien", "Sullivan", "Murphy", "Kelly",
-  "Tanaka", "Yamamoto", "Nakamura", "Cho", "Chang", "Wu", "Yang",
+  "Smith",
+  "Johnson",
+  "Williams",
+  "Brown",
+  "Jones",
+  "Garcia",
+  "Miller",
+  "Davis",
+  "Rodriguez",
+  "Martinez",
+  "Hernandez",
+  "Lopez",
+  "Gonzalez",
+  "Wilson",
+  "Anderson",
+  "Thomas",
+  "Taylor",
+  "Moore",
+  "Jackson",
+  "Martin",
+  "Lee",
+  "Perez",
+  "Thompson",
+  "White",
+  "Harris",
+  "Sanchez",
+  "Clark",
+  "Ramirez",
+  "Lewis",
+  "Robinson",
+  "Walker",
+  "Young",
+  "Allen",
+  "King",
+  "Wright",
+  "Scott",
+  "Torres",
+  "Nguyen",
+  "Hill",
+  "Flores",
+  "Green",
+  "Adams",
+  "Nelson",
+  "Baker",
+  "Hall",
+  "Rivera",
+  "Campbell",
+  "Mitchell",
+  "Carter",
+  "Roberts",
+  "Patel",
+  "Shah",
+  "Kumar",
+  "Chen",
+  "Wang",
+  "Li",
+  "Zhang",
+  "Kim",
+  "Park",
+  "Singh",
+  "Gupta",
+  "Das",
+  "Reddy",
+  "Khan",
+  "Ali",
+  "Hassan",
+  "Cohen",
+  "Rosenberg",
+  "Goldstein",
+  "Fischer",
+  "Weber",
+  "Mueller",
+  "O'Brien",
+  "Sullivan",
+  "Murphy",
+  "Kelly",
+  "Tanaka",
+  "Yamamoto",
+  "Nakamura",
+  "Cho",
+  "Chang",
+  "Wu",
+  "Yang",
 ];
 
 const MEDICAL_SCHOOLS = [
-  "Harvard Medical School", "Johns Hopkins School of Medicine",
-  "Stanford University School of Medicine", "Yale School of Medicine",
-  "Columbia University Vagelos College", "UCSF School of Medicine",
-  "University of Pennsylvania Perelman School", "Duke University School of Medicine",
-  "Washington University School of Medicine", "Cornell Weill Medical College",
-  "Mount Sinai Icahn School of Medicine", "NYU Grossman School of Medicine",
-  "UCLA David Geffen School of Medicine", "University of Michigan Medical School",
-  "Emory University School of Medicine", "Baylor College of Medicine",
-  "University of Chicago Pritzker School", "Northwestern Feinberg School of Medicine",
-  "Vanderbilt University School of Medicine", "University of Virginia School of Medicine",
-  "Case Western Reserve School of Medicine", "University of Pittsburgh School of Medicine",
-  "Boston University Chobanian & Avedisian School", "Georgetown University School of Medicine",
-  "Tufts University School of Medicine", "Thomas Jefferson University",
-  "Rush Medical College", "Medical College of Wisconsin",
-  "All India Institute of Medical Sciences", "University of Toronto Faculty of Medicine",
+  "Harvard Medical School",
+  "Johns Hopkins School of Medicine",
+  "Stanford University School of Medicine",
+  "Yale School of Medicine",
+  "Columbia University Vagelos College",
+  "UCSF School of Medicine",
+  "University of Pennsylvania Perelman School",
+  "Duke University School of Medicine",
+  "Washington University School of Medicine",
+  "Cornell Weill Medical College",
+  "Mount Sinai Icahn School of Medicine",
+  "NYU Grossman School of Medicine",
+  "UCLA David Geffen School of Medicine",
+  "University of Michigan Medical School",
+  "Emory University School of Medicine",
+  "Baylor College of Medicine",
+  "University of Chicago Pritzker School",
+  "Northwestern Feinberg School of Medicine",
+  "Vanderbilt University School of Medicine",
+  "University of Virginia School of Medicine",
+  "Case Western Reserve School of Medicine",
+  "University of Pittsburgh School of Medicine",
+  "Boston University Chobanian & Avedisian School",
+  "Georgetown University School of Medicine",
+  "Tufts University School of Medicine",
+  "Thomas Jefferson University",
+  "Rush Medical College",
+  "Medical College of Wisconsin",
+  "All India Institute of Medical Sciences",
+  "University of Toronto Faculty of Medicine",
 ];
 
 const HOSPITALS = [
-  "Massachusetts General Hospital", "Mayo Clinic", "Cleveland Clinic",
-  "Johns Hopkins Hospital", "UCLA Medical Center", "UCSF Medical Center",
-  "NewYork-Presbyterian Hospital", "Northwestern Memorial Hospital",
-  "Cedars-Sinai Medical Center", "Stanford Health Care",
-  "Mount Sinai Hospital", "Duke University Hospital",
-  "University of Michigan Health", "Brigham and Women's Hospital",
-  "Memorial Sloan Kettering", "MD Anderson Cancer Center",
-  "Beth Israel Deaconess Medical Center", "Emory University Hospital",
-  "Vanderbilt University Medical Center", "University of Pennsylvania Hospital",
-  "Rush University Medical Center", "UPMC Presbyterian",
-  "Barnes-Jewish Hospital", "NYU Langone Health",
-  "Houston Methodist Hospital", "Scripps Mercy Hospital",
-  "Kaiser Permanente", "Providence Health", "HCA Healthcare", "AdventHealth",
+  "Massachusetts General Hospital",
+  "Mayo Clinic",
+  "Cleveland Clinic",
+  "Johns Hopkins Hospital",
+  "UCLA Medical Center",
+  "UCSF Medical Center",
+  "NewYork-Presbyterian Hospital",
+  "Northwestern Memorial Hospital",
+  "Cedars-Sinai Medical Center",
+  "Stanford Health Care",
+  "Mount Sinai Hospital",
+  "Duke University Hospital",
+  "University of Michigan Health",
+  "Brigham and Women's Hospital",
+  "Memorial Sloan Kettering",
+  "MD Anderson Cancer Center",
+  "Beth Israel Deaconess Medical Center",
+  "Emory University Hospital",
+  "Vanderbilt University Medical Center",
+  "University of Pennsylvania Hospital",
+  "Rush University Medical Center",
+  "UPMC Presbyterian",
+  "Barnes-Jewish Hospital",
+  "NYU Langone Health",
+  "Houston Methodist Hospital",
+  "Scripps Mercy Hospital",
+  "Kaiser Permanente",
+  "Providence Health",
+  "HCA Healthcare",
+  "AdventHealth",
 ];
 
 const CREDENTIALS = ["MD", "DO", "MD, PhD", "MD, FACC", "MD, FACS", "DO, FACOI", "MD, MPH"];
@@ -329,43 +547,84 @@ export interface DemoHcpProfile {
 const THERAPEUTIC_AREAS: Record<string, string[]> = {
   "Internal Medicine": ["Hypertension", "Diabetes", "COPD", "Heart Failure"],
   "Family Medicine": ["Diabetes", "Hypertension", "Depression", "Asthma"],
-  "Cardiology": ["Heart Failure", "Atrial Fibrillation", "Coronary Artery Disease", "Hypertension"],
-  "Oncology": ["Breast Cancer", "Lung Cancer", "Colorectal Cancer", "Lymphoma"],
-  "Orthopedic Surgery": ["Osteoarthritis", "Rheumatoid Arthritis", "Osteoporosis", "Pain Management"],
-  "Dermatology": ["Psoriasis", "Atopic Dermatitis", "Acne", "Melanoma"],
-  "Neurology": ["Multiple Sclerosis", "Epilepsy", "Parkinson's Disease", "Migraine"],
-  "Psychiatry": ["Major Depression", "Bipolar Disorder", "Schizophrenia", "ADHD"],
-  "Gastroenterology": ["Crohn's Disease", "Ulcerative Colitis", "GERD", "IBS"],
-  "Endocrinology": ["Type 2 Diabetes", "Thyroid Disorders", "Obesity", "Osteoporosis"],
-  "Pulmonology": ["COPD", "Asthma", "Pulmonary Fibrosis", "Sleep Apnea"],
-  "Rheumatology": ["Rheumatoid Arthritis", "Lupus", "Psoriatic Arthritis", "Gout"],
-  "Nephrology": ["Chronic Kidney Disease", "Diabetic Nephropathy", "Hypertension", "Glomerulonephritis"],
-  "Hematology": ["Lymphoma", "Leukemia", "Anemia", "Myeloma"],
+  Cardiology: ["Heart Failure", "Atrial Fibrillation", "Coronary Artery Disease", "Hypertension"],
+  Oncology: ["Breast Cancer", "Lung Cancer", "Colorectal Cancer", "Lymphoma"],
+  "Orthopedic Surgery": [
+    "Osteoarthritis",
+    "Rheumatoid Arthritis",
+    "Osteoporosis",
+    "Pain Management",
+  ],
+  Dermatology: ["Psoriasis", "Atopic Dermatitis", "Acne", "Melanoma"],
+  Neurology: ["Multiple Sclerosis", "Epilepsy", "Parkinson's Disease", "Migraine"],
+  Psychiatry: ["Major Depression", "Bipolar Disorder", "Schizophrenia", "ADHD"],
+  Gastroenterology: ["Crohn's Disease", "Ulcerative Colitis", "GERD", "IBS"],
+  Endocrinology: ["Type 2 Diabetes", "Thyroid Disorders", "Obesity", "Osteoporosis"],
+  Pulmonology: ["COPD", "Asthma", "Pulmonary Fibrosis", "Sleep Apnea"],
+  Rheumatology: ["Rheumatoid Arthritis", "Lupus", "Psoriatic Arthritis", "Gout"],
+  Nephrology: [
+    "Chronic Kidney Disease",
+    "Diabetic Nephropathy",
+    "Hypertension",
+    "Glomerulonephritis",
+  ],
+  Hematology: ["Lymphoma", "Leukemia", "Anemia", "Myeloma"],
   "Infectious Disease": ["HIV", "Hepatitis C", "COVID-19", "Sepsis"],
   "Allergy & Immunology": ["Asthma", "Food Allergies", "Urticaria", "Anaphylaxis"],
-  "Urology": ["Prostate Cancer", "BPH", "Overactive Bladder", "Kidney Stones"],
-  "Ophthalmology": ["Glaucoma", "Macular Degeneration", "Diabetic Retinopathy", "Cataracts"],
-  "Pediatrics": ["Asthma", "ADHD", "Obesity", "Infectious Disease"],
+  Urology: ["Prostate Cancer", "BPH", "Overactive Bladder", "Kidney Stones"],
+  Ophthalmology: ["Glaucoma", "Macular Degeneration", "Diabetic Retinopathy", "Cataracts"],
+  Pediatrics: ["Asthma", "ADHD", "Obesity", "Infectious Disease"],
   "Emergency Medicine": ["Sepsis", "Trauma", "Acute MI", "Stroke"],
 };
 
 // ─── Additional Reference Data ──────────────────────────────────────────────
 
 const JOURNALS = [
-  "New England Journal of Medicine", "The Lancet", "JAMA", "BMJ",
-  "Annals of Internal Medicine", "Nature Medicine", "JAMA Internal Medicine",
-  "Circulation", "Journal of Clinical Oncology", "Gastroenterology",
-  "Neurology", "JAMA Cardiology", "The Lancet Oncology", "Chest",
-  "American Journal of Psychiatry", "Journal of the American College of Cardiology",
-  "Journal of Bone and Joint Surgery", "JAMA Dermatology", "Kidney International",
-  "Blood", "Clinical Infectious Diseases", "Journal of Allergy and Clinical Immunology",
+  "New England Journal of Medicine",
+  "The Lancet",
+  "JAMA",
+  "BMJ",
+  "Annals of Internal Medicine",
+  "Nature Medicine",
+  "JAMA Internal Medicine",
+  "Circulation",
+  "Journal of Clinical Oncology",
+  "Gastroenterology",
+  "Neurology",
+  "JAMA Cardiology",
+  "The Lancet Oncology",
+  "Chest",
+  "American Journal of Psychiatry",
+  "Journal of the American College of Cardiology",
+  "Journal of Bone and Joint Surgery",
+  "JAMA Dermatology",
+  "Kidney International",
+  "Blood",
+  "Clinical Infectious Diseases",
+  "Journal of Allergy and Clinical Immunology",
 ];
 
 const PHARMA_COMPANIES = [
-  "Pfizer", "Johnson & Johnson", "AbbVie", "Merck", "Bristol-Myers Squibb",
-  "Eli Lilly", "AstraZeneca", "Novartis", "Roche", "Amgen",
-  "Gilead Sciences", "Sanofi", "Regeneron", "Biogen", "Moderna",
-  "Bayer", "Takeda", "Novo Nordisk", "GSK", "Boehringer Ingelheim",
+  "Pfizer",
+  "Johnson & Johnson",
+  "AbbVie",
+  "Merck",
+  "Bristol-Myers Squibb",
+  "Eli Lilly",
+  "AstraZeneca",
+  "Novartis",
+  "Roche",
+  "Amgen",
+  "Gilead Sciences",
+  "Sanofi",
+  "Regeneron",
+  "Biogen",
+  "Moderna",
+  "Bayer",
+  "Takeda",
+  "Novo Nordisk",
+  "GSK",
+  "Boehringer Ingelheim",
 ];
 
 const CONFERENCES = [
@@ -401,77 +660,77 @@ const DRUG_NAMES: Record<string, Array<{ name: string; category: string }>> = {
     { name: "Albuterol", category: "Bronchodilator" },
     { name: "Sertraline", category: "SSRI" },
   ],
-  "Cardiology": [
+  Cardiology: [
     { name: "Entresto", category: "ARNI" },
     { name: "Eliquis", category: "Anticoagulant" },
     { name: "Jardiance", category: "SGLT2 Inhibitor" },
     { name: "Atorvastatin", category: "Statin" },
     { name: "Metoprolol", category: "Beta Blocker" },
   ],
-  "Oncology": [
+  Oncology: [
     { name: "Keytruda", category: "Immunotherapy" },
     { name: "Opdivo", category: "Immunotherapy" },
     { name: "Ibrance", category: "CDK4/6 Inhibitor" },
     { name: "Revlimid", category: "Immunomodulator" },
     { name: "Tagrisso", category: "EGFR Inhibitor" },
   ],
-  "Dermatology": [
+  Dermatology: [
     { name: "Dupixent", category: "Biologic" },
     { name: "Humira", category: "TNF Inhibitor" },
     { name: "Skyrizi", category: "IL-23 Inhibitor" },
     { name: "Otezla", category: "PDE4 Inhibitor" },
     { name: "Tretinoin", category: "Retinoid" },
   ],
-  "Neurology": [
+  Neurology: [
     { name: "Ocrevus", category: "Anti-CD20" },
     { name: "Aimovig", category: "CGRP Inhibitor" },
     { name: "Tecfidera", category: "DMT" },
     { name: "Vimpat", category: "Antiepileptic" },
     { name: "Levodopa", category: "Dopamine Precursor" },
   ],
-  "Psychiatry": [
+  Psychiatry: [
     { name: "Lexapro", category: "SSRI" },
     { name: "Abilify", category: "Atypical Antipsychotic" },
     { name: "Vyvanse", category: "Stimulant" },
     { name: "Lamotrigine", category: "Mood Stabilizer" },
     { name: "Wellbutrin", category: "NDRI" },
   ],
-  "Gastroenterology": [
+  Gastroenterology: [
     { name: "Humira", category: "TNF Inhibitor" },
     { name: "Stelara", category: "IL-12/23 Inhibitor" },
     { name: "Entyvio", category: "Integrin Inhibitor" },
     { name: "Linzess", category: "GC-C Agonist" },
     { name: "Nexium", category: "Proton Pump Inhibitor" },
   ],
-  "Endocrinology": [
+  Endocrinology: [
     { name: "Ozempic", category: "GLP-1 Agonist" },
     { name: "Jardiance", category: "SGLT2 Inhibitor" },
     { name: "Synthroid", category: "Thyroid Hormone" },
     { name: "Trulicity", category: "GLP-1 Agonist" },
     { name: "Mounjaro", category: "GIP/GLP-1 Agonist" },
   ],
-  "Pulmonology": [
+  Pulmonology: [
     { name: "Trelegy Ellipta", category: "Triple Therapy" },
     { name: "Dupixent", category: "Biologic" },
     { name: "Nucala", category: "Anti-IL-5" },
     { name: "Spiriva", category: "LAMA" },
     { name: "Ofev", category: "Kinase Inhibitor" },
   ],
-  "Rheumatology": [
+  Rheumatology: [
     { name: "Humira", category: "TNF Inhibitor" },
     { name: "Rinvoq", category: "JAK Inhibitor" },
     { name: "Xeljanz", category: "JAK Inhibitor" },
     { name: "Cosentyx", category: "IL-17A Inhibitor" },
     { name: "Allopurinol", category: "Xanthine Oxidase Inhibitor" },
   ],
-  "Nephrology": [
+  Nephrology: [
     { name: "Farxiga", category: "SGLT2 Inhibitor" },
     { name: "Kerendia", category: "MRA" },
     { name: "Epogen", category: "ESA" },
     { name: "Sevelamer", category: "Phosphate Binder" },
     { name: "Lisinopril", category: "ACE Inhibitor" },
   ],
-  "Hematology": [
+  Hematology: [
     { name: "Revlimid", category: "Immunomodulator" },
     { name: "Imbruvica", category: "BTK Inhibitor" },
     { name: "Darzalex", category: "Anti-CD38" },
@@ -488,12 +747,20 @@ const DRUG_NAMES: Record<string, Array<{ name: string; category: string }>> = {
 };
 
 const RESIDENCY_PROGRAMS = [
-  "Massachusetts General Hospital", "Johns Hopkins Hospital",
-  "Mayo Clinic", "Cleveland Clinic", "Brigham and Women's Hospital",
-  "UCSF Medical Center", "NYU Langone Health", "Stanford Health Care",
-  "University of Michigan", "Duke University Hospital",
-  "University of Pennsylvania", "Columbia University Medical Center",
-  "Mount Sinai Hospital", "Northwestern Memorial Hospital",
+  "Massachusetts General Hospital",
+  "Johns Hopkins Hospital",
+  "Mayo Clinic",
+  "Cleveland Clinic",
+  "Brigham and Women's Hospital",
+  "UCSF Medical Center",
+  "NYU Langone Health",
+  "Stanford Health Care",
+  "University of Michigan",
+  "Duke University Hospital",
+  "University of Pennsylvania",
+  "Columbia University Medical Center",
+  "Mount Sinai Hospital",
+  "Northwestern Memorial Hospital",
   "UCLA Medical Center",
 ];
 
@@ -528,7 +795,12 @@ const OUTREACH_SUBJECTS_SMS = [
 const DEMO_SEED = 42;
 const DEMO_COUNT = 1000;
 
-function generatePublications(rng: SeededRandom, specialty: string, count: number, lastName: string): DemoPublication[] {
+function generatePublications(
+  rng: SeededRandom,
+  specialty: string,
+  count: number,
+  lastName: string,
+): DemoPublication[] {
   const pubs: DemoPublication[] = [];
   const areas = THERAPEUTIC_AREAS[specialty] || ["General Medicine"];
   for (let i = 0; i < count; i++) {
@@ -555,14 +827,27 @@ function generatePublications(rng: SeededRandom, specialty: string, count: numbe
   return pubs.sort((a, b) => b.year - a.year);
 }
 
-function generateTrials(rng: SeededRandom, specialty: string, yearsInPractice: number): DemoClinicalTrial[] {
+function generateTrials(
+  rng: SeededRandom,
+  specialty: string,
+  yearsInPractice: number,
+): DemoClinicalTrial[] {
   if (yearsInPractice < 5 || rng.next() < 0.4) return [];
   const count = rng.int(1, Math.min(6, Math.floor(yearsInPractice / 4)));
   const trials: DemoClinicalTrial[] = [];
   const areas = THERAPEUTIC_AREAS[specialty] || ["General Medicine"];
   const phases = ["Phase I", "Phase II", "Phase III", "Phase IV"];
-  const statuses: DemoClinicalTrial["status"][] = ["Completed", "Recruiting", "Active", "Terminated"];
-  const roles: DemoClinicalTrial["role"][] = ["Principal Investigator", "Co-Investigator", "Sub-Investigator"];
+  const statuses: DemoClinicalTrial["status"][] = [
+    "Completed",
+    "Recruiting",
+    "Active",
+    "Terminated",
+  ];
+  const roles: DemoClinicalTrial["role"][] = [
+    "Principal Investigator",
+    "Co-Investigator",
+    "Sub-Investigator",
+  ];
   for (let i = 0; i < count; i++) {
     const area = rng.pick(areas);
     trials.push({
@@ -577,7 +862,11 @@ function generateTrials(rng: SeededRandom, specialty: string, yearsInPractice: n
   return trials;
 }
 
-function generateConferences(rng: SeededRandom, specialty: string, yearsInPractice: number): DemoConferenceAppearance[] {
+function generateConferences(
+  rng: SeededRandom,
+  specialty: string,
+  yearsInPractice: number,
+): DemoConferenceAppearance[] {
   if (rng.next() < 0.3) return [];
   const count = rng.int(1, Math.min(5, Math.floor(yearsInPractice / 3)));
   const appearances: DemoConferenceAppearance[] = [];
@@ -598,17 +887,36 @@ function generateOpenPayments(rng: SeededRandom, prescribingVolume: string): Dem
   if (rng.next() < 0.2) return [];
   const count = rng.int(2, 8);
   const payments: DemoOpenPayment[] = [];
-  const categories: DemoOpenPayment["category"][] = ["Consulting", "Speaking", "Food & Beverage", "Travel", "Research", "Education"];
+  const categories: DemoOpenPayment["category"][] = [
+    "Consulting",
+    "Speaking",
+    "Food & Beverage",
+    "Travel",
+    "Research",
+    "Education",
+  ];
   for (let i = 0; i < count; i++) {
     const category = rng.pick(categories);
     let baseAmount = 0;
     switch (category) {
-      case "Research": baseAmount = rng.int(5000, 150000); break;
-      case "Consulting": baseAmount = rng.int(1000, 25000); break;
-      case "Speaking": baseAmount = rng.int(500, 15000); break;
-      case "Travel": baseAmount = rng.int(200, 5000); break;
-      case "Education": baseAmount = rng.int(100, 8000); break;
-      case "Food & Beverage": baseAmount = rng.int(15, 500); break;
+      case "Research":
+        baseAmount = rng.int(5000, 150000);
+        break;
+      case "Consulting":
+        baseAmount = rng.int(1000, 25000);
+        break;
+      case "Speaking":
+        baseAmount = rng.int(500, 15000);
+        break;
+      case "Travel":
+        baseAmount = rng.int(200, 5000);
+        break;
+      case "Education":
+        baseAmount = rng.int(100, 8000);
+        break;
+      case "Food & Beverage":
+        baseAmount = rng.int(15, 500);
+        break;
     }
     if (prescribingVolume === "high") baseAmount = Math.round(baseAmount * 1.3);
     payments.push({
@@ -624,7 +932,13 @@ function generateOpenPayments(rng: SeededRandom, prescribingVolume: string): Dem
 function generateOutreachEvents(rng: SeededRandom, area: string): DemoOutreachEvent[] {
   const count = rng.int(3, 12);
   const events: DemoOutreachEvent[] = [];
-  const channels: DemoOutreachEvent["channel"][] = ["email", "sms", "direct_mail", "social", "phone"];
+  const channels: DemoOutreachEvent["channel"][] = [
+    "email",
+    "sms",
+    "direct_mail",
+    "social",
+    "phone",
+  ];
   const sentiments: DemoOutreachEvent["sentiment"][] = ["positive", "neutral", "negative"];
 
   for (let i = 0; i < count; i++) {
@@ -676,9 +990,16 @@ function generatePersona(
   const archetype = rng.pick(ARCHETYPES);
   const channels = ["email", "in-person", "webinar", "phone", "social media"];
   const preferredChannels = [rng.pick(channels)];
-  if (rng.next() > 0.4) preferredChannels.push(rng.pick(channels.filter((c) => !preferredChannels.includes(c))));
+  if (rng.next() > 0.4)
+    preferredChannels.push(rng.pick(channels.filter((c) => !preferredChannels.includes(c))));
 
-  const times = ["Early morning (7-9 AM)", "Mid-morning (9-11 AM)", "Lunch break (12-1 PM)", "Late afternoon (4-6 PM)", "Evening (7-9 PM)"];
+  const times = [
+    "Early morning (7-9 AM)",
+    "Mid-morning (9-11 AM)",
+    "Lunch break (12-1 PM)",
+    "Late afternoon (4-6 PM)",
+    "Evening (7-9 PM)",
+  ];
 
   const motivators = [
     "Patient outcomes improvement",
@@ -706,17 +1027,19 @@ function generatePersona(
     "Engages with visual data presentations",
   ];
   const selectedComm = [rng.pick(commPrefs)];
-  if (rng.next() > 0.3) selectedComm.push(rng.pick(commPrefs.filter((x) => !selectedComm.includes(x))));
+  if (rng.next() > 0.3)
+    selectedComm.push(rng.pick(commPrefs.filter((x) => !selectedComm.includes(x))));
 
   const kolNarrative = isKol
     ? ` As a recognized Key Opinion Leader in ${specialty}, Dr. ${lastName} influences prescribing patterns among peers and frequently contributes to clinical guidelines. Their extensive publication record and conference appearances make them a valuable target for medical affairs engagement.`
     : "";
 
-  const volumeNote = prescribingVolume === "high"
-    ? ` Their high prescribing volume in ${area} indicates strong clinical activity and patient throughput.`
-    : prescribingVolume === "medium"
-    ? ` Their moderate prescribing volume suggests a balanced patient panel with opportunity for therapeutic education.`
-    : ` Their focused prescribing pattern suggests a specialized patient population with selective treatment decisions.`;
+  const volumeNote =
+    prescribingVolume === "high"
+      ? ` Their high prescribing volume in ${area} indicates strong clinical activity and patient throughput.`
+      : prescribingVolume === "medium"
+        ? ` Their moderate prescribing volume suggests a balanced patient panel with opportunity for therapeutic education.`
+        : ` Their focused prescribing pattern suggests a specialized patient population with selective treatment decisions.`;
 
   return {
     archetype,
@@ -732,20 +1055,90 @@ function generatePersona(
 function generateDataSources(rng: SeededRandom): DemoDataSource[] {
   const now = new Date(2025, 1, 13);
   const sources: DemoDataSource[] = [
-    { field: "NPI & Basic Demographics", source: "NPPES NPI Registry", lastUpdated: dateOffset(now, -rng.int(1, 30)), confidence: "high" },
-    { field: "Practice Location", source: "NPPES NPI Registry", lastUpdated: dateOffset(now, -rng.int(1, 30)), confidence: "high" },
-    { field: "Specialty & Credentials", source: "NPPES NPI Registry + State Medical Board", lastUpdated: dateOffset(now, -rng.int(5, 60)), confidence: "high" },
-    { field: "Board Certifications", source: "ABMS Board Verification", lastUpdated: dateOffset(now, -rng.int(10, 90)), confidence: "high" },
-    { field: "Education & Residency", source: "ABMS + Doximity Profile Scrape", lastUpdated: dateOffset(now, -rng.int(30, 120)), confidence: "medium" },
-    { field: "Affiliation", source: "CMS Provider Enrollment + Hospital Website Scrape", lastUpdated: dateOffset(now, -rng.int(10, 60)), confidence: "medium" },
-    { field: "Prescribing Data", source: "CMS Medicare Part D Prescriber Data", lastUpdated: dateOffset(now, -rng.int(60, 180)), confidence: "high" },
-    { field: "Open Payments", source: "CMS Open Payments Database", lastUpdated: dateOffset(now, -rng.int(60, 180)), confidence: "high" },
-    { field: "Publications", source: "PubMed API + Google Scholar Scrape", lastUpdated: dateOffset(now, -rng.int(5, 30)), confidence: "medium" },
-    { field: "Clinical Trials", source: "ClinicalTrials.gov API", lastUpdated: dateOffset(now, -rng.int(5, 30)), confidence: "high" },
-    { field: "Conference Appearances", source: "Conference Website Scrape + Doximity", lastUpdated: dateOffset(now, -rng.int(15, 90)), confidence: "low" },
-    { field: "Social Profiles", source: "LinkedIn Scrape + Twitter API + Doximity", lastUpdated: dateOffset(now, -rng.int(1, 14)), confidence: "medium" },
-    { field: "AI Persona", source: "GPT-4o Analysis (Internal)", lastUpdated: dateOffset(now, -rng.int(1, 7)), confidence: "medium" },
-    { field: "Outreach History", source: "Internal CRM (Salesforce)", lastUpdated: dateOffset(now, -1), confidence: "high" },
+    {
+      field: "NPI & Basic Demographics",
+      source: "NPPES NPI Registry",
+      lastUpdated: dateOffset(now, -rng.int(1, 30)),
+      confidence: "high",
+    },
+    {
+      field: "Practice Location",
+      source: "NPPES NPI Registry",
+      lastUpdated: dateOffset(now, -rng.int(1, 30)),
+      confidence: "high",
+    },
+    {
+      field: "Specialty & Credentials",
+      source: "NPPES NPI Registry + State Medical Board",
+      lastUpdated: dateOffset(now, -rng.int(5, 60)),
+      confidence: "high",
+    },
+    {
+      field: "Board Certifications",
+      source: "ABMS Board Verification",
+      lastUpdated: dateOffset(now, -rng.int(10, 90)),
+      confidence: "high",
+    },
+    {
+      field: "Education & Residency",
+      source: "ABMS + Doximity Profile Scrape",
+      lastUpdated: dateOffset(now, -rng.int(30, 120)),
+      confidence: "medium",
+    },
+    {
+      field: "Affiliation",
+      source: "CMS Provider Enrollment + Hospital Website Scrape",
+      lastUpdated: dateOffset(now, -rng.int(10, 60)),
+      confidence: "medium",
+    },
+    {
+      field: "Prescribing Data",
+      source: "CMS Medicare Part D Prescriber Data",
+      lastUpdated: dateOffset(now, -rng.int(60, 180)),
+      confidence: "high",
+    },
+    {
+      field: "Open Payments",
+      source: "CMS Open Payments Database",
+      lastUpdated: dateOffset(now, -rng.int(60, 180)),
+      confidence: "high",
+    },
+    {
+      field: "Publications",
+      source: "PubMed API + Google Scholar Scrape",
+      lastUpdated: dateOffset(now, -rng.int(5, 30)),
+      confidence: "medium",
+    },
+    {
+      field: "Clinical Trials",
+      source: "ClinicalTrials.gov API",
+      lastUpdated: dateOffset(now, -rng.int(5, 30)),
+      confidence: "high",
+    },
+    {
+      field: "Conference Appearances",
+      source: "Conference Website Scrape + Doximity",
+      lastUpdated: dateOffset(now, -rng.int(15, 90)),
+      confidence: "low",
+    },
+    {
+      field: "Social Profiles",
+      source: "LinkedIn Scrape + Twitter API + Doximity",
+      lastUpdated: dateOffset(now, -rng.int(1, 14)),
+      confidence: "medium",
+    },
+    {
+      field: "AI Persona",
+      source: "GPT-4o Analysis (Internal)",
+      lastUpdated: dateOffset(now, -rng.int(1, 7)),
+      confidence: "medium",
+    },
+    {
+      field: "Outreach History",
+      source: "Internal CRM (Salesforce)",
+      lastUpdated: dateOffset(now, -1),
+      confidence: "high",
+    },
   ];
   return sources;
 }
@@ -776,7 +1169,8 @@ function generateDemoProfile(index: number, rng: SeededRandom): DemoHcpProfile {
   const volumeRoll = rng.next();
   const prescribingVolume = volumeRoll < 0.3 ? "high" : volumeRoll < 0.7 ? "medium" : "low";
   const brandRoll = rng.next();
-  const brandVsGeneric = brandRoll < 0.35 ? "brand-leaning" : brandRoll < 0.65 ? "balanced" : "generic-leaning";
+  const brandVsGeneric =
+    brandRoll < 0.35 ? "brand-leaning" : brandRoll < 0.65 ? "balanced" : "generic-leaning";
 
   const publicationCount = yearsInPractice > 10 ? rng.int(0, 50) : rng.int(0, 10);
   const isKol = publicationCount > 20 && rng.next() > 0.5;
@@ -784,17 +1178,19 @@ function generateDemoProfile(index: number, rng: SeededRandom): DemoHcpProfile {
   const certifications = [specialty];
   if (rng.next() > 0.7) certifications.push("Internal Medicine");
 
-  const roles = yearsInPractice > 20
-    ? ["Chief of " + specialty, "Department Chair", "Medical Director", "Section Head"]
-    : yearsInPractice > 10
-    ? ["Associate Professor", "Attending Physician", "Senior Physician"]
-    : ["Assistant Professor", "Attending Physician", "Staff Physician"];
+  const roles =
+    yearsInPractice > 20
+      ? ["Chief of " + specialty, "Department Chair", "Medical Director", "Section Head"]
+      : yearsInPractice > 10
+        ? ["Associate Professor", "Attending Physician", "Senior Physician"]
+        : ["Assistant Professor", "Attending Physician", "Staff Physician"];
 
-  const affiliationType = rng.next() > 0.3
-    ? "hospital" as const
-    : rng.next() > 0.5
-    ? "academic" as const
-    : "group_practice" as const;
+  const affiliationType =
+    rng.next() > 0.3
+      ? ("hospital" as const)
+      : rng.next() > 0.5
+        ? ("academic" as const)
+        : ("group_practice" as const);
 
   const hasLinkedIn = rng.next() > 0.3;
   const hasTwitter = rng.next() > 0.7;
@@ -806,17 +1202,30 @@ function generateDemoProfile(index: number, rng: SeededRandom): DemoHcpProfile {
   const specialtyDrugs = DRUG_NAMES[specialty] || DRUG_NAMES["Internal Medicine"]!;
   const topDrugs: DemoTopDrug[] = specialtyDrugs.map((d) => ({
     ...d,
-    rxVolume: prescribingVolume === "high" ? rng.int(50, 200) : prescribingVolume === "medium" ? rng.int(20, 80) : rng.int(5, 30),
+    rxVolume:
+      prescribingVolume === "high"
+        ? rng.int(50, 200)
+        : prescribingVolume === "medium"
+          ? rng.int(20, 80)
+          : rng.int(5, 30),
     trend: rng.pick(["increasing", "stable", "decreasing"] as const),
   }));
 
-  const publications = generatePublications(rng, specialty, Math.min(publicationCount, 8), lastName);
+  const publications = generatePublications(
+    rng,
+    specialty,
+    Math.min(publicationCount, 8),
+    lastName,
+  );
   const clinicalTrials = generateTrials(rng, specialty, yearsInPractice);
   const conferenceAppearances = generateConferences(rng, specialty, yearsInPractice);
   const openPayments = generateOpenPayments(rng, prescribingVolume);
   const outreachEvents = generateOutreachEvents(rng, topTherapeuticArea);
-  const repliedCount = outreachEvents.filter((e) => e.status === "replied" || e.status === "clicked" || e.status === "opened").length;
-  const engagementRate = outreachEvents.length > 0 ? Math.round((repliedCount / outreachEvents.length) * 100) : 0;
+  const repliedCount = outreachEvents.filter(
+    (e) => e.status === "replied" || e.status === "clicked" || e.status === "opened",
+  ).length;
+  const engagementRate =
+    outreachEvents.length > 0 ? Math.round((repliedCount / outreachEvents.length) * 100) : 0;
 
   // Upcoming scheduled outreach
   const nextScheduledDate = new Date(2025, 1, 13);
@@ -829,7 +1238,17 @@ function generateDemoProfile(index: number, rng: SeededRandom): DemoHcpProfile {
     status: "scheduled",
   };
 
-  const aiPersona = generatePersona(rng, firstName, lastName, specialty, yearsInPractice, isKol, prescribingVolume, topTherapeuticArea, hospital);
+  const aiPersona = generatePersona(
+    rng,
+    firstName,
+    lastName,
+    specialty,
+    yearsInPractice,
+    isKol,
+    prescribingVolume,
+    topTherapeuticArea,
+    hospital,
+  );
   const dataSources = generateDataSources(rng);
 
   // Completeness score based on available data
@@ -882,9 +1301,15 @@ function generateDemoProfile(index: number, rng: SeededRandom): DemoHcpProfile {
       hasDoximity,
       publicationCount,
       isKol,
-      linkedInUrl: hasLinkedIn ? `https://linkedin.com/in/dr-${firstName.toLowerCase()}-${lastName.toLowerCase()}` : undefined,
-      twitterHandle: hasTwitter ? `@Dr${lastName}${specialty.replace(/\s+/g, "").slice(0, 4)}` : undefined,
-      doximityUrl: hasDoximity ? `https://doximity.com/pub/dr-${firstName.toLowerCase()}-${lastName.toLowerCase()}` : undefined,
+      linkedInUrl: hasLinkedIn
+        ? `https://linkedin.com/in/dr-${firstName.toLowerCase()}-${lastName.toLowerCase()}`
+        : undefined,
+      twitterHandle: hasTwitter
+        ? `@Dr${lastName}${specialty.replace(/\s+/g, "").slice(0, 4)}`
+        : undefined,
+      doximityUrl: hasDoximity
+        ? `https://doximity.com/pub/dr-${firstName.toLowerCase()}-${lastName.toLowerCase()}`
+        : undefined,
       engagementScore,
       kolScore,
     },
@@ -956,7 +1381,7 @@ export function getDemoStats() {
     kolCount,
     highVolumeCount,
     avgYearsInPractice: Math.round(
-      profiles.reduce((sum, p) => sum + p.yearsInPractice, 0) / profiles.length
+      profiles.reduce((sum, p) => sum + p.yearsInPractice, 0) / profiles.length,
     ),
   };
 }

@@ -1,12 +1,7 @@
 "use client";
 
 import type { DemoHcpProfile } from "@/lib/demo-seed";
-import {
-  ArrowLeft,
-  MapPin,
-  Award,
-  User,
-} from "lucide-react";
+import { ArrowLeft, MapPin, Award, User } from "lucide-react";
 import Link from "next/link";
 
 interface ProfileHeaderProps {
@@ -17,12 +12,7 @@ function CompletenessRing({ score }: { score: number }) {
   const radius = 20;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color =
-    score >= 80
-      ? "text-emerald-500"
-      : score >= 60
-      ? "text-amber-500"
-      : "text-rose-500";
+  const color = score >= 80 ? "text-emerald-500" : score >= 60 ? "text-amber-500" : "text-rose-500";
 
   return (
     <div className="relative flex items-center justify-center">
@@ -49,9 +39,7 @@ function CompletenessRing({ score }: { score: number }) {
           className={color}
         />
       </svg>
-      <span className="absolute text-xs font-bold text-gray-700 dark:text-gray-300">
-        {score}%
-      </span>
+      <span className="absolute text-xs font-bold text-gray-700 dark:text-gray-300">{score}%</span>
     </div>
   );
 }
@@ -82,8 +70,7 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {profile.firstName}{" "}
-                  {profile.middleName ? profile.middleName + " " : ""}
+                  {profile.firstName} {profile.middleName ? profile.middleName + " " : ""}
                   {profile.lastName}
                 </h1>
                 <span className="rounded-md bg-gray-100 px-2 py-0.5 text-sm font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400">
@@ -123,10 +110,9 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
                   className={`rounded-full px-3 py-0.5 text-xs font-medium ${
                     profile.prescribingProfile.prescribingVolume === "high"
                       ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
-                      : profile.prescribingProfile.prescribingVolume ===
-                        "medium"
-                      ? "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300"
-                      : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                      : profile.prescribingProfile.prescribingVolume === "medium"
+                        ? "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300"
+                        : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                   }`}
                 >
                   {profile.prescribingProfile.prescribingVolume} volume
@@ -146,8 +132,8 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
                 {profile.completenessScore >= 80
                   ? "Fully enriched"
                   : profile.completenessScore >= 60
-                  ? "Partially enriched"
-                  : "Needs enrichment"}
+                    ? "Partially enriched"
+                    : "Needs enrichment"}
               </p>
             </div>
           </div>

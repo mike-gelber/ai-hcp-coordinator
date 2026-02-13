@@ -9,10 +9,7 @@ interface PrescribingTabProps {
 
 export function PrescribingTab({ profile }: PrescribingTabProps) {
   const { prescribingProfile } = profile;
-  const totalPayments = prescribingProfile.openPayments.reduce(
-    (sum, p) => sum + p.amount,
-    0
-  );
+  const totalPayments = prescribingProfile.openPayments.reduce((sum, p) => sum + p.amount, 0);
 
   return (
     <div className="space-y-6">
@@ -25,8 +22,8 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
             prescribingProfile.prescribingVolume === "high"
               ? "emerald"
               : prescribingProfile.prescribingVolume === "medium"
-              ? "sky"
-              : "gray"
+                ? "sky"
+                : "gray"
           }
         />
         <MiniStat
@@ -52,20 +49,14 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
           </div>
           <div className="space-y-3">
             {prescribingProfile.topDrugs.map((drug, i) => {
-              const maxVol = Math.max(
-                ...prescribingProfile.topDrugs.map((d) => d.rxVolume)
-              );
+              const maxVol = Math.max(...prescribingProfile.topDrugs.map((d) => d.rxVolume));
               const pct = (drug.rxVolume / maxVol) * 100;
               return (
                 <div key={drug.name} className="space-y-1">
                   <div className="flex items-center justify-between text-sm">
                     <div>
-                      <span className="font-medium text-gray-900 dark:text-white">
-                        {drug.name}
-                      </span>
-                      <span className="ml-2 text-xs text-gray-400">
-                        {drug.category}
-                      </span>
+                      <span className="font-medium text-gray-900 dark:text-white">{drug.name}</span>
+                      <span className="ml-2 text-xs text-gray-400">{drug.category}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gray-600 dark:text-gray-400">
@@ -128,17 +119,13 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
           </span>
         </div>
         {prescribingProfile.openPayments.length === 0 ? (
-          <p className="text-center text-sm text-gray-400 py-4">
-            No Open Payments records found.
-          </p>
+          <p className="text-center text-sm text-gray-400 py-4">No Open Payments records found.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">
-                    Year
-                  </th>
+                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">Year</th>
                   <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">
                     Company
                   </th>
@@ -153,9 +140,7 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
               <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
                 {prescribingProfile.openPayments.map((payment, i) => (
                   <tr key={i}>
-                    <td className="py-2.5 pr-4 text-gray-600 dark:text-gray-400">
-                      {payment.year}
-                    </td>
+                    <td className="py-2.5 pr-4 text-gray-600 dark:text-gray-400">{payment.year}</td>
                     <td className="py-2.5 pr-4 font-medium text-gray-900 dark:text-white">
                       {payment.company}
                     </td>
@@ -178,30 +163,17 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
   );
 }
 
-function MiniStat({
-  label,
-  value,
-  color,
-}: {
-  label: string;
-  value: string;
-  color: string;
-}) {
+function MiniStat({ label, value, color }: { label: string; value: string; color: string }) {
   const colorMap: Record<string, string> = {
-    emerald:
-      "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
+    emerald: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
     sky: "bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300",
     gray: "bg-gray-50 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
-    indigo:
-      "bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300",
-    amber:
-      "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
+    indigo: "bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300",
+    amber: "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
   };
 
   return (
-    <div
-      className={`rounded-xl p-4 ${colorMap[color] || colorMap.gray}`}
-    >
+    <div className={`rounded-xl p-4 ${colorMap[color] || colorMap.gray}`}>
       <p className="text-xs font-medium opacity-70">{label}</p>
       <p className="mt-1 text-lg font-bold capitalize">{value}</p>
     </div>
@@ -209,11 +181,8 @@ function MiniStat({
 }
 
 function TrendIcon({ trend }: { trend: string }) {
-  if (trend === "increasing")
-    return <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />;
+  if (trend === "increasing") return <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />;
   if (trend === "decreasing")
-    return (
-      <TrendingUp className="h-3.5 w-3.5 rotate-180 text-rose-500" />
-    );
+    return <TrendingUp className="h-3.5 w-3.5 rotate-180 text-rose-500" />;
   return <span className="text-xs text-gray-400">--</span>;
 }

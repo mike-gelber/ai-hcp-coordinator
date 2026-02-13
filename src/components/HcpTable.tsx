@@ -18,16 +18,49 @@ interface PaginatedResponse {
 }
 
 const SPECIALTIES = [
-  "Internal Medicine", "Family Medicine", "Cardiology", "Oncology",
-  "Orthopedic Surgery", "Dermatology", "Neurology", "Psychiatry",
-  "Gastroenterology", "Endocrinology", "Pulmonology", "Rheumatology",
-  "Nephrology", "Hematology", "Infectious Disease", "Allergy & Immunology",
-  "Urology", "Ophthalmology", "Pediatrics", "Emergency Medicine",
+  "Internal Medicine",
+  "Family Medicine",
+  "Cardiology",
+  "Oncology",
+  "Orthopedic Surgery",
+  "Dermatology",
+  "Neurology",
+  "Psychiatry",
+  "Gastroenterology",
+  "Endocrinology",
+  "Pulmonology",
+  "Rheumatology",
+  "Nephrology",
+  "Hematology",
+  "Infectious Disease",
+  "Allergy & Immunology",
+  "Urology",
+  "Ophthalmology",
+  "Pediatrics",
+  "Emergency Medicine",
 ];
 
 const STATES = [
-  "CA", "NY", "TX", "FL", "IL", "PA", "OH", "MA", "NJ", "GA",
-  "NC", "MI", "WA", "AZ", "CO", "MN", "MD", "TN", "MO", "CT",
+  "CA",
+  "NY",
+  "TX",
+  "FL",
+  "IL",
+  "PA",
+  "OH",
+  "MA",
+  "NJ",
+  "GA",
+  "NC",
+  "MI",
+  "WA",
+  "AZ",
+  "CO",
+  "MN",
+  "MD",
+  "TN",
+  "MO",
+  "CT",
 ];
 
 export function HcpTable({ onProfileClick }: HcpTableProps) {
@@ -101,7 +134,9 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
         >
           <option value="">All Specialties</option>
           {SPECIALTIES.map((s) => (
-            <option key={s} value={s}>{s}</option>
+            <option key={s} value={s}>
+              {s}
+            </option>
           ))}
         </select>
         <select
@@ -111,7 +146,9 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
         >
           <option value="">All States</option>
           {STATES.map((s) => (
-            <option key={s} value={s}>{s}</option>
+            <option key={s} value={s}>
+              {s}
+            </option>
           ))}
         </select>
         <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -124,15 +161,33 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
         <table className="w-full text-left text-sm">
           <thead className="border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
             <tr>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">NPI</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Name</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Specialty</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Location</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Yrs</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Volume</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">KOL</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">Pubs</th>
-              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">AI Agents</th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                NPI
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                Name
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                Specialty
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                Location
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                Yrs
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                Volume
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                KOL
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                Pubs
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                AI Agents
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
@@ -178,7 +233,9 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
                     {profile.yearsInPractice}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3">
-                    <span className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${volumeColors[profile.prescribingProfile.prescribingVolume]}`}>
+                    <span
+                      className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${volumeColors[profile.prescribingProfile.prescribingVolume]}`}
+                    >
                       {profile.prescribingProfile.prescribingVolume}
                     </span>
                   </td>
@@ -196,8 +253,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-center">
                     <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
-                      <Bot className="h-3 w-3" />
-                      2 Active
+                      <Bot className="h-3 w-3" />2 Active
                     </span>
                   </td>
                 </tr>

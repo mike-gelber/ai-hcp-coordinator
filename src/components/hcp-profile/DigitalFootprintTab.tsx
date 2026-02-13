@@ -29,9 +29,7 @@ export function DigitalFootprintTab({ profile }: DigitalFootprintTabProps) {
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <div className="mb-2 flex items-center gap-2">
             <Star className="h-4 w-4 text-gray-400" />
-            <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              KOL Status
-            </p>
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400">KOL Status</p>
           </div>
           {digitalPresence.isKol ? (
             <div className="flex items-center gap-2">
@@ -40,9 +38,7 @@ export function DigitalFootprintTab({ profile }: DigitalFootprintTabProps) {
               </span>
             </div>
           ) : (
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Not classified as KOL
-            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Not classified as KOL</p>
           )}
           <p className="mt-2 text-xs text-gray-400">
             {digitalPresence.publicationCount} publications tracked
@@ -54,9 +50,7 @@ export function DigitalFootprintTab({ profile }: DigitalFootprintTabProps) {
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="mb-4 flex items-center gap-2">
           <Globe className="h-5 w-5 text-gray-400" />
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-            Social Profiles
-          </h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Social Profiles</h3>
         </div>
         <div className="grid gap-4 sm:grid-cols-3">
           <SocialCard
@@ -87,9 +81,7 @@ export function DigitalFootprintTab({ profile }: DigitalFootprintTabProps) {
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="mb-4 flex items-center gap-2">
           <TrendingUp className="h-5 w-5 text-gray-400" />
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-            KOL Indicators
-          </h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">KOL Indicators</h3>
         </div>
         <div className="space-y-3">
           <Indicator
@@ -110,7 +102,11 @@ export function DigitalFootprintTab({ profile }: DigitalFootprintTabProps) {
           <Indicator
             label="Multi-Platform Digital Presence"
             met={
-              [digitalPresence.hasLinkedIn, digitalPresence.hasTwitter, digitalPresence.hasDoximity].filter(Boolean).length >= 2
+              [
+                digitalPresence.hasLinkedIn,
+                digitalPresence.hasTwitter,
+                digitalPresence.hasDoximity,
+              ].filter(Boolean).length >= 2
             }
             detail={`Active on ${[digitalPresence.hasLinkedIn, digitalPresence.hasTwitter, digitalPresence.hasDoximity].filter(Boolean).length} platforms`}
           />
@@ -193,8 +189,7 @@ function SocialCard({
   const activeColors: Record<string, string> = {
     sky: "border-sky-200 bg-sky-50 dark:border-sky-800 dark:bg-sky-950",
     gray: "border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800",
-    emerald:
-      "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950",
+    emerald: "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950",
   };
   const iconColors: Record<string, string> = {
     sky: "text-sky-600 dark:text-sky-400",
@@ -211,12 +206,8 @@ function SocialCard({
       }`}
     >
       <div className="flex items-center gap-2">
-        <span className={active ? iconColors[color] || "" : "text-gray-400"}>
-          {icon}
-        </span>
-        <span className="text-sm font-medium text-gray-900 dark:text-white">
-          {name}
-        </span>
+        <span className={active ? iconColors[color] || "" : "text-gray-400"}>{icon}</span>
+        <span className="text-sm font-medium text-gray-900 dark:text-white">{name}</span>
       </div>
       {active ? (
         <p className="mt-2 truncate text-xs text-gray-500 dark:text-gray-400">
@@ -240,15 +231,7 @@ function SocialCard({
   );
 }
 
-function Indicator({
-  label,
-  met,
-  detail,
-}: {
-  label: string;
-  met: boolean;
-  detail: string;
-}) {
+function Indicator({ label, met, detail }: { label: string; met: boolean; detail: string }) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-gray-100 px-4 py-3 dark:border-gray-800">
       <div className="flex items-center gap-3">
@@ -261,13 +244,9 @@ function Indicator({
         >
           {met ? "\u2713" : "\u2013"}
         </div>
-        <span className="text-sm font-medium text-gray-900 dark:text-white">
-          {label}
-        </span>
+        <span className="text-sm font-medium text-gray-900 dark:text-white">{label}</span>
       </div>
-      <span className="text-xs text-gray-500 dark:text-gray-400">
-        {detail}
-      </span>
+      <span className="text-xs text-gray-500 dark:text-gray-400">{detail}</span>
     </div>
   );
 }

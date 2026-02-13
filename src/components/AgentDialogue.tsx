@@ -112,9 +112,7 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
         <div className="rounded-full bg-red-100 p-4 dark:bg-red-900/30">
           <MessageSquare className="h-6 w-6 text-red-500" />
         </div>
-        <p className="mt-4 text-sm font-medium text-red-600 dark:text-red-400">
-          {error}
-        </p>
+        <p className="mt-4 text-sm font-medium text-red-600 dark:text-red-400">{error}</p>
       </div>
     );
   }
@@ -152,12 +150,8 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
             >
               <span className="text-lg">{agent.avatar}</span>
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-gray-900 dark:text-white">
-                  {agent.name}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {agent.title}
-                </p>
+                <p className="text-xs font-semibold text-gray-900 dark:text-white">{agent.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{agent.title}</p>
               </div>
             </div>
           );
@@ -165,11 +159,7 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
       </div>
 
       {/* Messages */}
-      <div
-        ref={scrollRef}
-        onScroll={handleScroll}
-        className="flex-1 overflow-y-auto px-5 py-4"
-      >
+      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-5 py-4">
         <div className="space-y-4">
           {visibleMessages.map((message, idx) => (
             <MessageBubble
@@ -181,9 +171,7 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
 
           {/* Typing indicator */}
           {isStreaming && visibleCount > 0 && (
-            <TypingIndicator
-              role={messages[visibleCount]?.role ?? "strategist"}
-            />
+            <TypingIndicator role={messages[visibleCount]?.role ?? "strategist"} />
           )}
 
           <div ref={bottomRef} />
@@ -210,28 +198,17 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
 
 function AgentBadge({ role }: { role: "strategist" | "outreach_specialist" }) {
   const agent = AGENT_PROFILES[role];
-  const dotColor =
-    role === "strategist"
-      ? "bg-indigo-500"
-      : "bg-emerald-500";
+  const dotColor = role === "strategist" ? "bg-indigo-500" : "bg-emerald-500";
 
   return (
     <div className="flex items-center gap-1.5">
       <div className={`h-2 w-2 rounded-full ${dotColor} animate-pulse`} />
-      <span className="text-xs text-gray-500 dark:text-gray-400">
-        {agent.name}
-      </span>
+      <span className="text-xs text-gray-500 dark:text-gray-400">{agent.name}</span>
     </div>
   );
 }
 
-function MessageBubble({
-  message,
-  isLatest,
-}: {
-  message: AgentMessage;
-  isLatest: boolean;
-}) {
+function MessageBubble({ message, isLatest }: { message: AgentMessage; isLatest: boolean }) {
   const agent = AGENT_PROFILES[message.role];
   const isStrategist = message.role === "strategist";
 
@@ -244,17 +221,11 @@ function MessageBubble({
     : "text-emerald-700 dark:text-emerald-300";
 
   return (
-    <div
-      className={`flex gap-3 ${
-        isLatest ? "animate-fade-in" : ""
-      }`}
-    >
+    <div className={`flex gap-3 ${isLatest ? "animate-fade-in" : ""}`}>
       {/* Avatar */}
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm ${
-          isStrategist
-            ? "bg-indigo-100 dark:bg-indigo-900"
-            : "bg-emerald-100 dark:bg-emerald-900"
+          isStrategist ? "bg-indigo-100 dark:bg-indigo-900" : "bg-emerald-100 dark:bg-emerald-900"
         }`}
       >
         {agent.avatar}
@@ -263,15 +234,9 @@ function MessageBubble({
       {/* Content */}
       <div className="min-w-0 flex-1">
         <div className="mb-1 flex items-center gap-2">
-          <span className={`text-xs font-semibold ${nameColor}`}>
-            {agent.name}
-          </span>
-          <span className="text-xs text-gray-400 dark:text-gray-500">
-            {agent.title}
-          </span>
-          {message.metadata?.type && (
-            <MetadataBadge type={message.metadata.type} />
-          )}
+          <span className={`text-xs font-semibold ${nameColor}`}>{agent.name}</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500">{agent.title}</span>
+          {message.metadata?.type && <MetadataBadge type={message.metadata.type} />}
         </div>
         <div
           className={`rounded-lg border p-4 text-sm leading-relaxed text-gray-800 dark:text-gray-200 ${bubbleStyles}`}
@@ -297,22 +262,13 @@ function MessageBubble({
   );
 }
 
-function MetadataBadge({
-  type,
-}: {
-  type: NonNullable<AgentMessage["metadata"]>["type"];
-}) {
+function MetadataBadge({ type }: { type: NonNullable<AgentMessage["metadata"]>["type"] }) {
   const styles: Record<string, string> = {
-    analysis:
-      "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300",
-    recommendation:
-      "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300",
-    action:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
-    report:
-      "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
-    question:
-      "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300",
+    analysis: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300",
+    recommendation: "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300",
+    action: "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
+    report: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
+    question: "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300",
   };
 
   return (
@@ -335,17 +291,12 @@ function FormattedContent({ content }: { content: string }) {
       {lines.map((line, i) => {
         if (line.trim() === "") return <div key={i} className="h-1.5" />;
         if (line.trim() === "---")
-          return (
-            <hr
-              key={i}
-              className="my-2 border-gray-300 dark:border-gray-600"
-            />
-          );
+          return <hr key={i} className="my-2 border-gray-300 dark:border-gray-600" />;
 
         // Bold text: **text**
         const formattedLine = line.replace(
           /\*\*(.+?)\*\*/g,
-          '<strong class="font-semibold text-gray-900 dark:text-white">$1</strong>'
+          '<strong class="font-semibold text-gray-900 dark:text-white">$1</strong>',
         );
 
         // List items
@@ -358,19 +309,13 @@ function FormattedContent({ content }: { content: string }) {
           );
         }
 
-        return (
-          <p key={i} dangerouslySetInnerHTML={{ __html: formattedLine }} />
-        );
+        return <p key={i} dangerouslySetInnerHTML={{ __html: formattedLine }} />;
       })}
     </div>
   );
 }
 
-function TypingIndicator({
-  role,
-}: {
-  role: "strategist" | "outreach_specialist";
-}) {
+function TypingIndicator({ role }: { role: "strategist" | "outreach_specialist" }) {
   const agent = AGENT_PROFILES[role];
   const isStrategist = role === "strategist";
 
@@ -378,9 +323,7 @@ function TypingIndicator({
     <div className="flex gap-3">
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm ${
-          isStrategist
-            ? "bg-indigo-100 dark:bg-indigo-900"
-            : "bg-emerald-100 dark:bg-emerald-900"
+          isStrategist ? "bg-indigo-100 dark:bg-indigo-900" : "bg-emerald-100 dark:bg-emerald-900"
         }`}
       >
         {agent.avatar}
@@ -396,9 +339,7 @@ function TypingIndicator({
           <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:0ms]" />
           <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:150ms]" />
           <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:300ms]" />
-          <span className="ml-2 text-xs text-gray-400">
-            {agent.name} is typing...
-          </span>
+          <span className="ml-2 text-xs text-gray-400">{agent.name} is typing...</span>
         </div>
       </div>
     </div>

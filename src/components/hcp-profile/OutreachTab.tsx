@@ -1,7 +1,16 @@
 "use client";
 
 import type { DemoHcpProfile, DemoOutreachEvent } from "@/lib/demo-seed";
-import { Send, CalendarClock, BarChart3, Mail, MessageSquare, FileText, Globe, Phone } from "lucide-react";
+import {
+  Send,
+  CalendarClock,
+  BarChart3,
+  Mail,
+  MessageSquare,
+  FileText,
+  Globe,
+  Phone,
+} from "lucide-react";
 
 interface OutreachTabProps {
   profile: DemoHcpProfile;
@@ -20,10 +29,7 @@ export function OutreachTab({ profile }: OutreachTabProps) {
           label="Last Contact"
           value={outreach.events.length > 0 ? outreach.events[0].date : "N/A"}
         />
-        <MiniStat
-          label="Next Scheduled"
-          value={outreach.nextScheduled?.date || "N/A"}
-        />
+        <MiniStat label="Next Scheduled" value={outreach.nextScheduled?.date || "N/A"} />
       </div>
 
       {/* Current Strategy */}
@@ -56,8 +62,7 @@ export function OutreachTab({ profile }: OutreachTabProps) {
                   {outreach.nextScheduled.subject}
                 </p>
                 <p className="text-xs text-amber-700 dark:text-amber-300">
-                  via {outreach.nextScheduled.channel} on{" "}
-                  {outreach.nextScheduled.date}
+                  via {outreach.nextScheduled.channel} on {outreach.nextScheduled.date}
                 </p>
               </div>
             </div>
@@ -77,9 +82,7 @@ export function OutreachTab({ profile }: OutreachTabProps) {
           </h3>
         </div>
         {outreach.events.length === 0 ? (
-          <p className="py-4 text-center text-sm text-gray-400">
-            No outreach history.
-          </p>
+          <p className="py-4 text-center text-sm text-gray-400">No outreach history.</p>
         ) : (
           <div className="relative">
             {/* Timeline line */}
@@ -87,7 +90,11 @@ export function OutreachTab({ profile }: OutreachTabProps) {
 
             <div className="space-y-0">
               {outreach.events.map((event, i) => (
-                <TimelineItem key={event.id} event={event} isLast={i === outreach.events.length - 1} />
+                <TimelineItem
+                  key={event.id}
+                  event={event}
+                  isLast={i === outreach.events.length - 1}
+                />
               ))}
             </div>
           </div>
@@ -109,18 +116,14 @@ function TimelineItem({ event, isLast }: { event: DemoOutreachEvent; isLast: boo
       <div className="flex-1 rounded-lg border border-gray-100 p-3 dark:border-gray-800">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">
-              {event.subject}
-            </p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white">{event.subject}</p>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
               <span>{event.date}</span>
               <span className="capitalize">{event.channel}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {event.sentiment && (
-              <SentimentBadge sentiment={event.sentiment} />
-            )}
+            {event.sentiment && <SentimentBadge sentiment={event.sentiment} />}
             <StatusBadge status={event.status} />
           </div>
         </div>
@@ -199,12 +202,8 @@ function SentimentBadge({ sentiment }: { sentiment: string }) {
 function MiniStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-      <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-        {label}
-      </p>
-      <p className="mt-1 text-lg font-bold text-gray-900 dark:text-white">
-        {value}
-      </p>
+      <p className="text-xs font-medium text-gray-500 dark:text-gray-400">{label}</p>
+      <p className="mt-1 text-lg font-bold text-gray-900 dark:text-white">{value}</p>
     </div>
   );
 }

@@ -12,16 +12,7 @@ import { AiPersonaTab } from "@/components/hcp-profile/AiPersonaTab";
 import { OutreachTab } from "@/components/hcp-profile/OutreachTab";
 import { DataSourcesTab } from "@/components/hcp-profile/DataSourcesTab";
 import { AiFieldForceTab } from "@/components/hcp-profile/AiFieldForceTab";
-import {
-  Briefcase,
-  Pill,
-  BookOpen,
-  Globe,
-  Brain,
-  Send,
-  Database,
-  Bot,
-} from "lucide-react";
+import { Briefcase, Pill, BookOpen, Globe, Brain, Send, Database, Bot } from "lucide-react";
 
 const TABS = [
   { id: "professional", label: "Professional", icon: Briefcase },
@@ -83,9 +74,7 @@ export default function HcpProfilePage() {
           <p className="text-lg font-semibold text-gray-900 dark:text-white">
             {error || "Profile not found"}
           </p>
-          <p className="mt-2 text-sm text-gray-500">
-            NPI: {npi}
-          </p>
+          <p className="mt-2 text-sm text-gray-500">NPI: {npi}</p>
           <a
             href="/dashboard"
             className="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors"

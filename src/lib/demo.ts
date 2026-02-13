@@ -28,9 +28,6 @@ export async function getDemoStatus(): Promise<{
   active: boolean;
   demoHcpCount: number;
 }> {
-  const [active, demoHcpCount] = await Promise.all([
-    isDemoMode(),
-    getDemoHcpCount(),
-  ]);
+  const [active, demoHcpCount] = await Promise.all([isDemoMode(), getDemoHcpCount()]);
   return { active, demoHcpCount };
 }

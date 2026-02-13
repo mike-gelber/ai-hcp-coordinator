@@ -15,9 +15,7 @@ export function ResearchTab({ profile }: ResearchTabProps) {
       {/* Summary */}
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-xl bg-indigo-50 p-4 dark:bg-indigo-950">
-          <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
-            Publications
-          </p>
+          <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">Publications</p>
           <p className="mt-1 text-2xl font-bold text-indigo-700 dark:text-indigo-300">
             {profile.digitalPresence.publicationCount}
           </p>
@@ -44,37 +42,25 @@ export function ResearchTab({ profile }: ResearchTabProps) {
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="mb-4 flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-gray-400" />
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-            Publications
-          </h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Publications</h3>
           <span className="ml-auto text-xs text-gray-400">
-            Showing {research.publications.length} of{" "}
-            {profile.digitalPresence.publicationCount}
+            Showing {research.publications.length} of {profile.digitalPresence.publicationCount}
           </span>
         </div>
         {research.publications.length === 0 ? (
-          <p className="py-4 text-center text-sm text-gray-400">
-            No publications found.
-          </p>
+          <p className="py-4 text-center text-sm text-gray-400">No publications found.</p>
         ) : (
           <div className="space-y-3">
             {research.publications.map((pub, i) => (
-              <div
-                key={i}
-                className="rounded-lg border border-gray-100 p-4 dark:border-gray-800"
-              >
-                <p className="text-sm font-medium text-gray-900 dark:text-white">
-                  {pub.title}
-                </p>
+              <div key={i} className="rounded-lg border border-gray-100 p-4 dark:border-gray-800">
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{pub.title}</p>
                 <div className="mt-1.5 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
                   <span className="font-medium text-indigo-600 dark:text-indigo-400">
                     {pub.journal}
                   </span>
                   <span>{pub.year}</span>
                   <span>{pub.citationCount} citations</span>
-                  <span className="font-mono text-gray-400">
-                    DOI: {pub.doi}
-                  </span>
+                  <span className="font-mono text-gray-400">DOI: {pub.doi}</span>
                 </div>
               </div>
             ))}
@@ -86,9 +72,7 @@ export function ResearchTab({ profile }: ResearchTabProps) {
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="mb-4 flex items-center gap-2">
           <FlaskConical className="h-5 w-5 text-gray-400" />
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-            Clinical Trials
-          </h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Clinical Trials</h3>
         </div>
         {research.clinicalTrials.length === 0 ? (
           <p className="py-4 text-center text-sm text-gray-400">
@@ -99,21 +83,11 @@ export function ResearchTab({ profile }: ResearchTabProps) {
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">
-                    Trial
-                  </th>
-                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">
-                    Phase
-                  </th>
-                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">
-                    Role
-                  </th>
-                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">
-                    Status
-                  </th>
-                  <th className="pb-2 font-medium text-gray-500 dark:text-gray-400">
-                    NCT ID
-                  </th>
+                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">Trial</th>
+                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">Phase</th>
+                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">Role</th>
+                  <th className="pb-2 pr-4 font-medium text-gray-500 dark:text-gray-400">Status</th>
+                  <th className="pb-2 font-medium text-gray-500 dark:text-gray-400">NCT ID</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
@@ -122,12 +96,8 @@ export function ResearchTab({ profile }: ResearchTabProps) {
                     <td className="py-2.5 pr-4 font-medium text-gray-900 dark:text-white max-w-[280px] truncate">
                       {trial.title}
                     </td>
-                    <td className="py-2.5 pr-4 text-gray-600 dark:text-gray-400">
-                      {trial.phase}
-                    </td>
-                    <td className="py-2.5 pr-4 text-gray-600 dark:text-gray-400">
-                      {trial.role}
-                    </td>
+                    <td className="py-2.5 pr-4 text-gray-600 dark:text-gray-400">{trial.phase}</td>
+                    <td className="py-2.5 pr-4 text-gray-600 dark:text-gray-400">{trial.role}</td>
                     <td className="py-2.5 pr-4">
                       <TrialStatusBadge status={trial.status} />
                     </td>
@@ -165,9 +135,7 @@ export function ResearchTab({ profile }: ResearchTabProps) {
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     {conf.conference}
                   </p>
-                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                    {conf.topic}
-                  </p>
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{conf.topic}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
@@ -186,14 +154,10 @@ export function ResearchTab({ profile }: ResearchTabProps) {
 
 function TrialStatusBadge({ status }: { status: string }) {
   const colors: Record<string, string> = {
-    Completed:
-      "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
-    Recruiting:
-      "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300",
-    Active:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
-    Terminated:
-      "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300",
+    Completed: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
+    Recruiting: "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300",
+    Active: "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
+    Terminated: "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300",
   };
 
   return (

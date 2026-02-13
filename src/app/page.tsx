@@ -15,9 +15,8 @@ export default function Home() {
             AI HCP Field Force
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-400">
-            Ingest NPI target lists, enrich HCP profiles with public and
-            proprietary data, and deploy personalized AI agents that craft
-            ultra-customized multi-channel outreach plans.
+            Ingest NPI target lists, enrich HCP profiles with public and proprietary data, and
+            deploy personalized AI agents that craft ultra-customized multi-channel outreach plans.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-4">
             <Link

@@ -14,24 +14,14 @@
  * - Edge cases (minimal data, missing fields)
  */
 
-import {
-  classifyPersona,
-  generateStrategy,
-  _internal,
-} from "@/services/outreach-strategy";
+import { classifyPersona, generateStrategy, _internal } from "@/services/outreach-strategy";
 import type { HcpStrategyContext, OutreachStrategy } from "@/types/outreach";
 
-const {
-  deriveChannelAvailability,
-  derivePrescribingBehavior,
-  deriveEngagementHistory,
-} = _internal;
+const { deriveChannelAvailability, derivePrescribingBehavior, deriveEngagementHistory } = _internal;
 
 // ─── Test Fixtures ──────────────────────────────────────────────────────────
 
-function createBaseContext(
-  overrides: Partial<HcpStrategyContext> = {}
-): HcpStrategyContext {
+function createBaseContext(overrides: Partial<HcpStrategyContext> = {}): HcpStrategyContext {
   return {
     hcpId: "test-hcp-001",
     npi: "1234567893",
@@ -378,9 +368,7 @@ describe("classifyPersona", () => {
     const ctx = createAcademicResearcherContext();
     const persona = classifyPersona(ctx);
     // With 25 publications and clinical trials, should be academic_researcher or kol_influencer
-    expect(["academic_researcher", "kol_influencer"]).toContain(
-      persona.archetype
-    );
+    expect(["academic_researcher", "kol_influencer"]).toContain(persona.archetype);
     expect(persona.label).toBeDefined();
     expect(persona.description).toBeDefined();
     expect(persona.traits).toBeInstanceOf(Array);
@@ -398,9 +386,7 @@ describe("classifyPersona", () => {
     const ctx = createCommunityPractitionerContext();
     const persona = classifyPersona(ctx);
     // Family medicine with group practice and high volume
-    expect(["community_practitioner", "high_volume_prescriber"]).toContain(
-      persona.archetype
-    );
+    expect(["community_practitioner", "high_volume_prescriber"]).toContain(persona.archetype);
   });
 
   it("classifies a digital native correctly", () => {
@@ -470,9 +456,7 @@ describe("generateStrategy", () => {
     const ctx = createBaseContext();
     const strategy = generateStrategy(ctx);
     expect(() => new Date(strategy.generatedAt)).not.toThrow();
-    expect(new Date(strategy.generatedAt).toISOString()).toBe(
-      strategy.generatedAt
-    );
+    expect(new Date(strategy.generatedAt).toISOString()).toBe(strategy.generatedAt);
   });
 
   it("generates personalized strategy for academic researcher", () => {
@@ -482,14 +466,12 @@ describe("generateStrategy", () => {
     expect(strategy.hcpName).toBe("Elena Rodriguez");
 
     // Should have publication-based conversation starters
-    const pubStarters = strategy.conversationStarters.filter(
-      (s) => s.source === "publication"
-    );
+    const pubStarters = strategy.conversationStarters.filter((s) => s.source === "publication");
     expect(pubStarters.length).toBeGreaterThan(0);
 
     // Should have clinical trial-based starters
     const trialStarters = strategy.conversationStarters.filter(
-      (s) => s.source === "clinical_trial"
+      (s) => s.source === "clinical_trial",
     );
     expect(trialStarters.length).toBeGreaterThan(0);
 
@@ -508,9 +490,7 @@ describe("generateStrategy", () => {
     expect(strategy.strategySummary).toContain("KOL");
 
     // In-person should rank high for KOLs
-    const inPerson = strategy.channelMix.find(
-      (c) => c.channel === "in_person"
-    );
+    const inPerson = strategy.channelMix.find((c) => c.channel === "in_person");
     expect(inPerson).toBeDefined();
     expect(inPerson!.rank).toBeLessThanOrEqual(3);
   });
@@ -524,7 +504,7 @@ describe("generateStrategy", () => {
       (t) =>
         t.topic.toLowerCase().includes("patient") ||
         t.topic.toLowerCase().includes("practical") ||
-        t.topic.toLowerCase().includes("real-world")
+        t.topic.toLowerCase().includes("real-world"),
     );
     expect(hasPatientOutcomeTheme).toBe(true);
   });
@@ -537,13 +517,12 @@ describe("generateStrategy", () => {
     const hasSafetyTheme =
       strategy.messagingThemes.some(
         (t) =>
-          t.topic.toLowerCase().includes("safety") ||
-          t.topic.toLowerCase().includes("long-term")
+          t.topic.toLowerCase().includes("safety") || t.topic.toLowerCase().includes("long-term"),
       ) ||
       strategy.objectionHandling.some(
         (o) =>
           o.objection.toLowerCase().includes("safety") ||
-          o.objection.toLowerCase().includes("long-term")
+          o.objection.toLowerCase().includes("long-term"),
       );
     expect(hasSafetyTheme).toBe(true);
 
@@ -609,9 +588,7 @@ describe("channelMix", () => {
     });
     const strategy = generateStrategy(ctx);
 
-    const emailChannel = strategy.channelMix.find(
-      (c) => c.channel === "email"
-    );
+    const emailChannel = strategy.channelMix.find((c) => c.channel === "email");
     expect(emailChannel!.available).toBe(true);
 
     const smsChannel = strategy.channelMix.find((c) => c.channel === "sms");
@@ -646,15 +623,9 @@ describe("channelMix", () => {
     const limitedStrategy = generateStrategy(limitedCtx);
 
     // SMS should score much lower when unavailable
-    const fullSms = fullStrategy.channelMix.find(
-      (c) => c.channel === "sms"
-    );
-    const limitedSms = limitedStrategy.channelMix.find(
-      (c) => c.channel === "sms"
-    );
-    expect(limitedSms!.effectivenessScore).toBeLessThan(
-      fullSms!.effectivenessScore
-    );
+    const fullSms = fullStrategy.channelMix.find((c) => c.channel === "sms");
+    const limitedSms = limitedStrategy.channelMix.find((c) => c.channel === "sms");
+    expect(limitedSms!.effectivenessScore).toBeLessThan(fullSms!.effectivenessScore);
   });
 
   it("includes reasoning for each channel", () => {
@@ -684,16 +655,10 @@ describe("channelMix", () => {
     });
     const strategyNoHistory = generateStrategy(ctxNoHistory);
 
-    const smsWithHistory = strategyWithHistory.channelMix.find(
-      (c) => c.channel === "sms"
-    );
-    const smsNoHistory = strategyNoHistory.channelMix.find(
-      (c) => c.channel === "sms"
-    );
+    const smsWithHistory = strategyWithHistory.channelMix.find((c) => c.channel === "sms");
+    const smsNoHistory = strategyNoHistory.channelMix.find((c) => c.channel === "sms");
 
-    expect(smsWithHistory!.effectivenessScore).toBeGreaterThan(
-      smsNoHistory!.effectivenessScore
-    );
+    expect(smsWithHistory!.effectivenessScore).toBeGreaterThan(smsNoHistory!.effectivenessScore);
   });
 });
 
@@ -718,7 +683,7 @@ describe("messagingThemes", () => {
     const strategy = generateStrategy(ctx);
 
     const hasTherapeuticTheme = strategy.messagingThemes.some((t) =>
-      t.topic.toLowerCase().includes("heart failure")
+      t.topic.toLowerCase().includes("heart failure"),
     );
     expect(hasTherapeuticTheme).toBe(true);
   });
@@ -729,8 +694,7 @@ describe("messagingThemes", () => {
 
     const hasPubTheme = strategy.messagingThemes.some(
       (t) =>
-        t.topic.toLowerCase().includes("research") ||
-        t.topic.toLowerCase().includes("publish")
+        t.topic.toLowerCase().includes("research") || t.topic.toLowerCase().includes("publish"),
     );
     expect(hasPubTheme).toBe(true);
   });
@@ -750,7 +714,7 @@ describe("messagingThemes", () => {
       (t) =>
         t.topic.toLowerCase().includes("comparative") ||
         t.topic.toLowerCase().includes("switch") ||
-        t.rationale.toLowerCase().includes("entresto")
+        t.rationale.toLowerCase().includes("entresto"),
     );
     expect(hasCompetitiveTheme).toBe(true);
   });
@@ -816,13 +780,9 @@ describe("contentToneStyle", () => {
     const juniorStrategy = generateStrategy(juniorCtx);
 
     // Senior should get peer-to-peer tone note
-    expect(seniorStrategy.contentToneStyle.styleNotes).toContain(
-      "experienced"
-    );
+    expect(seniorStrategy.contentToneStyle.styleNotes).toContain("experienced");
     // Junior should get mentorship note
-    expect(juniorStrategy.contentToneStyle.styleNotes).toContain(
-      "mentorship"
-    );
+    expect(juniorStrategy.contentToneStyle.styleNotes).toContain("mentorship");
   });
 
   it("includes PhD-specific notes for MD/PhD credentials", () => {
@@ -848,13 +808,9 @@ describe("cadence", () => {
   it("uses valid frequency values", () => {
     const ctx = createBaseContext();
     const strategy = generateStrategy(ctx);
-    expect([
-      "daily",
-      "weekly",
-      "bi_weekly",
-      "monthly",
-      "quarterly",
-    ]).toContain(strategy.cadence.frequency);
+    expect(["daily", "weekly", "bi_weekly", "monthly", "quarterly"]).toContain(
+      strategy.cadence.frequency,
+    );
   });
 
   it("includes at least one preferred day", () => {
@@ -895,9 +851,7 @@ describe("conversationStarters", () => {
     const ctx = createAcademicResearcherContext();
     const strategy = generateStrategy(ctx);
 
-    const pubStarters = strategy.conversationStarters.filter(
-      (s) => s.source === "publication"
-    );
+    const pubStarters = strategy.conversationStarters.filter((s) => s.source === "publication");
     expect(pubStarters.length).toBeGreaterThan(0);
 
     // Should reference the HCP's last name
@@ -911,7 +865,7 @@ describe("conversationStarters", () => {
     const strategy = generateStrategy(ctx);
 
     const trialStarters = strategy.conversationStarters.filter(
-      (s) => s.source === "clinical_trial"
+      (s) => s.source === "clinical_trial",
     );
     expect(trialStarters.length).toBeGreaterThan(0);
   });
@@ -928,7 +882,7 @@ describe("conversationStarters", () => {
     const strategy = generateStrategy(ctx);
 
     const rxStarters = strategy.conversationStarters.filter(
-      (s) => s.source === "prescribing_pattern"
+      (s) => s.source === "prescribing_pattern",
     );
     expect(rxStarters.length).toBeGreaterThan(0);
   });
@@ -937,13 +891,9 @@ describe("conversationStarters", () => {
     const ctx = createBaseContext();
     const strategy = generateStrategy(ctx);
 
-    const affStarters = strategy.conversationStarters.filter(
-      (s) => s.source === "affiliation"
-    );
+    const affStarters = strategy.conversationStarters.filter((s) => s.source === "affiliation");
     expect(affStarters.length).toBeGreaterThan(0);
-    expect(affStarters[0].suggestedText).toContain(
-      "Massachusetts General Hospital"
-    );
+    expect(affStarters[0].suggestedText).toContain("Massachusetts General Hospital");
   });
 
   it("sorts starters by relevance score descending", () => {
@@ -951,9 +901,9 @@ describe("conversationStarters", () => {
     const strategy = generateStrategy(ctx);
 
     for (let i = 1; i < strategy.conversationStarters.length; i++) {
-      expect(
-        strategy.conversationStarters[i - 1].relevanceScore
-      ).toBeGreaterThanOrEqual(strategy.conversationStarters[i].relevanceScore);
+      expect(strategy.conversationStarters[i - 1].relevanceScore).toBeGreaterThanOrEqual(
+        strategy.conversationStarters[i].relevanceScore,
+      );
     }
   });
 
@@ -990,7 +940,7 @@ describe("objectionHandling", () => {
     const strategy = generateStrategy(ctx);
 
     const universal = strategy.objectionHandling.find((o) =>
-      o.objection.toLowerCase().includes("satisfied")
+      o.objection.toLowerCase().includes("satisfied"),
     );
     expect(universal).toBeDefined();
     expect(universal!.likelihood).toBe("high");
@@ -1003,7 +953,7 @@ describe("objectionHandling", () => {
     const evidenceObjection = strategy.objectionHandling.find(
       (o) =>
         o.objection.toLowerCase().includes("evidence") ||
-        o.objection.toLowerCase().includes("clinical")
+        o.objection.toLowerCase().includes("clinical"),
     );
     expect(evidenceObjection).toBeDefined();
   });
@@ -1020,7 +970,7 @@ describe("objectionHandling", () => {
         o.objection.toLowerCase().includes("afford") ||
         o.objection.toLowerCase().includes("cost") ||
         o.objection.toLowerCase().includes("time") ||
-        o.objection.toLowerCase().includes("presentation")
+        o.objection.toLowerCase().includes("presentation"),
     );
     expect(relevantObjection).toBeDefined();
   });
@@ -1036,9 +986,7 @@ describe("objectionHandling", () => {
     });
     const strategy = generateStrategy(ctx);
 
-    const compObjection = strategy.objectionHandling.find((o) =>
-      o.objection.includes("Entresto")
-    );
+    const compObjection = strategy.objectionHandling.find((o) => o.objection.includes("Entresto"));
     expect(compObjection).toBeDefined();
     expect(compObjection!.evidenceBasis).toContain("Entresto");
   });
@@ -1063,7 +1011,7 @@ describe("objectionHandling", () => {
     const safetyObjection = strategy.objectionHandling.find(
       (o) =>
         o.objection.toLowerCase().includes("safety") ||
-        o.objection.toLowerCase().includes("long-term")
+        o.objection.toLowerCase().includes("long-term"),
     );
     expect(safetyObjection).toBeDefined();
   });
@@ -1221,9 +1169,7 @@ describe("derivePrescribingBehavior", () => {
     expect(result.competitiveProducts).toContain("Entresto");
     expect(result.competitiveProducts).toContain("Eliquis");
     // Should deduplicate
-    expect(
-      result.competitiveProducts.filter((p) => p === "Entresto").length
-    ).toBe(1);
+    expect(result.competitiveProducts.filter((p) => p === "Entresto").length).toBe(1);
   });
 });
 
@@ -1262,9 +1208,7 @@ describe("deriveEngagementHistory", () => {
       { channel: "email", role: "user", createdAt: new Date("2024-06-15") },
     ]);
     expect(result.lastInteractionDate).toBeDefined();
-    expect(new Date(result.lastInteractionDate!).getTime()).toBe(
-      new Date("2024-06-15").getTime()
-    );
+    expect(new Date(result.lastInteractionDate!).getTime()).toBe(new Date("2024-06-15").getTime());
   });
 });
 
@@ -1296,7 +1240,7 @@ describe("strategySummary", () => {
     // Should mention at least one channel
     const channelMentions = ["email", "sms", "direct mail", "social", "in person"];
     const hasChannelMention = channelMentions.some((ch) =>
-      strategy.strategySummary.toLowerCase().includes(ch)
+      strategy.strategySummary.toLowerCase().includes(ch),
     );
     expect(hasChannelMention).toBe(true);
   });
@@ -1342,9 +1286,7 @@ describe("strategy integration", () => {
     const parsed = JSON.parse(serialized) as OutreachStrategy;
     expect(parsed.hcpId).toBe(strategy.hcpId);
     expect(parsed.channelMix.length).toBe(strategy.channelMix.length);
-    expect(parsed.messagingThemes.length).toBe(
-      strategy.messagingThemes.length
-    );
+    expect(parsed.messagingThemes.length).toBe(strategy.messagingThemes.length);
   });
 
   it("different HCPs get different strategies", () => {
@@ -1363,9 +1305,7 @@ describe("strategy integration", () => {
     // They may or may not differ, but effectiveness scores should differ
     const score1 = strategy1.channelMix[0].effectivenessScore;
     const score2 = strategy2.channelMix[0].effectivenessScore;
-    expect(
-      top1 !== top2 || score1 !== score2
-    ).toBe(true);
+    expect(top1 !== top2 || score1 !== score2).toBe(true);
   });
 });
 
@@ -1405,14 +1345,12 @@ function validateStrategyStructure(strategy: OutreachStrategy) {
 
   // Content tone
   expect(strategy.contentToneStyle).toBeDefined();
-  expect(["formal", "semi_formal", "casual"]).toContain(
-    strategy.contentToneStyle.formality
-  );
+  expect(["formal", "semi_formal", "casual"]).toContain(strategy.contentToneStyle.formality);
   expect(["data_heavy", "balanced", "narrative"]).toContain(
-    strategy.contentToneStyle.contentDensity
+    strategy.contentToneStyle.contentDensity,
   );
   expect(["clinical", "conversational", "hybrid"]).toContain(
-    strategy.contentToneStyle.clinicalTone
+    strategy.contentToneStyle.clinicalTone,
   );
 
   // Cadence

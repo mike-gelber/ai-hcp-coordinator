@@ -9,7 +9,7 @@ import type { OutreachStrategy } from "@/types/outreach";
 
 export async function GET(
   _request: NextRequest,
-  { params }: { params: Promise<{ hcpId: string }> }
+  { params }: { params: Promise<{ hcpId: string }> },
 ) {
   try {
     const { hcpId } = await params;
@@ -23,7 +23,7 @@ export async function GET(
     if (!hcp) {
       return NextResponse.json(
         { success: false, error: `HCP not found: ${hcpId}` },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -37,14 +37,15 @@ export async function GET(
       return NextResponse.json(
         {
           success: false,
-          error: "No outreach strategy found for this HCP. Generate one first via POST /api/outreach/generate.",
+          error:
+            "No outreach strategy found for this HCP. Generate one first via POST /api/outreach/generate.",
           hcp: {
             id: hcp.id,
             npi: hcp.npi,
             name: `${hcp.firstName} ${hcp.lastName}`,
           },
         },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -62,19 +63,16 @@ export async function GET(
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to retrieve outreach strategy",
+        error: error instanceof Error ? error.message : "Failed to retrieve outreach strategy",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(
   _request: NextRequest,
-  { params }: { params: Promise<{ hcpId: string }> }
+  { params }: { params: Promise<{ hcpId: string }> },
 ) {
   try {
     const { hcpId } = await params;
@@ -93,12 +91,9 @@ export async function DELETE(
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to delete outreach strategies",
+        error: error instanceof Error ? error.message : "Failed to delete outreach strategies",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

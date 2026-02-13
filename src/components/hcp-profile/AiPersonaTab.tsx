@@ -28,9 +28,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
           </div>
         </div>
         <div className="mt-4 rounded-lg bg-white/60 p-4 dark:bg-gray-900/40">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Executive Summary
-          </p>
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Executive Summary</p>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
             {aiPersona.executiveSummary}
           </p>
@@ -41,9 +39,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="mb-4 flex items-center gap-2">
           <Brain className="h-5 w-5 text-gray-400" />
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-            Persona Narrative
-          </h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Persona Narrative</h3>
           <span className="ml-auto rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
             AI Generated
           </span>
@@ -58,9 +54,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <div className="mb-4 flex items-center gap-2">
             <Target className="h-5 w-5 text-gray-400" />
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-              Key Motivators
-            </h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Key Motivators</h3>
           </div>
           <div className="space-y-2">
             {aiPersona.keyMotivators.map((motivator, i) => (
@@ -71,9 +65,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-700 dark:bg-amber-900 dark:text-amber-300">
                   {i + 1}
                 </div>
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  {motivator}
-                </span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">{motivator}</span>
               </div>
             ))}
           </div>
@@ -94,9 +86,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
                 className="flex items-start gap-2 rounded-lg bg-gray-50 px-4 py-3 dark:bg-gray-800"
               >
                 <Zap className="mt-0.5 h-3.5 w-3.5 shrink-0 text-indigo-500" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  {pref}
-                </span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">{pref}</span>
               </div>
             ))}
           </div>

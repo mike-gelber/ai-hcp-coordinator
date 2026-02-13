@@ -28,11 +28,9 @@ export function AiFieldForceTab({ profile }: AiFieldForceTabProps) {
           </div>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-indigo-800 dark:text-indigo-200">
-          Two AI-powered field force agents are working on Dr.{" "}
-          {profile.lastName}&apos;s engagement strategy. The{" "}
-          <strong>Strategist</strong> analyzes data to determine the optimal
-          approach, while the <strong>Outreach Specialist</strong> plans and
-          executes multi-channel campaigns.
+          Two AI-powered field force agents are working on Dr. {profile.lastName}&apos;s engagement
+          strategy. The <strong>Strategist</strong> analyzes data to determine the optimal approach,
+          while the <strong>Outreach Specialist</strong> plans and executes multi-channel campaigns.
         </p>
       </div>
 
@@ -53,12 +51,8 @@ export function AiFieldForceTab({ profile }: AiFieldForceTabProps) {
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{agent.avatar}</span>
                 <div>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">
-                    {agent.name}
-                  </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {agent.title}
-                  </p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">{agent.name}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{agent.title}</p>
                 </div>
                 <div
                   className={`ml-auto flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
@@ -75,9 +69,7 @@ export function AiFieldForceTab({ profile }: AiFieldForceTabProps) {
                   Active
                 </div>
               </div>
-              <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
-                {agent.description}
-              </p>
+              <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">{agent.description}</p>
             </div>
           );
         })}

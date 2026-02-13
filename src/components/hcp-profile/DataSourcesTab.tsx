@@ -19,9 +19,9 @@ export function DataSourcesTab({ profile }: DataSourcesTabProps) {
           </h3>
         </div>
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Every data point in this profile is tracked back to its source. This
-          audit trail shows where each piece of information was collected from,
-          when it was last updated, and the confidence level of the data.
+          Every data point in this profile is tracked back to its source. This audit trail shows
+          where each piece of information was collected from, when it was last updated, and the
+          confidence level of the data.
         </p>
       </div>
 
@@ -30,9 +30,7 @@ export function DataSourcesTab({ profile }: DataSourcesTabProps) {
         <div className="border-b border-gray-200 p-6 dark:border-gray-800">
           <div className="flex items-center gap-2">
             <Database className="h-5 w-5 text-gray-400" />
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-              Source Mapping
-            </h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Source Mapping</h3>
             <span className="ml-auto text-xs text-gray-400">
               {profile.dataSources.length} tracked fields
             </span>
@@ -65,9 +63,7 @@ export function DataSourcesTab({ profile }: DataSourcesTabProps) {
                   <td className="whitespace-nowrap px-6 py-3.5 font-medium text-gray-900 dark:text-white">
                     {source.field}
                   </td>
-                  <td className="px-6 py-3.5 text-gray-600 dark:text-gray-400">
-                    {source.source}
-                  </td>
+                  <td className="px-6 py-3.5 text-gray-600 dark:text-gray-400">{source.source}</td>
                   <td className="whitespace-nowrap px-6 py-3.5 text-gray-600 dark:text-gray-400">
                     {source.lastUpdated}
                   </td>
@@ -87,8 +83,7 @@ export function DataSourcesTab({ profile }: DataSourcesTabProps) {
 function ConfidenceBadge({ level }: { level: string }) {
   const colors: Record<string, string> = {
     high: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
-    medium:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
+    medium: "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
     low: "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300",
   };
 

@@ -70,17 +70,8 @@ export interface NpesProviderResult {
   deactivationReasonCode?: string;
 }
 
-export type EnrichmentStage =
-  | "nppes"
-  | "web_scrape"
-  | "publications"
-  | "prescribing"
-  | "social";
+export type EnrichmentStage = "nppes" | "web_scrape" | "publications" | "prescribing" | "social";
 
 export type EnrichmentStatus = "pending" | "in_progress" | "complete" | "failed";
 
-export type NpiValidationStatus =
-  | "pending"
-  | "validated"
-  | "invalid"
-  | "deactivated";
+export type NpiValidationStatus = "pending" | "validated" | "invalid" | "deactivated";

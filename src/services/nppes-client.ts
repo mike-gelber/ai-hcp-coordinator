@@ -7,17 +7,11 @@
  * API docs: https://npiregistry.cms.hhs.gov/api-page
  */
 
-import type {
-  NppesApiResponse,
-  NppesResult,
-  NppesProviderInfo,
-  NppesAddress,
-} from "@/types/nppes";
+import type { NppesApiResponse, NppesResult, NppesProviderInfo, NppesAddress } from "@/types/nppes";
 
 // ─── Configuration ──────────────────────────────────────────────────────────
 
-const NPPES_API_URL =
-  process.env.NPPES_API_URL || "https://npiregistry.cms.hhs.gov/api/";
+const NPPES_API_URL = process.env.NPPES_API_URL || "https://npiregistry.cms.hhs.gov/api/";
 const API_VERSION = "2.1";
 const REQUEST_TIMEOUT_MS = 10_000;
 const MAX_REQUESTS_PER_SECOND = 2;
@@ -38,9 +32,7 @@ class RateLimiter {
     const now = Date.now();
 
     // Remove timestamps outside the window
-    this.timestamps = this.timestamps.filter(
-      (t) => now - t < this.windowMs
-    );
+    this.timestamps = this.timestamps.filter((t) => now - t < this.windowMs);
 
     if (this.timestamps.length >= this.maxRequests) {
       // Wait until the oldest request exits the window
@@ -49,9 +41,7 @@ class RateLimiter {
       await new Promise((resolve) => setTimeout(resolve, waitTime));
       // Clean up again after waiting
       const updated = Date.now();
-      this.timestamps = this.timestamps.filter(
-        (t) => updated - t < this.windowMs
-      );
+      this.timestamps = this.timestamps.filter((t) => updated - t < this.windowMs);
     }
 
     this.timestamps.push(Date.now());
@@ -66,7 +56,7 @@ export class NppesApiError extends Error {
   constructor(
     message: string,
     public readonly statusCode?: number,
-    public readonly isRetryable: boolean = false
+    public readonly isRetryable: boolean = false,
   ) {
     super(message);
     this.name = "NppesApiError";
@@ -120,7 +110,7 @@ export async function queryNppes(npi: string): Promise<NppesResult | null> {
       throw new NppesApiError(
         `NPPES API returned status ${response.status}`,
         response.status,
-        response.status >= 500
+        response.status >= 500,
       );
     }
 
@@ -148,7 +138,7 @@ export async function queryNppes(npi: string): Promise<NppesResult | null> {
     throw new NppesApiError(
       `Failed to query NPPES API: ${error instanceof Error ? error.message : String(error)}`,
       undefined,
-      true
+      true,
     );
   } finally {
     clearTimeout(timeout);
@@ -234,8 +224,7 @@ export function parseNppesResult(result: NppesResult): NppesProviderInfo {
   // Deactivation info
   if (result.basic.deactivation_date) {
     provider.deactivationDate = result.basic.deactivation_date;
-    provider.deactivationReasonCode =
-      result.basic.deactivation_reason_code || undefined;
+    provider.deactivationReasonCode = result.basic.deactivation_reason_code || undefined;
   }
   if (result.basic.reactivation_date) {
     provider.reactivationDate = result.basic.reactivation_date;

@@ -39,9 +39,7 @@ import type {
 /**
  * Assemble the full HCP context from a profile ID, pulling all related data.
  */
-export async function assembleHcpContext(
-  hcpId: string
-): Promise<HcpStrategyContext | null> {
+export async function assembleHcpContext(hcpId: string): Promise<HcpStrategyContext | null> {
   const profile = await prisma.hcpProfile.findUnique({
     where: { id: hcpId },
     include: {
@@ -117,14 +115,10 @@ function deriveChannelAvailability(profile: {
   locations: Array<{ phone?: string | null }>;
   socialProfiles: Array<{ platform: string; isActive: boolean }>;
 }): ChannelAvailability {
-  const hasPhone = profile.locations.some(
-    (loc) => loc.phone && loc.phone.trim() !== ""
-  );
+  const hasPhone = profile.locations.some((loc) => loc.phone && loc.phone.trim() !== "");
 
   const activeSocials = new Set(
-    profile.socialProfiles
-      .filter((sp) => sp.isActive)
-      .map((sp) => sp.platform.toLowerCase())
+    profile.socialProfiles.filter((sp) => sp.isActive).map((sp) => sp.platform.toLowerCase()),
   );
 
   return {
@@ -147,7 +141,7 @@ function derivePrescribingBehavior(
     drugName: string | null;
     claimCount: number | null;
     totalCost: number | null;
-  }>
+  }>,
 ): PrescribingBehavior {
   if (prescribingData.length === 0) {
     return {
@@ -167,7 +161,7 @@ function derivePrescribingBehavior(
     if (rx.therapeuticArea) {
       areaMap.set(
         rx.therapeuticArea,
-        (areaMap.get(rx.therapeuticArea) || 0) + (rx.claimCount || 0)
+        (areaMap.get(rx.therapeuticArea) || 0) + (rx.claimCount || 0),
       );
     }
     if (rx.drugName) {
@@ -203,7 +197,7 @@ function deriveEngagementHistory(
     channel: string;
     role: string;
     createdAt: Date;
-  }>
+  }>,
 ): EngagementHistory {
   if (conversationLogs.length === 0) {
     return {
@@ -223,9 +217,9 @@ function deriveEngagementHistory(
   }
 
   // Find preferred channel (most interactions)
-  const preferredChannel = Object.entries(channelCounts).sort(
-    ([, a], [, b]) => b - a
-  )[0]?.[0] as OutreachChannel | undefined;
+  const preferredChannel = Object.entries(channelCounts).sort(([, a], [, b]) => b - a)[0]?.[0] as
+    | OutreachChannel
+    | undefined;
 
   return {
     totalInteractions: conversationLogs.length,
@@ -277,14 +271,8 @@ const PERSONA_DEFINITIONS: Record<
   },
   early_adopter: {
     label: "Early Adopter",
-    description:
-      "Quick to try new therapies, digitally engaged, open to novel approaches.",
-    traits: [
-      "Innovation-friendly",
-      "Digitally active",
-      "Open to new therapies",
-      "Trend-aware",
-    ],
+    description: "Quick to try new therapies, digitally engaged, open to novel approaches.",
+    traits: ["Innovation-friendly", "Digitally active", "Open to new therapies", "Trend-aware"],
   },
   conservative_prescriber: {
     label: "Conservative Prescriber",
@@ -312,12 +300,7 @@ const PERSONA_DEFINITIONS: Record<
     label: "High-Volume Prescriber",
     description:
       "High prescribing volume, time-constrained, values efficiency and concise information.",
-    traits: [
-      "High patient volume",
-      "Time-constrained",
-      "Values brevity",
-      "Efficiency-focused",
-    ],
+    traits: ["High patient volume", "Time-constrained", "Values brevity", "Efficiency-focused"],
   },
   kol_influencer: {
     label: "Key Opinion Leader",
@@ -362,15 +345,11 @@ export function classifyPersona(context: HcpStrategyContext): HcpPersona {
 
   // Leadership roles → hospital_leader
   const hasLeadershipRole = context.affiliations.some(
-    (a) =>
-      a.role &&
-      /chief|director|chair|head|dean/i.test(a.role)
+    (a) => a.role && /chief|director|chair|head|dean/i.test(a.role),
   );
   if (hasLeadershipRole) scores.hospital_leader += 5;
   if ((context.yearsInPractice ?? 0) > 20) scores.hospital_leader += 2;
-  const hasHospitalAffiliation = context.affiliations.some(
-    (a) => a.type === "hospital"
-  );
+  const hasHospitalAffiliation = context.affiliations.some((a) => a.type === "hospital");
   if (hasHospitalAffiliation) scores.hospital_leader += 1;
 
   // Digital presence → digital_native
@@ -398,15 +377,10 @@ export function classifyPersona(context: HcpStrategyContext): HcpPersona {
     "Pediatrics",
     "General Practice",
   ];
-  if (
-    context.primarySpecialty &&
-    communitySpecialties.includes(context.primarySpecialty)
-  ) {
+  if (context.primarySpecialty && communitySpecialties.includes(context.primarySpecialty)) {
     scores.community_practitioner += 3;
   }
-  const hasGroupPractice = context.affiliations.some(
-    (a) => a.type === "group_practice"
-  );
+  const hasGroupPractice = context.affiliations.some((a) => a.type === "group_practice");
   if (hasGroupPractice) scores.community_practitioner += 2;
   if (context.publications.length < 3) scores.community_practitioner += 1;
 
@@ -454,12 +428,7 @@ export function generateStrategy(context: HcpStrategyContext): OutreachStrategy 
   const cadence = generateCadence(persona, context);
   const conversationStarters = generateConversationStarters(context, persona);
   const objectionHandling = generateObjectionHandling(context, persona);
-  const strategySummary = generateStrategySummary(
-    context,
-    persona,
-    channelMix,
-    cadence
-  );
+  const strategySummary = generateStrategySummary(context, persona, channelMix, cadence);
 
   return {
     version: "1.0.0",
@@ -482,7 +451,7 @@ export function generateStrategy(context: HcpStrategyContext): OutreachStrategy 
 
 function generateChannelMix(
   context: HcpStrategyContext,
-  persona: HcpPersona
+  persona: HcpPersona,
 ): ChannelRecommendation[] {
   const recommendations: ChannelRecommendation[] = [];
   const avail = context.channelAvailability;
@@ -622,9 +591,7 @@ function generateChannelMix(
   for (const channel of Object.keys(scores) as OutreachChannel[]) {
     const available = channelAvailMap[channel];
     // Adjust score based on availability
-    const effectivenessScore = available
-      ? scores[channel]
-      : Math.round(scores[channel] * 0.3);
+    const effectivenessScore = available ? scores[channel] : Math.round(scores[channel] * 0.3);
 
     recommendations.push({
       channel,
@@ -638,13 +605,10 @@ function generateChannelMix(
   // Boost score if engagement history shows success on a channel
   if (context.engagementHistory.preferredChannel) {
     const preferred = recommendations.find(
-      (r) => r.channel === context.engagementHistory.preferredChannel
+      (r) => r.channel === context.engagementHistory.preferredChannel,
     );
     if (preferred) {
-      preferred.effectivenessScore = Math.min(
-        100,
-        preferred.effectivenessScore + 10
-      );
+      preferred.effectivenessScore = Math.min(100, preferred.effectivenessScore + 10);
     }
   }
 
@@ -661,7 +625,7 @@ function generateChannelMix(
 
 function generateMessagingThemes(
   context: HcpStrategyContext,
-  persona: HcpPersona
+  persona: HcpPersona,
 ): MessagingTheme[] {
   const themes: MessagingTheme[] = [];
 
@@ -677,9 +641,7 @@ function generateMessagingThemes(
 
   // Theme based on publications/research
   if (context.publications.length > 0) {
-    const recentPub = context.publications.sort(
-      (a, b) => (b.year ?? 0) - (a.year ?? 0)
-    )[0];
+    const recentPub = context.publications.sort((a, b) => (b.year ?? 0) - (a.year ?? 0))[0];
     themes.push({
       topic: `Building on their published research${recentPub.therapeuticArea ? ` in ${recentPub.therapeuticArea}` : ""}`,
       rationale: `With ${context.publications.length} publications, they value evidence-based discussion that connects to their research interests`,
@@ -689,9 +651,8 @@ function generateMessagingThemes(
 
   // Theme based on clinical trials
   if (context.clinicalTrials.length > 0) {
-    const activeTrial = context.clinicalTrials.find(
-      (t) => t.status === "recruiting"
-    ) ?? context.clinicalTrials[0];
+    const activeTrial =
+      context.clinicalTrials.find((t) => t.status === "recruiting") ?? context.clinicalTrials[0];
     themes.push({
       topic: `Clinical trial collaboration and real-world evidence`,
       rationale: `Active in ${context.clinicalTrials.length} clinical trial(s), including "${activeTrial.title.slice(0, 80)}"`,
@@ -775,8 +736,7 @@ function generateMessagingThemes(
   if (themes.length < 3) {
     themes.push({
       topic: "Patient support programs and resources",
-      rationale:
-        "All HCPs value patient support resources that improve outcomes and adherence",
+      rationale: "All HCPs value patient support resources that improve outcomes and adherence",
       priority: "tertiary",
     });
   }
@@ -797,7 +757,7 @@ function generateMessagingThemes(
 
 function generateContentToneStyle(
   persona: HcpPersona,
-  context: HcpStrategyContext
+  context: HcpStrategyContext,
 ): ContentToneStyle {
   const toneMap: Record<
     HcpArchetype,
@@ -856,20 +816,15 @@ function generateContentToneStyle(
   };
 }
 
-function generateStyleNotes(
-  persona: HcpPersona,
-  context: HcpStrategyContext
-): string {
+function generateStyleNotes(persona: HcpPersona, context: HcpStrategyContext): string {
   const notes: string[] = [];
 
   // Seniority-based adjustments
   if ((context.yearsInPractice ?? 0) > 25) {
-    notes.push(
-      "Use respectful, peer-to-peer tone appropriate for a highly experienced physician."
-    );
+    notes.push("Use respectful, peer-to-peer tone appropriate for a highly experienced physician.");
   } else if ((context.yearsInPractice ?? 0) < 5) {
     notes.push(
-      "Tone can be slightly more approachable, emphasizing mentorship and learning opportunities."
+      "Tone can be slightly more approachable, emphasizing mentorship and learning opportunities.",
     );
   }
 
@@ -877,62 +832,46 @@ function generateStyleNotes(
   switch (persona.archetype) {
     case "academic_researcher":
       notes.push(
-        "Lead with data: cite specific trial endpoints, p-values, and NNT where applicable."
+        "Lead with data: cite specific trial endpoints, p-values, and NNT where applicable.",
       );
-      notes.push(
-        "Reference their publications when relevant to establish credibility."
-      );
+      notes.push("Reference their publications when relevant to establish credibility.");
       break;
     case "community_practitioner":
-      notes.push(
-        "Use patient case scenarios rather than raw data to illustrate clinical value."
-      );
+      notes.push("Use patient case scenarios rather than raw data to illustrate clinical value.");
       notes.push("Keep messages practical — focus on 'how' rather than 'why'.");
       break;
     case "hospital_leader":
       notes.push(
-        "Frame messages in terms of institutional value, cost-effectiveness, and population impact."
+        "Frame messages in terms of institutional value, cost-effectiveness, and population impact.",
       );
       break;
     case "early_adopter":
-      notes.push(
-        "Emphasize novelty and differentiation from existing treatment options."
-      );
+      notes.push("Emphasize novelty and differentiation from existing treatment options.");
       break;
     case "conservative_prescriber":
+      notes.push("Emphasize safety profile and long-term outcomes data. Avoid overselling.");
       notes.push(
-        "Emphasize safety profile and long-term outcomes data. Avoid overselling."
-      );
-      notes.push(
-        "Acknowledge their current treatment approach as valid before introducing alternatives."
+        "Acknowledge their current treatment approach as valid before introducing alternatives.",
       );
       break;
     case "digital_native":
-      notes.push(
-        "Use concise, scannable formats. Infographics and short-form content work well."
-      );
+      notes.push("Use concise, scannable formats. Infographics and short-form content work well.");
       break;
     case "high_volume_prescriber":
       notes.push(
-        "Keep communications extremely concise. Use bullet points and clear calls to action."
+        "Keep communications extremely concise. Use bullet points and clear calls to action.",
       );
       notes.push("Respect their time — every sentence should add value.");
       break;
     case "kol_influencer":
-      notes.push(
-        "Position them as a valued thought partner, not just a prescriber."
-      );
-      notes.push(
-        "Offer exclusive access to data, advisory opportunities, and peer engagement."
-      );
+      notes.push("Position them as a valued thought partner, not just a prescriber.");
+      notes.push("Offer exclusive access to data, advisory opportunities, and peer engagement.");
       break;
   }
 
   // Credential-based adjustments
   if (context.credentials?.includes("PhD")) {
-    notes.push(
-      "Acknowledge their research background — lead with scientific rigor."
-    );
+    notes.push("Acknowledge their research background — lead with scientific rigor.");
   }
 
   return notes.join(" ");
@@ -940,13 +879,15 @@ function generateStyleNotes(
 
 // ─── Cadence ────────────────────────────────────────────────────────────────
 
-function generateCadence(
-  persona: HcpPersona,
-  context: HcpStrategyContext
-): OutreachCadence {
+function generateCadence(persona: HcpPersona, context: HcpStrategyContext): OutreachCadence {
   const cadenceMap: Record<
     HcpArchetype,
-    { frequency: FrequencyUnit; preferredDays: string[]; preferredTimeOfDay: "morning" | "midday" | "afternoon" | "evening"; reasoning: string }
+    {
+      frequency: FrequencyUnit;
+      preferredDays: string[];
+      preferredTimeOfDay: "morning" | "midday" | "afternoon" | "evening";
+      reasoning: string;
+    }
   > = {
     academic_researcher: {
       frequency: "bi_weekly",
@@ -1012,12 +953,20 @@ function generateCadence(
   if (context.engagementHistory.totalInteractions > 10) {
     // Existing relationship — can increase frequency
     if (base.frequency === "monthly") {
-      return { ...base, frequency: "bi_weekly", reasoning: base.reasoning + " Increased frequency based on established engagement history." };
+      return {
+        ...base,
+        frequency: "bi_weekly",
+        reasoning: base.reasoning + " Increased frequency based on established engagement history.",
+      };
     }
   } else if (context.engagementHistory.totalInteractions === 0) {
     // New contact — start slower
     if (base.frequency === "weekly") {
-      return { ...base, frequency: "bi_weekly", reasoning: base.reasoning + " Starting with lower frequency as this is a new contact." };
+      return {
+        ...base,
+        frequency: "bi_weekly",
+        reasoning: base.reasoning + " Starting with lower frequency as this is a new contact.",
+      };
     }
   }
 
@@ -1028,7 +977,7 @@ function generateCadence(
 
 function generateConversationStarters(
   context: HcpStrategyContext,
-  persona: HcpPersona
+  persona: HcpPersona,
 ): ConversationStarter[] {
   const starters: ConversationStarter[] = [];
 
@@ -1073,8 +1022,7 @@ function generateConversationStarters(
 
   // Affiliation-based starters
   if (context.affiliations.length > 0) {
-    const primaryAff =
-      context.affiliations.find((a) => a.isPrimary) ?? context.affiliations[0];
+    const primaryAff = context.affiliations.find((a) => a.isPrimary) ?? context.affiliations[0];
     starters.push({
       topic: `Their role at ${primaryAff.organizationName}`,
       suggestedText: `Dr. ${context.lastName}, ${primaryAff.role ? `in your role as ${primaryAff.role} at` : "given your work at"} ${primaryAff.organizationName}, I wanted to share some insights that may support ${primaryAff.type === "academic" ? "your research and clinical" : "your clinical"} programs.`,
@@ -1148,7 +1096,7 @@ function generateConversationStarters(
 
 function generateObjectionHandling(
   context: HcpStrategyContext,
-  persona: HcpPersona
+  persona: HcpPersona,
 ): ObjectionHandler[] {
   const handlers: ObjectionHandler[] = [];
 
@@ -1185,7 +1133,8 @@ function generateObjectionHandling(
         objection: "My patients can't afford this medication",
         response:
           "Cost is absolutely a critical factor in treatment decisions. We have comprehensive patient assistance programs covering up to [X]% of eligible patients, plus copay support that brings the out-of-pocket cost down significantly. Let me walk you through the options available for your patient population.",
-        evidenceBasis: "Community practitioners often face cost barriers with their patient populations",
+        evidenceBasis:
+          "Community practitioners often face cost barriers with their patient populations",
         likelihood: "high",
       });
       handlers.push({
@@ -1222,7 +1171,8 @@ function generateObjectionHandling(
         objection: "I want to wait for more long-term safety data",
         response:
           "That's a very prudent approach, and patient safety should always come first. We now have [X]-year follow-up data showing a consistent safety profile with no new signals. I also have the post-marketing surveillance summary that covers over [Y] patient-years of real-world use.",
-        evidenceBasis: "Conservative prescribers prioritize long-term safety over short-term efficacy gains",
+        evidenceBasis:
+          "Conservative prescribers prioritize long-term safety over short-term efficacy gains",
         likelihood: "high",
       });
       handlers.push({
@@ -1233,7 +1183,8 @@ function generateObjectionHandling(
           context.prescribingBehavior.brandVsGeneric === "generic_leaning"
             ? "This HCP shows a preference for generic prescribing"
             : "Common concern for cost-conscious prescribers",
-        likelihood: context.prescribingBehavior.brandVsGeneric === "generic_leaning" ? "high" : "medium",
+        likelihood:
+          context.prescribingBehavior.brandVsGeneric === "generic_leaning" ? "high" : "medium",
       });
       break;
 
@@ -1242,7 +1193,8 @@ function generateObjectionHandling(
         objection: "I can find all this information online myself",
         response:
           "You absolutely can, and I appreciate that you stay well-informed. What I can add is curated, real-time access to data that isn't publicly available yet, plus direct access to our medical science team for any questions. I've also set up a digital resource hub specifically for your clinical interests.",
-        evidenceBasis: "Digitally active HCPs often self-serve information and may question rep value",
+        evidenceBasis:
+          "Digitally active HCPs often self-serve information and may question rep value",
         likelihood: "medium",
       });
       break;
@@ -1295,7 +1247,7 @@ function generateStrategySummary(
   context: HcpStrategyContext,
   persona: HcpPersona,
   channelMix: ChannelRecommendation[],
-  cadence: OutreachCadence
+  cadence: OutreachCadence,
 ): string {
   const topChannels = channelMix
     .filter((c) => c.rank <= 3)
@@ -1315,40 +1267,33 @@ function generateStrategySummary(
   ];
 
   if (context.affiliations.length > 0) {
-    const primaryAff =
-      context.affiliations.find((a) => a.isPrimary) ?? context.affiliations[0];
+    const primaryAff = context.affiliations.find((a) => a.isPrimary) ?? context.affiliations[0];
     parts[0] += ` at ${primaryAff.organizationName}`;
   }
   parts[0] += ".";
 
   parts.push(
-    `The recommended approach focuses on ${topChannels} as primary channels, with a ${cadence.frequency.replace("_", "-")} cadence targeting ${cadence.preferredDays.join(" and ")} ${cadence.preferredTimeOfDay}s.`
+    `The recommended approach focuses on ${topChannels} as primary channels, with a ${cadence.frequency.replace("_", "-")} cadence targeting ${cadence.preferredDays.join(" and ")} ${cadence.preferredTimeOfDay}s.`,
   );
 
   if (context.publications.length > 0 || context.clinicalTrials.length > 0) {
     const researchNote = [];
     if (context.publications.length > 0)
-      researchNote.push(
-        `${context.publications.length} publication(s)`
-      );
+      researchNote.push(`${context.publications.length} publication(s)`);
     if (context.clinicalTrials.length > 0)
-      researchNote.push(
-        `${context.clinicalTrials.length} clinical trial(s)`
-      );
+      researchNote.push(`${context.clinicalTrials.length} clinical trial(s)`);
     parts.push(
-      `Messaging should leverage their research background (${researchNote.join(" and ")}) to build credibility and engagement.`
+      `Messaging should leverage their research background (${researchNote.join(" and ")}) to build credibility and engagement.`,
     );
   }
 
   if (context.prescribingBehavior.prescribingVolume === "high") {
-    parts.push(
-      "As a high-volume prescriber, communications should be concise and high-impact."
-    );
+    parts.push("As a high-volume prescriber, communications should be concise and high-impact.");
   }
 
   if (context.isKol) {
     parts.push(
-      "Given their KOL status, consider advisory board and speaker program opportunities to deepen the relationship."
+      "Given their KOL status, consider advisory board and speaker program opportunities to deepen the relationship.",
     );
   }
 
@@ -1362,7 +1307,7 @@ function generateStrategySummary(
  * Falls back to rule-based generation if OpenAI is unavailable.
  */
 export async function generateStrategyWithAI(
-  context: HcpStrategyContext
+  context: HcpStrategyContext,
 ): Promise<OutreachStrategy> {
   // Check if OpenAI is configured
   if (!process.env.OPENAI_API_KEY) {
@@ -1395,7 +1340,10 @@ Do NOT change the structure, field names, or remove any fields.`;
 - Clinical Trials: ${context.clinicalTrials.length}
 - Prescribing Volume: ${context.prescribingBehavior.prescribingVolume}
 - KOL Status: ${context.isKol ? "Yes" : "No"}
-- Available Channels: ${Object.entries(context.channelAvailability).filter(([, v]) => v).map(([k]) => k).join(", ")}
+- Available Channels: ${Object.entries(context.channelAvailability)
+      .filter(([, v]) => v)
+      .map(([k]) => k)
+      .join(", ")}
 
 Rule-based strategy to enhance:
 ${JSON.stringify(ruleBasedStrategy, null, 2)}`;
@@ -1441,7 +1389,7 @@ ${JSON.stringify(ruleBasedStrategy, null, 2)}`;
  */
 export async function generateAndPersistStrategy(
   hcpId: string,
-  options: { forceRegenerate?: boolean; useAI?: boolean } = {}
+  options: { forceRegenerate?: boolean; useAI?: boolean } = {},
 ): Promise<GenerateStrategyResponse> {
   const { forceRegenerate = false, useAI = false } = options;
 
@@ -1472,9 +1420,7 @@ export async function generateAndPersistStrategy(
   }
 
   // Generate strategy
-  const strategy = useAI
-    ? await generateStrategyWithAI(context)
-    : generateStrategy(context);
+  const strategy = useAI ? await generateStrategyWithAI(context) : generateStrategy(context);
 
   // Persist to database
   await prisma.outreachPlan.create({
@@ -1502,7 +1448,7 @@ export async function generateAndPersistStrategy(
  */
 export async function generateStrategiesBatch(
   hcpIds: string[],
-  options: { forceRegenerate?: boolean; useAI?: boolean } = {}
+  options: { forceRegenerate?: boolean; useAI?: boolean } = {},
 ): Promise<{
   total: number;
   generated: number;

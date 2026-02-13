@@ -9,10 +9,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import {
-  validateNpiRegistry,
-  validateNpiBatch,
-} from "@/services/npi-validation";
+import { validateNpiRegistry, validateNpiBatch } from "@/services/npi-validation";
 import { NppesApiError } from "@/services/nppes-client";
 import type { NpiValidationResult } from "@/types/nppes";
 
@@ -42,11 +39,10 @@ function formatSingleResult(result: NpiValidationResult) {
     validatedAt: result.validatedAt,
     ...(result.provider && {
       provider: {
-        name: result.provider.enumerationType === "individual"
-          ? [result.provider.firstName, result.provider.lastName]
-              .filter(Boolean)
-              .join(" ")
-          : result.provider.organizationName,
+        name:
+          result.provider.enumerationType === "individual"
+            ? [result.provider.firstName, result.provider.lastName].filter(Boolean).join(" ")
+            : result.provider.organizationName,
         type: result.provider.enumerationType,
         specialty: result.provider.primaryTaxonomy?.description ?? null,
         credential: result.provider.credential ?? null,
@@ -71,10 +67,7 @@ export async function GET(request: NextRequest) {
   const npi = searchParams.get("npi");
 
   if (!npi) {
-    return NextResponse.json(
-      { error: "Missing required query parameter: npi" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Missing required query parameter: npi" }, { status: 400 });
   }
 
   try {
@@ -92,10 +85,7 @@ export async function POST(request: NextRequest) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json(
-      { error: "Invalid JSON request body" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Invalid JSON request body" }, { status: 400 });
   }
 
   const parsed = requestSchema.safeParse(body);
@@ -105,7 +95,7 @@ export async function POST(request: NextRequest) {
         error: "Invalid request",
         details: parsed.error.issues.map((i) => i.message),
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -138,13 +128,10 @@ function handleApiError(error: unknown): NextResponse {
         message: error.message,
         retryable: error.isRetryable,
       },
-      { status: status >= 400 && status < 600 ? status : 502 }
+      { status: status >= 400 && status < 600 ? status : 502 },
     );
   }
 
   console.error("Unexpected error in NPI validation endpoint:", error);
-  return NextResponse.json(
-    { error: "Internal server error" },
-    { status: 500 }
-  );
+  return NextResponse.json({ error: "Internal server error" }, { status: 500 });
 }

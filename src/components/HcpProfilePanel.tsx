@@ -1,7 +1,16 @@
 "use client";
 
 import type { DemoHcpProfile } from "@/lib/demo-seed";
-import { X, MapPin, GraduationCap, Building2, Globe, TrendingUp, Award, ExternalLink } from "lucide-react";
+import {
+  X,
+  MapPin,
+  GraduationCap,
+  Building2,
+  Globe,
+  TrendingUp,
+  Award,
+  ExternalLink,
+} from "lucide-react";
 import Link from "next/link";
 
 interface HcpProfilePanelProps {
@@ -44,20 +53,24 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
               Key Opinion Leader
             </span>
           )}
-          <span className={`rounded-full px-3 py-1 text-xs font-medium ${
-            profile.prescribingProfile.prescribingVolume === "high"
-              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
-              : profile.prescribingProfile.prescribingVolume === "medium"
-              ? "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300"
-              : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-          }`}>
+          <span
+            className={`rounded-full px-3 py-1 text-xs font-medium ${
+              profile.prescribingProfile.prescribingVolume === "high"
+                ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
+                : profile.prescribingProfile.prescribingVolume === "medium"
+                  ? "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300"
+                  : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+            }`}
+          >
             {profile.prescribingProfile.prescribingVolume} volume prescriber
           </span>
         </div>
 
         {/* Location */}
         <Section icon={<MapPin className="h-4 w-4" />} title="Practice Location">
-          <p className="text-sm text-gray-700 dark:text-gray-300">{profile.location.addressLine1}</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            {profile.location.addressLine1}
+          </p>
           <p className="text-sm text-gray-700 dark:text-gray-300">
             {profile.location.city}, {profile.location.state} {profile.location.zipCode}
           </p>
@@ -96,9 +109,15 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
         {/* Prescribing Profile */}
         <Section icon={<TrendingUp className="h-4 w-4" />} title="Prescribing Profile">
           <div className="space-y-2 text-sm">
-            <Row label="Top Therapeutic Area" value={profile.prescribingProfile.topTherapeuticArea} />
+            <Row
+              label="Top Therapeutic Area"
+              value={profile.prescribingProfile.topTherapeuticArea}
+            />
             <Row label="Prescribing Volume" value={profile.prescribingProfile.prescribingVolume} />
-            <Row label="Brand vs. Generic" value={profile.prescribingProfile.brandVsGeneric.replace("-", " ")} />
+            <Row
+              label="Brand vs. Generic"
+              value={profile.prescribingProfile.brandVsGeneric.replace("-", " ")}
+            />
           </div>
         </Section>
 
@@ -106,16 +125,33 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
         <Section icon={<Globe className="h-4 w-4" />} title="Digital Presence">
           <div className="space-y-2 text-sm">
             <Row label="Publications" value={String(profile.digitalPresence.publicationCount)} />
-            <Row label="LinkedIn" value={profile.digitalPresence.hasLinkedIn ? "Active" : "Not found"} />
-            <Row label="Twitter/X" value={profile.digitalPresence.hasTwitter ? "Active" : "Not found"} />
-            <Row label="Doximity" value={profile.digitalPresence.hasDoximity ? "Active" : "Not found"} />
+            <Row
+              label="LinkedIn"
+              value={profile.digitalPresence.hasLinkedIn ? "Active" : "Not found"}
+            />
+            <Row
+              label="Twitter/X"
+              value={profile.digitalPresence.hasTwitter ? "Active" : "Not found"}
+            />
+            <Row
+              label="Doximity"
+              value={profile.digitalPresence.hasDoximity ? "Active" : "Not found"}
+            />
           </div>
         </Section>
+
+        {/* Enrichment Status (demo placeholder) */}
+        <div className="rounded-lg border border-dashed border-gray-300 p-4 dark:border-gray-700">
+          <p className="text-center text-sm text-gray-400">
+            Enrichment pipeline, outreach strategy, and AI persona will appear here once the full
+            pipeline is connected.
+          </p>
+        </div>
 
         {/* View Full Profile Link */}
         <Link
           href={`/hcp/${profile.npi}`}
-          className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors"
+          className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
         >
           <ExternalLink className="h-4 w-4" />
           View Full Profile

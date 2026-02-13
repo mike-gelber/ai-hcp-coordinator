@@ -225,11 +225,7 @@ export interface NppesProviderInfo {
 
 // ─── NPI Validation Result ──────────────────────────────────────────────────
 
-export type NpiValidationStatus =
-  | "validated"
-  | "invalid"
-  | "deactivated"
-  | "organization";
+export type NpiValidationStatus = "validated" | "invalid" | "deactivated" | "organization";
 
 export interface NpiValidationResult {
   npi: string;

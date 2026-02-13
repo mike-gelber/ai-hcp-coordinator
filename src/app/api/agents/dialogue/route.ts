@@ -14,20 +14,14 @@ export async function GET(request: NextRequest) {
   const npi = searchParams.get("npi");
 
   if (!npi) {
-    return NextResponse.json(
-      { error: "Missing required parameter: npi" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Missing required parameter: npi" }, { status: 400 });
   }
 
   const profiles = getDemoProfiles();
   const profile = profiles.find((p) => p.npi === npi);
 
   if (!profile) {
-    return NextResponse.json(
-      { error: `No HCP found with NPI: ${npi}` },
-      { status: 404 }
-    );
+    return NextResponse.json({ error: `No HCP found with NPI: ${npi}` }, { status: 404 });
   }
 
   const messages = generateAgentDialogue(profile);

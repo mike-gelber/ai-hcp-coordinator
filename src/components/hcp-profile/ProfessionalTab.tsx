@@ -48,9 +48,7 @@ export function ProfessionalTab({ profile }: ProfessionalTabProps) {
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900">
                 <Award className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
-                {cert}
-              </span>
+              <span className="text-sm font-medium text-gray-900 dark:text-white">{cert}</span>
             </div>
           ))}
         </div>
@@ -61,9 +59,7 @@ export function ProfessionalTab({ profile }: ProfessionalTabProps) {
         <CardHeader icon={<Clock className="h-5 w-5" />} title="Practice Details" />
         <div className="space-y-4">
           <InfoRow label="Primary Specialty" value={profile.primarySpecialty} />
-          {profile.subSpecialty && (
-            <InfoRow label="Sub-Specialty" value={profile.subSpecialty} />
-          )}
+          {profile.subSpecialty && <InfoRow label="Sub-Specialty" value={profile.subSpecialty} />}
           <InfoRow label="Gender" value={profile.gender === "M" ? "Male" : "Female"} />
           <InfoRow label="Credentials" value={profile.credentials} />
           <InfoRow
@@ -98,9 +94,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between gap-4">
       <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
-      <span className="text-right text-sm font-medium text-gray-900 dark:text-white">
-        {value}
-      </span>
+      <span className="text-right text-sm font-medium text-gray-900 dark:text-white">{value}</span>
     </div>
   );
 }

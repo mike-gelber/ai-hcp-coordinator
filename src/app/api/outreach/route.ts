@@ -10,10 +10,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = request.nextUrl;
     const status = searchParams.get("status");
     const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10));
-    const pageSize = Math.min(
-      100,
-      Math.max(1, parseInt(searchParams.get("pageSize") ?? "20", 10))
-    );
+    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get("pageSize") ?? "20", 10)));
 
     const where: Record<string, unknown> = {};
     if (status) {
@@ -67,12 +64,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to list outreach strategies",
+        error: error instanceof Error ? error.message : "Failed to list outreach strategies",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

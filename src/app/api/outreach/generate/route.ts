@@ -4,10 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import {
-  generateAndPersistStrategy,
-  generateStrategiesBatch,
-} from "@/services/outreach-strategy";
+import { generateAndPersistStrategy, generateStrategiesBatch } from "@/services/outreach-strategy";
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,12 +21,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to generate outreach strategy",
+        error: error instanceof Error ? error.message : "Failed to generate outreach strategy",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -42,10 +36,7 @@ async function handleSingleGenerate(body: {
   const { hcpId, forceRegenerate, useAI } = body;
 
   if (!hcpId || typeof hcpId !== "string") {
-    return NextResponse.json(
-      { success: false, error: "hcpId is required" },
-      { status: 400 }
-    );
+    return NextResponse.json({ success: false, error: "hcpId is required" }, { status: 400 });
   }
 
   const result = await generateAndPersistStrategy(hcpId, {
@@ -70,7 +61,7 @@ async function handleBatchGenerate(body: {
   if (!hcpIds || !Array.isArray(hcpIds) || hcpIds.length === 0) {
     return NextResponse.json(
       { success: false, error: "hcpIds array is required and must not be empty" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -80,7 +71,7 @@ async function handleBatchGenerate(body: {
         success: false,
         error: "Batch size limited to 100 HCPs per request",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

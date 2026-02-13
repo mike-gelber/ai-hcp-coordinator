@@ -82,9 +82,7 @@ function redisCacheKey(npi: string): string {
   return `npi-validation:${npi}`;
 }
 
-async function getFromRedisCache(
-  npi: string
-): Promise<NpiValidationResult | null> {
+async function getFromRedisCache(npi: string): Promise<NpiValidationResult | null> {
   try {
     const client = await getRedisClient();
     if (!client) return null;
@@ -99,10 +97,7 @@ async function getFromRedisCache(
   }
 }
 
-async function setInRedisCache(
-  npi: string,
-  result: NpiValidationResult
-): Promise<void> {
+async function setInRedisCache(npi: string, result: NpiValidationResult): Promise<void> {
   try {
     const client = await getRedisClient();
     if (!client) return;
@@ -125,10 +120,7 @@ async function getFromCache(npi: string): Promise<NpiValidationResult | null> {
   return getFromMemoryCache(npi);
 }
 
-async function setInCache(
-  npi: string,
-  result: NpiValidationResult
-): Promise<void> {
+async function setInCache(npi: string, result: NpiValidationResult): Promise<void> {
   setInMemoryCache(npi, result);
   await setInRedisCache(npi, result);
 }
@@ -139,7 +131,7 @@ function buildResult(
   npi: string,
   status: NpiValidationStatus,
   reason: string,
-  provider?: NppesProviderInfo
+  provider?: NppesProviderInfo,
 ): NpiValidationResult {
   return {
     npi,
@@ -160,9 +152,7 @@ function buildResult(
  * - "deactivated": found but deactivated
  * - "organization": found but is Type 2 (organization NPI)
  */
-export async function validateNpiRegistry(
-  npi: string
-): Promise<NpiValidationResult> {
+export async function validateNpiRegistry(npi: string): Promise<NpiValidationResult> {
   const cleaned = npi.trim();
 
   // 1. Format validation (Luhn check)
@@ -188,11 +178,7 @@ export async function validateNpiRegistry(
 
   // 4. NPI not found
   if (!provider) {
-    const result = buildResult(
-      cleaned,
-      "invalid",
-      "NPI not found in NPPES registry"
-    );
+    const result = buildResult(cleaned, "invalid", "NPI not found in NPPES registry");
     await setInCache(cleaned, result);
     return result;
   }
@@ -201,9 +187,7 @@ export async function validateNpiRegistry(
   if (provider.status === "deactivated") {
     const reason = provider.deactivationDate
       ? `NPI was deactivated on ${provider.deactivationDate}${
-          provider.deactivationReasonCode
-            ? ` (reason: ${provider.deactivationReasonCode})`
-            : ""
+          provider.deactivationReasonCode ? ` (reason: ${provider.deactivationReasonCode})` : ""
         }`
       : "NPI is deactivated";
 
@@ -218,16 +202,14 @@ export async function validateNpiRegistry(
       cleaned,
       "organization",
       `NPI belongs to an organization: ${provider.organizationName || "unknown"}`,
-      provider
+      provider,
     );
     await setInCache(cleaned, result);
     return result;
   }
 
   // 7. Valid individual provider
-  const displayName = [provider.firstName, provider.lastName]
-    .filter(Boolean)
-    .join(" ");
+  const displayName = [provider.firstName, provider.lastName].filter(Boolean).join(" ");
   const specialty = provider.primaryTaxonomy?.description;
   const reason = specialty
     ? `Active individual provider: ${displayName} (${specialty})`
@@ -246,7 +228,7 @@ export async function validateNpiRegistry(
  */
 export async function validateNpiBatch(
   npis: string[],
-  options?: BatchValidationOptions
+  options?: BatchValidationOptions,
 ): Promise<BatchValidationResult> {
   const concurrency = options?.concurrency ?? DEFAULT_BATCH_CONCURRENCY;
   const results: NpiValidationResult[] = [];
@@ -254,9 +236,7 @@ export async function validateNpiBatch(
   // Process in chunks based on concurrency
   for (let i = 0; i < npis.length; i += concurrency) {
     const chunk = npis.slice(i, i + concurrency);
-    const chunkResults = await Promise.allSettled(
-      chunk.map((npi) => validateNpiRegistry(npi))
-    );
+    const chunkResults = await Promise.allSettled(chunk.map((npi) => validateNpiRegistry(npi)));
 
     for (let j = 0; j < chunkResults.length; j++) {
       const settled = chunkResults[j];
@@ -268,8 +248,8 @@ export async function validateNpiBatch(
           buildResult(
             chunk[j],
             "invalid",
-            `Validation failed: ${settled.reason instanceof Error ? settled.reason.message : String(settled.reason)}`
-          )
+            `Validation failed: ${settled.reason instanceof Error ? settled.reason.message : String(settled.reason)}`,
+          ),
         );
       }
     }
