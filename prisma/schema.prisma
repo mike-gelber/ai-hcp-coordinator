@@ -297,6 +297,22 @@ model ProprietaryData {
   @@index([hcpId, source])
 }
 
+// ─── NPI Validation Cache ────────────────────────────────────────────
+
+model NpiValidationCache {
+  npi         String   @id
+  status      String   // validated, invalid, deactivated, organization
+  reason      String
+  providerData Json?   // Serialized NppesProviderInfo
+  validatedAt DateTime
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([expiresAt])
+  @@index([status])
+}
+
 // ─── App Settings ────────────────────────────────────────────────────
 
 model AppSettings {

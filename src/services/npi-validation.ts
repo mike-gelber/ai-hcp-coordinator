@@ -3,8 +3,9 @@
  *
  * Validates NPI numbers against the NPPES registry, returning structured
  * results with status codes and reasons. Includes:
- * - In-memory cache with 24h TTL (falls back from Redis if unavailable)
+ * - Multi-layer caching: in-memory → Redis → PostgreSQL (all with 24h TTL)
  * - Batch validation with configurable concurrency
+ * - Rate-limited NPPES API access via the nppes-client
  */
 
 import { createClient, type RedisClientType } from "redis";
@@ -115,22 +116,120 @@ async function setInRedisCache(
   }
 }
 
+// ─── Database Cache (Prisma) ────────────────────────────────────────────────
+
+/**
+ * Prisma client accessor — lazily imported to avoid issues when
+ * the database is not available (e.g. in tests or edge runtime).
+ */
+async function getDbCacheEntry(
+  npi: string
+): Promise<NpiValidationResult | null> {
+  try {
+    const { prisma } = await import("@/lib/db");
+    const entry = await prisma.npiValidationCache.findUnique({
+      where: { npi },
+    });
+
+    if (!entry) return null;
+
+    // Check expiration
+    if (new Date() > entry.expiresAt) {
+      // Clean up expired entry asynchronously
+      prisma.npiValidationCache
+        .delete({ where: { npi } })
+        .catch(() => {});
+      return null;
+    }
+
+    const result: NpiValidationResult = {
+      npi: entry.npi,
+      status: entry.status as NpiValidationStatus,
+      reason: entry.reason,
+      provider: entry.providerData
+        ? (entry.providerData as unknown as NppesProviderInfo)
+        : undefined,
+      validatedAt: entry.validatedAt.toISOString(),
+      cached: true,
+    };
+
+    // Promote to faster cache layers
+    setInMemoryCache(npi, { ...result, cached: false });
+
+    return result;
+  } catch {
+    // Database unavailable — fall through
+    return null;
+  }
+}
+
+async function setDbCacheEntry(
+  npi: string,
+  result: NpiValidationResult
+): Promise<void> {
+  try {
+    const { prisma } = await import("@/lib/db");
+    const expiresAt = new Date(Date.now() + CACHE_TTL_MS);
+
+    await prisma.npiValidationCache.upsert({
+      where: { npi },
+      update: {
+        status: result.status,
+        reason: result.reason,
+        providerData: result.provider
+          ? (JSON.parse(JSON.stringify(result.provider)) as object)
+          : null,
+        validatedAt: new Date(result.validatedAt),
+        expiresAt,
+      },
+      create: {
+        npi,
+        status: result.status,
+        reason: result.reason,
+        providerData: result.provider
+          ? (JSON.parse(JSON.stringify(result.provider)) as object)
+          : null,
+        validatedAt: new Date(result.validatedAt),
+        expiresAt,
+      },
+    });
+  } catch {
+    // Database unavailable — in-memory + Redis are fallbacks
+  }
+}
+
 // ─── Unified Cache Layer ────────────────────────────────────────────────────
 
 async function getFromCache(npi: string): Promise<NpiValidationResult | null> {
-  // Try Redis first (shared across instances), then memory
-  const redisResult = await getFromRedisCache(npi);
-  if (redisResult) return redisResult;
+  // Layer 1: In-memory (fastest, single-instance)
+  const memResult = getFromMemoryCache(npi);
+  if (memResult) return memResult;
 
-  return getFromMemoryCache(npi);
+  // Layer 2: Redis (shared across instances)
+  const redisResult = await getFromRedisCache(npi);
+  if (redisResult) {
+    // Promote to memory cache
+    setInMemoryCache(npi, { ...redisResult, cached: false });
+    return redisResult;
+  }
+
+  // Layer 3: Database (durable, survives restarts)
+  const dbResult = await getDbCacheEntry(npi);
+  if (dbResult) return dbResult;
+
+  return null;
 }
 
 async function setInCache(
   npi: string,
   result: NpiValidationResult
 ): Promise<void> {
+  // Write to all cache layers
   setInMemoryCache(npi, result);
-  await setInRedisCache(npi, result);
+  await Promise.all([
+    setInRedisCache(npi, result),
+    setDbCacheEntry(npi, result),
+  ]);
 }
 
 // ─── Validation Logic ───────────────────────────────────────────────────────
@@ -303,4 +402,47 @@ export function getMemoryCacheSize(): number {
     }
   }
   return memoryCache.size;
+}
+
+/**
+ * Invalidate cache for a specific NPI across all layers.
+ * Useful when we know a provider's status has changed.
+ */
+export async function invalidateNpiCache(npi: string): Promise<void> {
+  // Memory
+  memoryCache.delete(npi);
+
+  // Redis
+  try {
+    const client = await getRedisClient();
+    if (client) {
+      await client.del(redisCacheKey(npi));
+    }
+  } catch {
+    // Ignore Redis errors
+  }
+
+  // Database
+  try {
+    const { prisma } = await import("@/lib/db");
+    await prisma.npiValidationCache.delete({ where: { npi } });
+  } catch {
+    // Ignore DB errors (record may not exist)
+  }
+}
+
+/**
+ * Clean up expired entries from the database cache.
+ * Should be called periodically (e.g., via cron or background job).
+ */
+export async function cleanupExpiredDbCache(): Promise<number> {
+  try {
+    const { prisma } = await import("@/lib/db");
+    const result = await prisma.npiValidationCache.deleteMany({
+      where: { expiresAt: { lt: new Date() } },
+    });
+    return result.count;
+  } catch {
+    return 0;
+  }
 }
