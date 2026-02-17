@@ -97,3 +97,41 @@ body {
 .vc-panel-enter {
   animation: vc-panel-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+@keyframes vc-expand-enter {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 400px;
+  }
+}
+
+.vc-expand-enter {
+  animation: vc-expand-enter 0.25s ease-out;
+  overflow: hidden;
+}
+
+@keyframes vc-remove-exit {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 80px;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.95);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-width: 0;
+  }
+}
+
+.vc-remove-exit {
+  animation: vc-remove-exit 0.3s ease-in forwards;
+  overflow: hidden;
+}

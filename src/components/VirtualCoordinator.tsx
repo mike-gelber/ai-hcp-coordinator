@@ -21,8 +21,10 @@ import {
   ChevronUp,
   ChevronDown,
   Minus,
+  Trash2,
 } from "lucide-react";
 import { IntegrationDetailPanel } from "./IntegrationDetailPanel";
+import { AddModuleModal, catalogModules } from "./AddModuleModal";
 
 interface Integration {
   id: string;
@@ -32,6 +34,7 @@ interface Integration {
   metric2: { label: string; value: string };
   status: "active" | "warning" | "inactive";
   enabled: boolean;
+  isCustom?: boolean;
 }
 
 interface Channel {
@@ -162,6 +165,8 @@ export function VirtualCoordinator() {
   const [integrations, setIntegrations] = useState<Integration[]>(defaultIntegrations);
   const [channels] = useState<Channel[]>(defaultChannels);
   const [expandedIntegration, setExpandedIntegration] = useState<string | null>(null);
+  const [showAddModule, setShowAddModule] = useState(false);
+  const [removingId, setRemovingId] = useState<string | null>(null);
 
   const toggleIntegration = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -173,6 +178,32 @@ export function VirtualCoordinator() {
     if (integration?.enabled) {
       setExpandedIntegration(id);
     }
+  };
+
+  const handleAddModule = (moduleId: string) => {
+    if (integrations.some((i) => i.id === moduleId)) return;
+    const catalogEntry = catalogModules.find((m) => m.id === moduleId);
+    if (!catalogEntry) return;
+    const newIntegration: Integration = {
+      id: catalogEntry.id,
+      name: catalogEntry.name,
+      icon: catalogEntry.icon,
+      metric1: { label: "Status", value: "Active" },
+      metric2: { label: "Setup", value: "Done" },
+      status: "active",
+      enabled: true,
+      isCustom: true,
+    };
+    setIntegrations((prev) => [...prev, newIntegration]);
+  };
+
+  const handleRemoveModule = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setRemovingId(id);
+    setTimeout(() => {
+      setIntegrations((prev) => prev.filter((i) => i.id !== id));
+      setRemovingId(null);
+    }, 300);
   };
 
   const enabledCount = integrations.filter((i) => i.enabled).length;
@@ -233,7 +264,10 @@ export function VirtualCoordinator() {
             <h4 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-cyan-500/70">
               Integrations
             </h4>
-            <button className="flex items-center gap-1.5 rounded-md bg-cyan-500/10 px-2.5 py-1 text-[10px] font-medium text-cyan-400 transition-colors hover:bg-cyan-500/20 ring-1 ring-cyan-500/20">
+            <button
+              onClick={() => setShowAddModule(true)}
+              className="flex items-center gap-1.5 rounded-md bg-cyan-500/10 px-2.5 py-1 text-[10px] font-medium text-cyan-400 transition-colors hover:bg-cyan-500/20 ring-1 ring-cyan-500/20"
+            >
               <Plus className="h-3 w-3" />
               Add Module
             </button>
@@ -244,6 +278,8 @@ export function VirtualCoordinator() {
                 key={integration.id}
                 onClick={() => openIntegration(integration.id)}
                 className={`group relative flex items-center gap-3 rounded-xl border px-4 py-3 transition-all duration-300 ${
+                  removingId === integration.id ? "vc-remove-exit" : ""
+                } ${
                   integration.enabled
                     ? "border-cyan-500/15 bg-gradient-to-r from-cyan-500/[0.04] to-transparent hover:border-cyan-500/30 hover:from-cyan-500/[0.08] cursor-pointer"
                     : "border-gray-700/30 bg-gray-900/20 opacity-50"
@@ -319,6 +355,16 @@ export function VirtualCoordinator() {
                     }`}
                   />
                 </button>
+                {/* Remove button for marketplace modules */}
+                {integration.isCustom && (
+                  <button
+                    onClick={(e) => handleRemoveModule(integration.id, e)}
+                    className="ml-0.5 shrink-0 rounded-md p-1 text-gray-600 opacity-0 group-hover:opacity-100 hover:bg-rose-500/10 hover:text-rose-400 transition-all"
+                    title="Remove module"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                )}
               </div>
             ))}
           </div>
@@ -426,6 +472,15 @@ export function VirtualCoordinator() {
         <IntegrationDetailPanel
           integrationId={expandedIntegration}
           onClose={() => setExpandedIntegration(null)}
+        />
+      )}
+
+      {/* Add Module Modal */}
+      {showAddModule && (
+        <AddModuleModal
+          onClose={() => setShowAddModule(false)}
+          onAddModule={handleAddModule}
+          installedModuleIds={integrations.map((i) => i.id)}
         />
       )}
     </div>
