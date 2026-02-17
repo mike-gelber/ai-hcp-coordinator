@@ -22,6 +22,7 @@ import {
   ChevronDown,
   Minus,
 } from "lucide-react";
+import { IntegrationDetailPanel } from "./IntegrationDetailPanel";
 
 interface Integration {
   id: string;
@@ -160,9 +161,18 @@ function TrendArrow({ trend }: { trend: "up" | "down" | "neutral" }) {
 export function VirtualCoordinator() {
   const [integrations, setIntegrations] = useState<Integration[]>(defaultIntegrations);
   const [channels] = useState<Channel[]>(defaultChannels);
+  const [expandedIntegration, setExpandedIntegration] = useState<string | null>(null);
 
-  const toggleIntegration = (id: string) => {
+  const toggleIntegration = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
     setIntegrations((prev) => prev.map((i) => (i.id === id ? { ...i, enabled: !i.enabled } : i)));
+  };
+
+  const openIntegration = (id: string) => {
+    const integration = integrations.find((i) => i.id === id);
+    if (integration?.enabled) {
+      setExpandedIntegration(id);
+    }
   };
 
   const enabledCount = integrations.filter((i) => i.enabled).length;
@@ -232,15 +242,17 @@ export function VirtualCoordinator() {
             {integrations.map((integration) => (
               <div
                 key={integration.id}
+                onClick={() => openIntegration(integration.id)}
                 className={`group relative flex items-center gap-3 rounded-xl border px-4 py-3 transition-all duration-300 ${
                   integration.enabled
-                    ? "border-cyan-500/15 bg-gradient-to-r from-cyan-500/[0.04] to-transparent hover:border-cyan-500/30 hover:from-cyan-500/[0.08]"
+                    ? "border-cyan-500/15 bg-gradient-to-r from-cyan-500/[0.04] to-transparent hover:border-cyan-500/30 hover:from-cyan-500/[0.08] cursor-pointer"
                     : "border-gray-700/30 bg-gray-900/20 opacity-50"
                 }`}
               >
                 <button
                   className="cursor-grab text-gray-600 hover:text-gray-400 transition-colors"
                   title="Drag to reorder"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <GripVertical className="h-3.5 w-3.5" />
                 </button>
@@ -255,10 +267,15 @@ export function VirtualCoordinator() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[13px] font-medium text-white truncate">
+                    <span className="text-[13px] font-medium text-white truncate group-hover:text-cyan-300 transition-colors">
                       {integration.name}
                     </span>
                     {integration.enabled && <StatusDot status={integration.status} />}
+                    {integration.enabled && (
+                      <span className="hidden group-hover:inline-flex text-[9px] text-cyan-500/50 tracking-wide uppercase">
+                        Details →
+                      </span>
+                    )}
                   </div>
                   {integration.enabled && (
                     <div className="mt-0.5 flex items-center gap-3 text-[11px] text-gray-400">
@@ -288,7 +305,7 @@ export function VirtualCoordinator() {
                 </div>
                 {/* Toggle */}
                 <button
-                  onClick={() => toggleIntegration(integration.id)}
+                  onClick={(e) => toggleIntegration(integration.id, e)}
                   className={`ml-1 flex h-5 w-9 shrink-0 items-center rounded-full transition-colors ${
                     integration.enabled ? "bg-cyan-500/30" : "bg-gray-700/50"
                   }`}
@@ -403,6 +420,14 @@ export function VirtualCoordinator() {
           <span className="text-cyan-500/50">Real-time sync enabled</span>
         </div>
       </div>
+
+      {/* Integration Detail Panel */}
+      {expandedIntegration && (
+        <IntegrationDetailPanel
+          integrationId={expandedIntegration}
+          onClose={() => setExpandedIntegration(null)}
+        />
+      )}
     </div>
   );
 }
