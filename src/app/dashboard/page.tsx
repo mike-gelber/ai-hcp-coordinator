@@ -7,6 +7,7 @@ import { HcpTable } from "@/components/HcpTable";
 import { HcpProfilePanel } from "@/components/HcpProfilePanel";
 import { SpecialtyChart } from "@/components/SpecialtyChart";
 import type { DemoHcpProfile } from "@/lib/demo-seed";
+import { VirtualCoordinator } from "@/components/VirtualCoordinator";
 import { FlaskConical, Users, TrendingUp, Award, BarChart3, Upload, RotateCcw } from "lucide-react";
 
 interface DemoStats {
@@ -208,6 +209,9 @@ export default function DashboardPage() {
                 ))}
               </div>
             </div>
+
+            {/* Virtual Coordinator */}
+            <VirtualCoordinator />
 
             {/* HCP Table */}
             <div>
