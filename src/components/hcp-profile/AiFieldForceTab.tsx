@@ -13,21 +13,19 @@ export function AiFieldForceTab({ profile }: AiFieldForceTabProps) {
   return (
     <div className="space-y-6">
       {/* Overview Banner */}
-      <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-6 dark:border-indigo-800 dark:bg-indigo-950">
+      <div className="rounded-xl border border-brand-200 bg-brand-50 p-6 dark:border-brand-800 dark:bg-brand-950">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-200 dark:bg-indigo-800">
-            <Sparkles className="h-5 w-5 text-indigo-700 dark:text-indigo-300" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-200 dark:bg-brand-800">
+            <Sparkles className="h-5 w-5 text-brand-700 dark:text-brand-300" />
           </div>
           <div>
-            <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
-              AI Field Force
-            </p>
-            <p className="text-lg font-bold text-indigo-900 dark:text-indigo-100">
+            <p className="text-xs font-medium text-brand-600 dark:text-brand-400">AI Field Force</p>
+            <p className="text-lg font-bold text-brand-900 dark:text-brand-100">
               2 Active Agents Collaborating
             </p>
           </div>
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-indigo-800 dark:text-indigo-200">
+        <p className="mt-3 text-sm leading-relaxed text-brand-800 dark:text-brand-200">
           Two AI-powered field force agents are working on Dr. {profile.lastName}&apos;s engagement
           strategy. The <strong>Strategist</strong> analyzes data to determine the optimal approach,
           while the <strong>Outreach Specialist</strong> plans and executes multi-channel campaigns.
@@ -44,7 +42,7 @@ export function AiFieldForceTab({ profile }: AiFieldForceTabProps) {
               key={role}
               className={`rounded-xl border p-5 shadow-sm ${
                 isStrategist
-                  ? "border-indigo-200 bg-white dark:border-indigo-800 dark:bg-gray-900"
+                  ? "border-brand-200 bg-white dark:border-brand-800 dark:bg-gray-900"
                   : "border-emerald-200 bg-white dark:border-emerald-800 dark:bg-gray-900"
               }`}
             >
@@ -57,13 +55,13 @@ export function AiFieldForceTab({ profile }: AiFieldForceTabProps) {
                 <div
                   className={`ml-auto flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
                     isStrategist
-                      ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300"
+                      ? "bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300"
                       : "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
                   }`}
                 >
                   <div
                     className={`h-1.5 w-1.5 rounded-full animate-pulse ${
-                      isStrategist ? "bg-indigo-500" : "bg-emerald-500"
+                      isStrategist ? "bg-brand-500" : "bg-emerald-500"
                     }`}
                   />
                   Active

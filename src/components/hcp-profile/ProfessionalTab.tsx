@@ -30,7 +30,7 @@ export function ProfessionalTab({ profile }: ProfessionalTabProps) {
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
             {profile.affiliation.role}
           </p>
-          <span className="mt-2 inline-block rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-700 capitalize dark:bg-indigo-900 dark:text-indigo-300">
+          <span className="mt-2 inline-block rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700 capitalize dark:bg-brand-900 dark:text-brand-300">
             {profile.affiliation.type.replace("_", " ")}
           </span>
         </div>

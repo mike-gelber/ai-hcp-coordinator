@@ -14,9 +14,9 @@ export function ResearchTab({ profile }: ResearchTabProps) {
     <div className="space-y-6">
       {/* Summary */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl bg-indigo-50 p-4 dark:bg-indigo-950">
-          <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">Publications</p>
-          <p className="mt-1 text-2xl font-bold text-indigo-700 dark:text-indigo-300">
+        <div className="rounded-xl bg-brand-50 p-4 dark:bg-brand-950">
+          <p className="text-xs font-medium text-brand-600 dark:text-brand-400">Publications</p>
+          <p className="mt-1 text-2xl font-bold text-brand-700 dark:text-brand-300">
             {profile.digitalPresence.publicationCount}
           </p>
         </div>
@@ -55,7 +55,7 @@ export function ResearchTab({ profile }: ResearchTabProps) {
               <div key={i} className="rounded-lg border border-gray-100 p-4 dark:border-gray-800">
                 <p className="text-sm font-medium text-gray-900 dark:text-white">{pub.title}</p>
                 <div className="mt-1.5 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
-                  <span className="font-medium text-indigo-600 dark:text-indigo-400">
+                  <span className="font-medium text-brand-600 dark:text-brand-400">
                     {pub.journal}
                   </span>
                   <span>{pub.year}</span>

@@ -18,7 +18,7 @@ export function DigitalFootprintTab({ profile }: DigitalFootprintTabProps) {
           label="Engagement Score"
           score={digitalPresence.engagementScore}
           description="Measures digital engagement across platforms"
-          color="indigo"
+          color="brand"
         />
         <ScoreCard
           label="KOL Score"
@@ -138,10 +138,10 @@ function ScoreCard({
   color: string;
 }) {
   const colorMap: Record<string, { bg: string; bar: string; text: string }> = {
-    indigo: {
-      bg: "bg-indigo-50 dark:bg-indigo-950",
-      bar: "bg-indigo-500",
-      text: "text-indigo-700 dark:text-indigo-300",
+    brand: {
+      bg: "bg-brand-50 dark:bg-brand-950",
+      bar: "bg-brand-500",
+      text: "text-brand-700 dark:text-brand-300",
     },
     purple: {
       bg: "bg-purple-50 dark:bg-purple-950",

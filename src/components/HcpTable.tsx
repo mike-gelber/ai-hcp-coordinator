@@ -124,13 +124,13 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
             placeholder="Search by name or NPI..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+            className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-10 pr-4 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
           />
         </div>
         <select
           value={specialty}
           onChange={(e) => setSpecialty(e.target.value)}
-          className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+          className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-brand-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
         >
           <option value="">All Specialties</option>
           {SPECIALTIES.map((s) => (
@@ -142,7 +142,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
         <select
           value={state}
           onChange={(e) => setState(e.target.value)}
-          className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+          className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-brand-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
         >
           <option value="">All States</option>
           {STATES.map((s) => (
@@ -195,7 +195,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
               <tr>
                 <td colSpan={9} className="px-4 py-12 text-center text-gray-400">
                   <div className="flex items-center justify-center gap-2">
-                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-brand-400 border-t-transparent" />
                     Loading profiles...
                   </div>
                 </td>
@@ -252,7 +252,7 @@ export function HcpTable({ onProfileClick }: HcpTableProps) {
                     {profile.digitalPresence.publicationCount}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-center">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 dark:bg-brand-900/50 dark:text-brand-300">
                       <Bot className="h-3 w-3" />2 Active
                     </span>
                   </td>

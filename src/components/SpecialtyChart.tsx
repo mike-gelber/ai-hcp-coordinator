@@ -19,7 +19,7 @@ export function SpecialtyChart({ data, maxItems = 10 }: SpecialtyChartProps) {
           <div className="flex-1">
             <div className="h-5 rounded-full bg-gray-100 dark:bg-gray-800">
               <div
-                className="h-5 rounded-full bg-indigo-500 transition-all duration-500"
+                className="h-5 rounded-full bg-brand-500/80 transition-all duration-500"
                 style={{ width: `${(item.count / max) * 100}%` }}
               />
             </div>
