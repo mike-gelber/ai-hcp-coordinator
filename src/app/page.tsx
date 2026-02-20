@@ -3,31 +3,31 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <main className="min-h-screen bg-surface-base">
       {/* Hero */}
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-brand-400/10 px-4 py-2 text-sm font-medium text-brand-400">
             <Zap className="h-4 w-4" />
             AI-Powered HCP Engagement
           </div>
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
             AI HCP Field Force
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-400">
             Ingest NPI target lists, enrich HCP profiles with public and proprietary data, and
             deploy personalized AI agents that craft ultra-customized multi-channel outreach plans.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-4">
             <Link
               href="/dashboard"
-              className="rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-colors"
+              className="rounded-lg bg-brand-400 px-6 py-3 text-sm font-semibold text-surface-base shadow-sm hover:bg-brand-300 transition-colors"
             >
               Go to Dashboard
             </Link>
             <Link
               href="/dashboard"
-              className="flex items-center gap-2 rounded-lg border border-amber-400 bg-amber-50 px-6 py-3 text-sm font-semibold text-amber-700 hover:bg-amber-100 transition-colors dark:border-amber-600 dark:bg-amber-950 dark:text-amber-300 dark:hover:bg-amber-900"
+              className="flex items-center gap-2 rounded-lg border border-brand-400/30 bg-brand-400/5 px-6 py-3 text-sm font-semibold text-brand-400 hover:bg-brand-400/10 transition-colors"
             >
               <FlaskConical className="h-4 w-4" />
               Try Demo Mode
@@ -37,8 +37,8 @@ export default function Home() {
       </div>
 
       {/* Features */}
-      <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <FeatureCard
             icon={<Upload className="h-6 w-6" />}
             title="NPI Target List Ingestion"
@@ -85,12 +85,10 @@ function FeatureCard({
   description: string;
 }) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
-      <div className="mb-4 inline-flex rounded-lg bg-indigo-50 p-3 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
-        {icon}
-      </div>
-      <h3 className="text-base font-semibold text-gray-900 dark:text-white">{title}</h3>
-      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{description}</p>
+    <div className="rounded-xl border border-surface-border bg-surface-card p-6 transition-all hover:border-brand-400/30 hover:bg-surface-elevated">
+      <div className="mb-4 inline-flex rounded-lg bg-brand-400/10 p-3 text-brand-400">{icon}</div>
+      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <p className="mt-2 text-sm text-gray-400">{description}</p>
     </div>
   );
 }

@@ -20,20 +20,20 @@ interface HcpProfilePanelProps {
 
 export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg overflow-y-auto border-l border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-gray-900">
+    <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg overflow-y-auto border-l border-surface-border bg-surface-card shadow-2xl">
       {/* Header */}
-      <div className="sticky top-0 z-10 flex items-start justify-between border-b border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
+      <div className="sticky top-0 z-10 flex items-start justify-between border-b border-surface-border bg-surface-card p-6">
         <div>
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-xl font-bold text-white">
             {profile.firstName} {profile.middleName ? profile.middleName + " " : ""}
             {profile.lastName}
-            <span className="ml-2 text-sm font-normal text-gray-400">{profile.credentials}</span>
+            <span className="ml-2 text-sm font-normal text-gray-500">{profile.credentials}</span>
           </h2>
           <p className="mt-1 font-mono text-sm text-gray-500">NPI: {profile.npi}</p>
         </div>
         <button
           onClick={onClose}
-          className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+          className="rounded-lg p-2 text-gray-500 hover:bg-surface-elevated hover:text-gray-300"
         >
           <X className="h-5 w-5" />
         </button>
@@ -42,24 +42,24 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
       <div className="space-y-6 p-6">
         {/* Quick Tags */}
         <div className="flex flex-wrap gap-2">
-          <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+          <span className="rounded-full bg-brand-400/10 px-3 py-1 text-xs font-medium text-brand-400">
             {profile.primarySpecialty}
           </span>
-          <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+          <span className="rounded-full bg-surface-elevated px-3 py-1 text-xs font-medium text-gray-300">
             {profile.yearsInPractice} yrs in practice
           </span>
           {profile.digitalPresence.isKol && (
-            <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-700 dark:bg-purple-900 dark:text-purple-300">
+            <span className="rounded-full bg-purple-500/15 px-3 py-1 text-xs font-medium text-purple-400">
               Key Opinion Leader
             </span>
           )}
           <span
             className={`rounded-full px-3 py-1 text-xs font-medium ${
               profile.prescribingProfile.prescribingVolume === "high"
-                ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
+                ? "bg-emerald-500/15 text-emerald-400"
                 : profile.prescribingProfile.prescribingVolume === "medium"
-                  ? "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300"
-                  : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                  ? "bg-cyan-500/15 text-cyan-400"
+                  : "bg-surface-elevated text-gray-400"
             }`}
           >
             {profile.prescribingProfile.prescribingVolume} volume prescriber
@@ -68,10 +68,8 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
 
         {/* Location */}
         <Section icon={<MapPin className="h-4 w-4" />} title="Practice Location">
-          <p className="text-sm text-gray-700 dark:text-gray-300">
-            {profile.location.addressLine1}
-          </p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-gray-300">{profile.location.addressLine1}</p>
+          <p className="text-sm text-gray-300">
             {profile.location.city}, {profile.location.state} {profile.location.zipCode}
           </p>
           <p className="text-sm text-gray-500">{profile.location.phone}</p>
@@ -79,12 +77,12 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
 
         {/* Education */}
         <Section icon={<GraduationCap className="h-4 w-4" />} title="Education">
-          <p className="text-sm text-gray-700 dark:text-gray-300">{profile.medicalSchool}</p>
+          <p className="text-sm text-gray-300">{profile.medicalSchool}</p>
         </Section>
 
         {/* Affiliation */}
         <Section icon={<Building2 className="h-4 w-4" />} title="Affiliation">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <p className="text-sm font-medium text-gray-300">
             {profile.affiliation.organizationName}
           </p>
           <p className="text-sm text-gray-500">
@@ -98,7 +96,7 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
             {profile.boardCertifications.map((cert) => (
               <span
                 key={cert}
-                className="rounded-md bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                className="rounded-md bg-surface-elevated px-2 py-1 text-xs text-gray-300"
               >
                 {cert}
               </span>
@@ -140,9 +138,9 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
           </div>
         </Section>
 
-        {/* Enrichment Status (demo placeholder) */}
-        <div className="rounded-lg border border-dashed border-gray-300 p-4 dark:border-gray-700">
-          <p className="text-center text-sm text-gray-400">
+        {/* Enrichment Status */}
+        <div className="rounded-lg border border-dashed border-surface-border p-4">
+          <p className="text-center text-sm text-gray-500">
             Enrichment pipeline, outreach strategy, and AI persona will appear here once the full
             pipeline is connected.
           </p>
@@ -151,7 +149,7 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
         {/* View Full Profile Link */}
         <Link
           href={`/hcp/${profile.npi}`}
-          className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+          className="flex items-center justify-center gap-2 rounded-lg bg-brand-400 px-4 py-3 text-sm font-semibold text-surface-base transition-colors hover:bg-brand-300"
         >
           <ExternalLink className="h-4 w-4" />
           View Full Profile
@@ -172,8 +170,8 @@ function Section({
 }) {
   return (
     <div>
-      <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white">
-        <span className="text-gray-400">{icon}</span>
+      <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
+        <span className="text-gray-500">{icon}</span>
         {title}
       </div>
       <div className="pl-6">{children}</div>
@@ -184,8 +182,8 @@ function Section({
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between">
-      <span className="text-gray-500 dark:text-gray-400">{label}</span>
-      <span className="font-medium text-gray-700 dark:text-gray-300 capitalize">{value}</span>
+      <span className="text-gray-500">{label}</span>
+      <span className="font-medium text-gray-300 capitalize">{value}</span>
     </div>
   );
 }
