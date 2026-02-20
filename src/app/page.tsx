@@ -26,6 +26,15 @@ import {
   Globe,
   Filter,
   ExternalLink,
+  MapPin,
+  QrCode,
+  X,
+  Calendar,
+  Scan,
+  Headphones,
+  Send,
+  Package,
+  User,
 } from "lucide-react";
 import AscendCoordinatorManager from "@/components/AscendCoordinatorManager";
 
@@ -105,11 +114,11 @@ const dashboardStats = [
 ];
 
 const channelBreakdown = [
-  { channel: "SMS", count: 854, pct: 22 },
-  { channel: "Email", count: 1243, pct: 32 },
-  { channel: "Owned Media", count: 432, pct: 11 },
+  { channel: "SMS", count: 2480, pct: 52 },
+  { channel: "Intelligent Media", count: 1890, pct: 40 },
+  { channel: "AI Assistant", count: 2156, pct: 45 },
+  { channel: "Email", count: 620, pct: 13 },
   { channel: "Concierge", count: 128, pct: 3 },
-  { channel: "AI Assistant", count: 2156, pct: 56 },
 ];
 
 const recentActivity = [
@@ -137,12 +146,12 @@ interface Engagement {
 
 const engagements: Engagement[] = [
   { hcp: "Dr. Sarah Chen", specialty: "Cardiology", npi: "1234567890", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2m ago", totalTouches: 14, status: "Active", coordinator: "Stelazio V1.1" },
-  { hcp: "Dr. James Wilson", specialty: "Neurology", npi: "2345678901", lastChannel: "Email", lastChannelIcon: Mail, lastContact: "5m ago", totalTouches: 8, status: "Active", coordinator: "Neurovia" },
-  { hcp: "Dr. Maria Garcia", specialty: "Oncology", npi: "3456789012", lastChannel: "AI Assistant", lastChannelIcon: Radio, lastContact: "12m ago", totalTouches: 22, status: "Active", coordinator: "Oncurel" },
+  { hcp: "Dr. James Wilson", specialty: "Neurology", npi: "2345678901", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "5m ago", totalTouches: 8, status: "Active", coordinator: "Neurovia" },
+  { hcp: "Dr. Maria Garcia", specialty: "Oncology", npi: "3456789012", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "12m ago", totalTouches: 22, status: "Active", coordinator: "Oncurel" },
   { hcp: "Dr. Robert Kim", specialty: "Cardiology", npi: "4567890123", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "18m ago", totalTouches: 5, status: "Cooling Off", coordinator: "Cardiovex" },
-  { hcp: "Dr. Emily Zhang", specialty: "Dermatology", npi: "5678901234", lastChannel: "Owned Media", lastChannelIcon: Globe, lastContact: "25m ago", totalTouches: 11, status: "Active", coordinator: "Oncurel" },
+  { hcp: "Dr. Emily Zhang", specialty: "Dermatology", npi: "5678901234", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "25m ago", totalTouches: 11, status: "Active", coordinator: "Oncurel" },
   { hcp: "Dr. David Park", specialty: "Neurology", npi: "6789012345", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "32m ago", totalTouches: 3, status: "New", coordinator: "Neurovia" },
-  { hcp: "Dr. Lisa Thompson", specialty: "Cardiology", npi: "7890123456", lastChannel: "Email", lastChannelIcon: Mail, lastContact: "1h ago", totalTouches: 19, status: "Active", coordinator: "Respira" },
+  { hcp: "Dr. Lisa Thompson", specialty: "Cardiology", npi: "7890123456", lastChannel: "Outbound Direct Mail", lastChannelIcon: Mail, lastContact: "1h ago", totalTouches: 19, status: "Active", coordinator: "Respira" },
   { hcp: "Dr. Michael Brown", specialty: "Pulmonology", npi: "8901234567", lastChannel: "AI Assistant", lastChannelIcon: Radio, lastContact: "1.5h ago", totalTouches: 7, status: "Cooling Off", coordinator: "Respira" },
 ];
 
@@ -352,7 +361,581 @@ function engagementStatusColor(s: Engagement["status"]) {
   return c.accent;
 }
 
+interface QrSource {
+  type: string;
+  location: string;
+  campaignName: string;
+  scannedAt: string;
+  device: string;
+  landedOn: string;
+  sessionDuration: string;
+  contentViewed: string[];
+  followUp: string;
+}
+
+const intelligentMediaSources: Record<string, QrSource> = {
+  "2345678901": {
+    type: "Conference Leave-Behind Flyer",
+    location: "AAN 2026 Annual Meeting — San Diego Convention Center, Booth #412",
+    campaignName: "Neurovia Phase III Awareness — AAN 2026",
+    scannedAt: "Feb 18, 2026 · 2:14 PM PST",
+    device: "iPhone 16 Pro · Safari",
+    landedOn: "Neurovia Clinical Evidence Hub",
+    sessionDuration: "6m 42s",
+    contentViewed: [
+      "Phase III pivotal trial results (full read)",
+      "Mechanism of action interactive module",
+      "Dosing & titration calculator",
+    ],
+    followUp: "Automated nurture sequence triggered — next email in 48h with long-term extension data",
+  },
+  "5678901234": {
+    type: "QR Code — Physician Lounge Display",
+    location: "Cedar Sinai Hospital, NYC — 3rd Floor Physician Lounge",
+    campaignName: "Oncurel HCP Awareness — NYC Metro Physician Lounges",
+    scannedAt: "Feb 19, 2026 · 7:48 AM EST",
+    device: "Samsung Galaxy S25 · Chrome",
+    landedOn: "Oncurel Dosing & Patient Selection Tool",
+    sessionDuration: "4m 18s",
+    contentViewed: [
+      "Patient selection algorithm walkthrough",
+      "Dosing calculator — ran 2 patient scenarios",
+      "Formulary coverage lookup (NYC Metro plans)",
+    ],
+    followUp: "High-intent signal flagged — concierge outreach scheduled within 24h with rep intro",
+  },
+};
+
+function IntelligentMediaModal({ engagement, onClose }: { engagement: Engagement; onClose: () => void }) {
+  const source = intelligentMediaSources[engagement.npi];
+  if (!source) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}>
+      <div
+        className="relative w-full max-w-lg rounded-2xl border flex flex-col"
+        style={{ background: c.card, borderColor: `${c.accent}25`, boxShadow: `0 0 40px ${c.accent}10`, maxHeight: "90vh" }}
+      >
+        {/* Header — always visible */}
+        <div className="shrink-0 flex items-start justify-between px-6 pt-6 pb-4 rounded-t-2xl" style={{ borderBottom: `1px solid ${c.divider}` }}>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <QrCode className="h-4 w-4" style={{ color: c.accent }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.accent }}>Intelligent Media Source</span>
+            </div>
+            <h2 className="text-base font-bold" style={{ color: c.textPrimary }}>{engagement.hcp}</h2>
+            <p className="text-xs mt-0.5" style={{ color: c.textSecondary }}>{engagement.specialty} · NPI {engagement.npi}</p>
+          </div>
+          <button onClick={onClose} className="rounded-lg p-1.5 transition-colors hover:bg-white/5 cursor-pointer">
+            <X className="h-4 w-4" style={{ color: c.textSecondary }} />
+          </button>
+        </div>
+
+        {/* Body — scrollable */}
+        <div className="overflow-y-auto px-6 py-5 space-y-5">
+          {/* Source type & location */}
+          <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: c.divider }}>
+            <div className="flex items-center gap-2 mb-3">
+              <Scan className="h-4 w-4" style={{ color: c.accent }} />
+              <span className="text-sm font-semibold" style={{ color: c.textPrimary }}>{source.type}</span>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-start gap-2">
+                <MapPin className="h-3.5 w-3.5 mt-0.5 shrink-0" style={{ color: c.textMuted }} />
+                <span className="text-xs" style={{ color: c.textSecondary }}>{source.location}</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Calendar className="h-3.5 w-3.5 mt-0.5 shrink-0" style={{ color: c.textMuted }} />
+                <span className="text-xs" style={{ color: c.textSecondary }}>{source.scannedAt}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Campaign & device */}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Campaign</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{source.campaignName}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Device</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{source.device}</p>
+            </div>
+          </div>
+
+          {/* Session details */}
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.textMuted }}>Session Details</p>
+            <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: c.divider }}>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs" style={{ color: c.textSecondary }}>Landed on</span>
+                <span className="text-xs font-semibold" style={{ color: c.accent }}>{source.landedOn}</span>
+              </div>
+              <div className="flex items-center justify-between mb-3" style={{ borderTop: `1px solid ${c.divider}`, paddingTop: 12 }}>
+                <span className="text-xs" style={{ color: c.textSecondary }}>Session duration</span>
+                <span className="text-xs font-semibold" style={{ color: c.textPrimary }}>{source.sessionDuration}</span>
+              </div>
+              <div style={{ borderTop: `1px solid ${c.divider}`, paddingTop: 12 }}>
+                <span className="text-xs" style={{ color: c.textSecondary }}>Content viewed</span>
+                <ul className="mt-2 space-y-1.5">
+                  {source.contentViewed.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs" style={{ color: c.textPrimary }}>
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0" style={{ background: c.accent }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Follow-up */}
+          <div className="rounded-xl border p-4" style={{ background: `${c.accent}08`, borderColor: `${c.accent}20` }}>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-1.5" style={{ color: c.accent }}>Automated Follow-Up</p>
+            <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{source.followUp}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── SMS Detail Data & Modal ── */
+
+interface SmsFlowDetail {
+  campaignName: string;
+  flowName: string;
+  triggerEvent: string;
+  sentAt: string;
+  messagePreview: string;
+  deliveryStatus: string;
+  responseStatus: string;
+  responsePreview?: string;
+  responseTime?: string;
+  flowSteps: { step: string; status: "completed" | "active" | "pending"; detail: string }[];
+  nextAction: string;
+}
+
+const smsFlowSources: Record<string, SmsFlowDetail> = {
+  "1234567890": {
+    campaignName: "Stelazio HCP Awareness — Q1 2026",
+    flowName: "High-Value Cardiology Re-engagement",
+    triggerEvent: "14-day post-sample delivery follow-up",
+    sentAt: "Feb 20, 2026 · 9:58 AM EST",
+    messagePreview: "Hi Dr. Chen, following up on your Stelazio samples. New real-world data shows 42% improvement in LDL reduction at 12 weeks. Want to see the full results? Reply YES or tap here →",
+    deliveryStatus: "Delivered · 9:58 AM",
+    responseStatus: "Replied",
+    responsePreview: "YES — also curious about the titration protocol for patients already on statins",
+    responseTime: "2m after delivery",
+    flowSteps: [
+      { step: "Sample Delivery Confirmation", status: "completed", detail: "Confirmed Feb 6 — 2 starter packs delivered to office" },
+      { step: "7-Day Check-In SMS", status: "completed", detail: "Sent Feb 13 — Opened, no reply" },
+      { step: "14-Day Follow-Up + Data Share", status: "active", detail: "Sent Feb 20 — Replied with question (current)" },
+      { step: "Route to Medical Affairs", status: "pending", detail: "Triggered by clinical question — queued for MSL callback" },
+      { step: "30-Day Prescribing Check-In", status: "pending", detail: "Scheduled Mar 8" },
+    ],
+    nextAction: "Clinical question detected — routed to MSL team for callback within 4 hours. Titration guide PDF auto-sent.",
+  },
+  "3456789012": {
+    campaignName: "Oncurel Launch Wave 2 — Oncology Targets",
+    flowName: "KOL Early Adopter Nurture",
+    triggerEvent: "Post-webinar attendee follow-up",
+    sentAt: "Feb 20, 2026 · 9:48 AM EST",
+    messagePreview: "Dr. Garcia, thank you for attending the Oncurel MOA Deep Dive webinar. Your CME certificate is ready. We also have new Phase III subgroup data — would you like early access? Reply INFO →",
+    deliveryStatus: "Delivered · 9:48 AM",
+    responseStatus: "Replied",
+    responsePreview: "INFO — particularly interested in the renal impairment subgroup",
+    responseTime: "12m after delivery",
+    flowSteps: [
+      { step: "Webinar Registration Confirmation", status: "completed", detail: "Registered Feb 12 via Intelligent Media portal" },
+      { step: "Webinar Attendance Verified", status: "completed", detail: "Attended full 45min session on Feb 18" },
+      { step: "Post-Webinar Follow-Up SMS", status: "active", detail: "Sent Feb 20 — Replied requesting subgroup data (current)" },
+      { step: "Subgroup Data Delivery", status: "pending", detail: "Renal impairment dataset queued for delivery via secure link" },
+      { step: "Speaker Program Invitation", status: "pending", detail: "Eligible for regional speaker program — invite pending" },
+    ],
+    nextAction: "Renal impairment subgroup analysis PDF being prepared by medical affairs. Secure link delivery within 2 hours.",
+  },
+  "6789012345": {
+    campaignName: "Neurovia Awareness — New HCP Onboarding",
+    flowName: "First-Touch Welcome Sequence",
+    triggerEvent: "NPI added to target list — initial outreach",
+    sentAt: "Feb 20, 2026 · 9:28 AM EST",
+    messagePreview: "Dr. Park, this is the Neurovia clinical team. We have new data on long-acting oral therapy for MS that may be relevant to your practice. Tap to explore clinical evidence →",
+    deliveryStatus: "Delivered · 9:28 AM",
+    responseStatus: "No response yet",
+    flowSteps: [
+      { step: "Target List Ingestion", status: "completed", detail: "NPI validated and enriched via NPPES on Feb 19" },
+      { step: "Welcome SMS", status: "active", detail: "Sent Feb 20 — Delivered, awaiting response (current)" },
+      { step: "48-Hour Nudge", status: "pending", detail: "If no response, follow-up SMS scheduled Feb 22" },
+      { step: "Email Fallback", status: "pending", detail: "If no SMS engagement, pivot to email with clinical summary" },
+    ],
+    nextAction: "Monitoring for response. 48-hour nudge SMS queued for Feb 22 if no engagement detected.",
+  },
+};
+
+function SmsDetailModal({ engagement, onClose }: { engagement: Engagement; onClose: () => void }) {
+  const flow = smsFlowSources[engagement.npi];
+  if (!flow) return null;
+
+  const stepColor = (s: "completed" | "active" | "pending") =>
+    s === "completed" ? c.green : s === "active" ? c.accent : c.textMuted;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}>
+      <div
+        className="relative w-full max-w-lg rounded-2xl border flex flex-col"
+        style={{ background: c.card, borderColor: `${c.accent}25`, boxShadow: `0 0 40px ${c.accent}10`, maxHeight: "90vh" }}
+      >
+        <div className="shrink-0 flex items-start justify-between px-6 pt-6 pb-4 rounded-t-2xl" style={{ borderBottom: `1px solid ${c.divider}` }}>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <MessageSquare className="h-4 w-4" style={{ color: c.accent }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.accent }}>SMS Campaign Detail</span>
+            </div>
+            <h2 className="text-base font-bold" style={{ color: c.textPrimary }}>{engagement.hcp}</h2>
+            <p className="text-xs mt-0.5" style={{ color: c.textSecondary }}>{engagement.specialty} · NPI {engagement.npi}</p>
+          </div>
+          <button onClick={onClose} className="rounded-lg p-1.5 transition-colors hover:bg-white/5 cursor-pointer">
+            <X className="h-4 w-4" style={{ color: c.textSecondary }} />
+          </button>
+        </div>
+
+        <div className="overflow-y-auto px-6 py-5 space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Campaign</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{flow.campaignName}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Flow</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{flow.flowName}</p>
+            </div>
+          </div>
+
+          <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: c.divider }}>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.textMuted }}>Trigger</p>
+            <p className="text-xs" style={{ color: c.textSecondary }}>{flow.triggerEvent}</p>
+            <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${c.divider}` }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.textMuted }}>Message Sent</p>
+              <div className="rounded-lg p-3" style={{ background: `${c.accent}08`, border: `1px solid ${c.accent}15` }}>
+                <p className="text-xs leading-relaxed" style={{ color: c.textPrimary }}>{flow.messagePreview}</p>
+                <p className="text-[10px] mt-2" style={{ color: c.textMuted }}>{flow.sentAt} · {flow.deliveryStatus}</p>
+              </div>
+            </div>
+            {flow.responsePreview && (
+              <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${c.divider}` }}>
+                <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.green }}>HCP Response</p>
+                <div className="rounded-lg p-3" style={{ background: `${c.green}08`, border: `1px solid ${c.green}15` }}>
+                  <p className="text-xs leading-relaxed" style={{ color: c.textPrimary }}>{flow.responsePreview}</p>
+                  <p className="text-[10px] mt-2" style={{ color: c.textMuted }}>{flow.responseTime}</p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: c.textMuted }}>Flow Progress</p>
+            <div className="space-y-0">
+              {flow.flowSteps.map((step, i) => (
+                <div key={step.step} className="flex gap-3">
+                  <div className="flex flex-col items-center">
+                    <div className="h-2.5 w-2.5 rounded-full shrink-0 mt-1" style={{ background: stepColor(step.status), boxShadow: step.status === "active" ? `0 0 8px ${c.accent}60` : "none" }} />
+                    {i < flow.flowSteps.length - 1 && <div className="w-px flex-1 my-1" style={{ background: c.divider }} />}
+                  </div>
+                  <div className="pb-4">
+                    <p className="text-xs font-semibold" style={{ color: step.status === "pending" ? c.textMuted : c.textPrimary }}>{step.step}</p>
+                    <p className="text-[11px] mt-0.5" style={{ color: c.textSecondary }}>{step.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl border p-4" style={{ background: `${c.accent}08`, borderColor: `${c.accent}20` }}>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-1.5" style={{ color: c.accent }}>Next Action</p>
+            <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{flow.nextAction}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Concierge Conversation Data & Modal ── */
+
+interface ConciergeMessage {
+  sender: "hcp" | "concierge" | "system";
+  text: string;
+  time: string;
+}
+
+interface ConciergeDetail {
+  sessionId: string;
+  startedAt: string;
+  duration: string;
+  conciergeAgent: string;
+  reason: string;
+  resolution: string;
+  satisfactionScore: string;
+  transcript: ConciergeMessage[];
+}
+
+const conciergeSources: Record<string, ConciergeDetail> = {
+  "4567890123": {
+    sessionId: "CON-2026-02-20-0847",
+    startedAt: "Feb 20, 2026 · 9:42 AM EST",
+    duration: "8m 14s",
+    conciergeAgent: "Jessica M. — Senior Patient Access Specialist",
+    reason: "Prior Authorization Denial — Cardiovex",
+    resolution: "Appeal submitted to Aetna; peer-to-peer review scheduled Feb 22",
+    satisfactionScore: "5/5",
+    transcript: [
+      { sender: "system", text: "Session started — Dr. Robert Kim connected via Concierge hotline", time: "9:42 AM" },
+      { sender: "hcp", text: "Hi, I have a patient who was denied PA for Cardiovex. The denial letter says they need to fail two other agents first, but this patient already failed lisinopril and losartan.", time: "9:42 AM" },
+      { sender: "concierge", text: "I'm sorry to hear that, Dr. Kim. Let me pull up the case. Can you confirm the patient's member ID or date of birth?", time: "9:43 AM" },
+      { sender: "hcp", text: "Member ID is AET-8834721. DOB 03/15/1961.", time: "9:43 AM" },
+      { sender: "concierge", text: "Thank you. I can see the denial — it looks like the payer didn't have documentation of the prior failures on file. I can initiate an appeal with the clinical notes attached. Do you have the chart notes showing lisinopril and losartan failures?", time: "9:44 AM" },
+      { sender: "hcp", text: "Yes, I can send those over. What's the fastest way?", time: "9:45 AM" },
+      { sender: "concierge", text: "I'll send you a secure upload link right now via SMS. Once I have the notes, I'll file the appeal today and also request a peer-to-peer review, which typically gets scheduled within 48 hours.", time: "9:45 AM" },
+      { sender: "system", text: "Secure upload link sent to Dr. Kim's mobile", time: "9:46 AM" },
+      { sender: "hcp", text: "Just uploaded the notes. Appreciate the quick help on this.", time: "9:48 AM" },
+      { sender: "concierge", text: "Got them. Appeal is being filed now with Aetna. I'll have the peer-to-peer review scheduled and will text you the confirmed date and time. Is there anything else I can help with?", time: "9:49 AM" },
+      { sender: "hcp", text: "No, that's everything. Thank you, Jessica.", time: "9:50 AM" },
+      { sender: "system", text: "Session ended — Appeal filed, P2P review scheduled for Feb 22", time: "9:50 AM" },
+    ],
+  },
+};
+
+function ConciergeModal({ engagement, onClose }: { engagement: Engagement; onClose: () => void }) {
+  const detail = conciergeSources[engagement.npi];
+  if (!detail) return null;
+
+  const bubbleStyle = (sender: ConciergeMessage["sender"]) => {
+    if (sender === "hcp") return { background: `${c.accent}10`, border: `1px solid ${c.accent}20`, align: "self-start" as const };
+    if (sender === "concierge") return { background: c.bg, border: `1px solid ${c.divider}`, align: "self-end" as const };
+    return { background: "transparent", border: `1px dashed ${c.divider}`, align: "self-center" as const };
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}>
+      <div
+        className="relative w-full max-w-lg rounded-2xl border flex flex-col"
+        style={{ background: c.card, borderColor: `${c.accent}25`, boxShadow: `0 0 40px ${c.accent}10`, maxHeight: "90vh" }}
+      >
+        <div className="shrink-0 flex items-start justify-between px-6 pt-6 pb-4 rounded-t-2xl" style={{ borderBottom: `1px solid ${c.divider}` }}>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <Headphones className="h-4 w-4" style={{ color: c.accent }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.accent }}>Concierge Conversation</span>
+            </div>
+            <h2 className="text-base font-bold" style={{ color: c.textPrimary }}>{engagement.hcp}</h2>
+            <p className="text-xs mt-0.5" style={{ color: c.textSecondary }}>{engagement.specialty} · NPI {engagement.npi}</p>
+          </div>
+          <button onClick={onClose} className="rounded-lg p-1.5 transition-colors hover:bg-white/5 cursor-pointer">
+            <X className="h-4 w-4" style={{ color: c.textSecondary }} />
+          </button>
+        </div>
+
+        <div className="overflow-y-auto px-6 py-5 space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Session ID</p>
+              <p className="text-xs font-mono font-medium" style={{ color: c.textPrimary }}>{detail.sessionId}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Duration</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{detail.duration}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Agent</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{detail.conciergeAgent}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Satisfaction</p>
+              <p className="text-xs font-medium" style={{ color: c.green }}>{detail.satisfactionScore}</p>
+            </div>
+          </div>
+
+          <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: c.divider }}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textMuted }}>Reason</span>
+              <span className="text-xs font-semibold" style={{ color: c.pink }}>{detail.reason}</span>
+            </div>
+            <div className="flex items-center justify-between" style={{ borderTop: `1px solid ${c.divider}`, paddingTop: 8 }}>
+              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textMuted }}>Resolution</span>
+              <span className="text-xs font-semibold" style={{ color: c.green }}>{detail.resolution}</span>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: c.textMuted }}>Full Transcript</p>
+            <div className="rounded-xl border p-4 space-y-3" style={{ background: c.bg, borderColor: c.divider }}>
+              {detail.transcript.map((msg, i) => {
+                const style = bubbleStyle(msg.sender);
+                return (
+                  <div key={i} className={`flex flex-col ${style.align}`} style={{ maxWidth: msg.sender === "system" ? "100%" : "85%" }}>
+                    <div className="rounded-lg px-3 py-2" style={{ background: style.background, border: style.border }}>
+                      {msg.sender !== "system" && (
+                        <div className="flex items-center gap-1.5 mb-1">
+                          {msg.sender === "hcp" ? <User className="h-3 w-3" style={{ color: c.accent }} /> : <Headphones className="h-3 w-3" style={{ color: c.green }} />}
+                          <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: msg.sender === "hcp" ? c.accent : c.green }}>
+                            {msg.sender === "hcp" ? engagement.hcp : "Concierge"}
+                          </span>
+                        </div>
+                      )}
+                      <p className={`text-xs leading-relaxed ${msg.sender === "system" ? "text-center italic" : ""}`} style={{ color: msg.sender === "system" ? c.textMuted : c.textPrimary }}>
+                        {msg.text}
+                      </p>
+                    </div>
+                    <span className={`text-[10px] mt-0.5 px-1 ${msg.sender === "system" ? "text-center" : ""}`} style={{ color: c.textMuted }}>{msg.time}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Outbound Direct Mail Data & Modal ── */
+
+interface DirectMailDetail {
+  campaignName: string;
+  mailPieceType: string;
+  routedFrom: string;
+  triggerEvent: string;
+  createdAt: string;
+  shippedAt: string;
+  estimatedDelivery: string;
+  trackingStatus: string;
+  contents: string[];
+  recipientAddress: string;
+  followUpPlan: string;
+}
+
+const directMailSources: Record<string, DirectMailDetail> = {
+  "7890123456": {
+    campaignName: "Respira Clinical Evidence — Cardiology Tier 1",
+    mailPieceType: "Clinical Evidence Portfolio + Sample Request Card",
+    routedFrom: "SMS Flow: Respira Re-engagement Sequence (Step 3 — non-responder branch)",
+    triggerEvent: "Dr. Thompson did not respond to 2 SMS touches over 14 days. System triggered outbound direct mail as next-best channel based on historical preference data.",
+    createdAt: "Feb 13, 2026",
+    shippedAt: "Feb 14, 2026 · FedEx Ground",
+    estimatedDelivery: "Feb 19, 2026",
+    trackingStatus: "Delivered — Signed by front desk (Feb 19, 10:14 AM)",
+    contents: [
+      "Respira clinical summary card (4-page fold-out)",
+      "Real-world evidence booklet — 12-month outcomes data",
+      "Sample request reply card (pre-paid postage)",
+      "QR code linking to personalized Intelligent Media portal",
+    ],
+    recipientAddress: "Dr. Lisa Thompson · Cardiology Associates of Manhattan · 425 E 61st St, Suite 200, New York, NY 10065",
+    followUpPlan: "Post-delivery SMS scheduled for Feb 21 asking if materials were received. If QR code is scanned, Intelligent Media engagement will auto-trigger next sequence.",
+  },
+};
+
+function DirectMailModal({ engagement, onClose }: { engagement: Engagement; onClose: () => void }) {
+  const detail = directMailSources[engagement.npi];
+  if (!detail) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}>
+      <div
+        className="relative w-full max-w-lg rounded-2xl border flex flex-col"
+        style={{ background: c.card, borderColor: `${c.accent}25`, boxShadow: `0 0 40px ${c.accent}10`, maxHeight: "90vh" }}
+      >
+        <div className="shrink-0 flex items-start justify-between px-6 pt-6 pb-4 rounded-t-2xl" style={{ borderBottom: `1px solid ${c.divider}` }}>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <Package className="h-4 w-4" style={{ color: c.accent }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.accent }}>Outbound Direct Mail</span>
+            </div>
+            <h2 className="text-base font-bold" style={{ color: c.textPrimary }}>{engagement.hcp}</h2>
+            <p className="text-xs mt-0.5" style={{ color: c.textSecondary }}>{engagement.specialty} · NPI {engagement.npi}</p>
+          </div>
+          <button onClick={onClose} className="rounded-lg p-1.5 transition-colors hover:bg-white/5 cursor-pointer">
+            <X className="h-4 w-4" style={{ color: c.textSecondary }} />
+          </button>
+        </div>
+
+        <div className="overflow-y-auto px-6 py-5 space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Campaign</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{detail.campaignName}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Mail Piece</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{detail.mailPieceType}</p>
+            </div>
+          </div>
+
+          <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: c.divider }}>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.accent }}>Routed From</p>
+            <p className="text-xs leading-relaxed" style={{ color: c.textPrimary }}>{detail.routedFrom}</p>
+            <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${c.divider}` }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.textMuted }}>Trigger Reason</p>
+              <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{detail.triggerEvent}</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            <div className="rounded-lg border p-3" style={{ background: c.bg, borderColor: c.divider }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Created</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{detail.createdAt}</p>
+            </div>
+            <div className="rounded-lg border p-3" style={{ background: c.bg, borderColor: c.divider }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Shipped</p>
+              <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{detail.shippedAt}</p>
+            </div>
+            <div className="rounded-lg border p-3" style={{ background: `${c.green}08`, borderColor: `${c.green}20` }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.green }}>Status</p>
+              <p className="text-xs font-medium" style={{ color: c.green }}>Delivered</p>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: c.textMuted }}>Package Contents</p>
+            <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: c.divider }}>
+              <ul className="space-y-2">
+                {detail.contents.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs" style={{ color: c.textPrimary }}>
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0" style={{ background: c.accent }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Ship To</p>
+            <p className="text-xs" style={{ color: c.textSecondary }}>{detail.recipientAddress}</p>
+          </div>
+
+          <div className="rounded-xl border p-4" style={{ background: `${c.accent}08`, borderColor: `${c.accent}20` }}>
+            <p className="text-[10px] font-bold uppercase tracking-widest mb-1.5" style={{ color: c.accent }}>Follow-Up Plan</p>
+            <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{detail.followUpPlan}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function EngagementsView() {
+  const [selectedMedia, setSelectedMedia] = useState<Engagement | null>(null);
+  const [selectedSms, setSelectedSms] = useState<Engagement | null>(null);
+  const [selectedConcierge, setSelectedConcierge] = useState<Engagement | null>(null);
+  const [selectedDirectMail, setSelectedDirectMail] = useState<Engagement | null>(null);
+  const isIntelligentMedia = (row: Engagement) => row.lastChannel === "Intelligent Media" && intelligentMediaSources[row.npi];
+  const isSms = (row: Engagement) => row.lastChannel === "SMS" && smsFlowSources[row.npi];
+  const isConcierge = (row: Engagement) => row.lastChannel === "Concierge" && conciergeSources[row.npi];
+  const isDirectMail = (row: Engagement) => row.lastChannel === "Outbound Direct Mail" && directMailSources[row.npi];
+  const hasDetail = (row: Engagement) => isIntelligentMedia(row) || isSms(row) || isConcierge(row) || isDirectMail(row);
+
   return (
     <>
       <div className="mb-8 flex items-center justify-between">
@@ -428,8 +1011,26 @@ function EngagementsView() {
                     <td className="px-6 py-4"><Badge label={row.status} color={engagementStatusColor(row.status)} /></td>
                     <td className="px-6 py-4" style={{ color: c.textSecondary }}>{row.coordinator}</td>
                     <td className="px-6 py-4">
-                      <button className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold" style={{ borderColor: c.divider, color: c.textSecondary }}>
-                        <span>View</span><Eye className="h-3.5 w-3.5" />
+                      <button
+                        onClick={() => {
+                          if (isIntelligentMedia(row)) setSelectedMedia(row);
+                          else if (isSms(row)) setSelectedSms(row);
+                          else if (isConcierge(row)) setSelectedConcierge(row);
+                          else if (isDirectMail(row)) setSelectedDirectMail(row);
+                        }}
+                        className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors"
+                        style={{
+                          borderColor: hasDetail(row) ? `${c.accent}40` : c.divider,
+                          color: hasDetail(row) ? c.accent : c.textSecondary,
+                          cursor: hasDetail(row) ? "pointer" : "default",
+                        }}
+                      >
+                        <span>View</span>
+                        {isIntelligentMedia(row) ? <QrCode className="h-3.5 w-3.5" />
+                          : isSms(row) ? <MessageSquare className="h-3.5 w-3.5" />
+                          : isConcierge(row) ? <Headphones className="h-3.5 w-3.5" />
+                          : isDirectMail(row) ? <Package className="h-3.5 w-3.5" />
+                          : <Eye className="h-3.5 w-3.5" />}
                       </button>
                     </td>
                   </tr>
@@ -450,6 +1051,19 @@ function EngagementsView() {
           </div>
         </div>
       </div>
+
+      {selectedMedia && (
+        <IntelligentMediaModal engagement={selectedMedia} onClose={() => setSelectedMedia(null)} />
+      )}
+      {selectedSms && (
+        <SmsDetailModal engagement={selectedSms} onClose={() => setSelectedSms(null)} />
+      )}
+      {selectedConcierge && (
+        <ConciergeModal engagement={selectedConcierge} onClose={() => setSelectedConcierge(null)} />
+      )}
+      {selectedDirectMail && (
+        <DirectMailModal engagement={selectedDirectMail} onClose={() => setSelectedDirectMail(null)} />
+      )}
     </>
   );
 }
@@ -494,7 +1108,7 @@ export default function Home() {
         </nav>
 
         {/* Ion Animation */}
-        <div className="flex-1 flex items-center justify-center overflow-hidden px-2">
+        <div className="flex-1 flex items-end justify-center overflow-hidden px-2 pb-4">
           <IonAnimation className="w-full max-w-[260px]" />
         </div>
 

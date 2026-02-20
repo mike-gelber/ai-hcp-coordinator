@@ -210,12 +210,12 @@ interface Channel {
 }
 
 const channelData: Channel[] = [
-  { label: "SMS", value: "854", icon: Smartphone, trend: "up", direction: "Outbound" },
-  { label: "Email", value: "1,243", icon: Mail, trend: "flat", direction: "Outbound" },
-  { label: "Intelligent Media", value: "432", icon: Globe, trend: "up", direction: "Inbound" },
+  { label: "SMS", value: "2,480", icon: Smartphone, trend: "up", direction: "Outbound" },
+  { label: "Email", value: "620", icon: Mail, trend: "flat", direction: "Outbound" },
+  { label: "Intelligent Media", value: "1,890", icon: Globe, trend: "up", direction: "Inbound" },
   { label: "Concierge", value: "128", icon: Headphones, trend: "down", direction: "Inbound" },
   { label: "AI Assistant", value: "2,156", icon: Bot, trend: "up", direction: "Inbound" },
-  { label: "Direct Mail", value: "312", icon: Send, trend: "up", direction: "Inbound" },
+  { label: "Outbound Direct Mail", value: "312", icon: Send, trend: "up", direction: "Outbound" },
   { label: "P2P Calling", value: "476", icon: Phone, trend: "up", direction: "Outbound" },
 ];
 
@@ -228,14 +228,14 @@ interface ChannelDetail {
 
 const channelDetails: Record<string, ChannelDetail> = {
   SMS: {
-    description: "Outbound SMS outreach for appointment reminders, sample follow-ups, and targeted clinical messaging.",
+    description: "Outbound SMS outreach for appointment reminders, sample follow-ups, and targeted clinical messaging. Primary engagement channel.",
     metrics: [
-      { label: "Messages Sent (30d)", value: "854", change: "+14%" },
+      { label: "Messages Sent (30d)", value: "2,480", change: "+18%" },
       { label: "Delivery Rate", value: "97.2%" },
-      { label: "Response Rate", value: "34%", change: "+6%" },
+      { label: "Response Rate", value: "38%", change: "+6%" },
       { label: "Opt-Out Rate", value: "1.2%", change: "-0.3%" },
     ],
-    weeklyVolume: [112, 98, 134, 156, 128, 142, 84],
+    weeklyVolume: [310, 328, 362, 398, 354, 382, 346],
     sampleEngagements: [
       { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Replied to Stelazio dosing reminder with question about titration schedule", time: "2m ago", outcome: "Engaged — routed to medical" },
       { hcp: "Dr. David Park", specialty: "Neurology", summary: "Confirmed interest in Neurovia lunch-and-learn event", time: "32m ago", outcome: "Event RSVP confirmed" },
@@ -246,12 +246,12 @@ const channelDetails: Record<string, ChannelDetail> = {
   Email: {
     description: "Outbound email campaigns including clinical updates, KOL content, and personalized HCP engagement sequences.",
     metrics: [
-      { label: "Emails Sent (30d)", value: "1,243", change: "+8%" },
+      { label: "Emails Sent (30d)", value: "620", change: "+4%" },
       { label: "Open Rate", value: "42%", change: "+3%" },
       { label: "Click Rate", value: "12.5%", change: "+1.8%" },
       { label: "Unsubscribe Rate", value: "0.4%" },
     ],
-    weeklyVolume: [165, 189, 172, 198, 201, 178, 140],
+    weeklyVolume: [78, 92, 86, 98, 94, 88, 84],
     sampleEngagements: [
       { hcp: "Dr. James Wilson", specialty: "Neurology", summary: "Opened Neurovia Phase III results email, clicked full study link", time: "5m ago", outcome: "Content engaged — add to nurture" },
       { hcp: "Dr. Lisa Thompson", specialty: "Cardiology", summary: "Forwarded Respira dosing guide to colleague", time: "1h ago", outcome: "Viral share detected" },
@@ -262,12 +262,12 @@ const channelDetails: Record<string, ChannelDetail> = {
   "Intelligent Media": {
     description: "Inbound content hub with AI-personalized clinical resources, interactive tools, and adaptive learning modules.",
     metrics: [
-      { label: "Unique Visitors (30d)", value: "432", change: "+22%" },
-      { label: "Avg Session Duration", value: "4m 32s", change: "+18%" },
-      { label: "Content Interactions", value: "1,847", change: "+35%" },
-      { label: "Return Visitor Rate", value: "61%" },
+      { label: "Unique Visitors (30d)", value: "1,890", change: "+34%" },
+      { label: "Avg Session Duration", value: "5m 18s", change: "+22%" },
+      { label: "Content Interactions", value: "6,420", change: "+42%" },
+      { label: "Return Visitor Rate", value: "68%" },
     ],
-    weeklyVolume: [48, 56, 62, 72, 68, 74, 52],
+    weeklyVolume: [220, 248, 272, 298, 284, 310, 258],
     sampleEngagements: [
       { hcp: "Dr. Maria Garcia", specialty: "Oncology", summary: "Completed Oncurel MOA interactive module (score: 92%)", time: "15m ago", outcome: "Certificate generated" },
       { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Viewed Stelazio patient case studies (3 of 5 completed)", time: "45m ago", outcome: "Partial completion — nudge scheduled" },
@@ -307,8 +307,8 @@ const channelDetails: Record<string, ChannelDetail> = {
       { hcp: "Dr. Amy Walsh", specialty: "Cardiology", summary: "Asked about patient assistance program eligibility criteria", time: "2h ago", outcome: "Hub enrollment link provided" },
     ],
   },
-  "Direct Mail": {
-    description: "Inbound direct mail fulfillment for physical collateral, sample kits, and targeted promotional materials.",
+  "Outbound Direct Mail": {
+    description: "Outbound fulfillment for physical collateral, sample kits, and targeted promotional materials.",
     metrics: [
       { label: "Pieces Sent (30d)", value: "312", change: "+10%" },
       { label: "Delivery Confirmation", value: "96%" },
@@ -597,7 +597,7 @@ function ChannelRow({ channel, onClick }: { channel: Channel; onClick: () => voi
       <div
         role="button"
         tabIndex={0}
-        className="flex-1 flex items-center justify-between rounded-xl border px-4 py-3 cursor-pointer transition-all hover:border-[#0deefd33]"
+        className="flex-1 flex items-center gap-3 rounded-xl border px-3 py-3 cursor-pointer transition-all hover:border-[#0deefd33]"
         style={{
           background: c.card,
           borderColor: c.cardBorder,
@@ -606,28 +606,37 @@ function ChannelRow({ channel, onClick }: { channel: Channel; onClick: () => voi
         onClick={onClick}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick(); }}
       >
-        <div className="flex items-center gap-2">
-          <TrendIcon trend={channel.trend} />
-          <span className="text-xs" style={{ color: c.textSecondary }}>
-            {channel.direction}
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-medium" style={{ color: c.textSecondary }}>
-            {channel.label}
-          </span>
-          <span
-            className="text-2xl font-bold tabular-nums"
-            style={{ color: c.accent, textShadow: `0 0 10px ${c.accent}30` }}
-          >
-            {channel.value}
-          </span>
-        </div>
         <div
-          className="flex h-9 w-9 items-center justify-center rounded-lg"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
           style={{ background: `${c.accent}10`, border: `1px solid ${c.accent}20` }}
         >
           <Icon className="h-4 w-4" style={{ color: c.accent }} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-semibold" style={{ color: c.textPrimary }}>
+              {channel.label}
+            </span>
+            <TrendIcon trend={channel.trend} />
+          </div>
+          <div className="flex items-center gap-3 mt-0.5">
+            <span
+              className="text-xl font-bold tabular-nums"
+              style={{ color: c.accent, textShadow: `0 0 10px ${c.accent}30` }}
+            >
+              {channel.value}
+            </span>
+            <span
+              className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+              style={{
+                background: channel.direction === "Outbound" ? `${c.accent}15` : `${c.textSecondary}15`,
+                color: channel.direction === "Outbound" ? c.accent : c.textSecondary,
+                border: `1px solid ${channel.direction === "Outbound" ? c.accent : c.textSecondary}25`,
+              }}
+            >
+              {channel.direction}
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -744,7 +753,7 @@ function ModalBackdrop({ children, onClose }: { children: React.ReactNode; onClo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-6"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
@@ -770,11 +779,11 @@ function IntegrationDetailModal({ integration, onClose }: { integration: Integra
   return (
     <ModalBackdrop onClose={onClose}>
       <div
-        className="w-full max-w-2xl rounded-2xl border overflow-hidden animate-in fade-in zoom-in-95"
-        style={{ background: c.bg, borderColor: c.cardBorder, maxHeight: "85vh" }}
+        className="w-full max-w-2xl rounded-2xl border overflow-hidden animate-in fade-in zoom-in-95 flex flex-col"
+        style={{ background: c.bg, borderColor: c.cardBorder, maxHeight: "90vh" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: c.cardBorder, background: c.card }}>
+        <div className="shrink-0 flex items-center justify-between px-6 py-4 border-b rounded-t-2xl" style={{ borderColor: c.cardBorder, background: c.card }}>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: `${c.accent}15`, border: `1px solid ${c.accent}30` }}>
               <Icon className="h-5 w-5" style={{ color: c.accent }} />
@@ -792,8 +801,8 @@ function IntegrationDetailModal({ integration, onClose }: { integration: Integra
           </button>
         </div>
 
-        {/* Body */}
-        <div className="overflow-y-auto px-6 py-5 space-y-6" style={{ maxHeight: "calc(85vh - 72px)" }}>
+        {/* Body — scrollable */}
+        <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6">
           <p className="text-sm leading-relaxed" style={{ color: c.textSecondary }}>{details.description}</p>
 
           {/* Metrics */}
@@ -868,11 +877,11 @@ function ChannelDetailModal({ channel, onClose }: { channel: Channel; onClose: (
   return (
     <ModalBackdrop onClose={onClose}>
       <div
-        className="w-full max-w-3xl rounded-2xl border overflow-hidden"
-        style={{ background: c.bg, borderColor: c.cardBorder, maxHeight: "85vh" }}
+        className="w-full max-w-3xl rounded-2xl border overflow-hidden flex flex-col"
+        style={{ background: c.bg, borderColor: c.cardBorder, maxHeight: "90vh" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: c.cardBorder, background: c.card }}>
+        <div className="shrink-0 flex items-center justify-between px-6 py-4 border-b rounded-t-2xl" style={{ borderColor: c.cardBorder, background: c.card }}>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: `${c.accent}15`, border: `1px solid ${c.accent}30` }}>
               <Icon className="h-5 w-5" style={{ color: c.accent }} />
@@ -900,8 +909,8 @@ function ChannelDetailModal({ channel, onClose }: { channel: Channel; onClose: (
           </button>
         </div>
 
-        {/* Body */}
-        <div className="overflow-y-auto px-6 py-5 space-y-6" style={{ maxHeight: "calc(85vh - 72px)" }}>
+        {/* Body — scrollable */}
+        <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6">
           <p className="text-sm leading-relaxed" style={{ color: c.textSecondary }}>{details.description}</p>
 
           {/* Metrics */}
