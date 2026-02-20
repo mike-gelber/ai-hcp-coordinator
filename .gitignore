@@ -8,9 +8,6 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
 # next.js
 /.next/
 /out/
@@ -32,9 +29,6 @@ yarn-error.log*
 .env
 .env*.local
 
-# vercel
-.vercel/
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -42,8 +36,9 @@ next-env.d.ts
 # IDE
 .idea/
 .vscode/
+.cursor/
 *.swp
 *.swo
 
-# Docker
-docker-compose.override.yml
+# vercel
+.vercel/

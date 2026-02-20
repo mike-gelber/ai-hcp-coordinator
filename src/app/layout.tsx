@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI HCP Field Force",
-  description: "AI-powered pharma field force for engaging Healthcare Professionals",
+  title: "Impiricus – Ascend",
+  description: "Virtual Coordinator dashboard for Impiricus Ascend platform",
 };
 
 export default function RootLayout({
