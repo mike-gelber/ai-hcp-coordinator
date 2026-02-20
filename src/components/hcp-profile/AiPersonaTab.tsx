@@ -13,16 +13,16 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
   return (
     <div className="space-y-6">
       {/* Archetype Badge + Executive Summary */}
-      <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-6 dark:border-indigo-800 dark:bg-indigo-950">
+      <div className="rounded-xl border border-brand-200 bg-brand-50 p-6 dark:border-brand-800 dark:bg-brand-950">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-200 dark:bg-indigo-800">
-            <Brain className="h-5 w-5 text-indigo-700 dark:text-indigo-300" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-200 dark:bg-brand-800">
+            <Brain className="h-5 w-5 text-brand-700 dark:text-brand-300" />
           </div>
           <div>
-            <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
+            <p className="text-xs font-medium text-brand-600 dark:text-brand-400">
               AI-Generated Archetype
             </p>
-            <p className="text-lg font-bold text-indigo-900 dark:text-indigo-100">
+            <p className="text-lg font-bold text-brand-900 dark:text-brand-100">
               {aiPersona.archetype}
             </p>
           </div>
@@ -40,7 +40,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
         <div className="mb-4 flex items-center gap-2">
           <Brain className="h-5 w-5 text-gray-400" />
           <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Persona Narrative</h3>
-          <span className="ml-auto rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+          <span className="ml-auto rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-900 dark:text-brand-300">
             AI Generated
           </span>
         </div>
@@ -85,7 +85,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
                 key={i}
                 className="flex items-start gap-2 rounded-lg bg-gray-50 px-4 py-3 dark:bg-gray-800"
               >
-                <Zap className="mt-0.5 h-3.5 w-3.5 shrink-0 text-indigo-500" />
+                <Zap className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-500" />
                 <span className="text-sm text-gray-700 dark:text-gray-300">{pref}</span>
               </div>
             ))}
@@ -104,7 +104,7 @@ export function AiPersonaTab({ profile }: AiPersonaTabProps) {
             {aiPersona.preferredChannels.map((channel) => (
               <span
                 key={channel}
-                className="rounded-full bg-indigo-100 px-3 py-1.5 text-sm font-medium capitalize text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300"
+                className="rounded-full bg-brand-100 px-3 py-1.5 text-sm font-medium capitalize text-brand-700 dark:bg-brand-900 dark:text-brand-300"
               >
                 {channel}
               </span>

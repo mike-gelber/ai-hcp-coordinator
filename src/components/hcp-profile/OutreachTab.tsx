@@ -154,7 +154,7 @@ function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, string> = {
     sent: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
     delivered: "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300",
-    opened: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300",
+    opened: "bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300",
     clicked: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
     replied: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
     bounced: "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300",

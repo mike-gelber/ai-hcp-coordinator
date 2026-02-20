@@ -29,7 +29,7 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
         <MiniStat
           label="Brand vs Generic"
           value={prescribingProfile.brandVsGeneric.replace("-", " ")}
-          color="indigo"
+          color="brand"
         />
         <MiniStat
           label="Top Therapeutic Area"
@@ -67,7 +67,7 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
                   </div>
                   <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
                     <div
-                      className="h-full rounded-full bg-indigo-500 transition-all"
+                      className="h-full rounded-full bg-brand-500/80 transition-all"
                       style={{ width: `${pct}%` }}
                     />
                   </div>
@@ -91,7 +91,7 @@ export function PrescribingTab({ profile }: PrescribingTabProps) {
                 key={area}
                 className={`rounded-full px-3 py-1.5 text-sm font-medium ${
                   area === prescribingProfile.topTherapeuticArea
-                    ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300"
+                    ? "bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300"
                     : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                 }`}
               >
@@ -168,7 +168,7 @@ function MiniStat({ label, value, color }: { label: string; value: string; color
     emerald: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
     sky: "bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300",
     gray: "bg-gray-50 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
-    indigo: "bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300",
+    brand: "bg-brand-50 text-brand-700 dark:bg-brand-950 dark:text-brand-300",
     amber: "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
   };
 

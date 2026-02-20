@@ -1,21 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand-50: #ecfffe;
+  --color-brand-100: #cffffe;
+  --color-brand-200: #a5fffc;
+  --color-brand-300: #67fff8;
+  --color-brand-400: #22f5ec;
+  --color-brand-500: #00ffd5;
+  --color-brand-600: #00ccb0;
+  --color-brand-700: #02a290;
+  --color-brand-800: #0a7f74;
+  --color-brand-900: #0d685f;
+  --color-brand-950: #00413d;
+
+  --color-surface-bg: #050505;
+  --color-surface-card: #0f0f0f;
+  --color-surface-elevated: #171717;
+  --color-surface-border: #262626;
+  --color-surface-hover: #1c1c1c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #050505;
+  --foreground: #ededed;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dark scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
 }
 
 /* Agent dialogue animations */

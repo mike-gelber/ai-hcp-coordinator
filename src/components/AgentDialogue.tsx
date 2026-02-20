@@ -93,8 +93,8 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
     return (
       <div className="flex flex-col items-center justify-center py-16">
         <div className="relative">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600" />
-          <Bot className="absolute inset-0 m-auto h-5 w-5 text-indigo-600" />
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-brand-900 border-t-brand-400" />
+          <Bot className="absolute inset-0 m-auto h-5 w-5 text-brand-400" />
         </div>
         <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-400">
           Initializing AI Field Force agents...
@@ -125,11 +125,11 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-200 px-5 py-3 dark:border-gray-700">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-indigo-500" />
+          <Sparkles className="h-4 w-4 text-brand-500" />
           <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
             AI Field Force Dialogue
           </h3>
-          <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+          <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-900 dark:text-brand-300">
             {isStreaming ? "Live" : `${messages.length} messages`}
           </span>
         </div>
@@ -198,7 +198,7 @@ export function AgentDialogue({ npi }: AgentDialogueProps) {
 
 function AgentBadge({ role }: { role: "strategist" | "outreach_specialist" }) {
   const agent = AGENT_PROFILES[role];
-  const dotColor = role === "strategist" ? "bg-indigo-500" : "bg-emerald-500";
+  const dotColor = role === "strategist" ? "bg-brand-500" : "bg-emerald-500";
 
   return (
     <div className="flex items-center gap-1.5">
@@ -213,11 +213,11 @@ function MessageBubble({ message, isLatest }: { message: AgentMessage; isLatest:
   const isStrategist = message.role === "strategist";
 
   const bubbleStyles = isStrategist
-    ? "bg-indigo-50 border-indigo-200 dark:bg-indigo-950/40 dark:border-indigo-800"
+    ? "bg-brand-50 border-brand-200 dark:bg-brand-950/40 dark:border-brand-800"
     : "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/40 dark:border-emerald-800";
 
   const nameColor = isStrategist
-    ? "text-indigo-700 dark:text-indigo-300"
+    ? "text-brand-700 dark:text-brand-300"
     : "text-emerald-700 dark:text-emerald-300";
 
   return (
@@ -225,7 +225,7 @@ function MessageBubble({ message, isLatest }: { message: AgentMessage; isLatest:
       {/* Avatar */}
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm ${
-          isStrategist ? "bg-indigo-100 dark:bg-indigo-900" : "bg-emerald-100 dark:bg-emerald-900"
+          isStrategist ? "bg-brand-100 dark:bg-brand-900" : "bg-emerald-100 dark:bg-emerald-900"
         }`}
       >
         {agent.avatar}
@@ -323,7 +323,7 @@ function TypingIndicator({ role }: { role: "strategist" | "outreach_specialist" 
     <div className="flex gap-3">
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm ${
-          isStrategist ? "bg-indigo-100 dark:bg-indigo-900" : "bg-emerald-100 dark:bg-emerald-900"
+          isStrategist ? "bg-brand-100 dark:bg-brand-900" : "bg-emerald-100 dark:bg-emerald-900"
         }`}
       >
         {agent.avatar}
@@ -331,7 +331,7 @@ function TypingIndicator({ role }: { role: "strategist" | "outreach_specialist" 
       <div
         className={`rounded-lg border px-4 py-3 ${
           isStrategist
-            ? "border-indigo-200 bg-indigo-50 dark:border-indigo-800 dark:bg-indigo-950/40"
+            ? "border-brand-200 bg-brand-50 dark:border-brand-800 dark:bg-brand-950/40"
             : "border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/40"
         }`}
       >

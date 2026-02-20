@@ -77,7 +77,7 @@ export default function DashboardPage() {
                 {loading ? "Loading..." : "Enter Demo Mode"}
               </button>
             )}
-            <button className="flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors">
+            <button className="flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-gray-950 hover:bg-brand-400 transition-colors">
               <Upload className="h-4 w-4" />
               Upload NPI List
             </button>
@@ -115,7 +115,7 @@ export default function DashboardPage() {
           </div>
         ) : loading ? (
           <div className="flex flex-col items-center justify-center py-32">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent" />
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-400 border-t-transparent" />
             <p className="mt-4 text-sm text-gray-500">Loading demo data...</p>
           </div>
         ) : stats ? (
@@ -127,7 +127,7 @@ export default function DashboardPage() {
                 label="Total HCPs"
                 value={stats.total}
                 sublabel="in target list"
-                color="indigo"
+                color="brand"
               />
               <StatCard
                 label="Key Opinion Leaders"
@@ -185,7 +185,7 @@ export default function DashboardPage() {
               </h3>
               <div className="flex items-center gap-2">
                 {[
-                  { label: "Ingested", count: stats.total, color: "bg-indigo-500" },
+                  { label: "Ingested", count: stats.total, color: "bg-brand-500" },
                   { label: "Validated", count: 0, color: "bg-sky-500" },
                   { label: "Enriched", count: 0, color: "bg-emerald-500" },
                   { label: "Strategy Generated", count: 0, color: "bg-amber-500" },

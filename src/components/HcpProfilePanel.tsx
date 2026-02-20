@@ -42,7 +42,7 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
       <div className="space-y-6 p-6">
         {/* Quick Tags */}
         <div className="flex flex-wrap gap-2">
-          <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+          <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700 dark:bg-brand-900 dark:text-brand-300">
             {profile.primarySpecialty}
           </span>
           <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
@@ -151,7 +151,7 @@ export function HcpProfilePanel({ profile, onClose }: HcpProfilePanelProps) {
         {/* View Full Profile Link */}
         <Link
           href={`/hcp/${profile.npi}`}
-          className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+          className="flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-4 py-3 text-sm font-semibold text-gray-950 transition-colors hover:bg-brand-400"
         >
           <ExternalLink className="h-4 w-4" />
           View Full Profile

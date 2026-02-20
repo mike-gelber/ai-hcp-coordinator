@@ -60,7 +60,7 @@ export default function HcpProfilePage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent" />
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-400 border-t-transparent" />
           <p className="text-sm text-gray-500">Loading profile...</p>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function HcpProfilePage() {
           <p className="mt-2 text-sm text-gray-500">NPI: {npi}</p>
           <a
             href="/dashboard"
-            className="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors"
+            className="mt-4 inline-block rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-gray-950 hover:bg-brand-400 transition-colors"
           >
             Back to Dashboard
           </a>
@@ -104,7 +104,7 @@ export default function HcpProfilePage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex shrink-0 items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
                     isActive
-                      ? "border-indigo-500 text-indigo-600 dark:text-indigo-400"
+                      ? "border-brand-500 text-brand-600 dark:text-brand-400"
                       : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                   }`}
                 >
