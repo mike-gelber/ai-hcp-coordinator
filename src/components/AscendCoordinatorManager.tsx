@@ -806,7 +806,7 @@ function IntegrationDetailModal({ integration, onClose }: { integration: Integra
                   <div className="flex items-center gap-2">
                     <span className="text-lg font-bold" style={{ color: c.textPrimary }}>{m.value}</span>
                     {m.change && (
-                      <span className="flex items-center gap-0.5 text-xs font-medium" style={{ color: m.change.startsWith("-") && !m.label.includes("Time") && !m.label.includes("Issues") ? c.pink : c.green }}>
+                      <span className="flex items-center gap-0.5 text-xs font-medium" style={{ color: m.change.startsWith("-") && !m.label.includes("Time") && !m.label.includes("Issues") ? c.red : c.green }}>
                         <ArrowUpRight className="h-3 w-3" style={{ transform: m.change.startsWith("-") ? "rotate(90deg)" : undefined }} />
                         {m.change}
                       </span>
@@ -820,9 +820,9 @@ function IntegrationDetailModal({ integration, onClose }: { integration: Integra
           {/* Configuration */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: c.textSecondary }}>Configuration</h3>
-            <div className="rounded-xl border divide-y" style={{ background: c.card, borderColor: c.cardBorder, divideColor: c.cardBorder }}>
-              {details.config.map((cfg) => (
-                <div key={cfg.label} className="flex items-center justify-between px-4 py-2.5" style={{ borderColor: c.cardBorder }}>
+            <div className="rounded-xl border" style={{ background: c.card, borderColor: c.cardBorder }}>
+              {details.config.map((cfg, i) => (
+                <div key={cfg.label} className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: i < details.config.length - 1 ? `1px solid ${c.cardBorder}` : undefined }}>
                   <span className="text-sm" style={{ color: c.textSecondary }}>{cfg.label}</span>
                   <span className="text-sm font-semibold" style={{ color: c.textPrimary }}>{cfg.value}</span>
                 </div>
@@ -916,7 +916,7 @@ function ChannelDetailModal({ channel, onClose }: { channel: Channel; onClose: (
                   <div className="flex items-center gap-2">
                     <span className="text-lg font-bold" style={{ color: c.textPrimary }}>{m.value}</span>
                     {m.change && (
-                      <span className="text-xs font-medium" style={{ color: m.change.startsWith("-") && !m.label.toLowerCase().includes("opt") && !m.label.toLowerCase().includes("unsub") && !m.label.toLowerCase().includes("escalat") ? c.green : m.change.startsWith("+") ? c.green : c.pink }}>
+                      <span className="text-xs font-medium" style={{ color: m.change.startsWith("-") && !m.label.toLowerCase().includes("opt") && !m.label.toLowerCase().includes("unsub") && !m.label.toLowerCase().includes("escalat") ? c.green : m.change.startsWith("+") ? c.green : c.red }}>
                         {m.change}
                       </span>
                     )}
