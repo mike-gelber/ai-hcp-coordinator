@@ -66,7 +66,7 @@ interface Integration {
   enabled: boolean;
 }
 
-const integrationData: Integration[] = [
+const initialIntegrationData: Integration[] = [
   { name: "Samples", status: "warning", icon: Package, stats: [{ label: "Stock:", value: "85%" }, { label: "Low Items:", value: "3" }], enabled: true },
   { name: "Hub Services", status: "good", icon: Heart, stats: [{ label: "Enrolled:", value: "2,458" }, { label: "Growth:", value: "+5%" }], enabled: true },
   { name: "Prior Auth", status: "good", icon: ShieldCheck, stats: [{ label: "Pending:", value: "25" }, { label: "Approved:", value: "65" }], enabled: true },
@@ -220,8 +220,6 @@ interface CatalogModule {
   tags: string[];
   popular?: boolean;
 }
-
-const activeModuleNames = new Set(integrationData.map((i) => i.name));
 
 const moduleCatalog: CatalogModule[] = [
   { name: "Samples", description: "Track and manage sample inventory, fulfillment, and HCP distribution across territories.", icon: Package, category: "Field Operations", tags: ["samples", "inventory", "fulfillment"] },
@@ -425,10 +423,18 @@ function DashedConnector({ side }: { side: "left" | "right" }) {
 }
 
 export default function AscendCoordinatorManager() {
+  const [integrations, setIntegrations] = useState<Integration[]>(initialIntegrationData);
   const [selectedIntegration, setSelectedIntegration] = useState<Integration | null>(null);
   const [selectedChannel, setSelectedChannel] = useState<Channel | null>(null);
   const [showAddModule, setShowAddModule] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  const handleAddModule = useCallback((mod: CatalogModule) => {
+    setIntegrations((prev) => {
+      if (prev.some((i) => i.name === mod.name)) return prev;
+      return [...prev, { name: mod.name, status: "good" as IntegrationStatus, icon: mod.icon, stats: [{ label: "Status:", value: "New" }], enabled: true }];
+    });
+  }, []);
 
   return (
     <>
@@ -484,7 +490,7 @@ export default function AscendCoordinatorManager() {
         </div>
 
         {/* ── Body: 3-column layout ── */}
-        <div ref={gridRef} className="relative grid grid-cols-[1fr_auto_1fr] items-start gap-0 px-6 py-6">
+        <div ref={gridRef} className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-0 px-6 py-6">
           {/* ─ LEFT: Integrations ─ */}
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -509,14 +515,14 @@ export default function AscendCoordinatorManager() {
             </div>
 
             <div className="space-y-3">
-              {integrationData.map((intg, i) => (
+              {integrations.map((intg, i) => (
                 <IntegrationRow key={intg.name} integration={intg} onClick={() => setSelectedIntegration(intg)} index={i} />
               ))}
             </div>
           </div>
 
           {/* ─ CENTER: Virtual Coordinator Orb ─ */}
-          <div className="flex items-center justify-center px-4 self-center" style={{ width: 260 }}>
+          <div className="flex items-center justify-center px-4" style={{ width: 260 }}>
             <VirtualCoordinatorOrb />
           </div>
 
@@ -546,7 +552,7 @@ export default function AscendCoordinatorManager() {
           className="flex items-center justify-between px-6 py-3 border-t text-xs font-mono"
           style={{ borderColor: c.cardBorder, color: c.textSecondary, background: c.card }}
         >
-          <span>6 / 6 modules active</span>
+          <span>{integrations.length} / {integrations.length} modules active</span>
           <span>6 channels routing</span>
           <span style={{ color: c.accent }}>Real-time sync enabled</span>
         </div>
@@ -565,7 +571,11 @@ export default function AscendCoordinatorManager() {
         />
       )}
       {showAddModule && (
-        <AddModuleModal onClose={() => setShowAddModule(false)} />
+        <AddModuleModal
+          onClose={() => setShowAddModule(false)}
+          onAdd={handleAddModule}
+          activeNames={new Set(integrations.map((i) => i.name))}
+        />
       )}
     </>
   );
@@ -1109,7 +1119,7 @@ function EventStatusIcon({ status }: { status: "success" | "warning" | "error" }
 }
 
 /* ── Add Module Modal ── */
-function AddModuleModal({ onClose }: { onClose: () => void }) {
+function AddModuleModal({ onClose, onAdd, activeNames }: { onClose: () => void; onAdd: (mod: CatalogModule) => void; activeNames: Set<string> }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<ModuleCategory | "All">("All");
   const [configuring, setConfiguring] = useState<CatalogModule | null>(null);
@@ -1126,7 +1136,7 @@ function AddModuleModal({ onClose }: { onClose: () => void }) {
   if (configuring) {
     return (
       <ModalBackdrop onClose={onClose}>
-        <ModuleConfigPanel module={configuring} onBack={() => setConfiguring(null)} onClose={onClose} />
+        <ModuleConfigPanel module={configuring} onBack={() => setConfiguring(null)} onClose={onClose} onAdd={onAdd} />
       </ModalBackdrop>
     );
   }
@@ -1200,7 +1210,7 @@ function AddModuleModal({ onClose }: { onClose: () => void }) {
             <div className="grid grid-cols-2 gap-3">
               {filtered.map((mod) => {
                 const Icon = mod.icon;
-                const isActive = activeModuleNames.has(mod.name);
+                const isActive = activeNames.has(mod.name);
                 return (
                   <div
                     key={mod.name}
@@ -1267,7 +1277,7 @@ function AddModuleModal({ onClose }: { onClose: () => void }) {
         {/* Footer */}
         <div className="shrink-0 flex items-center justify-between px-6 py-3 border-t text-xs" style={{ borderColor: c.cardBorder, color: c.textSecondary, background: c.card }}>
           <span>{filtered.length} module{filtered.length !== 1 ? "s" : ""} shown</span>
-          <span>{activeModuleNames.size} / {moduleCatalog.length} active</span>
+          <span>{activeNames.size} / {moduleCatalog.length} active</span>
         </div>
       </div>
     </ModalBackdrop>
@@ -1275,7 +1285,7 @@ function AddModuleModal({ onClose }: { onClose: () => void }) {
 }
 
 /* ── Module Config Panel (step 2 of Add Module) ── */
-function ModuleConfigPanel({ module, onBack, onClose }: { module: CatalogModule; onBack: () => void; onClose: () => void }) {
+function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: CatalogModule; onBack: () => void; onClose: () => void; onAdd: (mod: CatalogModule) => void }) {
   const Icon = module.icon;
   const [activating, setActivating] = useState(false);
   const [activated, setActivated] = useState(false);
@@ -1285,6 +1295,7 @@ function ModuleConfigPanel({ module, onBack, onClose }: { module: CatalogModule;
     setTimeout(() => {
       setActivating(false);
       setActivated(true);
+      onAdd(module);
     }, 1800);
   };
 
