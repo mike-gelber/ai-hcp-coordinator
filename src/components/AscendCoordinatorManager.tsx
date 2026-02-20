@@ -40,6 +40,7 @@ import {
   CalendarCheck,
   Lock,
   BadgeCheck,
+  ExternalLink,
 } from "lucide-react";
 
 const c = {
@@ -422,7 +423,7 @@ function DashedConnector({ side }: { side: "left" | "right" }) {
   );
 }
 
-export default function AscendCoordinatorManager() {
+export default function AscendCoordinatorManager({ onNavigateToHcp }: { onNavigateToHcp?: (hcpName: string) => void } = {}) {
   const [integrations, setIntegrations] = useState<Integration[]>(initialIntegrationData);
   const [selectedIntegration, setSelectedIntegration] = useState<Integration | null>(null);
   const [selectedChannel, setSelectedChannel] = useState<Channel | null>(null);
@@ -492,7 +493,7 @@ export default function AscendCoordinatorManager() {
         {/* ── Body: 3-column layout ── */}
         <div ref={gridRef} className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-0 px-6 py-6">
           {/* ─ LEFT: Integrations ─ */}
-          <div>
+          <div data-demo="vc-integrations">
             <div className="flex items-center justify-between mb-4">
               <h3
                 className="text-xs font-bold uppercase tracking-widest"
@@ -501,6 +502,7 @@ export default function AscendCoordinatorManager() {
                 Integrations
               </h3>
               <button
+                data-demo="vc-add-module"
                 className="flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-[#0deefd12]"
                 style={{
                   borderColor: c.accent,
@@ -522,12 +524,12 @@ export default function AscendCoordinatorManager() {
           </div>
 
           {/* ─ CENTER: Virtual Coordinator Orb ─ */}
-          <div className="flex items-center justify-center px-4" style={{ width: 260 }}>
+          <div data-demo="vc-orb" className="flex items-center justify-center px-4" style={{ width: 260 }}>
             <VirtualCoordinatorOrb />
           </div>
 
           {/* ─ RIGHT: Engagement Channels ─ */}
-          <div>
+          <div data-demo="vc-channels">
             <div className="mb-4">
               <h3
                 className="text-xs font-bold uppercase tracking-widest text-right"
@@ -568,6 +570,7 @@ export default function AscendCoordinatorManager() {
         <ChannelDetailModal
           channel={selectedChannel}
           onClose={() => setSelectedChannel(null)}
+          onNavigateToHcp={onNavigateToHcp}
         />
       )}
       {showAddModule && (
@@ -1589,7 +1592,7 @@ function IntegrationDetailModal({ integration, onClose }: { integration: Integra
 }
 
 /* ── Channel Detail Modal ── */
-function ChannelDetailModal({ channel, onClose }: { channel: Channel; onClose: () => void }) {
+function ChannelDetailModal({ channel, onClose, onNavigateToHcp }: { channel: Channel; onClose: () => void; onNavigateToHcp?: (hcpName: string) => void }) {
   const Icon = channel.icon;
   const details = channelDetails[channel.label];
   if (!details) return null;
@@ -1690,18 +1693,27 @@ function ChannelDetailModal({ channel, onClose }: { channel: Channel; onClose: (
               {details.sampleEngagements.map((eng, i) => (
                 <div
                   key={i}
-                  className="px-4 py-3.5"
+                  className={`px-4 py-3.5 transition-colors ${onNavigateToHcp ? "cursor-pointer hover:bg-white/[0.04]" : ""}`}
                   style={{ borderBottom: i < details.sampleEngagements.length - 1 ? `1px solid ${c.cardBorder}` : undefined }}
+                  onClick={() => {
+                    if (onNavigateToHcp) {
+                      onClose();
+                      onNavigateToHcp(eng.hcp);
+                    }
+                  }}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold" style={{ color: c.textPrimary }}>{eng.hcp}</span>
                       <span className="text-xs rounded-full px-2 py-0.5" style={{ color: c.textSecondary, border: `1px solid ${c.divider}` }}>{eng.specialty}</span>
                     </div>
-                    <span className="text-xs flex items-center gap-1 shrink-0" style={{ color: c.textSecondary }}>
-                      <Clock className="h-3 w-3" />
-                      {eng.time}
-                    </span>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className="text-xs flex items-center gap-1" style={{ color: c.textSecondary }}>
+                        <Clock className="h-3 w-3" />
+                        {eng.time}
+                      </span>
+                      {onNavigateToHcp && <ExternalLink className="h-3 w-3" style={{ color: c.textSecondary }} />}
+                    </div>
                   </div>
                   <p className="text-sm mb-1.5" style={{ color: c.textSecondary }}>{eng.summary}</p>
                   <span

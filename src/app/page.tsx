@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import {
   LayoutDashboard,
@@ -204,7 +204,7 @@ function StatCard({ label, value, change, up, icon: Icon }: typeof dashboardStat
 
 /* ─── tab views ─── */
 
-function DashboardView() {
+function DashboardView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string) => void }) {
   return (
     <>
       <div className="mb-8 flex items-center justify-between">
@@ -212,13 +212,13 @@ function DashboardView() {
       </div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div data-demo="dashboard-stats" className="grid grid-cols-4 gap-4 mb-8">
         {dashboardStats.map((s) => <StatCard key={s.label} {...s} />)}
       </div>
 
       <div className="grid grid-cols-3 gap-6">
         {/* Channel breakdown */}
-        <div className="col-span-1 rounded-xl border p-5" style={{ background: c.card, borderColor: c.divider }}>
+        <div data-demo="channel-breakdown" className="col-span-1 rounded-xl border p-5" style={{ background: c.card, borderColor: c.divider }}>
           <h2 className="text-sm font-semibold mb-4" style={{ color: c.textPrimary }}>Channel Breakdown</h2>
           <div className="space-y-4">
             {channelBreakdown.map((ch) => (
@@ -239,14 +239,15 @@ function DashboardView() {
         </div>
 
         {/* Recent activity */}
-        <div className="col-span-2 rounded-xl border p-5" style={{ background: c.card, borderColor: c.divider }}>
+        <div data-demo="recent-activity" className="col-span-2 rounded-xl border p-5" style={{ background: c.card, borderColor: c.divider }}>
           <h2 className="text-sm font-semibold mb-4" style={{ color: c.textPrimary }}>Recent Activity</h2>
           <div className="space-y-0">
             {recentActivity.map((a, i) => (
               <div
                 key={i}
-                className="flex items-center gap-4 py-3"
+                className="flex items-center gap-4 py-3 rounded-lg px-2 -mx-2 cursor-pointer transition-colors hover:bg-white/[0.04]"
                 style={{ borderBottom: i < recentActivity.length - 1 ? `1px solid ${c.divider}` : undefined }}
+                onClick={() => onNavigateToHcp(a.hcp)}
               >
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: `${c.accent}12` }}>
                   <Activity className="h-4 w-4" style={{ color: c.accent }} />
@@ -257,6 +258,7 @@ function DashboardView() {
                 </div>
                 <Badge label={a.channel} color={c.accent} />
                 <span className="text-xs shrink-0" style={{ color: c.textMuted }}>{a.time}</span>
+                <ExternalLink className="h-3.5 w-3.5 shrink-0" style={{ color: c.textMuted }} />
               </div>
             ))}
           </div>
@@ -266,7 +268,7 @@ function DashboardView() {
   );
 }
 
-function VirtualCoordinatorView() {
+function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string) => void }) {
   return (
     <>
       {/* Page title row */}
@@ -284,13 +286,13 @@ function VirtualCoordinatorView() {
       </div>
 
       {/* Virtual Coordinator Manager */}
-      <section className="mb-8">
-        <AscendCoordinatorManager />
+      <section data-demo="vc-manager" className="mb-8">
+        <AscendCoordinatorManager onNavigateToHcp={onNavigateToHcp} />
       </section>
 
       {/* Virtual Coordinators Table */}
       <section>
-        <div className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
+        <div data-demo="vc-table" className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
           <div className="p-6 pb-4">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -986,13 +988,23 @@ function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon }: 
   );
 }
 
-function EngagementsView() {
+function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?: string; onClearFocus: () => void; demoHcpTab?: "engagements" | "agentic" | "persona" }) {
   const [selectedMedia, setSelectedMedia] = useState<Engagement | null>(null);
   const [selectedSms, setSelectedSms] = useState<Engagement | null>(null);
   const [selectedConcierge, setSelectedConcierge] = useState<Engagement | null>(null);
   const [selectedDirectMail, setSelectedDirectMail] = useState<Engagement | null>(null);
   const [selectedHcp, setSelectedHcp] = useState<Engagement | null>(null);
   const [allExpanded, setAllExpanded] = useState(true);
+
+  useEffect(() => {
+    if (focusedHcp) {
+      const match = engagements.find((e) => e.hcp === focusedHcp);
+      if (match) {
+        setSelectedHcp(match);
+        onClearFocus();
+      }
+    }
+  }, [focusedHcp, onClearFocus]);
   const isIntelligentMedia = (row: Engagement) => row.lastChannel === "Intelligent Media" && intelligentMediaSources[row.npi];
   const isSms = (row: Engagement) => row.lastChannel === "SMS" && smsFlowSources[row.npi];
   const isConcierge = (row: Engagement) => row.lastChannel === "Concierge" && conciergeSources[row.npi];
@@ -1044,7 +1056,7 @@ function EngagementsView() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div data-demo="engagement-summary" className="grid grid-cols-4 gap-4 mb-6">
         {[
           { label: "Total HCPs", value: engagements.length.toString(), accent: c.accent },
           { label: "Active", value: engagements.filter(e => e.status === "Active").length.toString(), accent: c.green },
@@ -1063,7 +1075,7 @@ function EngagementsView() {
 
       {/* Requires Attention */}
       {attentionRows.length > 0 && (
-        <div className="rounded-xl border mb-4" style={{ background: c.card, borderColor: `${c.pink}30` }}>
+        <div data-demo="requires-attention" className="rounded-xl border mb-4" style={{ background: c.card, borderColor: `${c.pink}30` }}>
           <div className="flex items-center gap-2.5 px-6 py-3.5" style={{ borderBottom: `1px solid ${c.divider}` }}>
             <div className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ background: `${c.pink}15` }}>
               <AlertTriangle className="h-3.5 w-3.5" style={{ color: c.pink }} />
@@ -1105,7 +1117,7 @@ function EngagementsView() {
       )}
 
       {/* All Engagements — collapsible */}
-      <div className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
+      <div data-demo="all-engagements" className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
         <button
           className="flex w-full items-center justify-between px-6 py-3.5 transition-colors hover:bg-white/[0.02]"
           onClick={() => setAllExpanded((v) => !v)}
@@ -1186,47 +1198,67 @@ function EngagementsView() {
         <HcpDetailPane
           engagement={{ hcp: selectedHcp.hcp, specialty: selectedHcp.specialty, npi: selectedHcp.npi }}
           onClose={() => setSelectedHcp(null)}
+          initialTab={demoHcpTab}
         />
       )}
     </>
   );
 }
 
-/* ─── demo launcher ─── */
+/* ─── demo step definitions ─── */
+
+interface DemoStep {
+  tab: Tab;
+  selector: string;
+  title: string;
+  body: string;
+  position: "top" | "bottom" | "left" | "right";
+  action?: string;
+}
+
+const demoStepData: Record<string, DemoStep[]> = {
+  "brand-manager": [
+    { tab: "dashboard", selector: "dashboard-stats", title: "Performance at a Glance", body: "Start your morning by reviewing key performance indicators — total HCPs reached, active coordinators, 30-day engagement volume, and average response times. These metrics give you an immediate pulse on campaign health.", position: "bottom" },
+    { tab: "dashboard", selector: "channel-breakdown", title: "Channel Mix Analysis", body: "Understand which engagement channels drive the most HCP interactions. Use this data to optimize budget allocation and refine your omnichannel strategy across SMS, email, AI assistant, and more.", position: "right" },
+    { tab: "dashboard", selector: "recent-activity", title: "Live Activity Feed", body: "Monitor HCP interactions in real time. Each row shows who engaged, what they did, and through which channel. Click any physician to jump directly to their full engagement history.", position: "left" },
+    { tab: "engagements", selector: "engagement-summary", title: "HCP Portfolio Overview", body: "Get a high-level snapshot of your territory — total HCP count, active engagements, physicians in cooling-off periods, and newly onboarded targets.", position: "bottom" },
+    { tab: "engagements", selector: "requires-attention", title: "Priority Alerts", body: "HCPs flagged for immediate action surface here — callback requests without assigned reps, adverse event mentions, and expiring appeal windows. These are your first action items each morning.", position: "bottom" },
+    { tab: "engagements", selector: "all-engagements", title: "Full Engagement Table", body: "Browse, filter, and sort all HCP engagements across coordinators and channels. Click any row to open the detailed engagement timeline with AI strategy insights.", position: "top" },
+    { tab: "engagements", selector: "hcp-detail-pane", title: "Engagement Timeline", body: "Chronological view of every touchpoint with this HCP — channel used, direction (inbound/outbound), interaction summary, and outcome. This is your single source of truth for relationship history.", position: "left", action: "open-hcp" },
+    { tab: "engagements", selector: "hcp-detail-pane", title: "AI Strategy Session", body: "Two AI agents — a Strategist and an Engagement Expert — analyze this HCP's engagement patterns and collaboratively develop an optimal next-best-action plan. Watch their real-time strategic dialogue unfold.", position: "left", action: "hcp-tab:agentic" },
+    { tab: "engagements", selector: "hcp-detail-pane", title: "HCP Persona Profile", body: "Deep-dive into the physician's professional profile, prescribing behaviors, communication preferences, decision drivers, and influence level. Use this intelligence to personalize every interaction.", position: "left", action: "hcp-tab:persona" },
+  ],
+  "vc-setup": [
+    { tab: "virtual-coordinator", selector: "vc-manager", title: "Coordinator Command Center", body: "This is the heart of your virtual coordinator — a visual map showing how engagement channels connect through the central intelligence to your system integrations. Watch signals flow in real time.", position: "bottom" },
+    { tab: "virtual-coordinator", selector: "vc-channels", title: "Engagement Channels", body: "Each card represents an active engagement channel — SMS, email, intelligent media, concierge, and more. Click any channel to view recent sample engagements and performance details.", position: "left" },
+    { tab: "virtual-coordinator", selector: "vc-orb", title: "Central Intelligence", body: "The virtual coordinator orchestrates all channel activity through this central hub. Engagement signals flow from channels, get processed by the AI coordinator, and route to the appropriate downstream integration.", position: "bottom" },
+    { tab: "virtual-coordinator", selector: "vc-integrations", title: "System Integrations", body: "Integrations connect the coordinator to your existing tech stack — CRM, EHR, analytics platforms, and patient support programs. Data flows bidirectionally to keep everything synchronized.", position: "right" },
+    { tab: "virtual-coordinator", selector: "vc-add-module", title: "Expand Capabilities", body: "Browse the module catalog to add new channels and integrations on the fly. Simply activate a module and it's instantly connected to the coordinator's intelligence layer — no engineering required.", position: "bottom" },
+    { tab: "virtual-coordinator", selector: "vc-table", title: "Coordinator Portfolio", body: "Manage all your virtual coordinators from this table — track engagement counts, operational status, version history, and MLR approval status. Click View to drill into any coordinator's configuration.", position: "top" },
+  ],
+  "rep-engagement": [
+    { tab: "engagements", selector: "engagement-summary", title: "Territory at a Glance", body: "As a field rep, start here to assess your territory — how many HCPs are actively engaging, who's cooling off, and which physicians are newly added to your portfolio. Use these numbers to prioritize your day.", position: "bottom" },
+    { tab: "engagements", selector: "requires-attention", title: "Priority Follow-Ups", body: "These HCPs need your attention first. From unanswered callback requests to adverse event flags and expiring appeal windows — address these before any planned outreach to maximize impact.", position: "bottom" },
+    { tab: "engagements", selector: "all-engagements", title: "Your HCP Portfolio", body: "Your complete engagement log across all channels and coordinators. Sort by last contact, total touches, or status to identify follow-up opportunities and spot patterns in physician engagement.", position: "top" },
+    { tab: "engagements", selector: "hcp-detail-pane", title: "Interaction Deep-Dive", body: "Before making any outreach, review the complete touchpoint timeline. See what channels have been used, outcomes achieved, and what actions are pending for this physician.", position: "left", action: "open-hcp" },
+    { tab: "engagements", selector: "hcp-detail-pane", title: "AI-Powered Next Best Action", body: "Your AI field force assistants analyze engagement patterns and recommend the optimal next action — which channel to use, what content to send, and the ideal timing for outreach.", position: "left", action: "hcp-tab:agentic" },
+    { tab: "engagements", selector: "hcp-detail-pane", title: "Know Your Physician", body: "Understand your HCP's prescribing behavior, communication preferences, and decision drivers. This intelligence helps you tailor every conversation and build stronger, more productive relationships.", position: "left", action: "hcp-tab:persona" },
+  ],
+};
 
 const demoModules = [
-  {
-    id: "brand-manager",
-    title: "Brand Manager Day-in-the-Life",
-    description: "Walk through a typical day for a brand manager using Ascend to monitor campaigns, review HCP engagement, and optimize channel strategy.",
-    icon: Briefcase,
-    duration: "8 min",
-    steps: 12,
-  },
-  {
-    id: "vc-setup",
-    title: "Virtual Coordinator Set Up",
-    description: "See how to configure a new virtual coordinator from scratch — selecting channels, setting rules, and activating integrations.",
-    icon: Wand2,
-    duration: "5 min",
-    steps: 8,
-  },
-  {
-    id: "rep-engagement",
-    title: "Rep Engagement Manager",
-    description: "Follow a field rep reviewing HCP interactions, prioritizing follow-ups, and coordinating next-best-actions across channels.",
-    icon: Repeat,
-    duration: "6 min",
-    steps: 10,
-  },
+  { id: "brand-manager", title: "Brand Manager Day-in-the-Life", description: "Walk through a typical day for a brand manager using Ascend to monitor campaigns, review HCP engagement, and optimize channel strategy.", icon: Briefcase, duration: "4 min", steps: demoStepData["brand-manager"].length },
+  { id: "vc-setup", title: "Virtual Coordinator Set Up", description: "See how to configure a new virtual coordinator from scratch — selecting channels, setting rules, and activating integrations.", icon: Wand2, duration: "3 min", steps: demoStepData["vc-setup"].length },
+  { id: "rep-engagement", title: "Rep Engagement Manager", description: "Follow a field rep reviewing HCP interactions, prioritizing follow-ups, and coordinating next-best-actions across channels.", icon: Repeat, duration: "3 min", steps: demoStepData["rep-engagement"].length },
 ];
 
-function DemoLauncher() {
+/* ─── demo launcher ─── */
+
+function DemoLauncher({ onStart }: { onStart: (demoId: string) => void }) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* Floating button */}
       <button
         onClick={() => setOpen((v) => !v)}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg transition-all hover:scale-105"
@@ -1240,7 +1272,6 @@ function DemoLauncher() {
         Demo
       </button>
 
-      {/* Panel */}
       {open && (
         <div className="fixed bottom-20 right-6 z-50 w-96 rounded-2xl border shadow-2xl overflow-hidden"
           style={{
@@ -1249,7 +1280,6 @@ function DemoLauncher() {
             boxShadow: `0 12px 48px rgba(0,0,0,0.5), 0 0 0 1px ${c.divider}`,
           }}
         >
-          {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: c.divider, background: c.card }}>
             <div className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: `${c.accent}15` }}>
@@ -1260,29 +1290,22 @@ function DemoLauncher() {
                 <p className="text-[11px]" style={{ color: c.textSecondary }}>Interactive guided walkthroughs</p>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              className="flex h-7 w-7 items-center justify-center rounded-lg transition-colors hover:bg-white/5"
-              style={{ color: c.textSecondary }}
-            >
+            <button onClick={() => setOpen(false)} className="flex h-7 w-7 items-center justify-center rounded-lg transition-colors hover:bg-white/5" style={{ color: c.textSecondary }}>
               <X className="h-4 w-4" />
             </button>
           </div>
 
-          {/* Module list */}
           <div className="p-3 space-y-2">
             {demoModules.map((mod) => {
               const Icon = mod.icon;
               return (
                 <button
                   key={mod.id}
+                  onClick={() => { setOpen(false); onStart(mod.id); }}
                   className="w-full flex items-start gap-3 rounded-xl border p-3.5 text-left transition-all hover:border-[#0deefd30] hover:bg-white/[0.02]"
                   style={{ background: c.card, borderColor: c.divider }}
                 >
-                  <div
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg mt-0.5"
-                    style={{ background: `${c.accent}10`, border: `1px solid ${c.accent}20` }}
-                  >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg mt-0.5" style={{ background: `${c.accent}10`, border: `1px solid ${c.accent}20` }}>
                     <Icon className="h-5 w-5" style={{ color: c.accent }} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -1305,7 +1328,6 @@ function DemoLauncher() {
             })}
           </div>
 
-          {/* Footer */}
           <div className="px-5 py-3 border-t text-center" style={{ borderColor: c.divider }}>
             <p className="text-[11px]" style={{ color: c.textMuted }}>Select a module to begin the guided walkthrough</p>
           </div>
@@ -1315,10 +1337,255 @@ function DemoLauncher() {
   );
 }
 
+/* ─── demo walkthrough overlay ─── */
+
+function DemoWalkthrough({
+  demoId,
+  step,
+  onNext,
+  onPrev,
+  onExit,
+}: {
+  demoId: string;
+  step: number;
+  onNext: () => void;
+  onPrev: () => void;
+  onExit: () => void;
+}) {
+  const [rect, setRect] = useState<DOMRect | null>(null);
+  const steps = demoStepData[demoId];
+  const current = steps?.[step];
+  const totalSteps = steps?.length || 0;
+  const isFirst = step === 0;
+  const isLast = step === totalSteps - 1;
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight" || e.key === "Enter") {
+        e.preventDefault();
+        if (isLast) onExit();
+        else onNext();
+      } else if (e.key === "ArrowLeft" && !isFirst) {
+        e.preventDefault();
+        onPrev();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        onExit();
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onNext, onPrev, onExit, isFirst, isLast]);
+
+  useEffect(() => {
+    if (!current) return;
+    setRect(null);
+
+    let attempts = 0;
+    let rafId: number;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const findAndMeasure = () => {
+      const el = document.querySelector<HTMLElement>(`[data-demo="${current.selector}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        rafId = requestAnimationFrame(() => {
+          setTimeout(() => setRect(el.getBoundingClientRect()), 350);
+        });
+      } else if (attempts < 30) {
+        attempts++;
+        timer = setTimeout(findAndMeasure, 100);
+      }
+    };
+
+    timer = setTimeout(findAndMeasure, 200);
+
+    const updateRect = () => {
+      const el = document.querySelector<HTMLElement>(`[data-demo="${current.selector}"]`);
+      if (el) setRect(el.getBoundingClientRect());
+    };
+
+    window.addEventListener("resize", updateRect);
+    window.addEventListener("scroll", updateRect, true);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", updateRect);
+      window.removeEventListener("scroll", updateRect, true);
+    };
+  }, [current?.selector, step]);
+
+  if (!current || !rect) return null;
+
+  const pad = 12;
+  const gap = 20;
+  const tooltipW = 380;
+  const spotlight = {
+    top: rect.top - pad,
+    left: rect.left - pad,
+    width: rect.width + pad * 2,
+    height: rect.height + pad * 2,
+  };
+
+  const cx = rect.left + rect.width / 2;
+  const cy = Math.min(Math.max(rect.top + rect.height / 2, 100), window.innerHeight - 100);
+  const tipStyle: React.CSSProperties = { position: "fixed", width: tooltipW, zIndex: 101 };
+
+  let pos = current.position;
+  const roomAbove = spotlight.top;
+  const roomBelow = window.innerHeight - (spotlight.top + spotlight.height);
+  if (pos === "top" && roomAbove < 220) pos = roomBelow > 220 ? "bottom" : "left";
+  if (pos === "bottom" && roomBelow < 220) pos = roomAbove > 220 ? "top" : "left";
+
+  switch (pos) {
+    case "bottom":
+      tipStyle.top = Math.min(spotlight.top + spotlight.height + gap, window.innerHeight - 200);
+      tipStyle.left = Math.max(16, Math.min(cx - tooltipW / 2, window.innerWidth - tooltipW - 16));
+      break;
+    case "top":
+      tipStyle.bottom = Math.max(16, window.innerHeight - spotlight.top + gap);
+      tipStyle.left = Math.max(16, Math.min(cx - tooltipW / 2, window.innerWidth - tooltipW - 16));
+      break;
+    case "left": {
+      tipStyle.top = Math.max(16, Math.min(cy - 80, window.innerHeight - 260));
+      const rightVal = window.innerWidth - spotlight.left + gap;
+      if (rightVal + tooltipW > window.innerWidth - 16) {
+        tipStyle.left = Math.max(16, spotlight.left - tooltipW - gap);
+      } else {
+        tipStyle.right = Math.max(16, rightVal);
+      }
+      break;
+    }
+    case "right":
+      tipStyle.top = Math.max(16, Math.min(cy - 80, window.innerHeight - 260));
+      tipStyle.left = Math.min(spotlight.left + spotlight.width + gap, window.innerWidth - tooltipW - 16);
+      break;
+  }
+
+  return (
+    <>
+      <div className="fixed inset-0 z-[98]" onClick={onExit} />
+
+      <div
+        className="fixed z-[99] rounded-xl pointer-events-none"
+        style={{
+          top: spotlight.top,
+          left: spotlight.left,
+          width: spotlight.width,
+          height: spotlight.height,
+          boxShadow: `0 0 0 9999px rgba(0,0,0,0.75), inset 0 0 0 2px ${c.accent}25`,
+          transition: "top 0.4s, left 0.4s, width 0.4s, height 0.4s",
+        }}
+      />
+
+      <div
+        style={{
+          ...tipStyle,
+          background: c.card,
+          border: `1px solid ${c.divider}`,
+          boxShadow: `0 12px 48px rgba(0,0,0,0.6), 0 0 24px ${c.accent}10`,
+        }}
+        className="rounded-xl overflow-hidden"
+      >
+        <div className="h-1" style={{ background: c.divider }}>
+          <div
+            className="h-full rounded-r-full transition-all duration-500"
+            style={{ background: c.accent, width: `${((step + 1) / totalSteps) * 100}%` }}
+          />
+        </div>
+
+        <div className="p-4 pb-3">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="h-1.5 w-1.5 rounded-full" style={{ background: c.accent }} />
+            <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: c.accent }}>
+              Step {step + 1} of {totalSteps}
+            </span>
+          </div>
+          <h3 className="text-sm font-bold mb-1.5" style={{ color: c.textPrimary }}>{current.title}</h3>
+          <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{current.body}</p>
+        </div>
+
+        <div className="flex items-center justify-between px-4 py-3 border-t" style={{ borderColor: c.divider }}>
+          <button onClick={onExit} className="text-xs font-medium hover:underline" style={{ color: c.textMuted }}>
+            Skip tour
+          </button>
+          <div className="flex gap-2">
+            {!isFirst && (
+              <button
+                onClick={onPrev}
+                className="flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-semibold hover:bg-white/5"
+                style={{ borderColor: c.divider, color: c.textSecondary }}
+              >
+                <ChevronLeft className="h-3 w-3" /> Back
+              </button>
+            )}
+            <button
+              onClick={isLast ? onExit : onNext}
+              className="rounded-lg px-4 py-1.5 text-xs font-bold"
+              style={{ background: c.accent, color: "#0a0c10" }}
+            >
+              {isLast ? "Finish" : "Next"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 /* ─── page ─── */
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("dashboard");
+  const [focusedHcp, setFocusedHcp] = useState<string | undefined>();
+  const [activeDemo, setActiveDemo] = useState<string | null>(null);
+  const [demoStep, setDemoStep] = useState(0);
+  const [demoHcpTab, setDemoHcpTab] = useState<"engagements" | "agentic" | "persona" | undefined>();
+
+  const handleNavigateToHcp = useCallback((hcpName: string) => {
+    setFocusedHcp(hcpName);
+    setActiveTab("engagements");
+  }, []);
+
+  const clearFocusedHcp = useCallback(() => setFocusedHcp(undefined), []);
+
+  const applyDemoStep = useCallback((demoId: string, step: number) => {
+    const steps = demoStepData[demoId];
+    if (!steps?.[step]) return;
+    const s = steps[step];
+    setDemoStep(step);
+    setActiveTab(s.tab);
+    if (s.action === "open-hcp") {
+      setFocusedHcp("Dr. Sarah Chen");
+      setDemoHcpTab("engagements");
+    } else if (s.action?.startsWith("hcp-tab:")) {
+      setDemoHcpTab(s.action.split(":")[1] as "engagements" | "agentic" | "persona");
+    } else {
+      setDemoHcpTab(undefined);
+    }
+  }, []);
+
+  const handleStartDemo = useCallback((demoId: string) => {
+    setActiveDemo(demoId);
+    applyDemoStep(demoId, 0);
+  }, [applyDemoStep]);
+
+  const handleDemoNext = useCallback(() => {
+    if (!activeDemo) return;
+    applyDemoStep(activeDemo, demoStep + 1);
+  }, [activeDemo, demoStep, applyDemoStep]);
+
+  const handleDemoPrev = useCallback(() => {
+    if (!activeDemo || demoStep <= 0) return;
+    applyDemoStep(activeDemo, demoStep - 1);
+  }, [activeDemo, demoStep, applyDemoStep]);
+
+  const handleExitDemo = useCallback(() => {
+    setActiveDemo(null);
+    setDemoStep(0);
+    setDemoHcpTab(undefined);
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden" style={{ background: c.bg, fontFamily: "'Inter', sans-serif" }}>
@@ -1420,17 +1687,26 @@ export default function Home() {
           </div>
 
           {/* ═══ Dashboard Tab ═══ */}
-          {activeTab === "dashboard" && <DashboardView />}
+          {activeTab === "dashboard" && <DashboardView onNavigateToHcp={handleNavigateToHcp} />}
 
           {/* ═══ Virtual Coordinator Tab ═══ */}
-          {activeTab === "virtual-coordinator" && <VirtualCoordinatorView />}
+          {activeTab === "virtual-coordinator" && <VirtualCoordinatorView onNavigateToHcp={handleNavigateToHcp} />}
 
           {/* ═══ Engagements Tab ═══ */}
-          {activeTab === "engagements" && <EngagementsView />}
+          {activeTab === "engagements" && <EngagementsView focusedHcp={focusedHcp} onClearFocus={clearFocusedHcp} demoHcpTab={demoHcpTab} />}
         </div>
       </main>
 
-      <DemoLauncher />
+      {!activeDemo && <DemoLauncher onStart={handleStartDemo} />}
+      {activeDemo && (
+        <DemoWalkthrough
+          demoId={activeDemo}
+          step={demoStep}
+          onNext={handleDemoNext}
+          onPrev={handleDemoPrev}
+          onExit={handleExitDemo}
+        />
+      )}
     </div>
   );
 }

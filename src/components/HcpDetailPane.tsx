@@ -345,8 +345,12 @@ const personasByNpi: Record<string, HcpPersona> = {
 
 /* ─── component ─── */
 
-export default function HcpDetailPane({ engagement, onClose }: { engagement: HcpEngagement; onClose: () => void }) {
-  const [activeTab, setActiveTab] = useState<PaneTab>("engagements");
+export default function HcpDetailPane({ engagement, onClose, initialTab }: { engagement: HcpEngagement; onClose: () => void; initialTab?: PaneTab }) {
+  const [activeTab, setActiveTab] = useState<PaneTab>(initialTab || "engagements");
+
+  useEffect(() => {
+    if (initialTab) setActiveTab(initialTab);
+  }, [initialTab]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") onClose();
@@ -370,6 +374,7 @@ export default function HcpDetailPane({ engagement, onClose }: { engagement: Hcp
   return (
     <div className="fixed inset-0 z-50 flex justify-end" style={{ background: "rgba(0,0,0,0.5)" }} onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div
+        data-demo="hcp-detail-pane"
         className="h-full w-full max-w-2xl flex flex-col border-l"
         style={{ background: c.bg, borderColor: c.divider, animation: "slideIn 0.2s ease-out" }}
       >
