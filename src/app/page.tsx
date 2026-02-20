@@ -37,6 +37,7 @@ import {
   User,
 } from "lucide-react";
 import AscendCoordinatorManager from "@/components/AscendCoordinatorManager";
+import HcpDetailPane from "@/components/HcpDetailPane";
 
 const IonAnimation = dynamic(() => import("@/components/IonAnimation"), { ssr: false });
 
@@ -930,6 +931,7 @@ function EngagementsView() {
   const [selectedSms, setSelectedSms] = useState<Engagement | null>(null);
   const [selectedConcierge, setSelectedConcierge] = useState<Engagement | null>(null);
   const [selectedDirectMail, setSelectedDirectMail] = useState<Engagement | null>(null);
+  const [selectedHcp, setSelectedHcp] = useState<Engagement | null>(null);
   const isIntelligentMedia = (row: Engagement) => row.lastChannel === "Intelligent Media" && intelligentMediaSources[row.npi];
   const isSms = (row: Engagement) => row.lastChannel === "SMS" && smsFlowSources[row.npi];
   const isConcierge = (row: Engagement) => row.lastChannel === "Concierge" && conciergeSources[row.npi];
@@ -994,7 +996,12 @@ function EngagementsView() {
               {engagements.map((row) => {
                 const ChannelIcon = row.lastChannelIcon;
                 return (
-                  <tr key={row.npi} className="transition-colors hover:bg-white/[0.02]" style={{ borderBottom: `1px solid ${c.divider}` }}>
+                  <tr
+                    key={row.npi}
+                    className="transition-colors hover:bg-white/[0.04] cursor-pointer"
+                    style={{ borderBottom: `1px solid ${c.divider}` }}
+                    onClick={() => setSelectedHcp(row)}
+                  >
                     <td className="px-6 py-4">
                       <p className="font-medium" style={{ color: c.textPrimary }}>{row.hcp}</p>
                       <p className="text-xs" style={{ color: c.textSecondary }}>{row.specialty}</p>
@@ -1012,11 +1019,13 @@ function EngagementsView() {
                     <td className="px-6 py-4" style={{ color: c.textSecondary }}>{row.coordinator}</td>
                     <td className="px-6 py-4">
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           if (isIntelligentMedia(row)) setSelectedMedia(row);
                           else if (isSms(row)) setSelectedSms(row);
                           else if (isConcierge(row)) setSelectedConcierge(row);
                           else if (isDirectMail(row)) setSelectedDirectMail(row);
+                          else setSelectedHcp(row);
                         }}
                         className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors"
                         style={{
@@ -1063,6 +1072,12 @@ function EngagementsView() {
       )}
       {selectedDirectMail && (
         <DirectMailModal engagement={selectedDirectMail} onClose={() => setSelectedDirectMail(null)} />
+      )}
+      {selectedHcp && (
+        <HcpDetailPane
+          engagement={{ hcp: selectedHcp.hcp, specialty: selectedHcp.specialty, npi: selectedHcp.npi }}
+          onClose={() => setSelectedHcp(null)}
+        />
       )}
     </>
   );
