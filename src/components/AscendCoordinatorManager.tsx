@@ -783,7 +783,7 @@ function VirtualCoordinatorOrb() {
 }
 
 /* ── Flow Animation ── */
-interface FlowDot {
+interface FlowPulse {
   id: number;
   channelIdx: number;
   integrationIdx: number;
@@ -800,12 +800,15 @@ function pickChannel(): number {
   return 0;
 }
 
-function FlowDotElement({
+function FlowPulseElement({
   chCard,
   chNearOrb,
   orbPos,
   intNearOrb,
   intCard,
+  channelIdx,
+  integrationIdx,
+  containerRef,
   onComplete,
 }: {
   chCard: { x: number; y: number };
@@ -813,152 +816,189 @@ function FlowDotElement({
   orbPos: { x: number; y: number };
   intNearOrb: { x: number; y: number };
   intCard: { x: number; y: number };
+  channelIdx: number;
+  integrationIdx: number;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   onComplete: () => void;
 }) {
-  const elRef = useRef<HTMLDivElement>(null);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
+  const seg1Ref = useRef<SVGLineElement>(null);
+  const seg2Ref = useRef<SVGLineElement>(null);
+  const orbitRef = useRef<SVGCircleElement>(null);
+  const seg3Ref = useRef<SVGLineElement>(null);
+  const seg4Ref = useRef<SVGLineElement>(null);
+
+  const orbitR = 90;
+  const entryAngle = Math.atan2(chNearOrb.y - orbPos.y, chNearOrb.x - orbPos.x);
+  const exitAngle = Math.atan2(intNearOrb.y - orbPos.y, intNearOrb.x - orbPos.x);
+  const orbitEntry = { x: orbPos.x + Math.cos(entryAngle) * orbitR, y: orbPos.y + Math.sin(entryAngle) * orbitR };
+  const orbitExit = { x: orbPos.x + Math.cos(exitAngle) * orbitR, y: orbPos.y + Math.sin(exitAngle) * orbitR };
+  const orbitDuration = useRef(1000 + Math.random() * 4000).current;
+  const circumference = 2 * Math.PI * orbitR;
+
   useEffect(() => {
-    const el = elRef.current;
-    if (!el) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    let rafId: number;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    const orbitRadius = 55 + Math.random() * 20;
-    const orbitDuration = 2000 + Math.random() * 1500;
-    const connectorMs = 700;
-    const spiralMs = 400;
-    const exitMs = 400;
+    let rafId: number;
 
-    const entryAngle = Math.atan2(
-      chNearOrb.y - orbPos.y,
-      chNearOrb.x - orbPos.x,
-    );
-    const entryDist = Math.hypot(
-      chNearOrb.x - orbPos.x,
-      chNearOrb.y - orbPos.y,
-    );
+    const chEl = container.querySelector<HTMLElement>(`[data-flow-channel="${channelIdx}"]`);
+    const intEl = container.querySelector<HTMLElement>(`[data-flow-integration="${integrationIdx}"]`);
+    const orbElDom = container.querySelector<HTMLElement>("[data-flow-orb]");
+    const chCardEl = chEl?.querySelector<HTMLElement>("[role=button]");
+    const intCardEl = intEl?.querySelector<HTMLElement>("[role=button]");
 
-    el.style.left = `${chCard.x}px`;
-    el.style.top = `${chCard.y}px`;
-    el.style.opacity = "0";
-    el.style.transition = "none";
+    const seg1 = seg1Ref.current;
+    const seg2 = seg2Ref.current;
+    const orbitEl = orbitRef.current;
+    const seg3 = seg3Ref.current;
+    const seg4 = seg4Ref.current;
 
-    // Phase 1: fade in
-    let t = 30;
-    timers.push(
-      setTimeout(() => {
-        el.style.transition = "opacity 0.2s ease";
-        el.style.opacity = "1";
-      }, t),
-    );
+    if (!seg1 || !seg2 || !orbitEl || !seg3 || !seg4) return;
 
-    // Phase 2: travel along channel connector (horizontal)
-    t += 220;
-    timers.push(
-      setTimeout(() => {
-        el.style.transition = `left ${connectorMs}ms linear`;
-        el.style.left = `${chNearOrb.x}px`;
-      }, t),
-    );
+    const initLine = (el: SVGLineElement) => {
+      const len = el.getTotalLength();
+      el.style.strokeDasharray = `${len}`;
+      el.style.strokeDashoffset = `${len}`;
+      el.style.opacity = "0";
+    };
+    [seg1, seg2, seg3, seg4].forEach(initLine);
 
-    // Phase 3: spiral into orbit + orbit (single rAF loop)
-    t += connectorMs + 30;
-    const totalOrbMs = spiralMs + orbitDuration;
-    timers.push(
-      setTimeout(() => {
-        el.style.transition = "none";
-        const start = performance.now();
-        const animate = (now: number) => {
-          const elapsed = now - start;
-          let a: number, r: number;
+    const arcLen = circumference * 0.18;
+    orbitEl.style.strokeDasharray = `${arcLen} ${circumference - arcLen}`;
+    orbitEl.style.strokeDashoffset = `${circumference}`;
+    orbitEl.style.opacity = "0";
 
-          if (elapsed < spiralMs) {
-            const p = elapsed / spiralMs;
-            const ep = p * p * (3 - 2 * p);
-            r = entryDist + (orbitRadius - entryDist) * ep;
-            a = entryAngle + p * (Math.PI * 0.5);
-          } else {
-            const op = Math.min((elapsed - spiralMs) / orbitDuration, 1);
-            r = orbitRadius;
-            a = entryAngle + Math.PI * 0.5 + op * Math.PI * 2;
-          }
+    const glowCls = "flow-card-glow";
+    const orbGlowCls = "flow-orb-glow";
+    const glowFilter = `drop-shadow(0 0 4px ${c.accent}) drop-shadow(0 0 8px ${c.accent}80)`;
+    const glowFilterStrong = `drop-shadow(0 0 6px ${c.accent}) drop-shadow(0 0 12px ${c.accent}80)`;
 
-          el.style.left = `${orbPos.x + Math.cos(a) * r}px`;
-          el.style.top = `${orbPos.y + Math.sin(a) * r}px`;
-          if (elapsed < totalOrbMs) rafId = requestAnimationFrame(animate);
-        };
-        rafId = requestAnimationFrame(animate);
-      }, t),
-    );
+    // Phase 1: Channel card glow
+    let t = 0;
+    timers.push(setTimeout(() => chCardEl?.classList.add(glowCls), t));
 
-    // Phase 4: exit orbit → integration connector endpoint
-    t += totalOrbMs + 30;
-    timers.push(
-      setTimeout(() => {
-        cancelAnimationFrame(rafId);
-        el.style.transition = `left ${exitMs}ms ease-in-out, top ${exitMs}ms ease-in-out`;
-        el.style.left = `${intNearOrb.x}px`;
-        el.style.top = `${intNearOrb.y}px`;
-      }, t),
-    );
+    // Phase 2: Pulse along channel connector
+    t = 600;
+    timers.push(setTimeout(() => {
+      const len = seg1.getTotalLength();
+      seg1.style.opacity = "1";
+      seg1.style.transition = `stroke-dashoffset 600ms ease-in`;
+      seg1.style.strokeDashoffset = "0";
+      seg1.style.filter = glowFilter;
+      timers.push(setTimeout(() => {
+        seg1.style.transition = `stroke-dashoffset 400ms ease-out`;
+        seg1.style.strokeDasharray = `${len * 0.3} ${len}`;
+        seg1.style.strokeDashoffset = `${-len}`;
+      }, 500));
+    }, t));
 
-    // Phase 5: travel along integration connector (horizontal)
-    t += exitMs + 30;
-    timers.push(
-      setTimeout(() => {
-        el.style.transition = `left ${connectorMs}ms linear`;
-        el.style.left = `${intCard.x}px`;
-      }, t),
-    );
+    // Phase 3: Pulse from near orb → orbit entry point
+    t = 1100;
+    timers.push(setTimeout(() => {
+      seg2.style.opacity = "1";
+      seg2.style.transition = `stroke-dashoffset 350ms ease-in`;
+      seg2.style.strokeDashoffset = "0";
+      seg2.style.filter = glowFilterStrong;
+      orbElDom?.classList.add(orbGlowCls);
 
-    // Phase 6: fade out
-    t += connectorMs - 150;
-    timers.push(
-      setTimeout(() => {
-        el.style.transition = "opacity 0.4s ease-out";
-        el.style.opacity = "0";
-      }, t),
-    );
+      timers.push(setTimeout(() => {
+        const len = seg2.getTotalLength();
+        seg2.style.transition = `stroke-dashoffset 250ms ease-out`;
+        seg2.style.strokeDasharray = `${len * 0.4} ${len}`;
+        seg2.style.strokeDashoffset = `${-len}`;
+      }, 300));
+    }, t));
 
-    timers.push(setTimeout(() => onCompleteRef.current(), t + 500));
+    timers.push(setTimeout(() => chCardEl?.classList.remove(glowCls), 1400));
+
+    // Phase 4: Orbit around the orb (rAF)
+    const orbitStart = 1400;
+    timers.push(setTimeout(() => {
+      orbitEl.style.opacity = "1";
+      orbitEl.style.filter = `drop-shadow(0 0 8px ${c.accent}) drop-shadow(0 0 16px ${c.accent}80) drop-shadow(0 0 24px ${c.accent}40)`;
+
+      const entryOffset = (-entryAngle / (2 * Math.PI)) * circumference;
+      const start = performance.now();
+
+      const animate = (now: number) => {
+        const elapsed = now - start;
+        const p = Math.min(elapsed / orbitDuration, 1);
+        const sweep = p * circumference * (orbitDuration / 1000) * 0.6;
+        const currentOffset = entryOffset - sweep;
+        orbitEl.style.strokeDashoffset = `${currentOffset}`;
+        if (p < 1) {
+          rafId = requestAnimationFrame(animate);
+        }
+      };
+      rafId = requestAnimationFrame(animate);
+    }, orbitStart));
+
+    // Phase 5: Exit orbit → integration near orb
+    const exitStart = orbitStart + orbitDuration + 100;
+    timers.push(setTimeout(() => {
+      cancelAnimationFrame(rafId);
+      orbitEl.style.transition = `opacity 300ms ease-out`;
+      orbitEl.style.opacity = "0";
+
+      seg3.style.opacity = "1";
+      seg3.style.transition = `stroke-dashoffset 350ms ease-out`;
+      seg3.style.strokeDashoffset = "0";
+      seg3.style.filter = glowFilterStrong;
+
+      timers.push(setTimeout(() => {
+        const len = seg3.getTotalLength();
+        seg3.style.transition = `stroke-dashoffset 250ms ease-out`;
+        seg3.style.strokeDasharray = `${len * 0.4} ${len}`;
+        seg3.style.strokeDashoffset = `${-len}`;
+        orbElDom?.classList.remove(orbGlowCls);
+      }, 300));
+    }, exitStart));
+
+    // Phase 6: Pulse along integration connector
+    const intStart = exitStart + 350;
+    timers.push(setTimeout(() => {
+      seg4.style.opacity = "1";
+      seg4.style.transition = `stroke-dashoffset 600ms ease-out`;
+      seg4.style.strokeDashoffset = "0";
+      seg4.style.filter = glowFilter;
+      intCardEl?.classList.add(glowCls);
+
+      timers.push(setTimeout(() => {
+        const len = seg4.getTotalLength();
+        seg4.style.transition = `stroke-dashoffset 400ms ease-out`;
+        seg4.style.strokeDasharray = `${len * 0.3} ${len}`;
+        seg4.style.strokeDashoffset = `${-len}`;
+      }, 500));
+    }, intStart));
+
+    const endTime = intStart + 1000;
+    timers.push(setTimeout(() => intCardEl?.classList.remove(glowCls), endTime));
+    timers.push(setTimeout(() => onCompleteRef.current(), endTime + 200));
 
     return () => {
       timers.forEach(clearTimeout);
       cancelAnimationFrame(rafId);
+      chCardEl?.classList.remove(glowCls);
+      intCardEl?.classList.remove(glowCls);
+      orbElDom?.classList.remove(orbGlowCls);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div
-      ref={elRef}
-      style={{ position: "absolute", pointerEvents: "none", zIndex: 15 }}
+    <svg
+      style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 15, width: "100%", height: "100%", overflow: "visible" }}
     >
-      <div
-        style={{
-          position: "absolute",
-          width: 28,
-          height: 28,
-          borderRadius: "50%",
-          backgroundColor: `${c.accent}18`,
-          filter: "blur(6px)",
-          transform: "translate(-50%, -50%)",
-        }}
-      />
-      <div
-        style={{
-          width: 10,
-          height: 10,
-          borderRadius: "50%",
-          backgroundColor: c.accent,
-          boxShadow: `0 0 8px ${c.accent}, 0 0 18px ${c.accent}aa, 0 0 32px ${c.accent}50`,
-          transform: "translate(-50%, -50%)",
-          animation: "flow-dot-pulse 1.5s ease-in-out infinite",
-        }}
-      />
-    </div>
+      <line ref={seg1Ref} x1={chCard.x} y1={chCard.y} x2={chNearOrb.x} y2={chNearOrb.y} stroke={c.accent} strokeWidth="2" strokeLinecap="round" />
+      <line ref={seg2Ref} x1={chNearOrb.x} y1={chNearOrb.y} x2={orbitEntry.x} y2={orbitEntry.y} stroke={c.accent} strokeWidth="2" strokeLinecap="round" />
+      <circle ref={orbitRef} cx={orbPos.x} cy={orbPos.y} r={orbitR} fill="none" stroke={c.accent} strokeWidth="3" strokeLinecap="round" />
+      <line ref={seg3Ref} x1={orbitExit.x} y1={orbitExit.y} x2={intNearOrb.x} y2={intNearOrb.y} stroke={c.accent} strokeWidth="2" strokeLinecap="round" />
+      <line ref={seg4Ref} x1={intNearOrb.x} y1={intNearOrb.y} x2={intCard.x} y2={intCard.y} stroke={c.accent} strokeWidth="2" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -967,7 +1007,7 @@ function FlowAnimationLayer({
 }: {
   containerRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const [dots, setDots] = useState<FlowDot[]>([]);
+  const [pulses, setPulses] = useState<FlowPulse[]>([]);
   const [positions, setPositions] = useState<{
     channels: {
       cardEdge: { x: number; y: number };
@@ -996,7 +1036,6 @@ function FlowAnimationLayer({
         y: orbRect.top + orbRect.height / 2 - rect.top,
       };
 
-      // Channel rows: [DashedConnector 48px] [gap 8px] [card]
       const channelEls = Array.from(
         container.querySelectorAll<HTMLElement>("[data-flow-channel]"),
       ).sort(
@@ -1012,7 +1051,6 @@ function FlowAnimationLayer({
         };
       });
 
-      // Integration rows: [card] [gap 8px] [DashedConnector 48px]
       const intEls = Array.from(
         container.querySelectorAll<HTMLElement>("[data-flow-integration]"),
       ).sort(
@@ -1048,7 +1086,7 @@ function FlowAnimationLayer({
         Math.random() * positions.integrations.length,
       );
       const id = nextIdRef.current++;
-      setDots((prev) => [...prev, { id, channelIdx, integrationIdx }]);
+      setPulses((prev) => [...prev, { id, channelIdx, integrationIdx }]);
       timeoutId = setTimeout(spawn, 11000 + Math.random() * 5000);
     };
 
@@ -1056,8 +1094,8 @@ function FlowAnimationLayer({
     return () => clearTimeout(timeoutId);
   }, [positions]);
 
-  const removeDot = useCallback((id: number) => {
-    setDots((prev) => prev.filter((d) => d.id !== id));
+  const removePulse = useCallback((id: number) => {
+    setPulses((prev) => prev.filter((d) => d.id !== id));
   }, []);
 
   if (!positions || positions.channels.length === 0) return null;
@@ -1071,15 +1109,18 @@ function FlowAnimationLayer({
         zIndex: 10,
       }}
     >
-      {dots.map((dot) => (
-        <FlowDotElement
-          key={dot.id}
-          chCard={positions.channels[dot.channelIdx].cardEdge}
-          chNearOrb={positions.channels[dot.channelIdx].nearOrb}
+      {pulses.map((pulse) => (
+        <FlowPulseElement
+          key={pulse.id}
+          chCard={positions.channels[pulse.channelIdx].cardEdge}
+          chNearOrb={positions.channels[pulse.channelIdx].nearOrb}
           orbPos={positions.orb}
-          intNearOrb={positions.integrations[dot.integrationIdx].nearOrb}
-          intCard={positions.integrations[dot.integrationIdx].cardEdge}
-          onComplete={() => removeDot(dot.id)}
+          intNearOrb={positions.integrations[pulse.integrationIdx].nearOrb}
+          intCard={positions.integrations[pulse.integrationIdx].cardEdge}
+          channelIdx={pulse.channelIdx}
+          integrationIdx={pulse.integrationIdx}
+          containerRef={containerRef}
+          onComplete={() => removePulse(pulse.id)}
         />
       ))}
     </div>

@@ -35,6 +35,12 @@ import {
   Send,
   Package,
   User,
+  AlertTriangle,
+  ChevronUp,
+  Play,
+  Briefcase,
+  Wand2,
+  Repeat,
 } from "lucide-react";
 import AscendCoordinatorManager from "@/components/AscendCoordinatorManager";
 import HcpDetailPane from "@/components/HcpDetailPane";
@@ -143,17 +149,24 @@ interface Engagement {
   totalTouches: number;
   status: "Active" | "Cooling Off" | "New";
   coordinator: string;
+  attention?: string;
 }
 
 const engagements: Engagement[] = [
-  { hcp: "Dr. Sarah Chen", specialty: "Cardiology", npi: "1234567890", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2m ago", totalTouches: 14, status: "Active", coordinator: "Stelazio V1.1" },
+  { hcp: "Dr. Sarah Chen", specialty: "Cardiology", npi: "1234567890", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2m ago", totalTouches: 14, status: "Active", coordinator: "Stelazio V1.1", attention: "Requested callback — no rep assigned" },
   { hcp: "Dr. James Wilson", specialty: "Neurology", npi: "2345678901", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "5m ago", totalTouches: 8, status: "Active", coordinator: "Neurovia" },
-  { hcp: "Dr. Maria Garcia", specialty: "Oncology", npi: "3456789012", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "12m ago", totalTouches: 22, status: "Active", coordinator: "Oncurel" },
-  { hcp: "Dr. Robert Kim", specialty: "Cardiology", npi: "4567890123", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "18m ago", totalTouches: 5, status: "Cooling Off", coordinator: "Cardiovex" },
+  { hcp: "Dr. Maria Garcia", specialty: "Oncology", npi: "3456789012", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "12m ago", totalTouches: 22, status: "Active", coordinator: "Oncurel", attention: "Adverse event mentioned in conversation" },
+  { hcp: "Dr. Robert Kim", specialty: "Cardiology", npi: "4567890123", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "18m ago", totalTouches: 5, status: "Cooling Off", coordinator: "Cardiovex", attention: "Prior auth denied — appeal window closing" },
   { hcp: "Dr. Emily Zhang", specialty: "Dermatology", npi: "5678901234", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "25m ago", totalTouches: 11, status: "Active", coordinator: "Oncurel" },
   { hcp: "Dr. David Park", specialty: "Neurology", npi: "6789012345", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "32m ago", totalTouches: 3, status: "New", coordinator: "Neurovia" },
-  { hcp: "Dr. Lisa Thompson", specialty: "Cardiology", npi: "7890123456", lastChannel: "Outbound Direct Mail", lastChannelIcon: Mail, lastContact: "1h ago", totalTouches: 19, status: "Active", coordinator: "Respira" },
+  { hcp: "Dr. Lisa Thompson", specialty: "Cardiology", npi: "7890123456", lastChannel: "Outbound Direct Mail", lastChannelIcon: Mail, lastContact: "1h ago", totalTouches: 19, status: "Active", coordinator: "Respira", attention: "3 consecutive messages unanswered" },
   { hcp: "Dr. Michael Brown", specialty: "Pulmonology", npi: "8901234567", lastChannel: "AI Assistant", lastChannelIcon: Radio, lastContact: "1.5h ago", totalTouches: 7, status: "Cooling Off", coordinator: "Respira" },
+  { hcp: "Dr. Angela Torres", specialty: "Endocrinology", npi: "9012345678", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2h ago", totalTouches: 9, status: "Active", coordinator: "Stelazio V1.1" },
+  { hcp: "Dr. Kevin Patel", specialty: "Rheumatology", npi: "0123456789", lastChannel: "Email", lastChannelIcon: Mail, lastContact: "2.5h ago", totalTouches: 6, status: "New", coordinator: "Oncurel" },
+  { hcp: "Dr. Rachel Adams", specialty: "Oncology", npi: "1122334455", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "3h ago", totalTouches: 15, status: "Active", coordinator: "Oncurel" },
+  { hcp: "Dr. Steven Nguyen", specialty: "Cardiology", npi: "2233445566", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "3.5h ago", totalTouches: 4, status: "Cooling Off", coordinator: "Cardiovex" },
+  { hcp: "Dr. Christine Lee", specialty: "Neurology", npi: "3344556677", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "4h ago", totalTouches: 18, status: "Active", coordinator: "Neurovia" },
+  { hcp: "Dr. Mark Sullivan", specialty: "Pulmonology", npi: "4455667788", lastChannel: "Outbound Direct Mail", lastChannelIcon: Mail, lastContact: "5h ago", totalTouches: 2, status: "New", coordinator: "Respira" },
 ];
 
 /* ─── components ─── */
@@ -926,17 +939,86 @@ function DirectMailModal({ engagement, onClose }: { engagement: Engagement; onCl
   );
 }
 
+function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon }: {
+  row: Engagement;
+  onView: (e: React.MouseEvent) => void;
+  onRowClick: () => void;
+  hasDetail: boolean;
+  detailIcon: React.ReactNode;
+}) {
+  const ChannelIcon = row.lastChannelIcon;
+  return (
+    <tr
+      className="transition-colors hover:bg-white/[0.04] cursor-pointer"
+      style={{ borderBottom: `1px solid ${c.divider}` }}
+      onClick={onRowClick}
+    >
+      <td className="px-6 py-4">
+        <p className="font-medium" style={{ color: c.textPrimary }}>{row.hcp}</p>
+        <p className="text-xs" style={{ color: c.textSecondary }}>{row.specialty}</p>
+      </td>
+      <td className="px-6 py-4 font-mono text-xs" style={{ color: c.textSecondary }}>{row.npi}</td>
+      <td className="px-6 py-4">
+        <div className="flex items-center gap-2">
+          <ChannelIcon className="h-3.5 w-3.5" style={{ color: c.accent }} />
+          <span style={{ color: c.textSecondary }}>{row.lastChannel}</span>
+        </div>
+      </td>
+      <td className="px-6 py-4" style={{ color: c.textSecondary }}>{row.lastContact}</td>
+      <td className="px-6 py-4" style={{ color: c.textPrimary }}>{row.totalTouches}</td>
+      <td className="px-6 py-4"><Badge label={row.status} color={engagementStatusColor(row.status)} /></td>
+      <td className="px-6 py-4" style={{ color: c.textSecondary }}>{row.coordinator}</td>
+      <td className="px-6 py-4">
+        <button
+          onClick={onView}
+          className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors"
+          style={{
+            borderColor: hasDetail ? `${c.accent}40` : c.divider,
+            color: hasDetail ? c.accent : c.textSecondary,
+            cursor: hasDetail ? "pointer" : "default",
+          }}
+        >
+          <span>View</span>
+          {detailIcon}
+        </button>
+      </td>
+    </tr>
+  );
+}
+
 function EngagementsView() {
   const [selectedMedia, setSelectedMedia] = useState<Engagement | null>(null);
   const [selectedSms, setSelectedSms] = useState<Engagement | null>(null);
   const [selectedConcierge, setSelectedConcierge] = useState<Engagement | null>(null);
   const [selectedDirectMail, setSelectedDirectMail] = useState<Engagement | null>(null);
   const [selectedHcp, setSelectedHcp] = useState<Engagement | null>(null);
+  const [allExpanded, setAllExpanded] = useState(true);
   const isIntelligentMedia = (row: Engagement) => row.lastChannel === "Intelligent Media" && intelligentMediaSources[row.npi];
   const isSms = (row: Engagement) => row.lastChannel === "SMS" && smsFlowSources[row.npi];
   const isConcierge = (row: Engagement) => row.lastChannel === "Concierge" && conciergeSources[row.npi];
   const isDirectMail = (row: Engagement) => row.lastChannel === "Outbound Direct Mail" && directMailSources[row.npi];
   const hasDetail = (row: Engagement) => isIntelligentMedia(row) || isSms(row) || isConcierge(row) || isDirectMail(row);
+
+  const attentionRows = engagements.filter((e) => e.attention);
+  const remainingRows = engagements.filter((e) => !e.attention);
+
+  const handleView = (row: Engagement, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isIntelligentMedia(row)) setSelectedMedia(row);
+    else if (isSms(row)) setSelectedSms(row);
+    else if (isConcierge(row)) setSelectedConcierge(row);
+    else if (isDirectMail(row)) setSelectedDirectMail(row);
+    else setSelectedHcp(row);
+  };
+
+  const detailIcon = (row: Engagement) =>
+    isIntelligentMedia(row) ? <QrCode className="h-3.5 w-3.5" />
+    : isSms(row) ? <MessageSquare className="h-3.5 w-3.5" />
+    : isConcierge(row) ? <Headphones className="h-3.5 w-3.5" />
+    : isDirectMail(row) ? <Package className="h-3.5 w-3.5" />
+    : <Eye className="h-3.5 w-3.5" />;
+
+  const tableHeaders = ["HCP", "NPI", "Last Channel", "Last Contact", "Total Touches", "Status", "Coordinator", ""];
 
   return (
     <>
@@ -979,86 +1061,113 @@ function EngagementsView() {
         ))}
       </div>
 
-      {/* Engagements table */}
-      <div className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr>
-                {["HCP", "NPI", "Last Channel", "Last Contact", "Total Touches", "Status", "Coordinator", ""].map((h) => (
-                  <th key={h} className="px-6 py-3 text-xs font-semibold uppercase tracking-wide" style={{ color: c.textSecondary, borderBottom: `1px solid ${c.divider}` }}>
-                    {h === "HCP" ? <span className="flex items-center gap-1">{h}<ChevronDown className="h-3 w-3" /></span> : h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {engagements.map((row) => {
-                const ChannelIcon = row.lastChannelIcon;
-                return (
-                  <tr
+      {/* Requires Attention */}
+      {attentionRows.length > 0 && (
+        <div className="rounded-xl border mb-4" style={{ background: c.card, borderColor: `${c.pink}30` }}>
+          <div className="flex items-center gap-2.5 px-6 py-3.5" style={{ borderBottom: `1px solid ${c.divider}` }}>
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ background: `${c.pink}15` }}>
+              <AlertTriangle className="h-3.5 w-3.5" style={{ color: c.pink }} />
+            </div>
+            <h3 className="text-sm font-semibold" style={{ color: c.textPrimary }}>Requires Attention</h3>
+            <span
+              className="ml-1 rounded-full px-2 py-0.5 text-xs font-bold"
+              style={{ background: `${c.pink}18`, color: c.pink }}
+            >
+              {attentionRows.length}
+            </span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr>
+                  {tableHeaders.map((h) => (
+                    <th key={h} className="px-6 py-3 text-xs font-semibold uppercase tracking-wide" style={{ color: c.textSecondary, borderBottom: `1px solid ${c.divider}` }}>
+                      {h === "HCP" ? <span className="flex items-center gap-1">{h}<ChevronDown className="h-3 w-3" /></span> : h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {attentionRows.map((row) => (
+                  <EngagementTableRow
                     key={row.npi}
-                    className="transition-colors hover:bg-white/[0.04] cursor-pointer"
-                    style={{ borderBottom: `1px solid ${c.divider}` }}
-                    onClick={() => setSelectedHcp(row)}
-                  >
-                    <td className="px-6 py-4">
-                      <p className="font-medium" style={{ color: c.textPrimary }}>{row.hcp}</p>
-                      <p className="text-xs" style={{ color: c.textSecondary }}>{row.specialty}</p>
-                    </td>
-                    <td className="px-6 py-4 font-mono text-xs" style={{ color: c.textSecondary }}>{row.npi}</td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <ChannelIcon className="h-3.5 w-3.5" style={{ color: c.accent }} />
-                        <span style={{ color: c.textSecondary }}>{row.lastChannel}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4" style={{ color: c.textSecondary }}>{row.lastContact}</td>
-                    <td className="px-6 py-4" style={{ color: c.textPrimary }}>{row.totalTouches}</td>
-                    <td className="px-6 py-4"><Badge label={row.status} color={engagementStatusColor(row.status)} /></td>
-                    <td className="px-6 py-4" style={{ color: c.textSecondary }}>{row.coordinator}</td>
-                    <td className="px-6 py-4">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (isIntelligentMedia(row)) setSelectedMedia(row);
-                          else if (isSms(row)) setSelectedSms(row);
-                          else if (isConcierge(row)) setSelectedConcierge(row);
-                          else if (isDirectMail(row)) setSelectedDirectMail(row);
-                          else setSelectedHcp(row);
-                        }}
-                        className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors"
-                        style={{
-                          borderColor: hasDetail(row) ? `${c.accent}40` : c.divider,
-                          color: hasDetail(row) ? c.accent : c.textSecondary,
-                          cursor: hasDetail(row) ? "pointer" : "default",
-                        }}
-                      >
-                        <span>View</span>
-                        {isIntelligentMedia(row) ? <QrCode className="h-3.5 w-3.5" />
-                          : isSms(row) ? <MessageSquare className="h-3.5 w-3.5" />
-                          : isConcierge(row) ? <Headphones className="h-3.5 w-3.5" />
-                          : isDirectMail(row) ? <Package className="h-3.5 w-3.5" />
-                          : <Eye className="h-3.5 w-3.5" />}
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-        <div className="flex items-center justify-between px-6 py-4" style={{ borderTop: `1px solid ${c.divider}` }}>
-          <p className="text-sm font-medium" style={{ color: c.textSecondary }}>Showing {engagements.length} of 1,247 HCPs</p>
-          <div className="flex gap-2">
-            <button className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold" style={{ borderColor: c.divider, color: c.textSecondary, background: c.badgeBg }}>
-              <ChevronLeft className="h-4 w-4" />Previous
-            </button>
-            <button className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold" style={{ borderColor: c.divider, color: c.textSecondary, background: c.badgeBg }}>
-              Next<ChevronRight className="h-4 w-4" />
-            </button>
+                    row={row}
+                    onView={(e) => handleView(row, e)}
+                    onRowClick={() => setSelectedHcp(row)}
+                    hasDetail={!!hasDetail(row)}
+                    detailIcon={detailIcon(row)}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
+      )}
+
+      {/* All Engagements — collapsible */}
+      <div className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
+        <button
+          className="flex w-full items-center justify-between px-6 py-3.5 transition-colors hover:bg-white/[0.02]"
+          onClick={() => setAllExpanded((v) => !v)}
+        >
+          <div className="flex items-center gap-2.5">
+            <h3 className="text-sm font-semibold" style={{ color: c.textPrimary }}>All Engagements</h3>
+            <span
+              className="rounded-full px-2 py-0.5 text-xs font-bold"
+              style={{ background: `${c.accent}15`, color: c.accent }}
+            >
+              {remainingRows.length}
+            </span>
+          </div>
+          <ChevronUp
+            className="h-4 w-4 transition-transform"
+            style={{
+              color: c.textSecondary,
+              transform: allExpanded ? undefined : "rotate(180deg)",
+            }}
+          />
+        </button>
+
+        {allExpanded && (
+          <>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr>
+                    {tableHeaders.map((h) => (
+                      <th key={h} className="px-6 py-3 text-xs font-semibold uppercase tracking-wide" style={{ color: c.textSecondary, borderBottom: `1px solid ${c.divider}` }}>
+                        {h === "HCP" ? <span className="flex items-center gap-1">{h}<ChevronDown className="h-3 w-3" /></span> : h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {remainingRows.map((row) => (
+                    <EngagementTableRow
+                      key={row.npi}
+                      row={row}
+                      onView={(e) => handleView(row, e)}
+                      onRowClick={() => setSelectedHcp(row)}
+                    hasDetail={!!hasDetail(row)}
+                    detailIcon={detailIcon(row)}
+                  />
+                ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex items-center justify-between px-6 py-4" style={{ borderTop: `1px solid ${c.divider}` }}>
+              <p className="text-sm font-medium" style={{ color: c.textSecondary }}>Showing {engagements.length} of 1,247 HCPs</p>
+              <div className="flex gap-2">
+                <button className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold" style={{ borderColor: c.divider, color: c.textSecondary, background: c.badgeBg }}>
+                  <ChevronLeft className="h-4 w-4" />Previous
+                </button>
+                <button className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-semibold" style={{ borderColor: c.divider, color: c.textSecondary, background: c.badgeBg }}>
+                  Next<ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {selectedMedia && (
@@ -1078,6 +1187,129 @@ function EngagementsView() {
           engagement={{ hcp: selectedHcp.hcp, specialty: selectedHcp.specialty, npi: selectedHcp.npi }}
           onClose={() => setSelectedHcp(null)}
         />
+      )}
+    </>
+  );
+}
+
+/* ─── demo launcher ─── */
+
+const demoModules = [
+  {
+    id: "brand-manager",
+    title: "Brand Manager Day-in-the-Life",
+    description: "Walk through a typical day for a brand manager using Ascend to monitor campaigns, review HCP engagement, and optimize channel strategy.",
+    icon: Briefcase,
+    duration: "8 min",
+    steps: 12,
+  },
+  {
+    id: "vc-setup",
+    title: "Virtual Coordinator Set Up",
+    description: "See how to configure a new virtual coordinator from scratch — selecting channels, setting rules, and activating integrations.",
+    icon: Wand2,
+    duration: "5 min",
+    steps: 8,
+  },
+  {
+    id: "rep-engagement",
+    title: "Rep Engagement Manager",
+    description: "Follow a field rep reviewing HCP interactions, prioritizing follow-ups, and coordinating next-best-actions across channels.",
+    icon: Repeat,
+    duration: "6 min",
+    steps: 10,
+  },
+];
+
+function DemoLauncher() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      {/* Floating button */}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg transition-all hover:scale-105"
+        style={{
+          background: `linear-gradient(135deg, ${c.accent}, #0abecc)`,
+          color: "#0a0c10",
+          boxShadow: `0 4px 24px ${c.accent}40, 0 0 0 1px ${c.accent}20`,
+        }}
+      >
+        <Play className="h-4 w-4" style={{ fill: "currentColor" }} />
+        Demo
+      </button>
+
+      {/* Panel */}
+      {open && (
+        <div className="fixed bottom-20 right-6 z-50 w-96 rounded-2xl border shadow-2xl overflow-hidden"
+          style={{
+            background: c.bg,
+            borderColor: c.divider,
+            boxShadow: `0 12px 48px rgba(0,0,0,0.5), 0 0 0 1px ${c.divider}`,
+          }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: c.divider, background: c.card }}>
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: `${c.accent}15` }}>
+                <Play className="h-4 w-4" style={{ color: c.accent, fill: c.accent }} />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Demo Modules</h3>
+                <p className="text-[11px]" style={{ color: c.textSecondary }}>Interactive guided walkthroughs</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setOpen(false)}
+              className="flex h-7 w-7 items-center justify-center rounded-lg transition-colors hover:bg-white/5"
+              style={{ color: c.textSecondary }}
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Module list */}
+          <div className="p-3 space-y-2">
+            {demoModules.map((mod) => {
+              const Icon = mod.icon;
+              return (
+                <button
+                  key={mod.id}
+                  className="w-full flex items-start gap-3 rounded-xl border p-3.5 text-left transition-all hover:border-[#0deefd30] hover:bg-white/[0.02]"
+                  style={{ background: c.card, borderColor: c.divider }}
+                >
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg mt-0.5"
+                    style={{ background: `${c.accent}10`, border: `1px solid ${c.accent}20` }}
+                  >
+                    <Icon className="h-5 w-5" style={{ color: c.accent }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold" style={{ color: c.textPrimary }}>{mod.title}</p>
+                    <p className="text-xs mt-1 leading-relaxed" style={{ color: c.textSecondary }}>{mod.description}</p>
+                    <div className="flex items-center gap-3 mt-2">
+                      <span className="flex items-center gap-1 text-[11px] font-medium" style={{ color: c.textMuted }}>
+                        <Clock className="h-3 w-3" />
+                        {mod.duration}
+                      </span>
+                      <span className="flex items-center gap-1 text-[11px] font-medium" style={{ color: c.textMuted }}>
+                        <Play className="h-3 w-3" />
+                        {mod.steps} steps
+                      </span>
+                    </div>
+                  </div>
+                  <ChevronRight className="h-4 w-4 shrink-0 mt-1" style={{ color: c.textMuted }} />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Footer */}
+          <div className="px-5 py-3 border-t text-center" style={{ borderColor: c.divider }}>
+            <p className="text-[11px]" style={{ color: c.textMuted }}>Select a module to begin the guided walkthrough</p>
+          </div>
+        </div>
       )}
     </>
   );
@@ -1197,6 +1429,8 @@ export default function Home() {
           {activeTab === "engagements" && <EngagementsView />}
         </div>
       </main>
+
+      <DemoLauncher />
     </div>
   );
 }
