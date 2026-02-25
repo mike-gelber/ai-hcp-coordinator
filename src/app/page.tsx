@@ -50,6 +50,11 @@ import {
   BookOpen,
   Layers,
   Zap,
+  GraduationCap,
+  FileCheck,
+  Pencil,
+  ThumbsUp,
+  UploadCloud,
 } from "lucide-react";
 import AscendCoordinatorManager from "@/components/AscendCoordinatorManager";
 import HcpDetailPane from "@/components/HcpDetailPane";
@@ -327,9 +332,167 @@ const mslTierStats = [
   { label: "Avg Connect Time (Tier 2)", value: "1.4m", detail: "Time to connect with live MSL", icon: Video, accent: "#75dfa6" },
 ];
 
+/* ── MSL Training Data ── */
+
+interface TrainingSubmission {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+  source: string;
+  submittedBy: string;
+  submittedAt: string;
+  status: "Submitted" | "Under Review" | "Approved" | "Live";
+  coordinator: string;
+}
+
+const trainingSubmissions: TrainingSubmission[] = [
+  {
+    id: "TS-001",
+    question: "What is the recommended monitoring schedule for hepatic function during Stelazio treatment?",
+    answer: "Hepatic function tests (ALT, AST) should be performed at baseline and as clinically indicated thereafter. In clinical trials, hepatic enzyme elevations >3x ULN occurred in 2.1% of Stelazio-treated patients vs 1.8% placebo. If persistent, clinically significant increases are detected, dose reduction or discontinuation should be considered per clinical judgment.",
+    category: "Safety",
+    source: "Stelazio PI Section 5.2, ODYSSEY LONG TERM Safety Analysis",
+    submittedBy: "Dr. Amanda Torres, MSL",
+    submittedAt: "Feb 22, 2026",
+    status: "Live",
+    coordinator: "Stelazio V1.1",
+  },
+  {
+    id: "TS-002",
+    question: "How does Stelazio compare to ezetimibe in patients who cannot tolerate any statin?",
+    answer: "In the ODYSSEY ALTERNATIVE trial, completely statin-intolerant patients receiving Stelazio achieved 45.0% LDL-C reduction vs 14.6% with ezetimibe at week 24 (p<0.0001). Skeletal muscle-related events were 32.5% with Stelazio vs 41.1% with ezetimibe, though this was not a pre-specified comparison.",
+    category: "Clinical Data",
+    source: "ODYSSEY ALTERNATIVE Phase III Data, Stelazio PI Section 14.2",
+    submittedBy: "Dr. James Rivera, MSL",
+    submittedAt: "Feb 20, 2026",
+    status: "Approved",
+    coordinator: "Stelazio V1.1",
+  },
+  {
+    id: "TS-003",
+    question: "Can Stelazio be self-administered by patients, and what injection training is recommended?",
+    answer: "Yes, Stelazio is designed for subcutaneous self-injection after proper training. Healthcare providers should instruct patients on proper subcutaneous injection technique, including aseptic technique, and how to use the pre-filled pen correctly. The injection should be administered into the thigh, abdomen (excluding 2-inch area around navel), or upper arm. Injection sites should be rotated with each injection.",
+    category: "Dosing",
+    source: "Stelazio PI Section 2.3, Patient Injection Guide",
+    submittedBy: "Sarah Mitchell, MSL",
+    submittedAt: "Feb 19, 2026",
+    status: "Under Review",
+    coordinator: "Stelazio V1.1",
+  },
+  {
+    id: "TS-004",
+    question: "What real-world evidence exists for Neurovia in treatment-resistant epilepsy?",
+    answer: "Post-marketing registry data from the EXTEND-RWE study (n=2,847) showed a 52% responder rate (≥50% seizure reduction) in patients with treatment-resistant focal epilepsy at 12 months. Median time to response was 8.2 weeks. Quality of life improvements (QOLIE-31) were significant from month 3 onward.",
+    category: "Clinical Data",
+    source: "EXTEND-RWE Registry, 12-Month Interim Analysis",
+    submittedBy: "Dr. Patricia Huang, MSL",
+    submittedAt: "Feb 18, 2026",
+    status: "Live",
+    coordinator: "Neurovia",
+  },
+  {
+    id: "TS-005",
+    question: "What is the drug interaction profile of Stelazio with commonly prescribed cardiovascular medications?",
+    answer: "Stelazio has no clinically significant drug-drug interactions with commonly prescribed cardiovascular medications including warfarin, digoxin, and atorvastatin based on dedicated PK studies. No dose adjustments are needed when co-administering with these agents.",
+    category: "Safety",
+    source: "Stelazio PI Section 7, Drug Interaction Studies",
+    submittedBy: "Dr. Amanda Torres, MSL",
+    submittedAt: "Feb 15, 2026",
+    status: "Submitted",
+    coordinator: "Stelazio V1.1",
+  },
+];
+
+interface TrainingCorrection {
+  id: string;
+  originalQuestion: string;
+  originalAnswer: string;
+  suggestedAnswer: string;
+  reason: string;
+  submittedBy: string;
+  submittedAt: string;
+  status: "Pending" | "Accepted" | "Rejected";
+}
+
+const trainingCorrections: TrainingCorrection[] = [
+  {
+    id: "TC-001",
+    originalQuestion: "What are the most common adverse events with Stelazio?",
+    originalAnswer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis (6.1%), upper respiratory tract infection (5.8%), and injection site reactions (5.2%).",
+    suggestedAnswer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis (6.1%), upper respiratory tract infection (5.8%), and injection site reactions (5.2%). Additionally, in the ODYSSEY OUTCOMES trial, local injection site reactions were reported at 3.8% vs 2.1% placebo. Most reactions were mild and transient, with a discontinuation rate due to injection site reactions of only 0.2%.",
+    reason: "Added quantitative injection site data from ODYSSEY OUTCOMES that HCPs frequently ask about in follow-up",
+    submittedBy: "Dr. James Rivera, MSL",
+    submittedAt: "Feb 21, 2026",
+    status: "Accepted",
+  },
+  {
+    id: "TC-002",
+    originalQuestion: "Is Stelazio approved for use in pediatric patients?",
+    originalAnswer: "Stelazio is approved for use in pediatric patients aged 10 years and older with HeFH.",
+    suggestedAnswer: "Stelazio is approved for use in pediatric patients aged 10 years and older with heterozygous familial hypercholesterolemia (HeFH). In the pediatric Phase III study, LDL-C reduction at week 24 was 44.7% vs placebo. Weight-based dosing is not required; the same adult dose (75mg or 150mg Q2W) is used in the pediatric population.",
+    reason: "Added pediatric efficacy data and clarified dosing — this is a common follow-up question from pediatric cardiologists",
+    submittedBy: "Sarah Mitchell, MSL",
+    submittedAt: "Feb 17, 2026",
+    status: "Pending",
+  },
+];
+
+const trainingStatusColor = (s: TrainingSubmission["status"]) => {
+  if (s === "Live") return c.green;
+  if (s === "Approved") return "#0deefd";
+  if (s === "Under Review") return "#f79009";
+  return c.textMuted;
+};
+
+const correctionStatusColor = (s: TrainingCorrection["status"]) => {
+  if (s === "Accepted") return c.green;
+  if (s === "Pending") return "#f79009";
+  return c.pink;
+};
+
+/* ── MSL-Trained Engagement Mapping ── */
+
+interface MslTrainingSource {
+  submissionId: string;
+  question: string;
+  trainedBy: string;
+  approvedDate: string;
+  confidenceBoost: string;
+  coordinator: string;
+}
+
+const mslTrainedEngagements: Record<string, MslTrainingSource> = {
+  "1234567890": {
+    submissionId: "TS-001",
+    question: "Hepatic monitoring during Stelazio treatment",
+    trainedBy: "Dr. Amanda Torres, MSL",
+    approvedDate: "Feb 22, 2026",
+    confidenceBoost: "+12% → 97%",
+    coordinator: "Stelazio V1.1",
+  },
+  "9012345678": {
+    submissionId: "TS-002",
+    question: "Stelazio vs ezetimibe in statin-intolerant patients",
+    trainedBy: "Dr. James Rivera, MSL",
+    approvedDate: "Feb 20, 2026",
+    confidenceBoost: "+18% → 95%",
+    coordinator: "Stelazio V1.1",
+  },
+  "3344556677": {
+    submissionId: "TS-004",
+    question: "Real-world evidence for Neurovia in treatment-resistant epilepsy",
+    trainedBy: "Dr. Patricia Huang, MSL",
+    approvedDate: "Feb 18, 2026",
+    confidenceBoost: "+22% → 91%",
+    coordinator: "Neurovia",
+  },
+};
+
 function MslVirtualCoordinatorDemo() {
-  const [activeDemo, setActiveDemo] = useState<"conversation" | "knowledge" | null>(null);
+  const [activeDemo, setActiveDemo] = useState<"conversation" | "knowledge" | "training" | null>(null);
   const [visibleMessages, setVisibleMessages] = useState(4);
+  const [trainingTab, setTrainingTab] = useState<"submit" | "recent" | "corrections">("recent");
 
   const showMore = () => setVisibleMessages((v) => Math.min(v + 3, tier1DemoConversation.length));
 
@@ -477,6 +640,18 @@ function MslVirtualCoordinatorDemo() {
             <BookOpen className="h-4 w-4" />
             Knowledge Base
           </button>
+          <button
+            onClick={() => setActiveDemo(activeDemo === "training" ? null : "training")}
+            className="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all cursor-pointer"
+            style={{
+              background: activeDemo === "training" ? "#f79009" : "#f7900910",
+              color: activeDemo === "training" ? "#1a1a1a" : "#f79009",
+              border: "1px solid #f7900930",
+            }}
+          >
+            <GraduationCap className="h-4 w-4" />
+            Training
+          </button>
         </div>
 
         {/* Demo Conversation Panel */}
@@ -563,18 +738,281 @@ function MslVirtualCoordinatorDemo() {
             </div>
           </div>
         )}
+
+        {/* Training Panel */}
+        {activeDemo === "training" && (
+          <div className="rounded-xl border overflow-hidden" style={{ background: "#0c0e12", borderColor: "#f7900925" }}>
+            <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "#131720", background: "#0c0e12" }}>
+              <div className="flex items-center gap-2">
+                <GraduationCap className="h-4 w-4" style={{ color: "#f79009" }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>MSL Training Center</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ color: c.green, background: `${c.green}12`, border: `1px solid ${c.green}25` }}>
+                  {trainingSubmissions.filter(s => s.status === "Live").length} Live
+                </span>
+                <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ color: "#f79009", background: "#f7900912", border: "1px solid #f7900925" }}>
+                  {trainingSubmissions.filter(s => s.status !== "Live").length} Pending
+                </span>
+              </div>
+            </div>
+
+            {/* Training Sub-tabs */}
+            <div className="flex border-b" style={{ borderColor: "#131720" }}>
+              {([
+                { key: "submit" as const, label: "Submit New Q&A", icon: UploadCloud },
+                { key: "recent" as const, label: "Recent Submissions", icon: FileCheck },
+                { key: "corrections" as const, label: "Suggest Corrections", icon: Pencil },
+              ]).map(({ key, label, icon: TabIcon }) => (
+                <button
+                  key={key}
+                  onClick={() => setTrainingTab(key)}
+                  className="flex items-center gap-2 px-5 py-3 text-xs font-semibold transition-colors cursor-pointer"
+                  style={{
+                    color: trainingTab === key ? "#f79009" : c.textSecondary,
+                    borderBottom: trainingTab === key ? "2px solid #f79009" : "2px solid transparent",
+                    background: trainingTab === key ? "#f7900908" : "transparent",
+                  }}
+                >
+                  <TabIcon className="h-3.5 w-3.5" />
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <div className="p-5">
+              {/* Submit New Q&A Tab */}
+              {trainingTab === "submit" && (
+                <div className="space-y-5">
+                  <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: "#131720" }}>
+                    <p className="text-xs font-semibold mb-3" style={{ color: c.textPrimary }}>Add new trained response to the Tier 1 Knowledge Base</p>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-widest block mb-1.5" style={{ color: c.textMuted }}>Coordinator</label>
+                        <div className="rounded-lg border px-3 py-2 text-xs" style={{ background: "#0c0e12", borderColor: c.divider, color: c.textSecondary }}>
+                          Stelazio Virtual Coordinator V1.1
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-widest block mb-1.5" style={{ color: c.textMuted }}>HCP Question</label>
+                        <div className="rounded-lg border px-3 py-2.5 text-xs" style={{ background: "#0c0e12", borderColor: c.divider, color: c.textMuted }}>
+                          Enter the question HCPs commonly ask...
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-widest block mb-1.5" style={{ color: c.textMuted }}>Approved MSL Response</label>
+                        <div className="rounded-lg border px-3 py-2.5 text-xs min-h-[80px]" style={{ background: "#0c0e12", borderColor: c.divider, color: c.textMuted }}>
+                          Enter the approved response the AI should provide...
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-[10px] font-bold uppercase tracking-widest block mb-1.5" style={{ color: c.textMuted }}>Category</label>
+                          <div className="rounded-lg border px-3 py-2 text-xs flex items-center justify-between" style={{ background: "#0c0e12", borderColor: c.divider, color: c.textSecondary }}>
+                            <span>Select category...</span>
+                            <ChevronDown className="h-3 w-3" style={{ color: c.textMuted }} />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="text-[10px] font-bold uppercase tracking-widest block mb-1.5" style={{ color: c.textMuted }}>Source / Citation</label>
+                          <div className="rounded-lg border px-3 py-2 text-xs" style={{ background: "#0c0e12", borderColor: c.divider, color: c.textMuted }}>
+                            PI Section, study name...
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between pt-2">
+                        <p className="text-[10px]" style={{ color: c.textMuted }}>Submissions are reviewed by Medical Affairs before going live</p>
+                        <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold cursor-pointer" style={{ background: "#f79009", color: "#1a1a1a" }}>
+                          <UploadCloud className="h-3.5 w-3.5" />
+                          Submit for Review
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Recent Submissions Tab */}
+              {trainingTab === "recent" && (
+                <div className="space-y-3">
+                  {trainingSubmissions.map((sub) => (
+                    <div key={sub.id} className="rounded-xl border p-4" style={{ background: c.bg, borderColor: "#131720" }}>
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-[10px] font-mono font-bold" style={{ color: c.textMuted }}>{sub.id}</span>
+                            <span className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide" style={{
+                              color: trainingStatusColor(sub.status),
+                              background: `${trainingStatusColor(sub.status)}12`,
+                              border: `1px solid ${trainingStatusColor(sub.status)}25`,
+                            }}>
+                              {sub.status}
+                            </span>
+                            <span className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide" style={{ color: c.accent, border: `1px solid ${c.accent}25`, background: `${c.accent}08` }}>
+                              {sub.category}
+                            </span>
+                          </div>
+                          <p className="text-sm font-semibold mb-1" style={{ color: c.textPrimary }}>{sub.question}</p>
+                        </div>
+                      </div>
+                      <p className="text-xs leading-relaxed mb-3" style={{ color: c.textSecondary }}>{sub.answer}</p>
+                      <div className="flex items-center justify-between pt-2" style={{ borderTop: `1px solid ${c.divider}` }}>
+                        <div className="flex items-center gap-4">
+                          <span className="text-[10px]" style={{ color: c.textMuted }}>Source: {sub.source}</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-[10px]" style={{ color: c.textMuted }}>{sub.submittedBy}</span>
+                          <span className="text-[10px]" style={{ color: c.textMuted }}>{sub.submittedAt}</span>
+                        </div>
+                      </div>
+                      {sub.status === "Live" && (
+                        <div className="mt-3 rounded-lg px-3 py-2 flex items-center gap-2" style={{ background: `${c.green}08`, border: `1px solid ${c.green}15` }}>
+                          <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: c.green }} />
+                          <span className="text-[10px] font-medium" style={{ color: c.green }}>Active in Tier 1 Knowledge Base — powering live HCP responses</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Suggest Corrections Tab */}
+              {trainingTab === "corrections" && (
+                <div className="space-y-5">
+                  <div className="rounded-xl border p-4" style={{ background: c.bg, borderColor: "#131720" }}>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Pencil className="h-3.5 w-3.5" style={{ color: "#f79009" }} />
+                      <p className="text-xs font-semibold" style={{ color: c.textPrimary }}>Review and improve existing Tier 1 responses</p>
+                    </div>
+                    <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>
+                      Browse the current knowledge base responses below. If you see an answer that could be improved with additional data, nuance, or real-world context, click &quot;Suggest Correction&quot; to submit an enhanced version for review.
+                    </p>
+                  </div>
+
+                  {/* Pending Corrections */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary }}>Active Corrections</span>
+                      <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ color: "#f79009", background: "#f7900912" }}>
+                        {trainingCorrections.length}
+                      </span>
+                    </div>
+                    {trainingCorrections.map((corr) => (
+                      <div key={corr.id} className="rounded-xl border p-4 mb-3" style={{ background: c.bg, borderColor: "#131720" }}>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-[10px] font-mono font-bold" style={{ color: c.textMuted }}>{corr.id}</span>
+                          <span className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase" style={{
+                            color: correctionStatusColor(corr.status),
+                            background: `${correctionStatusColor(corr.status)}12`,
+                            border: `1px solid ${correctionStatusColor(corr.status)}25`,
+                          }}>
+                            {corr.status}
+                          </span>
+                        </div>
+                        <p className="text-xs font-semibold mb-2" style={{ color: c.textPrimary }}>{corr.originalQuestion}</p>
+
+                        <div className="grid grid-cols-2 gap-3 mb-3">
+                          <div className="rounded-lg p-3" style={{ background: `${c.pink}06`, border: `1px solid ${c.pink}15` }}>
+                            <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.pink }}>Current Response</p>
+                            <p className="text-[11px] leading-relaxed" style={{ color: c.textSecondary }}>{corr.originalAnswer}</p>
+                          </div>
+                          <div className="rounded-lg p-3" style={{ background: `${c.green}06`, border: `1px solid ${c.green}15` }}>
+                            <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.green }}>Suggested Improvement</p>
+                            <p className="text-[11px] leading-relaxed" style={{ color: c.textSecondary }}>{corr.suggestedAnswer}</p>
+                          </div>
+                        </div>
+
+                        <div className="rounded-lg p-3 mb-2" style={{ background: "#f7900908", border: "1px solid #f7900915" }}>
+                          <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: "#f79009" }}>Reason for Change</p>
+                          <p className="text-[11px] leading-relaxed" style={{ color: c.textSecondary }}>{corr.reason}</p>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px]" style={{ color: c.textMuted }}>{corr.submittedBy} · {corr.submittedAt}</span>
+                          {corr.status === "Accepted" && (
+                            <div className="flex items-center gap-1.5">
+                              <ThumbsUp className="h-3 w-3" style={{ color: c.green }} />
+                              <span className="text-[10px] font-medium" style={{ color: c.green }}>Approved — updating knowledge base</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Current KB responses with suggest button */}
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest block mb-3" style={{ color: c.textSecondary }}>Current Knowledge Base Responses</span>
+                    {mslFaqs.slice(0, 3).map((faq, i) => (
+                      <div key={i} className="rounded-xl border p-4 mb-3" style={{ background: c.bg, borderColor: "#131720" }}>
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <p className="text-xs font-semibold" style={{ color: c.textPrimary }}>{faq.question}</p>
+                          <span className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase" style={{ color: c.accent, border: `1px solid ${c.accent}25`, background: `${c.accent}08` }}>
+                            {faq.category}
+                          </span>
+                        </div>
+                        <p className="text-[11px] leading-relaxed mb-3" style={{ color: c.textSecondary }}>{faq.answer}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px]" style={{ color: c.textMuted }}>Source: {faq.source}</span>
+                          <button className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[10px] font-semibold cursor-pointer transition-colors hover:bg-white/5" style={{ borderColor: "#f7900930", color: "#f79009" }}>
+                            <Pencil className="h-3 w-3" />
+                            Suggest Correction
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
-function MslCoordinatorView() {
+function MslCoordinatorView({ onNavigateToEngagements }: { onNavigateToEngagements: () => void }) {
+  const liveCount = trainingSubmissions.filter(s => s.status === "Live").length;
+  const trainedEngagementCount = Object.keys(mslTrainedEngagements).length;
   return (
     <>
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold" style={{ color: c.textPrimary }}>MSL Virtual Coordinator</h1>
-        <p className="text-sm mt-1" style={{ color: c.textSecondary }}>Tier 1 AI-powered MSL with Tier 2 live escalation to Impiricus Connect</p>
+      <div className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold" style={{ color: c.textPrimary }}>MSL Virtual Coordinator</h1>
+          <p className="text-sm mt-1" style={{ color: c.textSecondary }}>Tier 1 AI-powered MSL with Tier 2 live escalation to Impiricus Connect</p>
+        </div>
+        <button
+          onClick={onNavigateToEngagements}
+          className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors cursor-pointer hover:bg-white/5"
+          style={{ border: `1px solid ${c.accent}30`, color: c.accent }}
+        >
+          <GraduationCap className="h-4 w-4" />
+          View MSL-Trained Engagements
+          <span className="rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: `${c.accent}15` }}>{trainedEngagementCount}</span>
+          <ExternalLink className="h-3.5 w-3.5" />
+        </button>
       </div>
+
+      {/* Training Impact Summary */}
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        {[
+          { label: "Live Trained Responses", value: liveCount.toString(), detail: "Active in Tier 1 Knowledge Base", icon: FileCheck, accent: c.green },
+          { label: "MSL-Trained Engagements", value: trainedEngagementCount.toString(), detail: "HCPs served by trained responses", icon: GraduationCap, accent: "#f79009" },
+          { label: "Pending Submissions", value: trainingSubmissions.filter(s => s.status !== "Live").length.toString(), detail: "Awaiting review or approval", icon: Clock, accent: c.accent },
+          { label: "Active Corrections", value: trainingCorrections.filter(c => c.status === "Pending").length.toString(), detail: "Suggested improvements in review", icon: Pencil, accent: "#f79009" },
+        ].map((s) => (
+          <div key={s.label} className="rounded-xl border p-4" style={{ background: c.card, borderColor: c.divider }}>
+            <div className="flex items-center gap-2 mb-2">
+              <s.icon className="h-3.5 w-3.5" style={{ color: s.accent }} />
+              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary }}>{s.label}</span>
+            </div>
+            <p className="text-xl font-bold" style={{ color: c.textPrimary }}>{s.value}</p>
+            <p className="text-[11px] mt-0.5" style={{ color: c.textSecondary }}>{s.detail}</p>
+          </div>
+        ))}
+      </div>
+
       <MslVirtualCoordinatorDemo />
     </>
   );
@@ -983,6 +1421,40 @@ function SmsDetailModal({ engagement, onClose }: { engagement: Engagement; onClo
             <p className="text-[10px] font-bold uppercase tracking-widest mb-1.5" style={{ color: c.accent }}>Next Action</p>
             <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{flow.nextAction}</p>
           </div>
+
+          {mslTrainedEngagements[engagement.npi] && (
+            <div className="rounded-xl border p-4" style={{ background: "#f7900908", borderColor: "#f7900920" }}>
+              <div className="flex items-center gap-2 mb-3">
+                <GraduationCap className="h-4 w-4" style={{ color: "#f79009" }} />
+                <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#f79009" }}>MSL-Trained Knowledge Source</span>
+              </div>
+              <p className="text-xs leading-relaxed mb-3" style={{ color: c.textSecondary }}>
+                The Tier 1 AI response in this engagement was powered by an MSL training submission, ensuring accuracy and clinical depth.
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Training ID</p>
+                  <p className="text-xs font-mono font-medium" style={{ color: c.textPrimary }}>{mslTrainedEngagements[engagement.npi].submissionId}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Trained By</p>
+                  <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{mslTrainedEngagements[engagement.npi].trainedBy}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Knowledge Applied</p>
+                  <p className="text-xs font-medium" style={{ color: c.textPrimary }}>{mslTrainedEngagements[engagement.npi].question}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: c.textMuted }}>Confidence Boost</p>
+                  <p className="text-xs font-bold" style={{ color: c.green }}>{mslTrainedEngagements[engagement.npi].confidenceBoost}</p>
+                </div>
+              </div>
+              <div className="mt-3 pt-3 flex items-center gap-2" style={{ borderTop: "1px solid #f7900915" }}>
+                <CheckCircle2 className="h-3 w-3" style={{ color: c.green }} />
+                <span className="text-[10px] font-medium" style={{ color: c.green }}>Approved {mslTrainedEngagements[engagement.npi].approvedDate} — Active in {mslTrainedEngagements[engagement.npi].coordinator} knowledge base</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -1253,12 +1725,13 @@ function DirectMailModal({ engagement, onClose }: { engagement: Engagement; onCl
   );
 }
 
-function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon }: {
+function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon, isMslTrained }: {
   row: Engagement;
   onView: (e: React.MouseEvent) => void;
   onRowClick: () => void;
   hasDetail: boolean;
   detailIcon: React.ReactNode;
+  isMslTrained?: boolean;
 }) {
   const ChannelIcon = row.lastChannelIcon;
   return (
@@ -1268,8 +1741,18 @@ function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon }: 
       onClick={onRowClick}
     >
       <td className="px-6 py-4">
-        <p className="font-medium" style={{ color: c.textPrimary }}>{row.hcp}</p>
-        <p className="text-xs" style={{ color: c.textSecondary }}>{row.specialty}</p>
+        <div className="flex items-center gap-2">
+          <div>
+            <p className="font-medium" style={{ color: c.textPrimary }}>{row.hcp}</p>
+            <p className="text-xs" style={{ color: c.textSecondary }}>{row.specialty}</p>
+          </div>
+          {isMslTrained && (
+            <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide shrink-0" style={{ color: "#f79009", background: "#f7900912", border: "1px solid #f7900925" }}>
+              <GraduationCap className="h-2.5 w-2.5" />
+              MSL Trained
+            </span>
+          )}
+        </div>
       </td>
       <td className="px-6 py-4 font-mono text-xs" style={{ color: c.textSecondary }}>{row.npi}</td>
       <td className="px-6 py-4">
@@ -1368,12 +1851,13 @@ function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?
       </div>
 
       {/* Summary cards */}
-      <div data-demo="engagement-summary" className="grid grid-cols-4 gap-4 mb-6">
+      <div data-demo="engagement-summary" className="grid grid-cols-5 gap-4 mb-6">
         {[
           { label: "Total HCPs", value: engagements.length.toString(), accent: c.accent },
           { label: "Active", value: engagements.filter(e => e.status === "Active").length.toString(), accent: c.green },
           { label: "Cooling Off", value: engagements.filter(e => e.status === "Cooling Off").length.toString(), accent: c.pink },
           { label: "New", value: engagements.filter(e => e.status === "New").length.toString(), accent: c.accent },
+          { label: "MSL-Trained", value: engagements.filter(e => mslTrainedEngagements[e.npi]).length.toString(), accent: "#f79009" },
         ].map((s) => (
           <div key={s.label} className="rounded-xl border px-5 py-4 flex items-center gap-4" style={{ background: c.card, borderColor: c.divider }}>
             <div className="h-10 w-1 rounded-full" style={{ background: s.accent }} />
@@ -1420,6 +1904,7 @@ function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?
                     onRowClick={() => setSelectedHcp(row)}
                     hasDetail={!!hasDetail(row)}
                     detailIcon={detailIcon(row)}
+                    isMslTrained={!!mslTrainedEngagements[row.npi]}
                   />
                 ))}
               </tbody>
@@ -1472,10 +1957,11 @@ function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?
                       row={row}
                       onView={(e) => handleView(row, e)}
                       onRowClick={() => setSelectedHcp(row)}
-                    hasDetail={!!hasDetail(row)}
-                    detailIcon={detailIcon(row)}
-                  />
-                ))}
+                      hasDetail={!!hasDetail(row)}
+                      detailIcon={detailIcon(row)}
+                      isMslTrained={!!mslTrainedEngagements[row.npi]}
+                    />
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -2043,7 +2529,7 @@ export default function Home() {
           {activeTab === "virtual-coordinator" && <VirtualCoordinatorView onNavigateToHcp={handleNavigateToHcp} />}
 
           {/* ═══ MSL Coordinator Tab ═══ */}
-          {activeTab === "msl-coordinator" && <MslCoordinatorView />}
+          {activeTab === "msl-coordinator" && <MslCoordinatorView onNavigateToEngagements={() => setActiveTab("engagements")} />}
 
           {/* ═══ Engagements Tab ═══ */}
           {activeTab === "engagements" && <EngagementsView focusedHcp={focusedHcp} onClearFocus={clearFocusedHcp} demoHcpTab={demoHcpTab} />}
