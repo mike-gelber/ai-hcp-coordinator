@@ -72,7 +72,7 @@ const c = {
   divider: "#1e2028",
 };
 
-type Tab = "dashboard" | "virtual-coordinator" | "engagements";
+type Tab = "dashboard" | "virtual-coordinator" | "msl-coordinator" | "engagements";
 
 /* ─── data ─── */
 
@@ -568,6 +568,18 @@ function MslVirtualCoordinatorDemo() {
   );
 }
 
+function MslCoordinatorView() {
+  return (
+    <>
+      <div className="mb-8">
+        <h1 className="text-2xl font-semibold" style={{ color: c.textPrimary }}>MSL Virtual Coordinator</h1>
+        <p className="text-sm mt-1" style={{ color: c.textSecondary }}>Tier 1 AI-powered MSL with Tier 2 live escalation to Impiricus Connect</p>
+      </div>
+      <MslVirtualCoordinatorDemo />
+    </>
+  );
+}
+
 function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string) => void }) {
   return (
     <>
@@ -588,11 +600,6 @@ function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName
       {/* Virtual Coordinator Manager */}
       <section data-demo="vc-manager" className="mb-8">
         <AscendCoordinatorManager onNavigateToHcp={onNavigateToHcp} />
-      </section>
-
-      {/* MSL Virtual Coordinator Demo */}
-      <section className="mb-8">
-        <MslVirtualCoordinatorDemo />
       </section>
 
       {/* Virtual Coordinators Table */}
@@ -1843,6 +1850,7 @@ function DemoWalkthrough({
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("dashboard");
+  const [mslEnabled, setMslEnabled] = useState(true);
   const [focusedHcp, setFocusedHcp] = useState<string | undefined>();
   const [activeDemo, setActiveDemo] = useState<string | null>(null);
   const [demoStep, setDemoStep] = useState(0);
@@ -1909,19 +1917,56 @@ export default function Home() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = item.tab === activeTab;
+            const isVc = item.tab === "virtual-coordinator";
+            const vcExpanded = isVc && (activeTab === "virtual-coordinator" || activeTab === "msl-coordinator");
             return (
-              <button
-                key={item.tab}
-                onClick={() => setActiveTab(item.tab)}
-                className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold transition-colors cursor-pointer text-left"
-                style={{
-                  color: isActive ? c.accent : c.textSecondary,
-                  background: isActive ? c.navActive : "transparent",
-                }}
-              >
-                <Icon className="h-5 w-5" />
-                {item.label}
-              </button>
+              <div key={item.tab}>
+                <button
+                  onClick={() => setActiveTab(item.tab)}
+                  className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold transition-colors cursor-pointer text-left"
+                  style={{
+                    color: isActive ? c.accent : c.textSecondary,
+                    background: isActive ? c.navActive : "transparent",
+                  }}
+                >
+                  <Icon className="h-5 w-5" />
+                  {item.label}
+                </button>
+                {isVc && vcExpanded && (
+                  <div className="ml-8 mt-1 space-y-0.5">
+                    <button
+                      onClick={() => setActiveTab("msl-coordinator")}
+                      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-xs font-semibold transition-colors cursor-pointer text-left group"
+                      style={{
+                        color: activeTab === "msl-coordinator" ? c.accent : c.textSecondary,
+                        background: activeTab === "msl-coordinator" ? c.navActive : "transparent",
+                      }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Shield className="h-3.5 w-3.5" />
+                        <span>MSL Coordinator</span>
+                      </div>
+                      <div
+                        role="switch"
+                        aria-checked={mslEnabled}
+                        tabIndex={0}
+                        onClick={(e) => { e.stopPropagation(); setMslEnabled(!mslEnabled); }}
+                        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.stopPropagation(); setMslEnabled(!mslEnabled); } }}
+                        className="relative inline-flex h-4 w-7 shrink-0 cursor-pointer rounded-full transition-colors"
+                        style={{ background: mslEnabled ? c.accent : c.divider }}
+                      >
+                        <span
+                          className="inline-block h-3 w-3 rounded-full transition-transform mt-0.5"
+                          style={{
+                            background: mslEnabled ? "#1a1a1a" : c.textMuted,
+                            transform: mslEnabled ? "translateX(14px)" : "translateX(2px)",
+                          }}
+                        />
+                      </div>
+                    </button>
+                  </div>
+                )}
+              </div>
             );
           })}
         </nav>
@@ -1987,7 +2032,7 @@ export default function Home() {
             </span>
             <span style={{ color: c.textMuted }}>/</span>
             <span className="font-semibold" style={{ color: "#fff" }}>
-              {navItems.find((n) => n.tab === activeTab)?.label}
+              {activeTab === "msl-coordinator" ? "MSL Coordinator" : navItems.find((n) => n.tab === activeTab)?.label}
             </span>
           </div>
 
@@ -1996,6 +2041,9 @@ export default function Home() {
 
           {/* ═══ Virtual Coordinator Tab ═══ */}
           {activeTab === "virtual-coordinator" && <VirtualCoordinatorView onNavigateToHcp={handleNavigateToHcp} />}
+
+          {/* ═══ MSL Coordinator Tab ═══ */}
+          {activeTab === "msl-coordinator" && <MslCoordinatorView />}
 
           {/* ═══ Engagements Tab ═══ */}
           {activeTab === "engagements" && <EngagementsView focusedHcp={focusedHcp} onClearFocus={clearFocusedHcp} demoHcpTab={demoHcpTab} />}
