@@ -55,6 +55,19 @@ import {
   Pencil,
   ThumbsUp,
   UploadCloud,
+  Sparkles,
+  BarChart3,
+  Target,
+  Wifi,
+  TrendingUp,
+  Building2,
+  Smartphone,
+  MousePointerClick,
+  Image,
+  Newspaper,
+  Monitor,
+  Link2,
+  Share2,
 } from "lucide-react";
 import AscendCoordinatorManager from "@/components/AscendCoordinatorManager";
 import HcpDetailPane from "@/components/HcpDetailPane";
@@ -77,13 +90,14 @@ const c = {
   divider: "#1e2028",
 };
 
-type Tab = "dashboard" | "virtual-coordinator" | "msl-coordinator" | "engagements";
+type Tab = "dashboard" | "virtual-coordinator" | "msl-coordinator" | "intelligent-media" | "engagements";
 
 /* ─── data ─── */
 
 const navItems: { label: string; icon: typeof LayoutDashboard; tab: Tab }[] = [
   { label: "Dashboard", icon: LayoutDashboard, tab: "dashboard" },
   { label: "Virtual Coordinator", icon: Radio, tab: "virtual-coordinator" },
+  { label: "Intelligent Media", icon: Sparkles, tab: "intelligent-media" },
   { label: "Engagements", icon: Users, tab: "engagements" },
 ];
 
@@ -1799,6 +1813,375 @@ function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon, is
   );
 }
 
+/* ══════════════════════════════════════════════════════════
+   Intelligent Media — Agency Co-Branded Dashboard
+   ══════════════════════════════════════════════════════════ */
+
+const imCampaigns = [
+  { id: "IM-2601", client: "Neurovia", brand: "Epilepsy Portfolio", placement: "Billboard DOOH", region: "Los Angeles Metro", status: "Active" as const, scans: 1842, uniqueHcps: 623, avgSession: "5m 12s", followUpRate: "34%", engagementRate: "68%" },
+  { id: "IM-2602", client: "Stelazio", brand: "Cardiology Portfolio", placement: "Conference Leave-Behind", region: "National (AAN, ACC, AHA)", status: "Active" as const, scans: 3241, uniqueHcps: 1187, avgSession: "6m 48s", followUpRate: "41%", engagementRate: "74%" },
+  { id: "IM-2603", client: "Oncurel", brand: "Oncology Portfolio", placement: "Physician Lounge Display", region: "NYC Metro Hospitals", status: "Active" as const, scans: 967, uniqueHcps: 412, avgSession: "4m 33s", followUpRate: "29%", engagementRate: "61%" },
+  { id: "IM-2604", client: "Respira", brand: "Pulmonology Portfolio", placement: "Journal Ad QR", region: "NEJM, JAMA, Chest", status: "Active" as const, scans: 2156, uniqueHcps: 891, avgSession: "7m 21s", followUpRate: "38%", engagementRate: "71%" },
+  { id: "IM-2605", client: "Cardiovex", brand: "Cardiology Portfolio", placement: "Email Embedded QR", region: "National — Tier 1 Cardiologists", status: "Scheduled" as const, scans: 0, uniqueHcps: 0, avgSession: "—", followUpRate: "—", engagementRate: "—" },
+];
+
+const imPlacementPerformance = [
+  { type: "Conference Materials", icon: Briefcase, scans: 3241, pct: 38, hcps: 1187, color: "#0deefd" },
+  { type: "Journal Ad QR", icon: Newspaper, scans: 2156, pct: 26, hcps: 891, color: "#75dfa6" },
+  { type: "Billboard DOOH", icon: Monitor, scans: 1842, pct: 22, hcps: 623, color: "#f79009" },
+  { type: "Physician Lounge", icon: Building2, scans: 967, pct: 12, hcps: 412, color: "#d73371" },
+  { type: "Email Embedded", icon: Mail, scans: 428, pct: 5, hcps: 203, color: "#a78bfa" },
+];
+
+const imRecentActivity = [
+  { hcp: "Dr. Rachel Adams", specialty: "Oncology", action: "Scanned physician lounge QR — viewed Oncurel dosing calculator", time: "3m ago", placement: "Physician Lounge", deepEngagement: "Virtual Coordinator" },
+  { hcp: "Dr. Steven Nguyen", specialty: "Cardiology", action: "Scanned conference flyer — completed Stelazio MOA module", time: "8m ago", placement: "Conference Leave-Behind", deepEngagement: "SMS Sample Order" },
+  { hcp: "Dr. Patricia Huang", specialty: "Neurology", action: "Scanned I-405 billboard — accessed Neurovia RWE portal", time: "14m ago", placement: "Billboard DOOH", deepEngagement: "Impiricus Connect" },
+  { hcp: "Dr. Mark Sullivan", specialty: "Pulmonology", action: "Scanned NEJM journal ad — reviewed Respira Phase III data", time: "22m ago", placement: "Journal Ad QR", deepEngagement: "Virtual Coordinator" },
+  { hcp: "Dr. Angela Torres", specialty: "Endocrinology", action: "Scanned conference leave-behind — ran dosing scenarios", time: "31m ago", placement: "Conference Leave-Behind", deepEngagement: "SMS Sample Order" },
+];
+
+const imClientInsights = [
+  { client: "Stelazio", brand: "Cardiology", totalScans: 3241, uniqueHcps: 1187, topSpecialty: "Cardiology (68%)", topPlacement: "Conference Leave-Behind", deepEngagementRate: "41%", roi: "4.2x" },
+  { client: "Respira", brand: "Pulmonology", totalScans: 2156, uniqueHcps: 891, topSpecialty: "Pulmonology (72%)", topPlacement: "Journal Ad QR", deepEngagementRate: "38%", roi: "3.8x" },
+  { client: "Neurovia", brand: "Neurology", totalScans: 1842, uniqueHcps: 623, topSpecialty: "Neurology (81%)", topPlacement: "Billboard DOOH", deepEngagementRate: "34%", roi: "3.1x" },
+  { client: "Oncurel", brand: "Oncology", totalScans: 967, uniqueHcps: 412, topSpecialty: "Dermatology (54%)", topPlacement: "Physician Lounge", deepEngagementRate: "29%", roi: "2.7x" },
+];
+
+function IntelligentMediaView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string) => void }) {
+  return (
+    <>
+      {/* Co-branded Header */}
+      <div className="rounded-2xl border overflow-hidden mb-8" style={{ background: "linear-gradient(135deg, #090b0f 0%, #0c1220 40%, #111827 100%)", borderColor: `${c.accent}15` }}>
+        <div className="px-8 py-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: `linear-gradient(135deg, ${c.accent}20, #a78bfa20)`, border: `1px solid ${c.accent}30` }}>
+                <Sparkles className="h-6 w-6" style={{ color: c.accent }} />
+              </div>
+              <div>
+                <div className="flex items-center gap-3">
+                  <h1 className="text-2xl font-bold" style={{ color: c.textPrimary }}>Intelligent Media</h1>
+                  <span className="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest" style={{ color: c.accent, background: `${c.accent}10`, border: `1px solid ${c.accent}25` }}>
+                    AI-Enabled
+                  </span>
+                </div>
+                <p className="text-sm mt-0.5" style={{ color: c.textSecondary }}>Powered by Ascend — Turning every media touchpoint into an intelligent, data-driven engagement</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl border px-4 py-2.5 text-center" style={{ borderColor: c.divider, background: `${c.card}80` }}>
+                <p className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: c.textMuted }}>Agency Partner</p>
+                <p className="text-sm font-bold" style={{ color: c.textPrimary }}>Publicis Health</p>
+              </div>
+              <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold cursor-pointer" style={{ background: c.accent, color: "#1a1a1a" }}>
+                <Share2 className="h-4 w-4" />
+                Share Report
+              </button>
+            </div>
+          </div>
+
+          {/* KPI Cards */}
+          <div className="grid grid-cols-6 gap-3 mt-2">
+            {[
+              { label: "Total Scans", value: "8,634", change: "+24.3%", up: true, icon: Scan },
+              { label: "Unique HCPs", value: "3,113", change: "+18.7%", up: true, icon: Users },
+              { label: "Avg Session", value: "5m 48s", change: "+12%", up: true, icon: Clock },
+              { label: "Engagement Rate", value: "68.5%", change: "+5.2%", up: true, icon: MousePointerClick },
+              { label: "Deep Engagement", value: "36.2%", change: "+8.1%", up: true, icon: Layers },
+              { label: "Follow-Up Conv.", value: "34.8%", change: "+6.4%", up: true, icon: TrendingUp },
+            ].map((s) => (
+              <div key={s.label} className="rounded-xl border p-3.5" style={{ background: `${c.card}90`, borderColor: c.divider }}>
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <s.icon className="h-3 w-3" style={{ color: c.accent }} />
+                  <span className="text-[9px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary }}>{s.label}</span>
+                </div>
+                <p className="text-lg font-bold" style={{ color: c.textPrimary }}>{s.value}</p>
+                <div className="flex items-center gap-1 mt-0.5">
+                  {s.up ? <ArrowUpRight className="h-3 w-3" style={{ color: c.green }} /> : <ArrowDownRight className="h-3 w-3" style={{ color: c.pink }} />}
+                  <span className="text-[10px] font-medium" style={{ color: s.up ? c.green : c.pink }}>{s.change}</span>
+                  <span className="text-[10px]" style={{ color: c.textMuted }}>vs last period</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* The Intelligence Layer + Deep Engagement Gateway */}
+      <div className="grid grid-cols-2 gap-6 mb-8">
+        {/* The Intelligence Layer */}
+        <div className="rounded-xl border p-6" style={{ background: c.card, borderColor: c.divider }}>
+          <div className="flex items-center gap-2 mb-5">
+            <Sparkles className="h-4 w-4" style={{ color: c.accent }} />
+            <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>The Intelligence Layer</h2>
+          </div>
+          <p className="text-xs leading-relaxed mb-5" style={{ color: c.textSecondary }}>
+            What makes Intelligent Media &quot;intelligent&quot; — every scan triggers an AI-powered pipeline that transforms passive media into active, personalized engagement.
+          </p>
+          <div className="space-y-3">
+            {[
+              { step: "1", label: "QR Scan Captured", detail: "HCP scans any Intelligent Media placement (billboard, flyer, journal, lounge display, email)", icon: QrCode, color: c.accent },
+              { step: "2", label: "NPI-Enriched Identification", detail: "AI matches scan to HCP profile — specialty, prescribing behavior, engagement history, preferences", icon: Target, color: c.accent },
+              { step: "3", label: "Personalized Landing Experience", detail: "Dynamic content served based on HCP's specialty, prior interactions, and prescribing patterns", icon: Smartphone, color: c.accent },
+              { step: "4", label: "Behavioral Intelligence", detail: "Track content viewed, session duration, downloads, clinical calculator usage — all tied to NPI", icon: BarChart3, color: "#f79009" },
+              { step: "5", label: "Deep Engagement Activation", detail: "Automatically route to Virtual Coordinator, Impiricus Connect, SMS sample ordering, or embedded integrations", icon: Zap, color: c.green },
+              { step: "6", label: "Full Attribution & Follow-Up", detail: "Every touchpoint traced from original media placement through conversion — closed-loop reporting for agency & client", icon: TrendingUp, color: c.green },
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-3 rounded-lg p-3" style={{ background: `${item.color}06`, border: `1px solid ${item.color}12` }}>
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[10px] font-bold" style={{ background: `${item.color}15`, color: item.color }}>
+                  {item.step}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <item.icon className="h-3 w-3" style={{ color: item.color }} />
+                    <p className="text-xs font-semibold" style={{ color: c.textPrimary }}>{item.label}</p>
+                  </div>
+                  <p className="text-[11px] leading-relaxed" style={{ color: c.textSecondary }}>{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Deep Engagement Gateway */}
+        <div className="rounded-xl border p-6" style={{ background: c.card, borderColor: c.divider }}>
+          <div className="flex items-center gap-2 mb-5">
+            <Layers className="h-4 w-4" style={{ color: c.green }} />
+            <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Deep Engagement Gateway</h2>
+          </div>
+          <p className="text-xs leading-relaxed mb-5" style={{ color: c.textSecondary }}>
+            Every Intelligent Media touchpoint is a gateway into the full Ascend engagement ecosystem — connecting HCPs to the right resource at the right moment.
+          </p>
+          <div className="space-y-4">
+            {[
+              {
+                label: "Virtual Coordinator",
+                detail: "AI-powered Tier 1 MSL handles clinical questions instantly. HCPs scan a QR code and enter a conversational AI experience trained on approved PI, clinical data, and standard MSL responses.",
+                icon: Bot,
+                color: c.accent,
+                stat: "842 sessions initiated from QR scans",
+                statIcon: MessageSquare,
+              },
+              {
+                label: "Impiricus Connect",
+                detail: "Seamless escalation to live MSL for complex inquiries. When the Virtual Coordinator's confidence drops or the HCP requests it, they're connected to a live Medical Science Liaison in real time.",
+                icon: Video,
+                color: c.green,
+                stat: "127 live MSL connections from media scans",
+                statIcon: Phone,
+              },
+              {
+                label: "SMS Sample Ordering",
+                detail: "One-tap sample requests directly from the media landing page. HCPs can request product samples via SMS without leaving the experience — fulfilled through existing sample management workflows.",
+                icon: Package,
+                color: "#f79009",
+                stat: "1,247 sample requests triggered",
+                statIcon: Send,
+              },
+              {
+                label: "Embedded Integrations",
+                detail: "Formulary lookups, dosing calculators, clinical trial finders, patient support program enrollment — all accessible from the Intelligent Media landing experience and connected to downstream systems.",
+                icon: Link2,
+                color: "#a78bfa",
+                stat: "2,891 integration interactions",
+                statIcon: Wifi,
+              },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border p-4" style={{ background: c.bg, borderColor: `${item.color}15` }}>
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ background: `${item.color}12`, border: `1px solid ${item.color}25` }}>
+                    <item.icon className="h-5 w-5" style={{ color: item.color }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold mb-1" style={{ color: c.textPrimary }}>{item.label}</p>
+                    <p className="text-[11px] leading-relaxed mb-2" style={{ color: c.textSecondary }}>{item.detail}</p>
+                    <div className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 w-fit" style={{ background: `${item.color}08`, border: `1px solid ${item.color}12` }}>
+                      <item.statIcon className="h-3 w-3" style={{ color: item.color }} />
+                      <span className="text-[10px] font-semibold" style={{ color: item.color }}>{item.stat}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Active Campaigns Table */}
+      <div className="rounded-xl border mb-8" style={{ background: c.card, borderColor: c.divider }}>
+        <div className="flex items-center justify-between px-6 py-4" style={{ borderBottom: `1px solid ${c.divider}` }}>
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-bold" style={{ color: c.textPrimary }}>Active Campaigns</h2>
+            <span className="rounded-full px-2.5 py-0.5 text-xs font-bold" style={{ background: `${c.accent}15`, color: c.accent }}>
+              {imCampaigns.length}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 rounded-lg border px-3 py-2" style={{ borderColor: c.divider, background: c.bg }}>
+              <Search className="h-4 w-4" style={{ color: c.textMuted }} />
+              <span className="text-sm" style={{ color: c.textMuted }}>Search campaigns…</span>
+            </div>
+            <button className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold" style={{ borderColor: c.divider, color: c.textSecondary }}>
+              <Filter className="h-4 w-4" />
+              Filters
+            </button>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr>
+                {["Campaign", "Client / Brand", "Placement", "Region", "Status", "Scans", "Unique HCPs", "Avg Session", "Deep Engage %"].map((h) => (
+                  <th key={h} className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary, borderBottom: `1px solid ${c.divider}` }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {imCampaigns.map((camp) => (
+                <tr key={camp.id} className="transition-colors hover:bg-white/[0.02]" style={{ borderBottom: `1px solid ${c.divider}` }}>
+                  <td className="px-6 py-4">
+                    <p className="font-mono text-xs font-bold" style={{ color: c.accent }}>{camp.id}</p>
+                  </td>
+                  <td className="px-6 py-4">
+                    <p className="font-medium text-sm" style={{ color: c.textPrimary }}>{camp.client}</p>
+                    <p className="text-xs" style={{ color: c.textSecondary }}>{camp.brand}</p>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-xs" style={{ color: c.textSecondary }}>{camp.placement}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-xs" style={{ color: c.textSecondary }}>{camp.region}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge label={camp.status} color={camp.status === "Active" ? c.green : c.accent} />
+                  </td>
+                  <td className="px-6 py-4 font-semibold" style={{ color: c.textPrimary }}>{camp.scans > 0 ? camp.scans.toLocaleString() : "—"}</td>
+                  <td className="px-6 py-4 font-semibold" style={{ color: c.textPrimary }}>{camp.uniqueHcps > 0 ? camp.uniqueHcps.toLocaleString() : "—"}</td>
+                  <td className="px-6 py-4" style={{ color: c.textSecondary }}>{camp.avgSession}</td>
+                  <td className="px-6 py-4">
+                    {camp.followUpRate !== "—" ? (
+                      <span className="font-semibold" style={{ color: c.green }}>{camp.followUpRate}</span>
+                    ) : (
+                      <span style={{ color: c.textMuted }}>—</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Placement Performance + Client Insights */}
+      <div className="grid grid-cols-5 gap-6 mb-8">
+        {/* Placement Performance */}
+        <div className="col-span-2 rounded-xl border p-6" style={{ background: c.card, borderColor: c.divider }}>
+          <h2 className="text-sm font-bold mb-5" style={{ color: c.textPrimary }}>Performance by Placement Type</h2>
+          <div className="space-y-4">
+            {imPlacementPerformance.map((p) => (
+              <div key={p.type}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <p.icon className="h-3.5 w-3.5" style={{ color: p.color }} />
+                    <span className="text-sm font-medium" style={{ color: c.textSecondary }}>{p.type}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs" style={{ color: c.textMuted }}>{p.hcps.toLocaleString()} HCPs</span>
+                    <span className="text-sm font-bold" style={{ color: c.textPrimary }}>{p.scans.toLocaleString()}</span>
+                  </div>
+                </div>
+                <div className="h-2 rounded-full" style={{ background: c.divider }}>
+                  <div className="h-full rounded-full transition-all" style={{ width: `${p.pct}%`, background: p.color }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Client Insights */}
+        <div className="col-span-3 rounded-xl border p-6" style={{ background: c.card, borderColor: c.divider }}>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-sm font-bold" style={{ color: c.textPrimary }}>Client Insights</h2>
+            <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary }}>Share with clients →</span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr>
+                  {["Client", "Scans", "Unique HCPs", "Top Specialty", "Top Placement", "Deep Engage", "ROI"].map((h) => (
+                    <th key={h} className="pb-3 text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary, borderBottom: `1px solid ${c.divider}` }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {imClientInsights.map((ci) => (
+                  <tr key={ci.client} className="transition-colors hover:bg-white/[0.02]" style={{ borderBottom: `1px solid ${c.divider}` }}>
+                    <td className="py-3 pr-4">
+                      <p className="font-semibold" style={{ color: c.textPrimary }}>{ci.client}</p>
+                      <p className="text-[10px]" style={{ color: c.textSecondary }}>{ci.brand}</p>
+                    </td>
+                    <td className="py-3 pr-4 font-semibold" style={{ color: c.textPrimary }}>{ci.totalScans.toLocaleString()}</td>
+                    <td className="py-3 pr-4 font-semibold" style={{ color: c.textPrimary }}>{ci.uniqueHcps.toLocaleString()}</td>
+                    <td className="py-3 pr-4 text-xs" style={{ color: c.textSecondary }}>{ci.topSpecialty}</td>
+                    <td className="py-3 pr-4 text-xs" style={{ color: c.textSecondary }}>{ci.topPlacement}</td>
+                    <td className="py-3 pr-4 font-semibold" style={{ color: c.green }}>{ci.deepEngagementRate}</td>
+                    <td className="py-3 font-bold" style={{ color: c.accent }}>{ci.roi}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Intelligent Media Activity */}
+      <div className="rounded-xl border" style={{ background: c.card, borderColor: c.divider }}>
+        <div className="flex items-center justify-between px-6 py-4" style={{ borderBottom: `1px solid ${c.divider}` }}>
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-bold" style={{ color: c.textPrimary }}>Recent Intelligent Media Activity</h2>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: c.green }} />
+              <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: c.green }} />
+            </span>
+            <span className="text-xs" style={{ color: c.green }}>Live</span>
+          </div>
+        </div>
+        <div className="divide-y" style={{ borderColor: c.divider }}>
+          {imRecentActivity.map((a, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-4 px-6 py-4 cursor-pointer transition-colors hover:bg-white/[0.04]"
+              onClick={() => onNavigateToHcp(a.hcp)}
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ background: `${c.accent}12` }}>
+                <QrCode className="h-4 w-4" style={{ color: c.accent }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <p className="text-sm font-medium" style={{ color: c.textPrimary }}>{a.hcp}</p>
+                  <span className="text-xs" style={{ color: c.textMuted }}>· {a.specialty}</span>
+                </div>
+                <p className="text-xs" style={{ color: c.textSecondary }}>{a.action}</p>
+              </div>
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="rounded-full px-2.5 py-1 text-[10px] font-bold" style={{ color: c.accent, background: `${c.accent}10`, border: `1px solid ${c.accent}20` }}>
+                  {a.placement}
+                </span>
+                <span className="rounded-full px-2.5 py-1 text-[10px] font-bold" style={{ color: c.green, background: `${c.green}10`, border: `1px solid ${c.green}20` }}>
+                  → {a.deepEngagement}
+                </span>
+                <span className="text-xs shrink-0" style={{ color: c.textMuted }}>{a.time}</span>
+                <ExternalLink className="h-3.5 w-3.5 shrink-0" style={{ color: c.textMuted }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?: string; onClearFocus: () => void; demoHcpTab?: "engagements" | "agentic" | "persona" }) {
   const [selectedMedia, setSelectedMedia] = useState<Engagement | null>(null);
   const [selectedSms, setSelectedSms] = useState<Engagement | null>(null);
@@ -2546,6 +2929,9 @@ export default function Home() {
 
           {/* ═══ MSL Coordinator Tab ═══ */}
           {activeTab === "msl-coordinator" && <MslCoordinatorView onNavigateToEngagements={() => setActiveTab("engagements")} />}
+
+          {/* ═══ Intelligent Media Tab ═══ */}
+          {activeTab === "intelligent-media" && <IntelligentMediaView onNavigateToHcp={handleNavigateToHcp} />}
 
           {/* ═══ Engagements Tab ═══ */}
           {activeTab === "engagements" && <EngagementsView focusedHcp={focusedHcp} onClearFocus={clearFocusedHcp} demoHcpTab={demoHcpTab} />}
