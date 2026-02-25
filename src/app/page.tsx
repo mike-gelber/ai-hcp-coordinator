@@ -179,7 +179,7 @@ const engagements: Engagement[] = [
   { hcp: "Dr. Kevin Patel", specialty: "Rheumatology", npi: "0123456789", lastChannel: "Email", lastChannelIcon: Mail, lastContact: "2.5h ago", totalTouches: 6, status: "New", coordinator: "Oncurel" },
   { hcp: "Dr. Rachel Adams", specialty: "Oncology", npi: "1122334455", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "3h ago", totalTouches: 15, status: "Active", coordinator: "Oncurel" },
   { hcp: "Dr. Steven Nguyen", specialty: "Cardiology", npi: "2233445566", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "3.5h ago", totalTouches: 4, status: "Cooling Off", coordinator: "Cardiovex" },
-  { hcp: "Dr. Christine Lee", specialty: "Neurology", npi: "3344556677", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "4h ago", totalTouches: 18, status: "Active", coordinator: "Neurovia" },
+  { hcp: "Dr. Christine Lee", specialty: "Neurology", npi: "3344556677", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "4h ago", totalTouches: 18, status: "Active", coordinator: "Neurovia" },
   { hcp: "Dr. Mark Sullivan", specialty: "Pulmonology", npi: "4455667788", lastChannel: "Outbound Direct Mail", lastChannelIcon: Mail, lastContact: "5h ago", totalTouches: 2, status: "New", coordinator: "Respira" },
 ];
 
@@ -1170,6 +1170,22 @@ const intelligentMediaSources: Record<string, QrSource> = {
     ],
     followUp: "High-intent signal flagged — concierge outreach scheduled within 24h with rep intro",
   },
+  "3344556677": {
+    type: "Billboard — Digital Out-of-Home",
+    location: "I-405 Southbound, Los Angeles — Digital Billboard #LA-4052",
+    campaignName: "Neurovia Epilepsy Awareness — SoCal DOOH Q1 2026",
+    scannedAt: "Feb 21, 2026 · 6:12 PM PST",
+    device: "iPhone 15 Pro Max · Safari",
+    landedOn: "Neurovia Treatment-Resistant Epilepsy Evidence Portal",
+    sessionDuration: "8m 03s",
+    contentViewed: [
+      "EXTEND-RWE real-world evidence summary",
+      "Treatment algorithm for refractory focal epilepsy",
+      "Patient case studies (3 viewed)",
+      "Dosing & titration interactive guide",
+    ],
+    followUp: "MSL-trained response triggered — RWE data package auto-sent with personalized follow-up from Neurovia coordinator",
+  },
 };
 
 function IntelligentMediaModal({ engagement, onClose }: { engagement: Engagement; onClose: () => void }) {
@@ -1749,7 +1765,7 @@ function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon, is
           {isMslTrained && (
             <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide shrink-0" style={{ color: "#f79009", background: "#f7900912", border: "1px solid #f7900925" }}>
               <GraduationCap className="h-2.5 w-2.5" />
-              MSL Trained
+              MSL
             </span>
           )}
         </div>
