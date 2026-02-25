@@ -988,7 +988,7 @@ function MslCoordinatorView({ onNavigateToEngagements }: { onNavigateToEngagemen
           style={{ border: `1px solid ${c.accent}30`, color: c.accent }}
         >
           <GraduationCap className="h-4 w-4" />
-          View MSL-Trained Engagements
+          View MSL Engagements
           <span className="rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: `${c.accent}15` }}>{trainedEngagementCount}</span>
           <ExternalLink className="h-3.5 w-3.5" />
         </button>
@@ -998,7 +998,7 @@ function MslCoordinatorView({ onNavigateToEngagements }: { onNavigateToEngagemen
       <div className="grid grid-cols-4 gap-4 mb-6">
         {[
           { label: "Live Trained Responses", value: liveCount.toString(), detail: "Active in Tier 1 Knowledge Base", icon: FileCheck, accent: c.green },
-          { label: "MSL-Trained Engagements", value: trainedEngagementCount.toString(), detail: "HCPs served by trained responses", icon: GraduationCap, accent: "#f79009" },
+          { label: "MSL Engagements", value: trainedEngagementCount.toString(), detail: "HCPs served by trained responses", icon: GraduationCap, accent: "#f79009" },
           { label: "Pending Submissions", value: trainingSubmissions.filter(s => s.status !== "Live").length.toString(), detail: "Awaiting review or approval", icon: Clock, accent: c.accent },
           { label: "Active Corrections", value: trainingCorrections.filter(c => c.status === "Pending").length.toString(), detail: "Suggested improvements in review", icon: Pencil, accent: "#f79009" },
         ].map((s) => (
@@ -1857,7 +1857,7 @@ function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?
           { label: "Active", value: engagements.filter(e => e.status === "Active").length.toString(), accent: c.green },
           { label: "Cooling Off", value: engagements.filter(e => e.status === "Cooling Off").length.toString(), accent: c.pink },
           { label: "New", value: engagements.filter(e => e.status === "New").length.toString(), accent: c.accent },
-          { label: "MSL-Trained", value: engagements.filter(e => mslTrainedEngagements[e.npi]).length.toString(), accent: "#f79009" },
+          { label: "MSL Engagements", value: engagements.filter(e => mslTrainedEngagements[e.npi]).length.toString(), accent: "#f79009" },
         ].map((s) => (
           <div key={s.label} className="rounded-xl border px-5 py-4 flex items-center gap-4" style={{ background: c.card, borderColor: c.divider }}>
             <div className="h-10 w-1 rounded-full" style={{ background: s.accent }} />
