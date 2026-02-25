@@ -41,6 +41,15 @@ import {
   Briefcase,
   Wand2,
   Repeat,
+  Bot,
+  ArrowRight,
+  CheckCircle2,
+  AlertCircle,
+  Shield,
+  Video,
+  BookOpen,
+  Layers,
+  Zap,
 } from "lucide-react";
 import AscendCoordinatorManager from "@/components/AscendCoordinatorManager";
 import HcpDetailPane from "@/components/HcpDetailPane";
@@ -268,6 +277,297 @@ function DashboardView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string)
   );
 }
 
+/* ── MSL Virtual Coordinator (Tier 1 / Tier 2) ── */
+
+interface MslMessage {
+  sender: "hcp" | "tier1" | "system" | "tier2";
+  text: string;
+  time: string;
+  confidence?: number;
+}
+
+interface FaqItem {
+  question: string;
+  answer: string;
+  category: string;
+  source: string;
+}
+
+const mslFaqs: FaqItem[] = [
+  { question: "What is the mechanism of action of Stelazio?", answer: "Stelazio is a selective inhibitor of PCSK9 that works by blocking the PCSK9 protein from binding to LDL receptors on the liver surface. This allows more LDL receptors to remain available to clear LDL-C from the bloodstream, resulting in significant reduction of circulating LDL cholesterol levels.", category: "MOA", source: "Stelazio PI Section 12.1" },
+  { question: "What are the most common adverse events with Stelazio?", answer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis (6.1%), upper respiratory tract infection (5.8%), and injection site reactions (5.2%). Serious adverse events were comparable to placebo.", category: "Safety", source: "Stelazio PI Section 6.1" },
+  { question: "What is the recommended dosing for Stelazio?", answer: "The recommended dose is 140 mg administered subcutaneously every 2 weeks or 420 mg once monthly. If switching between dosing regimens, administer the first dose of the new regimen on the next scheduled date of the prior regimen.", category: "Dosing", source: "Stelazio PI Section 2.1" },
+  { question: "Is Stelazio approved for use in pediatric patients?", answer: "Stelazio is approved for use in pediatric patients aged 10 years and older with heterozygous familial hypercholesterolemia (HeFH). The safety and efficacy in pediatric patients below 10 years have not been established.", category: "Indication", source: "Stelazio PI Section 8.4" },
+  { question: "What are the contraindications for Stelazio?", answer: "Stelazio is contraindicated in patients with a history of serious hypersensitivity reaction to Stelazio or any of the excipients. Reactions have included hypersensitivity vasculitis and hypersensitivity reactions requiring hospitalization.", category: "Safety", source: "Stelazio PI Section 4" },
+  { question: "Can Stelazio be used in combination with statins?", answer: "Yes. Stelazio can be used in combination with other lipid-lowering therapies including statins and ezetimibe. In the pivotal ODYSSEY trial, Stelazio added to maximally tolerated statin therapy reduced LDL-C by an additional 61% vs placebo at week 24.", category: "Clinical Data", source: "Stelazio PI Section 14.1" },
+];
+
+const tier1DemoConversation: MslMessage[] = [
+  { sender: "system", text: "Tier 1 MSL Virtual Coordinator activated — Stelazio knowledge base loaded", time: "10:02 AM" },
+  { sender: "hcp", text: "I have a patient on maximally tolerated atorvastatin who isn't reaching LDL goal. What additional reduction can I expect if I add Stelazio?", time: "10:02 AM" },
+  { sender: "tier1", text: "Great question, Dr. Chen. In the ODYSSEY OUTCOMES trial, patients on maximally tolerated statin therapy who added Stelazio achieved a mean additional LDL-C reduction of 54.7% from baseline at week 12. The median achieved LDL-C was 53.3 mg/dL in the Stelazio group vs 101.4 mg/dL in the placebo group. This additional reduction was sustained through 48 months of follow-up.", time: "10:02 AM", confidence: 97 },
+  { sender: "hcp", text: "That's helpful. What about patients with statin intolerance? Can they use Stelazio as monotherapy?", time: "10:03 AM" },
+  { sender: "tier1", text: "Yes, Stelazio can be used as monotherapy in patients who are statin-intolerant. In the ODYSSEY ALTERNATIVE trial, statin-intolerant patients treated with Stelazio monotherapy achieved a 45% reduction in LDL-C at week 24 compared to ezetimibe (14.6% reduction). Stelazio monotherapy was well-tolerated with a safety profile similar to the overall clinical program.", time: "10:03 AM", confidence: 95 },
+  { sender: "hcp", text: "One more question — I have a complex patient with HeFH, CKD stage 3, and on dialysis. What's the dosing recommendation and do I need to adjust for renal impairment?", time: "10:04 AM" },
+  { sender: "tier1", text: "I can confirm that no dose adjustment is required for mild to moderate renal impairment based on the prescribing information. However, for your specific scenario involving CKD stage 3 with dialysis and HeFH, this is a complex clinical situation that would benefit from a more detailed discussion with our Medical Science Liaison team. I'd like to connect you with a live MSL who has deeper expertise in special populations.\n\nWould you like me to escalate this to a Tier 2 live MSL consultation?", time: "10:04 AM", confidence: 62 },
+  { sender: "system", text: "⚡ Confidence threshold below 70% — Tier 2 escalation recommended", time: "10:04 AM" },
+  { sender: "hcp", text: "Yes, please connect me.", time: "10:05 AM" },
+  { sender: "system", text: "🔄 Escalating to Tier 2 — Connecting to Impiricus Connect for live MSL...", time: "10:05 AM" },
+  { sender: "system", text: "✅ Connected — Dr. Amanda Torres, MSL (Nephrology/Cardiology specialist) has joined via Impiricus Connect", time: "10:05 AM" },
+  { sender: "tier2", text: "Hi Dr. Chen, I'm Dr. Amanda Torres. I've reviewed the Tier 1 conversation summary and understand you have a patient with HeFH, CKD stage 3 on dialysis. Let me address this comprehensively.\n\nPer the prescribing information, no dose adjustment is recommended for renal impairment including patients on dialysis. In pharmacokinetic studies, mild to severe renal impairment had no clinically meaningful effect on Stelazio exposure.\n\nHowever, I want to share some additional context from our post-marketing experience: we have real-world data from approximately 340 patients with CKD stages 3-5 on dialysis, and the LDL-C reduction was consistent with the general population (mean 52.1%). The safety profile was also comparable, with no increased rate of injection site reactions or muscle-related adverse events.\n\nI can send you the full renal subgroup analysis from our Phase III program. Would that be helpful?", time: "10:06 AM" },
+  { sender: "hcp", text: "That would be very helpful. Thank you for the thorough response.", time: "10:07 AM" },
+  { sender: "tier2", text: "Absolutely. I'll send the renal subgroup data package to your secure portal within the hour. I'm also available for a follow-up discussion if you'd like to review the data together or discuss other complex patients. You can reach me directly through Impiricus Connect anytime.", time: "10:07 AM" },
+  { sender: "system", text: "Session summary generated — Tier 1 handled 2/3 questions autonomously, 1 escalated to Tier 2. Full transcript archived.", time: "10:08 AM" },
+];
+
+const mslTierStats = [
+  { label: "Tier 1 Resolution Rate", value: "84%", detail: "Questions handled without escalation", icon: Bot, accent: "#0deefd" },
+  { label: "Avg Response Time (Tier 1)", value: "< 3s", detail: "Instant AI-powered responses", icon: Zap, accent: "#0deefd" },
+  { label: "Tier 2 Escalations (30d)", value: "47", detail: "Complex cases routed to live MSL", icon: ArrowRight, accent: "#75dfa6" },
+  { label: "Avg Connect Time (Tier 2)", value: "1.4m", detail: "Time to connect with live MSL", icon: Video, accent: "#75dfa6" },
+];
+
+function MslVirtualCoordinatorDemo() {
+  const [activeDemo, setActiveDemo] = useState<"conversation" | "knowledge" | null>(null);
+  const [visibleMessages, setVisibleMessages] = useState(4);
+
+  const showMore = () => setVisibleMessages((v) => Math.min(v + 3, tier1DemoConversation.length));
+
+  const msgStyle = (sender: MslMessage["sender"]) => {
+    if (sender === "hcp") return { bg: `${c.accent}10`, border: `1px solid ${c.accent}20`, label: "HCP", labelColor: c.accent, icon: User };
+    if (sender === "tier1") return { bg: "#0c0e12", border: `1px solid ${c.divider}`, label: "Tier 1 — AI MSL", labelColor: "#0deefd", icon: Bot };
+    if (sender === "tier2") return { bg: `${c.green}08`, border: `1px solid ${c.green}20`, label: "Tier 2 — Live MSL", labelColor: c.green, icon: Video };
+    return { bg: "transparent", border: `1px dashed ${c.divider}`, label: "", labelColor: c.textMuted, icon: AlertCircle };
+  };
+
+  return (
+    <section className="rounded-2xl border overflow-hidden" style={{ background: "#090b0f", borderColor: "#131720" }}>
+      {/* Section Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: "#131720", background: "#0c0e12" }}>
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: `${c.accent}15`, border: `1px solid ${c.accent}30` }}>
+            <Shield className="h-5 w-5" style={{ color: c.accent }} />
+          </div>
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>MSL Virtual Coordinator</h2>
+            <p className="text-xs" style={{ color: c.textSecondary }}>Tier 1 AI + Tier 2 Live MSL Escalation</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-wider" style={{ color: c.green, border: `1px solid ${c.green}40`, background: `${c.green}10` }}>
+            Demo Mode
+          </span>
+        </div>
+      </div>
+
+      {/* Tier Architecture Overview */}
+      <div className="px-6 py-6">
+        <div className="grid grid-cols-2 gap-6 mb-6">
+          {/* Tier 1 Card */}
+          <div className="rounded-xl border p-5" style={{ background: "#0c0e12", borderColor: `${c.accent}20` }}>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: `${c.accent}12`, border: `1px solid ${c.accent}25` }}>
+                <Bot className="h-5 w-5" style={{ color: c.accent }} />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Tier 1 — AI MSL</h3>
+                <p className="text-xs" style={{ color: c.textSecondary }}>Automated, instant response</p>
+              </div>
+            </div>
+            <p className="text-xs leading-relaxed mb-4" style={{ color: c.textSecondary }}>
+              Trained on approved PI, clinical data, and standard MSL responses. Handles FAQs, dosing questions, MOA explanations, safety inquiries, and clinical trial data requests with confidence scoring.
+            </p>
+            <div className="space-y-2">
+              {["Prescribing Information (full PI)", "Phase III clinical trial data", "Dosing & titration protocols", "Safety & adverse event profiles", "Formulary & access information"].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-xs" style={{ color: c.textPrimary }}>
+                  <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: c.accent }} />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tier 2 Card */}
+          <div className="rounded-xl border p-5" style={{ background: "#0c0e12", borderColor: `${c.green}20` }}>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ background: `${c.green}12`, border: `1px solid ${c.green}25` }}>
+                <Video className="h-5 w-5" style={{ color: c.green }} />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Tier 2 — Live MSL via Impiricus Connect</h3>
+                <p className="text-xs" style={{ color: c.textSecondary }}>Real-time expert escalation</p>
+              </div>
+            </div>
+            <p className="text-xs leading-relaxed mb-4" style={{ color: c.textSecondary }}>
+              When Tier 1 confidence drops below threshold or the HCP requests it, the conversation seamlessly escalates to a live Medical Science Liaison through Impiricus Connect with full context transfer.
+            </p>
+            <div className="space-y-2">
+              {["Complex clinical scenarios & special populations", "Off-label or investigational inquiries (redirect)", "Peer-to-peer scientific exchange", "Real-world evidence deep dives", "Adverse event case consultations"].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-xs" style={{ color: c.textPrimary }}>
+                  <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: c.green }} />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Escalation Flow Diagram */}
+        <div className="rounded-xl border p-5 mb-6" style={{ background: "#0c0e12", borderColor: "#131720" }}>
+          <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: c.textSecondary }}>Escalation Flow</h3>
+          <div className="flex items-center justify-between gap-3">
+            {[
+              { label: "HCP Question", sub: "Inbound via any channel", icon: User, color: c.accent },
+              { label: "Tier 1 AI MSL", sub: "Confidence scoring", icon: Bot, color: c.accent },
+              { label: "Confidence Check", sub: "≥70% = Respond  |  <70% = Escalate", icon: Shield, color: "#f79009" },
+              { label: "Tier 2 Live MSL", sub: "Impiricus Connect", icon: Video, color: c.green },
+              { label: "Resolution", sub: "Archived & tracked", icon: CheckCircle2, color: c.green },
+            ].map((step, i, arr) => (
+              <div key={step.label} className="flex items-center gap-3 flex-1">
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg mb-2" style={{ background: `${step.color}12`, border: `1px solid ${step.color}25` }}>
+                    <step.icon className="h-5 w-5" style={{ color: step.color }} />
+                  </div>
+                  <p className="text-xs font-semibold" style={{ color: c.textPrimary }}>{step.label}</p>
+                  <p className="text-[10px] mt-0.5" style={{ color: c.textSecondary }}>{step.sub}</p>
+                </div>
+                {i < arr.length - 1 && <ArrowRight className="h-4 w-4 shrink-0 -mt-4" style={{ color: c.textMuted }} />}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats Row */}
+        <div className="grid grid-cols-4 gap-4 mb-6">
+          {mslTierStats.map((s) => (
+            <div key={s.label} className="rounded-xl border p-4" style={{ background: "#0c0e12", borderColor: "#131720" }}>
+              <div className="flex items-center gap-2 mb-2">
+                <s.icon className="h-3.5 w-3.5" style={{ color: s.accent }} />
+                <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: c.textSecondary }}>{s.label}</span>
+              </div>
+              <p className="text-xl font-bold" style={{ color: c.textPrimary }}>{s.value}</p>
+              <p className="text-[11px] mt-0.5" style={{ color: c.textSecondary }}>{s.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Demo Buttons */}
+        <div className="flex gap-3 mb-6">
+          <button
+            onClick={() => setActiveDemo(activeDemo === "conversation" ? null : "conversation")}
+            className="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all cursor-pointer"
+            style={{
+              background: activeDemo === "conversation" ? c.accent : `${c.accent}10`,
+              color: activeDemo === "conversation" ? "#1a1a1a" : c.accent,
+              border: `1px solid ${c.accent}30`,
+            }}
+          >
+            <MessageSquare className="h-4 w-4" />
+            Demo Conversation
+          </button>
+          <button
+            onClick={() => setActiveDemo(activeDemo === "knowledge" ? null : "knowledge")}
+            className="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all cursor-pointer"
+            style={{
+              background: activeDemo === "knowledge" ? c.accent : `${c.accent}10`,
+              color: activeDemo === "knowledge" ? "#1a1a1a" : c.accent,
+              border: `1px solid ${c.accent}30`,
+            }}
+          >
+            <BookOpen className="h-4 w-4" />
+            Knowledge Base
+          </button>
+        </div>
+
+        {/* Demo Conversation Panel */}
+        {activeDemo === "conversation" && (
+          <div className="rounded-xl border overflow-hidden" style={{ background: "#0c0e12", borderColor: "#131720" }}>
+            <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "#131720" }}>
+              <div className="flex items-center gap-2">
+                <Layers className="h-4 w-4" style={{ color: c.accent }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Live Demo — Tier 1 → Tier 2 Escalation</span>
+              </div>
+              <span className="text-xs" style={{ color: c.textSecondary }}>Stelazio Virtual Coordinator · Dr. Sarah Chen</span>
+            </div>
+            <div className="p-5 space-y-4 max-h-[600px] overflow-y-auto">
+              {tier1DemoConversation.slice(0, visibleMessages).map((msg, i) => {
+                const s = msgStyle(msg.sender);
+                const MsgIcon = s.icon;
+                return (
+                  <div key={i} className={`flex flex-col ${msg.sender === "system" ? "items-center" : msg.sender === "hcp" ? "items-start" : "items-end"}`} style={{ maxWidth: msg.sender === "system" ? "100%" : "85%" , alignSelf: msg.sender === "hcp" ? "flex-start" : msg.sender === "system" ? "center" : "flex-end" }}>
+                    <div className="rounded-lg px-4 py-3 w-full" style={{ background: s.bg, border: s.border }}>
+                      {msg.sender !== "system" && (
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="flex items-center gap-1.5">
+                            <MsgIcon className="h-3 w-3" style={{ color: s.labelColor }} />
+                            <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: s.labelColor }}>{s.label}</span>
+                          </div>
+                          {msg.confidence !== undefined && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full" style={{
+                              color: msg.confidence >= 70 ? c.green : "#f79009",
+                              background: msg.confidence >= 70 ? `${c.green}12` : "#f7900912",
+                              border: `1px solid ${msg.confidence >= 70 ? c.green : "#f79009"}25`,
+                            }}>
+                              {msg.confidence}% confidence
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <p className={`text-xs leading-relaxed whitespace-pre-line ${msg.sender === "system" ? "text-center" : ""}`} style={{ color: msg.sender === "system" ? c.textMuted : c.textPrimary }}>
+                        {msg.text}
+                      </p>
+                    </div>
+                    <span className={`text-[10px] mt-0.5 px-1 ${msg.sender === "system" ? "text-center" : ""}`} style={{ color: c.textMuted }}>{msg.time}</span>
+                  </div>
+                );
+              })}
+              {visibleMessages < tier1DemoConversation.length && (
+                <div className="flex justify-center pt-2">
+                  <button
+                    onClick={showMore}
+                    className="flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold transition-all cursor-pointer"
+                    style={{ color: c.accent, border: `1px solid ${c.accent}30`, background: `${c.accent}08` }}
+                  >
+                    Continue Conversation
+                    <ArrowRight className="h-3 w-3" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Knowledge Base Panel */}
+        {activeDemo === "knowledge" && (
+          <div className="rounded-xl border overflow-hidden" style={{ background: "#0c0e12", borderColor: "#131720" }}>
+            <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "#131720" }}>
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4" style={{ color: c.accent }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Tier 1 Knowledge Base — Stelazio</span>
+              </div>
+              <span className="text-xs" style={{ color: c.textSecondary }}>{mslFaqs.length} trained responses</span>
+            </div>
+            <div className="divide-y" style={{ borderColor: "#131720" }}>
+              {mslFaqs.map((faq, i) => (
+                <div key={i} className="px-5 py-4" style={{ borderColor: "#131720" }}>
+                  <div className="flex items-start justify-between gap-4 mb-2">
+                    <p className="text-sm font-semibold" style={{ color: c.textPrimary }}>{faq.question}</p>
+                    <span className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide" style={{ color: c.accent, border: `1px solid ${c.accent}25`, background: `${c.accent}08` }}>
+                      {faq.category}
+                    </span>
+                  </div>
+                  <p className="text-xs leading-relaxed mb-2" style={{ color: c.textSecondary }}>{faq.answer}</p>
+                  <p className="text-[10px]" style={{ color: c.textMuted }}>Source: {faq.source}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string) => void }) {
   return (
     <>
@@ -288,6 +588,11 @@ function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName
       {/* Virtual Coordinator Manager */}
       <section data-demo="vc-manager" className="mb-8">
         <AscendCoordinatorManager onNavigateToHcp={onNavigateToHcp} />
+      </section>
+
+      {/* MSL Virtual Coordinator Demo */}
+      <section className="mb-8">
+        <MslVirtualCoordinatorDemo />
       </section>
 
       {/* Virtual Coordinators Table */}
