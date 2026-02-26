@@ -303,6 +303,8 @@ interface MslMessage {
   text: string;
   time: string;
   confidence?: number;
+  complianceTag?: string;
+  complianceColor?: string;
 }
 
 interface FaqItem {
@@ -322,28 +324,33 @@ const mslFaqs: FaqItem[] = [
 ];
 
 const tier1DemoConversation: MslMessage[] = [
-  { sender: "system", text: "Tier 1 MSL Virtual Coordinator activated — Stelazio knowledge base loaded", time: "10:02 AM" },
+  { sender: "system", text: "MSL Agent activated — Stelazio knowledge base loaded · Compliance guardrails active", time: "10:02 AM" },
   { sender: "hcp", text: "I have a patient on maximally tolerated atorvastatin who isn't reaching LDL goal. What additional reduction can I expect if I add Stelazio?", time: "10:02 AM" },
-  { sender: "tier1", text: "Great question, Dr. Chen. In the ODYSSEY OUTCOMES trial, patients on maximally tolerated statin therapy who added Stelazio achieved a mean additional LDL-C reduction of 54.7% from baseline at week 12. The median achieved LDL-C was 53.3 mg/dL in the Stelazio group vs 101.4 mg/dL in the placebo group. This additional reduction was sustained through 48 months of follow-up.", time: "10:02 AM", confidence: 97 },
-  { sender: "hcp", text: "That's helpful. What about patients with statin intolerance? Can they use Stelazio as monotherapy?", time: "10:03 AM" },
-  { sender: "tier1", text: "Yes, Stelazio can be used as monotherapy in patients who are statin-intolerant. In the ODYSSEY ALTERNATIVE trial, statin-intolerant patients treated with Stelazio monotherapy achieved a 45% reduction in LDL-C at week 24 compared to ezetimibe (14.6% reduction). Stelazio monotherapy was well-tolerated with a safety profile similar to the overall clinical program.", time: "10:03 AM", confidence: 95 },
-  { sender: "hcp", text: "One more question — I have a complex patient with HeFH, CKD stage 3, and on dialysis. What's the dosing recommendation and do I need to adjust for renal impairment?", time: "10:04 AM" },
-  { sender: "tier1", text: "I can confirm that no dose adjustment is required for mild to moderate renal impairment based on the prescribing information. However, for your specific scenario involving CKD stage 3 with dialysis and HeFH, this is a complex clinical situation that would benefit from a more detailed discussion with our Medical Science Liaison team. I'd like to connect you with a live MSL who has deeper expertise in special populations.\n\nWould you like me to escalate this to a Tier 2 live MSL consultation?", time: "10:04 AM", confidence: 62 },
-  { sender: "system", text: "⚡ Confidence threshold below 70% — Tier 2 escalation recommended", time: "10:04 AM" },
-  { sender: "hcp", text: "Yes, please connect me.", time: "10:05 AM" },
-  { sender: "system", text: "🔄 Escalating to Tier 2 — Connecting to Impiricus Connect for live MSL...", time: "10:05 AM" },
-  { sender: "system", text: "✅ Connected — Dr. Amanda Torres, MSL (Nephrology/Cardiology specialist) has joined via Impiricus Connect", time: "10:05 AM" },
-  { sender: "tier2", text: "Hi Dr. Chen, I'm Dr. Amanda Torres. I've reviewed the Tier 1 conversation summary and understand you have a patient with HeFH, CKD stage 3 on dialysis. Let me address this comprehensively.\n\nPer the prescribing information, no dose adjustment is recommended for renal impairment including patients on dialysis. In pharmacokinetic studies, mild to severe renal impairment had no clinically meaningful effect on Stelazio exposure.\n\nHowever, I want to share some additional context from our post-marketing experience: we have real-world data from approximately 340 patients with CKD stages 3-5 on dialysis, and the LDL-C reduction was consistent with the general population (mean 52.1%). The safety profile was also comparable, with no increased rate of injection site reactions or muscle-related adverse events.\n\nI can send you the full renal subgroup analysis from our Phase III program. Would that be helpful?", time: "10:06 AM" },
-  { sender: "hcp", text: "That would be very helpful. Thank you for the thorough response.", time: "10:07 AM" },
-  { sender: "tier2", text: "Absolutely. I'll send the renal subgroup data package to your secure portal within the hour. I'm also available for a follow-up discussion if you'd like to review the data together or discuss other complex patients. You can reach me directly through Impiricus Connect anytime.", time: "10:07 AM" },
-  { sender: "system", text: "Session summary generated — Tier 1 handled 2/3 questions autonomously, 1 escalated to Tier 2. Full transcript archived.", time: "10:08 AM" },
+  { sender: "tier1", text: "Great question, Dr. Chen. In the ODYSSEY OUTCOMES trial, patients on maximally tolerated statin therapy who added Stelazio achieved a mean additional LDL-C reduction of 54.7% from baseline at week 12. The median achieved LDL-C was 53.3 mg/dL in the Stelazio group vs 101.4 mg/dL in the placebo group.\n\nRegarding safety: the most common adverse reactions in ODYSSEY OUTCOMES were injection site reactions (3.8% vs 2.1% placebo) and nasopharyngitis (6.1%). The overall serious adverse event rate was comparable to placebo.", time: "10:02 AM", confidence: 97, complianceTag: "On-Label", complianceColor: "#75dfa6" },
+  { sender: "hcp", text: "How does that compare to Repatha? Which one gives better LDL reduction?", time: "10:03 AM" },
+  { sender: "tier1", text: "I appreciate the question, Dr. Chen. I'm able to share Stelazio's published clinical data, but I'm not in a position to make direct product-to-product comparisons. What I can tell you is that in the ODYSSEY program, Stelazio demonstrated consistent LDL-C reductions across multiple patient populations.\n\nIf you're interested in a broader discussion of the PCSK9 inhibitor class and the published literature, I can connect you with a Medical Science Liaison who can provide a more comprehensive scientific exchange.", time: "10:03 AM", confidence: 94, complianceTag: "Comparative — Redirected", complianceColor: "#f79009" },
+  { sender: "hcp", text: "Fair enough. What about patients with statin intolerance? Can they use Stelazio as monotherapy?", time: "10:04 AM" },
+  { sender: "tier1", text: "Yes, Stelazio can be used as monotherapy in patients who are statin-intolerant. In the ODYSSEY ALTERNATIVE trial, statin-intolerant patients treated with Stelazio monotherapy achieved a 45% reduction in LDL-C at week 24 compared to ezetimibe (14.6% reduction).\n\nImportant to note: skeletal muscle-related events occurred in 32.5% of Stelazio patients vs 41.1% with ezetimibe in this trial, though this was not a pre-specified comparison endpoint. Study limitations include the open-label design and relatively short 24-week follow-up.", time: "10:04 AM", confidence: 96, complianceTag: "On-Label · Safety Included", complianceColor: "#75dfa6" },
+  { sender: "hcp", text: "I should mention — I had a patient last week who developed significant injection site necrosis after their third Stelazio dose. Wanted to flag that.", time: "10:05 AM" },
+  { sender: "tier1", text: "Thank you for reporting this, Dr. Chen — patient safety is our top priority and I want to make sure this is properly documented. I need to capture some details to file this report with our Pharmacovigilance team.\n\nCan you share:\n• Patient initials and age\n• Date of onset of the injection site necrosis\n• Clinical findings and severity\n• Any action taken (treatment, dose change, discontinuation)\n• Current patient status\n\nI'll escalate this to our Drug Safety team immediately. You can also report directly to the FDA at 1-800-FDA-1088.", time: "10:05 AM", complianceTag: "AE Captured · Escalated to PV", complianceColor: "#d73371" },
+  { sender: "hcp", text: "I'll send those details over. One more question — I have a complex patient with HeFH, CKD stage 3, and on dialysis. What's the dosing recommendation?", time: "10:06 AM" },
+  { sender: "tier1", text: "I can confirm that no dose adjustment is required for mild to moderate renal impairment based on the prescribing information. However, for your specific scenario involving CKD stage 3 with dialysis and HeFH, this is a complex clinical situation that would benefit from a more detailed discussion.\n\nI'd like to connect you with a live MSL who has deeper expertise in special populations. Would you like me to set up that conversation?", time: "10:06 AM", confidence: 62, complianceTag: "Complex Case · Escalation", complianceColor: "#f79009" },
+  { sender: "system", text: "⚡ Confidence below threshold — routing to Tier 2 Live MSL", time: "10:06 AM" },
+  { sender: "hcp", text: "Yes, please connect me.", time: "10:07 AM" },
+  { sender: "system", text: "🔄 Connecting to Impiricus Connect for live MSL...", time: "10:07 AM" },
+  { sender: "system", text: "✅ Dr. Amanda Torres, MSL (Nephrology/Cardiology specialist) has joined via Impiricus Connect", time: "10:07 AM" },
+  { sender: "tier2", text: "Hi Dr. Chen, I'm Dr. Amanda Torres. I've reviewed the full conversation and understand you have a patient with HeFH, CKD stage 3 on dialysis.\n\nPer the prescribing information, no dose adjustment is recommended for renal impairment including patients on dialysis. In pharmacokinetic studies, mild to severe renal impairment had no clinically meaningful effect on Stelazio exposure.\n\nI can also share that we have real-world data from approximately 340 patients with CKD stages 3-5 on dialysis — LDL-C reduction was consistent with the general population (mean 52.1%), and the safety profile was comparable with no increased rate of injection site reactions or muscle-related adverse events.\n\nI can send you the full renal subgroup analysis. Would that be helpful?", time: "10:08 AM" },
+  { sender: "hcp", text: "That would be very helpful. Thank you for the thorough response.", time: "10:09 AM" },
+  { sender: "tier2", text: "Absolutely. I'll send the renal subgroup data package to your secure portal within the hour. I'm also available for a follow-up discussion through Impiricus Connect anytime.", time: "10:09 AM" },
+  { sender: "system", text: "Session complete — MSL Agent handled 3 questions, redirected 1 comparative inquiry, captured 1 adverse event, escalated 1 complex case to Tier 2. Full transcript archived for compliance.", time: "10:10 AM" },
 ];
 
 const mslTierStats = [
-  { label: "Tier 1 Resolution Rate", value: "84%", detail: "Questions handled without escalation", icon: Bot, accent: "#0deefd" },
-  { label: "Avg Response Time (Tier 1)", value: "< 3s", detail: "Instant AI-powered responses", icon: Zap, accent: "#0deefd" },
+  { label: "MSL Agent Resolution", value: "84%", detail: "Questions handled without escalation", icon: Bot, accent: "#0deefd" },
+  { label: "Avg Response Time", value: "< 3s", detail: "Instant MSL Agent responses", icon: Zap, accent: "#0deefd" },
+  { label: "Compliance Rate", value: "100%", detail: "All interactions within guardrails", icon: Shield, accent: "#75dfa6" },
   { label: "Tier 2 Escalations (30d)", value: "47", detail: "Complex cases routed to live MSL", icon: ArrowRight, accent: "#75dfa6" },
-  { label: "Avg Connect Time (Tier 2)", value: "1.4m", detail: "Time to connect with live MSL", icon: Video, accent: "#75dfa6" },
+  { label: "Avg Connect Time (Tier 2)", value: "1.4m", detail: "Time to live MSL via Connect", icon: Video, accent: "#75dfa6" },
 ];
 
 /* ── MSL Training Data ── */
@@ -512,7 +519,7 @@ function MslVirtualCoordinatorDemo() {
 
   const msgStyle = (sender: MslMessage["sender"]) => {
     if (sender === "hcp") return { bg: `${c.accent}10`, border: `1px solid ${c.accent}20`, label: "HCP", labelColor: c.accent, icon: User };
-    if (sender === "tier1") return { bg: "#0c0e12", border: `1px solid ${c.divider}`, label: "Tier 1 — AI MSL", labelColor: "#0deefd", icon: Bot };
+    if (sender === "tier1") return { bg: "#0c0e12", border: `1px solid ${c.divider}`, label: "MSL Agent", labelColor: "#0deefd", icon: Bot };
     if (sender === "tier2") return { bg: `${c.green}08`, border: `1px solid ${c.green}20`, label: "Tier 2 — Live MSL", labelColor: c.green, icon: Video };
     return { bg: "transparent", border: `1px dashed ${c.divider}`, label: "", labelColor: c.textMuted, icon: AlertCircle };
   };
@@ -527,7 +534,7 @@ function MslVirtualCoordinatorDemo() {
           </div>
           <div>
             <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>MSL Virtual Coordinator</h2>
-            <p className="text-xs" style={{ color: c.textSecondary }}>Tier 1 AI + Tier 2 Live MSL Escalation</p>
+            <p className="text-xs" style={{ color: c.textSecondary }}>MSL Agent + Live MSL Escalation via Impiricus Connect</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -547,15 +554,15 @@ function MslVirtualCoordinatorDemo() {
                 <Bot className="h-5 w-5" style={{ color: c.accent }} />
               </div>
               <div>
-                <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Tier 1 — AI MSL</h3>
-                <p className="text-xs" style={{ color: c.textSecondary }}>Automated, instant response</p>
+                <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Tier 1 — MSL Agent</h3>
+                <p className="text-xs" style={{ color: c.textSecondary }}>AI-powered, compliance-grade responses</p>
               </div>
             </div>
             <p className="text-xs leading-relaxed mb-4" style={{ color: c.textSecondary }}>
-              Trained on approved PI, clinical data, and standard MSL responses. Handles FAQs, dosing questions, MOA explanations, safety inquiries, and clinical trial data requests with confidence scoring.
+              Trained on approved PI, published clinical data, and standard MSL responses with built-in compliance guardrails. Handles on-label inquiries, appropriately redirects comparative and off-label questions, and captures adverse events for pharmacovigilance.
             </p>
             <div className="space-y-2">
-              {["Prescribing Information (full PI)", "Phase III clinical trial data", "Dosing & titration protocols", "Safety & adverse event profiles", "Formulary & access information"].map((item) => (
+              {["Prescribing Information (full PI)", "Published clinical trial data", "Safety profiles & adverse event handling", "Compliance guardrails & fair balance", "Appropriate redirect & escalation logic"].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-xs" style={{ color: c.textPrimary }}>
                   <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: c.accent }} />
                   {item}
@@ -579,7 +586,7 @@ function MslVirtualCoordinatorDemo() {
               When Tier 1 confidence drops below threshold or the HCP requests it, the conversation seamlessly escalates to a live Medical Science Liaison through Impiricus Connect with full context transfer.
             </p>
             <div className="space-y-2">
-              {["Complex clinical scenarios & special populations", "Off-label or investigational inquiries (redirect)", "Peer-to-peer scientific exchange", "Real-world evidence deep dives", "Adverse event case consultations"].map((item) => (
+              {["Complex clinical scenarios & special populations", "In-depth peer-to-peer scientific exchange", "Real-world evidence deep dives", "Comparative data discussions (HCP-initiated)", "Adverse event follow-up consultations"].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-xs" style={{ color: c.textPrimary }}>
                   <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: c.green }} />
                   {item}
@@ -594,11 +601,11 @@ function MslVirtualCoordinatorDemo() {
           <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: c.textSecondary }}>Escalation Flow</h3>
           <div className="flex items-center justify-between gap-3">
             {[
-              { label: "HCP Question", sub: "Inbound via any channel", icon: User, color: c.accent },
-              { label: "Tier 1 AI MSL", sub: "Confidence scoring", icon: Bot, color: c.accent },
-              { label: "Confidence Check", sub: "≥70% = Respond  |  <70% = Escalate", icon: Shield, color: "#f79009" },
-              { label: "Tier 2 Live MSL", sub: "Impiricus Connect", icon: Video, color: c.green },
-              { label: "Resolution", sub: "Archived & tracked", icon: CheckCircle2, color: c.green },
+              { label: "HCP Inquiry", sub: "Inbound via any channel", icon: User, color: c.accent },
+              { label: "MSL Agent", sub: "Guardrails + confidence scoring", icon: Bot, color: c.accent },
+              { label: "Compliance Check", sub: "On-label · Redirect · Escalate", icon: Shield, color: "#f79009" },
+              { label: "Live MSL", sub: "Impiricus Connect", icon: Video, color: c.green },
+              { label: "Resolution", sub: "Archived for compliance", icon: CheckCircle2, color: c.green },
             ].map((step, i, arr) => (
               <div key={step.label} className="flex items-center gap-3 flex-1">
                 <div className="flex flex-col items-center text-center flex-1">
@@ -615,7 +622,7 @@ function MslVirtualCoordinatorDemo() {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-5 gap-4 mb-6">
           {mslTierStats.map((s) => (
             <div key={s.label} className="rounded-xl border p-4" style={{ background: "#0c0e12", borderColor: "#131720" }}>
               <div className="flex items-center gap-2 mb-2">
@@ -674,7 +681,7 @@ function MslVirtualCoordinatorDemo() {
             <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "#131720" }}>
               <div className="flex items-center gap-2">
                 <Layers className="h-4 w-4" style={{ color: c.accent }} />
-                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Live Demo — Tier 1 → Tier 2 Escalation</span>
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Live Demo — MSL Agent → Live MSL Escalation</span>
               </div>
               <span className="text-xs" style={{ color: c.textSecondary }}>Stelazio Virtual Coordinator · Dr. Sarah Chen</span>
             </div>
@@ -691,15 +698,26 @@ function MslVirtualCoordinatorDemo() {
                             <MsgIcon className="h-3 w-3" style={{ color: s.labelColor }} />
                             <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: s.labelColor }}>{s.label}</span>
                           </div>
-                          {msg.confidence !== undefined && (
-                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full" style={{
-                              color: msg.confidence >= 70 ? c.green : "#f79009",
-                              background: msg.confidence >= 70 ? `${c.green}12` : "#f7900912",
-                              border: `1px solid ${msg.confidence >= 70 ? c.green : "#f79009"}25`,
-                            }}>
-                              {msg.confidence}% confidence
-                            </span>
-                          )}
+                          <div className="flex items-center gap-2">
+                            {msg.complianceTag && (
+                              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{
+                                color: msg.complianceColor || c.textMuted,
+                                background: `${msg.complianceColor || c.textMuted}12`,
+                                border: `1px solid ${msg.complianceColor || c.textMuted}25`,
+                              }}>
+                                {msg.complianceTag}
+                              </span>
+                            )}
+                            {msg.confidence !== undefined && (
+                              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full" style={{
+                                color: msg.confidence >= 70 ? c.green : "#f79009",
+                                background: msg.confidence >= 70 ? `${c.green}12` : "#f7900912",
+                                border: `1px solid ${msg.confidence >= 70 ? c.green : "#f79009"}25`,
+                              }}>
+                                {msg.confidence}%
+                              </span>
+                            )}
+                          </div>
                         </div>
                       )}
                       <p className={`text-xs leading-relaxed whitespace-pre-line ${msg.sender === "system" ? "text-center" : ""}`} style={{ color: msg.sender === "system" ? c.textMuted : c.textPrimary }}>
@@ -994,7 +1012,7 @@ function MslCoordinatorView({ onNavigateToEngagements }: { onNavigateToEngagemen
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold" style={{ color: c.textPrimary }}>MSL Virtual Coordinator</h1>
-          <p className="text-sm mt-1" style={{ color: c.textSecondary }}>Tier 1 AI-powered MSL with Tier 2 live escalation to Impiricus Connect</p>
+          <p className="text-sm mt-1" style={{ color: c.textSecondary }}>MSL Agent with live escalation to Impiricus Connect</p>
         </div>
         <button
           onClick={onNavigateToEngagements}
@@ -1459,7 +1477,7 @@ function SmsDetailModal({ engagement, onClose }: { engagement: Engagement; onClo
                 <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#f79009" }}>MSL-Trained Knowledge Source</span>
               </div>
               <p className="text-xs leading-relaxed mb-3" style={{ color: c.textSecondary }}>
-                The Tier 1 AI response in this engagement was powered by an MSL training submission, ensuring accuracy and clinical depth.
+                The MSL Agent response in this engagement was powered by an MSL training submission, ensuring accuracy and clinical depth.
               </p>
               <div className="grid grid-cols-2 gap-3">
                 <div>
