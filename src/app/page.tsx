@@ -2420,51 +2420,50 @@ function EngagementsView({ focusedHcp, onClearFocus, demoHcpTab }: { focusedHcp?
   );
 }
 
-/* ─── demo step definitions ─── */
+/* ─── auto-play demo step definitions ─── */
 
-interface DemoStep {
+interface AutoDemoStep {
   tab: Tab;
-  selector: string;
-  title: string;
-  body: string;
-  position: "top" | "bottom" | "left" | "right";
+  target: string;
+  narration: string;
   action?: string;
+  dwell: number;
 }
 
-const demoStepData: Record<string, DemoStep[]> = {
+const autoDemoSteps: Record<string, AutoDemoStep[]> = {
   "brand-manager": [
-    { tab: "dashboard", selector: "dashboard-stats", title: "Performance at a Glance", body: "Start your morning by reviewing key performance indicators — total HCPs reached, active coordinators, 30-day engagement volume, and average response times. These metrics give you an immediate pulse on campaign health.", position: "bottom" },
-    { tab: "dashboard", selector: "channel-breakdown", title: "Channel Mix Analysis", body: "Understand which engagement channels drive the most HCP interactions. Use this data to optimize budget allocation and refine your omnichannel strategy across SMS, email, AI assistant, and more.", position: "right" },
-    { tab: "dashboard", selector: "recent-activity", title: "Live Activity Feed", body: "Monitor HCP interactions in real time. Each row shows who engaged, what they did, and through which channel. Click any physician to jump directly to their full engagement history.", position: "left" },
-    { tab: "engagements", selector: "engagement-summary", title: "HCP Portfolio Overview", body: "Get a high-level snapshot of your territory — total HCP count, active engagements, physicians in cooling-off periods, and newly onboarded targets.", position: "bottom" },
-    { tab: "engagements", selector: "requires-attention", title: "Priority Alerts", body: "HCPs flagged for immediate action surface here — callback requests without assigned reps, adverse event mentions, and expiring appeal windows. These are your first action items each morning.", position: "bottom" },
-    { tab: "engagements", selector: "all-engagements", title: "Full Engagement Table", body: "Browse, filter, and sort all HCP engagements across coordinators and channels. Click any row to open the detailed engagement timeline with AI strategy insights.", position: "top" },
-    { tab: "engagements", selector: "hcp-detail-pane", title: "Engagement Timeline", body: "Chronological view of every touchpoint with this HCP — channel used, direction (inbound/outbound), interaction summary, and outcome. This is your single source of truth for relationship history.", position: "left", action: "open-hcp" },
-    { tab: "engagements", selector: "hcp-detail-pane", title: "AI Strategy Session", body: "Two AI agents — a Strategist and an Engagement Expert — analyze this HCP's engagement patterns and collaboratively develop an optimal next-best-action plan. Watch their real-time strategic dialogue unfold.", position: "left", action: "hcp-tab:agentic" },
-    { tab: "engagements", selector: "hcp-detail-pane", title: "HCP Persona Profile", body: "Deep-dive into the physician's professional profile, prescribing behaviors, communication preferences, decision drivers, and influence level. Use this intelligence to personalize every interaction.", position: "left", action: "hcp-tab:persona" },
+    { tab: "dashboard", target: "dashboard-stats", narration: "Reviewing daily performance metrics", dwell: 3500 },
+    { tab: "dashboard", target: "channel-breakdown", narration: "Analyzing channel engagement mix", dwell: 3000 },
+    { tab: "dashboard", target: "recent-activity", narration: "Scanning real-time HCP interactions", dwell: 3000 },
+    { tab: "engagements", target: "engagement-summary", narration: "Surveying the HCP portfolio", dwell: 2500 },
+    { tab: "engagements", target: "requires-attention", narration: "Flagging priority follow-ups", dwell: 3000 },
+    { tab: "engagements", target: "all-engagements", narration: "Browsing the full engagement log", dwell: 3000 },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Opening Dr. Chen's engagement history", dwell: 4000, action: "open-hcp" },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Watching AI agents build a strategy", dwell: 5000, action: "hcp-tab:agentic" },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Exploring Dr. Chen's prescriber profile", dwell: 4000, action: "hcp-tab:persona" },
   ],
   "vc-setup": [
-    { tab: "virtual-coordinator", selector: "vc-manager", title: "Coordinator Command Center", body: "This is the heart of your virtual coordinator — a visual map showing how engagement channels connect through the central intelligence to your system integrations. Watch signals flow in real time.", position: "bottom" },
-    { tab: "virtual-coordinator", selector: "vc-channels", title: "Engagement Channels", body: "Each card represents an active engagement channel — SMS, email, intelligent media, concierge, and more. Click any channel to view recent sample engagements and performance details.", position: "left" },
-    { tab: "virtual-coordinator", selector: "vc-orb", title: "Central Intelligence", body: "The virtual coordinator orchestrates all channel activity through this central hub. Engagement signals flow from channels, get processed by the AI coordinator, and route to the appropriate downstream integration.", position: "bottom" },
-    { tab: "virtual-coordinator", selector: "vc-integrations", title: "System Integrations", body: "Integrations connect the coordinator to your existing tech stack — CRM, EHR, analytics platforms, and patient support programs. Data flows bidirectionally to keep everything synchronized.", position: "right" },
-    { tab: "virtual-coordinator", selector: "vc-add-module", title: "Expand Capabilities", body: "Browse the module catalog to add new channels and integrations on the fly. Simply activate a module and it's instantly connected to the coordinator's intelligence layer — no engineering required.", position: "bottom" },
-    { tab: "virtual-coordinator", selector: "vc-table", title: "Coordinator Portfolio", body: "Manage all your virtual coordinators from this table — track engagement counts, operational status, version history, and MLR approval status. Click View to drill into any coordinator's configuration.", position: "top" },
+    { tab: "virtual-coordinator", target: "vc-manager", narration: "Exploring the coordinator command center", dwell: 3500 },
+    { tab: "virtual-coordinator", target: "vc-channels", narration: "Reviewing active engagement channels", dwell: 3000 },
+    { tab: "virtual-coordinator", target: "vc-orb", narration: "Examining the central intelligence hub", dwell: 3500 },
+    { tab: "virtual-coordinator", target: "vc-integrations", narration: "Checking system integrations", dwell: 3000 },
+    { tab: "virtual-coordinator", target: "vc-add-module", narration: "Adding a new module", dwell: 2500 },
+    { tab: "virtual-coordinator", target: "vc-table", narration: "Managing the coordinator portfolio", dwell: 3000 },
   ],
   "rep-engagement": [
-    { tab: "engagements", selector: "engagement-summary", title: "Territory at a Glance", body: "As a field rep, start here to assess your territory — how many HCPs are actively engaging, who's cooling off, and which physicians are newly added to your portfolio. Use these numbers to prioritize your day.", position: "bottom" },
-    { tab: "engagements", selector: "requires-attention", title: "Priority Follow-Ups", body: "These HCPs need your attention first. From unanswered callback requests to adverse event flags and expiring appeal windows — address these before any planned outreach to maximize impact.", position: "bottom" },
-    { tab: "engagements", selector: "all-engagements", title: "Your HCP Portfolio", body: "Your complete engagement log across all channels and coordinators. Sort by last contact, total touches, or status to identify follow-up opportunities and spot patterns in physician engagement.", position: "top" },
-    { tab: "engagements", selector: "hcp-detail-pane", title: "Interaction Deep-Dive", body: "Before making any outreach, review the complete touchpoint timeline. See what channels have been used, outcomes achieved, and what actions are pending for this physician.", position: "left", action: "open-hcp" },
-    { tab: "engagements", selector: "hcp-detail-pane", title: "AI-Powered Next Best Action", body: "Your AI field force assistants analyze engagement patterns and recommend the optimal next action — which channel to use, what content to send, and the ideal timing for outreach.", position: "left", action: "hcp-tab:agentic" },
-    { tab: "engagements", selector: "hcp-detail-pane", title: "Know Your Physician", body: "Understand your HCP's prescribing behavior, communication preferences, and decision drivers. This intelligence helps you tailor every conversation and build stronger, more productive relationships.", position: "left", action: "hcp-tab:persona" },
+    { tab: "engagements", target: "engagement-summary", narration: "Assessing the territory overview", dwell: 3000 },
+    { tab: "engagements", target: "requires-attention", narration: "Identifying HCPs needing attention", dwell: 3000 },
+    { tab: "engagements", target: "all-engagements", narration: "Scanning the full HCP portfolio", dwell: 2500 },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Opening Dr. Chen's interaction timeline", dwell: 4000, action: "open-hcp" },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Reviewing AI-powered recommendations", dwell: 5000, action: "hcp-tab:agentic" },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Exploring Dr. Chen's physician profile", dwell: 4000, action: "hcp-tab:persona" },
   ],
 };
 
 const demoModules = [
-  { id: "brand-manager", title: "Brand Manager Day-in-the-Life", description: "Walk through a typical day for a brand manager using Ascend to monitor campaigns, review HCP engagement, and optimize channel strategy.", icon: Briefcase, duration: "4 min", steps: demoStepData["brand-manager"].length },
-  { id: "vc-setup", title: "Virtual Coordinator Set Up", description: "See how to configure a new virtual coordinator from scratch — selecting channels, setting rules, and activating integrations.", icon: Wand2, duration: "3 min", steps: demoStepData["vc-setup"].length },
-  { id: "rep-engagement", title: "Rep Engagement Manager", description: "Follow a field rep reviewing HCP interactions, prioritizing follow-ups, and coordinating next-best-actions across channels.", icon: Repeat, duration: "3 min", steps: demoStepData["rep-engagement"].length },
+  { id: "brand-manager", title: "Brand Manager Day-in-the-Life", description: "Watch a brand manager monitor campaigns, review HCP engagement, and optimize channel strategy.", icon: Briefcase, duration: "~1 min", steps: autoDemoSteps["brand-manager"].length },
+  { id: "vc-setup", title: "Virtual Coordinator Set Up", description: "See how to configure a virtual coordinator — channels, rules, and integrations.", icon: Wand2, duration: "~30 sec", steps: autoDemoSteps["vc-setup"].length },
+  { id: "rep-engagement", title: "Rep Engagement Manager", description: "Follow a field rep reviewing interactions, prioritizing follow-ups, and planning next-best-actions.", icon: Repeat, duration: "~35 sec", steps: autoDemoSteps["rep-engagement"].length },
 ];
 
 /* ─── demo launcher ─── */
@@ -2502,7 +2501,7 @@ function DemoLauncher({ onStart }: { onStart: (demoId: string) => void }) {
               </div>
               <div>
                 <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Demo Modules</h3>
-                <p className="text-[11px]" style={{ color: c.textSecondary }}>Interactive guided walkthroughs</p>
+                <p className="text-[11px]" style={{ color: c.textSecondary }}>Automated walkthroughs</p>
               </div>
             </div>
             <button onClick={() => setOpen(false)} className="flex h-7 w-7 items-center justify-center rounded-lg transition-colors hover:bg-white/5" style={{ color: c.textSecondary }}>
@@ -2544,7 +2543,7 @@ function DemoLauncher({ onStart }: { onStart: (demoId: string) => void }) {
           </div>
 
           <div className="px-5 py-3 border-t text-center" style={{ borderColor: c.divider }}>
-            <p className="text-[11px]" style={{ color: c.textMuted }}>Select a module to begin the guided walkthrough</p>
+            <p className="text-[11px]" style={{ color: c.textMuted }}>Select a module to watch the walkthrough</p>
           </div>
         </div>
       )}
@@ -2552,199 +2551,231 @@ function DemoLauncher({ onStart }: { onStart: (demoId: string) => void }) {
   );
 }
 
-/* ─── demo walkthrough overlay ─── */
+/* ─── auto-play demo walkthrough ─── */
 
 function DemoWalkthrough({
   demoId,
-  step,
-  onNext,
-  onPrev,
+  onApplyStep,
   onExit,
 }: {
   demoId: string;
-  step: number;
-  onNext: () => void;
-  onPrev: () => void;
+  onApplyStep: (step: AutoDemoStep) => void;
   onExit: () => void;
 }) {
-  const [rect, setRect] = useState<DOMRect | null>(null);
-  const steps = demoStepData[demoId];
-  const current = steps?.[step];
+  const [stepIdx, setStepIdx] = useState(0);
+  const [cursorPos, setCursorPos] = useState({ x: typeof window !== "undefined" ? window.innerWidth - 80 : 800, y: typeof window !== "undefined" ? window.innerHeight - 40 : 600 });
+  const [spotlight, setSpotlight] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
+  const [clicking, setClicking] = useState(false);
+  const [narrationVisible, setNarrationVisible] = useState(false);
+
+  const steps = autoDemoSteps[demoId];
   const totalSteps = steps?.length || 0;
-  const isFirst = step === 0;
-  const isLast = step === totalSteps - 1;
+  const current = steps?.[stepIdx];
+
+  const onApplyStepRef = useRef(onApplyStep);
+  const onExitRef = useRef(onExit);
+  onApplyStepRef.current = onApplyStep;
+  onExitRef.current = onExit;
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" || e.key === "Enter") {
-        e.preventDefault();
-        if (isLast) onExit();
-        else onNext();
-      } else if (e.key === "ArrowLeft" && !isFirst) {
-        e.preventDefault();
-        onPrev();
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        onExit();
-      }
+      if (e.key === "Escape") { e.preventDefault(); onExitRef.current(); }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [onNext, onPrev, onExit, isFirst, isLast]);
+  }, []);
 
   useEffect(() => {
-    if (!current) return;
-    setRect(null);
+    if (stepIdx >= totalSteps) {
+      onExitRef.current();
+      return;
+    }
 
-    let attempts = 0;
-    let rafId: number;
-    let timer: ReturnType<typeof setTimeout>;
+    const s = steps[stepIdx];
+    onApplyStepRef.current(s);
 
-    const findAndMeasure = () => {
-      const el = document.querySelector<HTMLElement>(`[data-demo="${current.selector}"]`);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    let cancelled = false;
+    const sched = (fn: () => void, ms: number) => { timers.push(setTimeout(() => { if (!cancelled) fn(); }, ms)); };
+
+    setNarrationVisible(false);
+    setClicking(false);
+
+    const findEl = (retries: number) => {
+      const el = document.querySelector<HTMLElement>(`[data-demo="${s.target}"]`);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        rafId = requestAnimationFrame(() => {
-          setTimeout(() => setRect(el.getBoundingClientRect()), 350);
-        });
-      } else if (attempts < 30) {
-        attempts++;
-        timer = setTimeout(findAndMeasure, 100);
+        animate(el);
+      } else if (retries > 0) {
+        sched(() => findEl(retries - 1), 100);
       }
     };
 
-    timer = setTimeout(findAndMeasure, 200);
+    const animate = (el: HTMLElement) => {
+      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
-    const updateRect = () => {
-      const el = document.querySelector<HTMLElement>(`[data-demo="${current.selector}"]`);
-      if (el) setRect(el.getBoundingClientRect());
+      sched(() => {
+        const rect = el.getBoundingClientRect();
+        const pad = 12;
+
+        setCursorPos({
+          x: rect.left + Math.min(rect.width * 0.35, 200),
+          y: Math.max(rect.top + 30, Math.min(rect.top + rect.height * 0.3, rect.top + 150)),
+        });
+        setSpotlight({
+          top: rect.top - pad,
+          left: rect.left - pad,
+          width: rect.width + pad * 2,
+          height: rect.height + pad * 2,
+        });
+
+        sched(() => {
+          setClicking(true);
+          sched(() => setClicking(false), 400);
+
+          sched(() => {
+            setNarrationVisible(true);
+
+            sched(() => {
+              setNarrationVisible(false);
+              sched(() => setStepIdx((i) => i + 1), 400);
+            }, s.dwell);
+          }, 300);
+        }, 700);
+      }, 400);
     };
 
-    window.addEventListener("resize", updateRect);
-    window.addEventListener("scroll", updateRect, true);
+    sched(() => findEl(25), 300);
+
+    const updateSpotlight = () => {
+      if (cancelled) return;
+      const el = document.querySelector<HTMLElement>(`[data-demo="${s.target}"]`);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const pad = 12;
+        setSpotlight({
+          top: rect.top - pad,
+          left: rect.left - pad,
+          width: rect.width + pad * 2,
+          height: rect.height + pad * 2,
+        });
+      }
+    };
+    window.addEventListener("resize", updateSpotlight);
+    window.addEventListener("scroll", updateSpotlight, true);
 
     return () => {
-      clearTimeout(timer);
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", updateRect);
-      window.removeEventListener("scroll", updateRect, true);
+      cancelled = true;
+      timers.forEach(clearTimeout);
+      window.removeEventListener("resize", updateSpotlight);
+      window.removeEventListener("scroll", updateSpotlight, true);
     };
-  }, [current?.selector, step]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepIdx, totalSteps]);
 
-  if (!current || !rect) return null;
-
-  const pad = 12;
-  const gap = 20;
-  const tooltipW = 380;
-  const spotlight = {
-    top: rect.top - pad,
-    left: rect.left - pad,
-    width: rect.width + pad * 2,
-    height: rect.height + pad * 2,
-  };
-
-  const cx = rect.left + rect.width / 2;
-  const cy = Math.min(Math.max(rect.top + rect.height / 2, 100), window.innerHeight - 100);
-  const tipStyle: React.CSSProperties = { position: "fixed", width: tooltipW, zIndex: 101 };
-
-  let pos = current.position;
-  const roomAbove = spotlight.top;
-  const roomBelow = window.innerHeight - (spotlight.top + spotlight.height);
-  if (pos === "top" && roomAbove < 220) pos = roomBelow > 220 ? "bottom" : "left";
-  if (pos === "bottom" && roomBelow < 220) pos = roomAbove > 220 ? "top" : "left";
-
-  switch (pos) {
-    case "bottom":
-      tipStyle.top = Math.min(spotlight.top + spotlight.height + gap, window.innerHeight - 200);
-      tipStyle.left = Math.max(16, Math.min(cx - tooltipW / 2, window.innerWidth - tooltipW - 16));
-      break;
-    case "top":
-      tipStyle.bottom = Math.max(16, window.innerHeight - spotlight.top + gap);
-      tipStyle.left = Math.max(16, Math.min(cx - tooltipW / 2, window.innerWidth - tooltipW - 16));
-      break;
-    case "left": {
-      tipStyle.top = Math.max(16, Math.min(cy - 80, window.innerHeight - 260));
-      const rightVal = window.innerWidth - spotlight.left + gap;
-      if (rightVal + tooltipW > window.innerWidth - 16) {
-        tipStyle.left = Math.max(16, spotlight.left - tooltipW - gap);
-      } else {
-        tipStyle.right = Math.max(16, rightVal);
-      }
-      break;
-    }
-    case "right":
-      tipStyle.top = Math.max(16, Math.min(cy - 80, window.innerHeight - 260));
-      tipStyle.left = Math.min(spotlight.left + spotlight.width + gap, window.innerWidth - tooltipW - 16);
-      break;
-  }
+  if (!current) return null;
 
   return (
     <>
-      <div className="fixed inset-0 z-[98]" onClick={onExit} />
+      {/* click catcher */}
+      <div className="fixed inset-0 z-[97]" />
 
-      <div
-        className="fixed z-[99] rounded-xl pointer-events-none"
-        style={{
-          top: spotlight.top,
-          left: spotlight.left,
-          width: spotlight.width,
-          height: spotlight.height,
-          boxShadow: `0 0 0 9999px rgba(0,0,0,0.75), inset 0 0 0 2px ${c.accent}25`,
-          transition: "top 0.4s, left 0.4s, width 0.4s, height 0.4s",
-        }}
-      />
+      {/* spotlight */}
+      {spotlight && (
+        <div
+          className="fixed z-[98] rounded-xl pointer-events-none"
+          style={{
+            top: spotlight.top,
+            left: spotlight.left,
+            width: spotlight.width,
+            height: spotlight.height,
+            boxShadow: `0 0 0 9999px rgba(0,0,0,0.55), inset 0 0 0 1px ${c.accent}18`,
+            transition: "top 0.7s ease-in-out, left 0.7s ease-in-out, width 0.7s ease-in-out, height 0.7s ease-in-out",
+          }}
+        />
+      )}
 
+      {/* animated cursor */}
       <div
+        className="fixed z-[102] pointer-events-none"
         style={{
-          ...tipStyle,
-          background: c.card,
-          border: `1px solid ${c.divider}`,
-          boxShadow: `0 12px 48px rgba(0,0,0,0.6), 0 0 24px ${c.accent}10`,
+          left: cursorPos.x,
+          top: cursorPos.y,
+          transition: "left 0.7s cubic-bezier(0.4, 0, 0.2, 1), top 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
-        className="rounded-xl overflow-hidden"
       >
-        <div className="h-1" style={{ background: c.divider }}>
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))" }}>
+          <path d="M1 1L1 19L6 14.5L10 22L13 20.5L9 13.5L16 13L1 1Z" fill="white" stroke="#222" strokeWidth="1.2" strokeLinejoin="round" />
+        </svg>
+        {clicking && (
           <div
-            className="h-full rounded-r-full transition-all duration-500"
-            style={{ background: c.accent, width: `${((step + 1) / totalSteps) * 100}%` }}
+            className="absolute top-0 left-0 rounded-full pointer-events-none"
+            style={{
+              width: 12,
+              height: 12,
+              border: `2px solid ${c.accent}`,
+              animation: "demoClickRipple 0.4s ease-out forwards",
+            }}
           />
-        </div>
+        )}
+      </div>
 
-        <div className="p-4 pb-3">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="h-1.5 w-1.5 rounded-full" style={{ background: c.accent }} />
-            <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: c.accent }}>
-              Step {step + 1} of {totalSteps}
-            </span>
-          </div>
-          <h3 className="text-sm font-bold mb-1.5" style={{ color: c.textPrimary }}>{current.title}</h3>
-          <p className="text-xs leading-relaxed" style={{ color: c.textSecondary }}>{current.body}</p>
-        </div>
-
-        <div className="flex items-center justify-between px-4 py-3 border-t" style={{ borderColor: c.divider }}>
-          <button onClick={onExit} className="text-xs font-medium hover:underline" style={{ color: c.textMuted }}>
-            Skip tour
-          </button>
-          <div className="flex gap-2">
-            {!isFirst && (
-              <button
-                onClick={onPrev}
-                className="flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-semibold hover:bg-white/5"
-                style={{ borderColor: c.divider, color: c.textSecondary }}
-              >
-                <ChevronLeft className="h-3 w-3" /> Back
-              </button>
-            )}
-            <button
-              onClick={isLast ? onExit : onNext}
-              className="rounded-lg px-4 py-1.5 text-xs font-bold"
-              style={{ background: c.accent, color: "#0a0c10" }}
-            >
-              {isLast ? "Finish" : "Next"}
-            </button>
-          </div>
+      {/* narration bar */}
+      <div
+        className="fixed bottom-8 left-1/2 z-[101] pointer-events-none"
+        style={{
+          opacity: narrationVisible ? 1 : 0,
+          transform: `translateX(-50%) translateY(${narrationVisible ? 0 : 8}px)`,
+          transition: "opacity 0.3s, transform 0.3s",
+        }}
+      >
+        <div
+          className="rounded-full px-6 py-3 flex items-center gap-3"
+          style={{
+            background: "rgba(12, 14, 18, 0.92)",
+            border: `1px solid ${c.divider}`,
+            backdropFilter: "blur(12px)",
+            boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 16px ${c.accent}08`,
+          }}
+        >
+          <div className="h-2 w-2 rounded-full shrink-0 animate-pulse" style={{ background: c.accent }} />
+          <span className="text-sm font-medium whitespace-nowrap" style={{ color: c.textPrimary }}>
+            {current.narration}
+          </span>
+          <span className="text-xs font-mono shrink-0 tabular-nums" style={{ color: c.textMuted }}>
+            {stepIdx + 1}/{totalSteps}
+          </span>
         </div>
       </div>
+
+      {/* exit button */}
+      <button
+        onClick={() => onExitRef.current()}
+        className="fixed top-4 right-4 z-[103] flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition-all hover:bg-white/10"
+        style={{
+          background: "rgba(12, 14, 18, 0.7)",
+          color: c.textSecondary,
+          border: `1px solid ${c.divider}`,
+          backdropFilter: "blur(8px)",
+        }}
+      >
+        <X className="h-3 w-3" />
+        End demo
+      </button>
+
+      {/* progress bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-[101] h-0.5 pointer-events-none" style={{ background: `${c.divider}80` }}>
+        <div
+          className="h-full transition-all duration-700"
+          style={{ background: c.accent, width: `${((stepIdx + 1) / totalSteps) * 100}%` }}
+        />
+      </div>
+
+      <style>{`
+        @keyframes demoClickRipple {
+          from { transform: scale(1); opacity: 0.8; }
+          to { transform: scale(3); opacity: 0; }
+        }
+      `}</style>
     </>
   );
 }
@@ -2756,7 +2787,6 @@ export default function Home() {
   const [mslEnabled, setMslEnabled] = useState(true);
   const [focusedHcp, setFocusedHcp] = useState<string | undefined>();
   const [activeDemo, setActiveDemo] = useState<string | null>(null);
-  const [demoStep, setDemoStep] = useState(0);
   const [demoHcpTab, setDemoHcpTab] = useState<"engagements" | "agentic" | "persona" | undefined>();
 
   const handleNavigateToHcp = useCallback((hcpName: string) => {
@@ -2766,40 +2796,24 @@ export default function Home() {
 
   const clearFocusedHcp = useCallback(() => setFocusedHcp(undefined), []);
 
-  const applyDemoStep = useCallback((demoId: string, step: number) => {
-    const steps = demoStepData[demoId];
-    if (!steps?.[step]) return;
-    const s = steps[step];
-    setDemoStep(step);
-    setActiveTab(s.tab);
-    if (s.action === "open-hcp") {
+  const handleStartDemo = useCallback((demoId: string) => {
+    setActiveDemo(demoId);
+  }, []);
+
+  const handleApplyDemoStep = useCallback((step: AutoDemoStep) => {
+    setActiveTab(step.tab);
+    if (step.action === "open-hcp") {
       setFocusedHcp("Dr. Sarah Chen");
       setDemoHcpTab("engagements");
-    } else if (s.action?.startsWith("hcp-tab:")) {
-      setDemoHcpTab(s.action.split(":")[1] as "engagements" | "agentic" | "persona");
+    } else if (step.action?.startsWith("hcp-tab:")) {
+      setDemoHcpTab(step.action.split(":")[1] as "engagements" | "agentic" | "persona");
     } else {
       setDemoHcpTab(undefined);
     }
   }, []);
 
-  const handleStartDemo = useCallback((demoId: string) => {
-    setActiveDemo(demoId);
-    applyDemoStep(demoId, 0);
-  }, [applyDemoStep]);
-
-  const handleDemoNext = useCallback(() => {
-    if (!activeDemo) return;
-    applyDemoStep(activeDemo, demoStep + 1);
-  }, [activeDemo, demoStep, applyDemoStep]);
-
-  const handleDemoPrev = useCallback(() => {
-    if (!activeDemo || demoStep <= 0) return;
-    applyDemoStep(activeDemo, demoStep - 1);
-  }, [activeDemo, demoStep, applyDemoStep]);
-
   const handleExitDemo = useCallback(() => {
     setActiveDemo(null);
-    setDemoStep(0);
     setDemoHcpTab(undefined);
   }, []);
 
@@ -2960,9 +2974,7 @@ export default function Home() {
       {activeDemo && (
         <DemoWalkthrough
           demoId={activeDemo}
-          step={demoStep}
-          onNext={handleDemoNext}
-          onPrev={handleDemoPrev}
+          onApplyStep={handleApplyDemoStep}
           onExit={handleExitDemo}
         />
       )}
