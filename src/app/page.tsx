@@ -117,7 +117,7 @@ interface Coordinator {
 }
 
 const coordinators: Coordinator[] = [
-  { name: "Stelazio Virtual Coordinator V1.1", ta: "TA: Cardiology", engaged: "-", status: "Draft", created: "1/1/25", version: "v1.1", mlr: "Submitted" },
+  { name: "Lipid DSE Coordinator V1.1", ta: "TA: Cardiology", engaged: "-", status: "Draft", created: "1/1/25", version: "v1.1", mlr: "Submitted" },
   { name: "Diabetes Care Coordinator", ta: "TA: Neurology", engaged: "125", status: "Paused", created: "1/1/25", version: "v1.0", mlr: "Comment to Change" },
   { name: "Cardiovex", ta: "TA: Cardiology", engaged: "-", status: "Draft", created: "1/1/25", version: "v1.2", mlr: "Under Review" },
   { name: "Neurovia", ta: "TA: Neurology", engaged: "138", status: "Active", created: "1/1/25", version: "v2.1", mlr: "Approved" },
@@ -181,7 +181,7 @@ interface Engagement {
 }
 
 const engagements: Engagement[] = [
-  { hcp: "Dr. Sarah Chen", specialty: "Cardiology", npi: "1234567890", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2m ago", totalTouches: 14, status: "Active", coordinator: "Stelazio V1.1", attention: "Requested callback — no rep assigned" },
+  { hcp: "Dr. Sarah Chen", specialty: "Cardiology", npi: "1234567890", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2m ago", totalTouches: 14, status: "Active", coordinator: "Lipid DSE V1.1", attention: "Requested callback — no rep assigned" },
   { hcp: "Dr. James Wilson", specialty: "Neurology", npi: "2345678901", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "5m ago", totalTouches: 8, status: "Active", coordinator: "Neurovia" },
   { hcp: "Dr. Maria Garcia", specialty: "Oncology", npi: "3456789012", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "12m ago", totalTouches: 22, status: "Active", coordinator: "Oncurel", attention: "Adverse event mentioned in conversation" },
   { hcp: "Dr. Robert Kim", specialty: "Cardiology", npi: "4567890123", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "18m ago", totalTouches: 5, status: "Cooling Off", coordinator: "Cardiovex", attention: "Prior auth denied — appeal window closing" },
@@ -189,7 +189,7 @@ const engagements: Engagement[] = [
   { hcp: "Dr. David Park", specialty: "Neurology", npi: "6789012345", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "32m ago", totalTouches: 3, status: "New", coordinator: "Neurovia" },
   { hcp: "Dr. Lisa Thompson", specialty: "Cardiology", npi: "7890123456", lastChannel: "Outbound Direct Mail", lastChannelIcon: Mail, lastContact: "1h ago", totalTouches: 19, status: "Active", coordinator: "Respira", attention: "3 consecutive messages unanswered" },
   { hcp: "Dr. Michael Brown", specialty: "Pulmonology", npi: "8901234567", lastChannel: "AI Assistant", lastChannelIcon: Radio, lastContact: "1.5h ago", totalTouches: 7, status: "Cooling Off", coordinator: "Respira" },
-  { hcp: "Dr. Angela Torres", specialty: "Endocrinology", npi: "9012345678", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2h ago", totalTouches: 9, status: "Active", coordinator: "Stelazio V1.1" },
+  { hcp: "Dr. Angela Torres", specialty: "Endocrinology", npi: "9012345678", lastChannel: "SMS", lastChannelIcon: MessageSquare, lastContact: "2h ago", totalTouches: 9, status: "Active", coordinator: "Lipid DSE V1.1" },
   { hcp: "Dr. Kevin Patel", specialty: "Rheumatology", npi: "0123456789", lastChannel: "Email", lastChannelIcon: Mail, lastContact: "2.5h ago", totalTouches: 6, status: "New", coordinator: "Oncurel" },
   { hcp: "Dr. Rachel Adams", specialty: "Oncology", npi: "1122334455", lastChannel: "Intelligent Media", lastChannelIcon: Globe, lastContact: "3h ago", totalTouches: 15, status: "Active", coordinator: "Oncurel" },
   { hcp: "Dr. Steven Nguyen", specialty: "Cardiology", npi: "2233445566", lastChannel: "Concierge", lastChannelIcon: Phone, lastContact: "3.5h ago", totalTouches: 4, status: "Cooling Off", coordinator: "Cardiovex" },
@@ -315,40 +315,39 @@ interface FaqItem {
 }
 
 const mslFaqs: FaqItem[] = [
-  { question: "What is the mechanism of action of Stelazio?", answer: "Stelazio is a selective inhibitor of PCSK9 that works by blocking the PCSK9 protein from binding to LDL receptors on the liver surface. This allows more LDL receptors to remain available to clear LDL-C from the bloodstream, resulting in significant reduction of circulating LDL cholesterol levels.", category: "MOA", source: "Stelazio PI Section 12.1" },
-  { question: "What are the most common adverse events with Stelazio?", answer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis (6.1%), upper respiratory tract infection (5.8%), and injection site reactions (5.2%). Serious adverse events were comparable to placebo.", category: "Safety", source: "Stelazio PI Section 6.1" },
-  { question: "What is the recommended dosing for Stelazio?", answer: "The recommended dose is 140 mg administered subcutaneously every 2 weeks or 420 mg once monthly. If switching between dosing regimens, administer the first dose of the new regimen on the next scheduled date of the prior regimen.", category: "Dosing", source: "Stelazio PI Section 2.1" },
-  { question: "Is Stelazio approved for use in pediatric patients?", answer: "Stelazio is approved for use in pediatric patients aged 10 years and older with heterozygous familial hypercholesterolemia (HeFH). The safety and efficacy in pediatric patients below 10 years have not been established.", category: "Indication", source: "Stelazio PI Section 8.4" },
-  { question: "What are the contraindications for Stelazio?", answer: "Stelazio is contraindicated in patients with a history of serious hypersensitivity reaction to Stelazio or any of the excipients. Reactions have included hypersensitivity vasculitis and hypersensitivity reactions requiring hospitalization.", category: "Safety", source: "Stelazio PI Section 4" },
-  { question: "Can Stelazio be used in combination with statins?", answer: "Yes. Stelazio can be used in combination with other lipid-lowering therapies including statins and ezetimibe. In the pivotal ODYSSEY trial, Stelazio added to maximally tolerated statin therapy reduced LDL-C by an additional 61% vs placebo at week 24.", category: "Clinical Data", source: "Stelazio PI Section 14.1" },
+  { question: "What role do PCSK9 inhibitors play in LDL-C management?", answer: "PCSK9 inhibitors represent a class of monoclonal antibodies that block the PCSK9 protein from binding to LDL receptors on hepatocytes. This increases the number of available LDL receptors on the liver surface, enhancing clearance of LDL-C from the bloodstream. Published literature demonstrates mean LDL-C reductions of 50-60% when added to statin therapy.", category: "Disease State", source: "ACC/AHA 2018 Cholesterol Guidelines, PCSK9 Inhibitor Class Review" },
+  { question: "When should clinicians consider adding a non-statin therapy for residual LDL-C risk?", answer: "Per ACC/AHA guidelines, non-statin therapies should be considered when patients on maximally tolerated statin therapy do not achieve adequate LDL-C reduction — particularly in very high-risk ASCVD patients with LDL-C ≥70 mg/dL or non-HDL-C ≥100 mg/dL. Options include ezetimibe as first add-on, followed by PCSK9 inhibitors if further reduction is needed.", category: "Guidelines", source: "2018 ACC/AHA Cholesterol Clinical Practice Guidelines" },
+  { question: "What is the clinical evidence for PCSK9 inhibitors in cardiovascular outcomes?", answer: "Large-scale cardiovascular outcomes trials have demonstrated that PCSK9 inhibitors, when added to statin therapy, significantly reduce major adverse cardiovascular events (MACE) including MI, stroke, and coronary revascularization. Absolute risk reductions were most pronounced in patients with the highest baseline cardiovascular risk.", category: "Clinical Data", source: "Published CVOT Meta-Analysis, JACC 2023" },
+  { question: "What are the guideline recommendations for lipid management in familial hypercholesterolemia?", answer: "For patients with heterozygous familial hypercholesterolemia (HeFH), guidelines recommend high-intensity statin therapy as first-line. If LDL-C remains ≥100 mg/dL, ezetimibe should be added. If still not at goal, PCSK9 inhibitor therapy is recommended. For homozygous FH (HoFH), early aggressive therapy including combination approaches is advised.", category: "Guidelines", source: "NLA 2023 FH Guidelines, EAS Consensus Statement" },
+  { question: "How do injectable lipid-lowering therapies compare in terms of administration and adherence?", answer: "Currently available injectable PCSK9 inhibitors are administered subcutaneously every 2 weeks or monthly depending on the agent. Published adherence data from real-world studies shows 12-month persistence rates of 55-75%, with injection frequency and site reactions being the most commonly cited reasons for discontinuation.", category: "Disease State", source: "Real-World Adherence Studies, Am J Cardiol 2024" },
+  { question: "What is the safety profile of the PCSK9 inhibitor class?", answer: "Across large clinical trial programs, the PCSK9 inhibitor class has demonstrated a favorable safety profile. The most common adverse events include injection site reactions (3-5%), nasopharyngitis, and upper respiratory infections. Neurocognitive events, hepatic effects, and new-onset diabetes rates have been comparable to placebo in long-term follow-up.", category: "Safety", source: "PCSK9 Inhibitor Class Safety Meta-Analysis, Lancet 2022" },
 ];
 
 const tier1DemoConversation: MslMessage[] = [
-  { sender: "system", text: "MSL Agent activated — Stelazio knowledge base loaded · Compliance guardrails active", time: "10:02 AM" },
-  { sender: "hcp", text: "I have a patient on maximally tolerated atorvastatin who isn't reaching LDL goal. What additional reduction can I expect if I add Stelazio?", time: "10:02 AM" },
-  { sender: "tier1", text: "Great question, Dr. Chen. In the ODYSSEY OUTCOMES trial, patients on maximally tolerated statin therapy who added Stelazio achieved a mean additional LDL-C reduction of 54.7% from baseline at week 12. The median achieved LDL-C was 53.3 mg/dL in the Stelazio group vs 101.4 mg/dL in the placebo group.\n\nRegarding safety: the most common adverse reactions in ODYSSEY OUTCOMES were injection site reactions (3.8% vs 2.1% placebo) and nasopharyngitis (6.1%). The overall serious adverse event rate was comparable to placebo.", time: "10:02 AM", confidence: 97, complianceTag: "On-Label", complianceColor: "#75dfa6" },
-  { sender: "hcp", text: "How does that compare to Repatha? Which one gives better LDL reduction?", time: "10:03 AM" },
-  { sender: "tier1", text: "I appreciate the question, Dr. Chen. I'm able to share Stelazio's published clinical data, but I'm not in a position to make direct product-to-product comparisons. What I can tell you is that in the ODYSSEY program, Stelazio demonstrated consistent LDL-C reductions across multiple patient populations.\n\nIf you're interested in a broader discussion of the PCSK9 inhibitor class and the published literature, I can connect you with a Medical Science Liaison who can provide a more comprehensive scientific exchange.", time: "10:03 AM", confidence: 94, complianceTag: "Comparative — Redirected", complianceColor: "#f79009" },
-  { sender: "hcp", text: "Fair enough. What about patients with statin intolerance? Can they use Stelazio as monotherapy?", time: "10:04 AM" },
-  { sender: "tier1", text: "Yes, Stelazio can be used as monotherapy in patients who are statin-intolerant. In the ODYSSEY ALTERNATIVE trial, statin-intolerant patients treated with Stelazio monotherapy achieved a 45% reduction in LDL-C at week 24 compared to ezetimibe (14.6% reduction).\n\nImportant to note: skeletal muscle-related events occurred in 32.5% of Stelazio patients vs 41.1% with ezetimibe in this trial, though this was not a pre-specified comparison endpoint. Study limitations include the open-label design and relatively short 24-week follow-up.", time: "10:04 AM", confidence: 96, complianceTag: "On-Label · Safety Included", complianceColor: "#75dfa6" },
-  { sender: "hcp", text: "I should mention — I had a patient last week who developed significant injection site necrosis after their third Stelazio dose. Wanted to flag that.", time: "10:05 AM" },
-  { sender: "tier1", text: "Thank you for reporting this, Dr. Chen — patient safety is our top priority and I want to make sure this is properly documented. I need to capture some details to file this report with our Pharmacovigilance team.\n\nCan you share:\n• Patient initials and age\n• Date of onset of the injection site necrosis\n• Clinical findings and severity\n• Any action taken (treatment, dose change, discontinuation)\n• Current patient status\n\nI'll escalate this to our Drug Safety team immediately. You can also report directly to the FDA at 1-800-FDA-1088.", time: "10:05 AM", complianceTag: "AE Captured · Escalated to PV", complianceColor: "#d73371" },
-  { sender: "hcp", text: "I'll send those details over. One more question — I have a complex patient with HeFH, CKD stage 3, and on dialysis. What's the dosing recommendation?", time: "10:06 AM" },
-  { sender: "tier1", text: "I can confirm that no dose adjustment is required for mild to moderate renal impairment based on the prescribing information. However, for your specific scenario involving CKD stage 3 with dialysis and HeFH, this is a complex clinical situation that would benefit from a more detailed discussion.\n\nI'd like to connect you with a live MSL who has deeper expertise in special populations. Would you like me to set up that conversation?", time: "10:06 AM", confidence: 62, complianceTag: "Complex Case · Escalation", complianceColor: "#f79009" },
-  { sender: "system", text: "⚡ Confidence below threshold — routing to Tier 2 Live MSL", time: "10:06 AM" },
-  { sender: "hcp", text: "Yes, please connect me.", time: "10:07 AM" },
-  { sender: "system", text: "🔄 Connecting to Impiricus Connect for live MSL...", time: "10:07 AM" },
-  { sender: "system", text: "✅ Dr. Amanda Torres, MSL (Nephrology/Cardiology specialist) has joined via Impiricus Connect", time: "10:07 AM" },
-  { sender: "tier2", text: "Hi Dr. Chen, I'm Dr. Amanda Torres. I've reviewed the full conversation and understand you have a patient with HeFH, CKD stage 3 on dialysis.\n\nPer the prescribing information, no dose adjustment is recommended for renal impairment including patients on dialysis. In pharmacokinetic studies, mild to severe renal impairment had no clinically meaningful effect on Stelazio exposure.\n\nI can also share that we have real-world data from approximately 340 patients with CKD stages 3-5 on dialysis — LDL-C reduction was consistent with the general population (mean 52.1%), and the safety profile was comparable with no increased rate of injection site reactions or muscle-related adverse events.\n\nI can send you the full renal subgroup analysis. Would that be helpful?", time: "10:08 AM" },
-  { sender: "hcp", text: "That would be very helpful. Thank you for the thorough response.", time: "10:09 AM" },
-  { sender: "tier2", text: "Absolutely. I'll send the renal subgroup data package to your secure portal within the hour. I'm also available for a follow-up discussion through Impiricus Connect anytime.", time: "10:09 AM" },
-  { sender: "system", text: "Session complete — MSL Agent handled 3 questions, redirected 1 comparative inquiry, captured 1 adverse event, escalated 1 complex case to Tier 2. Full transcript archived for compliance.", time: "10:10 AM" },
+  { sender: "system", text: "MSL Agent activated — Disease State Education mode · Unbranded · Compliance guardrails active", time: "10:02 AM" },
+  { sender: "hcp", text: "I have a patient on maximally tolerated atorvastatin who still has an LDL of 95. What are my options for additional LDL reduction at this point?", time: "10:02 AM" },
+  { sender: "tier1", text: "Great question, Dr. Chen. For patients on maximally tolerated statin therapy who are not at LDL-C goal, the ACC/AHA guidelines recommend a stepwise approach:\n\n1. Add ezetimibe as first-line non-statin therapy (typically provides an additional 15-20% LDL-C reduction)\n2. If still not at goal, PCSK9 inhibitor therapy can be considered — particularly for very high-risk ASCVD patients with LDL-C ≥70 mg/dL\n\nIn large cardiovascular outcomes trials, PCSK9 inhibitors added to maximally tolerated statin therapy demonstrated mean LDL-C reductions of 50-60% with significant reductions in major adverse cardiovascular events.", time: "10:02 AM", confidence: 96, complianceTag: "DSE · Unbranded", complianceColor: "#75dfa6" },
+  { sender: "hcp", text: "What about patients who are completely statin-intolerant? Can PCSK9 inhibitors be used as monotherapy?", time: "10:03 AM" },
+  { sender: "tier1", text: "Yes, PCSK9 inhibitors have been studied as monotherapy in statin-intolerant patients. Published clinical trial data shows LDL-C reductions of approximately 45-55% as monotherapy in this population, which is significantly greater than ezetimibe alone (approximately 15% reduction).\n\nFor statin-intolerant patients, the NLA and ACC/AHA guidelines recommend:\n• Trial of an alternative statin at lower dose\n• Ezetimibe if all statins are not tolerated\n• PCSK9 inhibitor if LDL-C remains significantly above goal\n\nThe safety profile of PCSK9 inhibitors as monotherapy has been comparable to their use in combination with statins.", time: "10:03 AM", confidence: 95, complianceTag: "DSE · Unbranded", complianceColor: "#75dfa6" },
+  { sender: "hcp", text: "This is helpful. So specifically, I've been hearing a lot about one of the PCSK9 inhibitors — can you walk me through the dosing and data for that specific product?", time: "10:04 AM" },
+  { sender: "system", text: "⚠️ Branded product inquiry detected — HCP requesting specific product information. Compliance guardrail activated: DSE mode does not permit branded responses. Routing options presented.", time: "10:04 AM", complianceTag: "Brand Detected", complianceColor: "#f79009" },
+  { sender: "tier1", text: "I appreciate your interest, Dr. Chen. As part of our disease state education program, I'm not able to discuss specific branded products. However, I have two options for you:\n\n1. I can provide you with a direct link to the full prescribing information so you can review the dosing and clinical data yourself\n2. I can connect you with a live Medical Science Liaison who can have a more detailed discussion\n\nWhich would you prefer?", time: "10:04 AM", complianceTag: "Brand Redirect · Compliant", complianceColor: "#f79009" },
+  { sender: "hcp", text: "Let's do both — send me the PI link and also connect me with someone.", time: "10:05 AM" },
+  { sender: "system", text: "📄 Prescribing Information link sent to Dr. Chen's secure portal", time: "10:05 AM" },
+  { sender: "tier1", text: "The prescribing information has been sent to your secure portal. Now let me connect you with a live MSL who can provide a more in-depth scientific discussion.\n\nBefore I transfer, here's a summary of what we've covered today so the MSL has full context:\n• Patient on maximally tolerated atorvastatin, LDL-C at 95 mg/dL\n• Discussed guideline-based stepwise approach for residual LDL risk\n• Discussed PCSK9 inhibitor class data in statin-intolerant populations\n• HCP interested in specific branded product discussion", time: "10:05 AM", complianceTag: "Escalation · Context Transfer", complianceColor: "#f79009" },
+  { sender: "system", text: "🔄 Connecting to Impiricus Connect for live MSL...", time: "10:06 AM" },
+  { sender: "system", text: "✅ Dr. Amanda Torres, MSL (Cardiology specialist) has joined via Impiricus Connect", time: "10:06 AM" },
+  { sender: "tier2", text: "Hi Dr. Chen, I'm Dr. Amanda Torres. I've reviewed the full conversation summary and understand you have a patient on maximally tolerated atorvastatin with an LDL-C of 95 who may be a candidate for additional lipid-lowering therapy.\n\nI'd be happy to discuss the clinical data in more detail, including specific treatment options, dosing considerations, and the evidence from our clinical program. I also see the PI was sent to your portal for your reference.\n\nWhat specific questions can I help you with?", time: "10:07 AM" },
+  { sender: "hcp", text: "I'd like to understand the dosing options and whether I need to adjust for my patients with renal impairment.", time: "10:07 AM" },
+  { sender: "tier2", text: "Great questions. I can walk you through the dosing recommendations and the renal impairment data from our clinical program in detail. Let me share my screen so we can review the relevant data together.\n\nI'm also available for a follow-up discussion through Impiricus Connect anytime if additional questions come up as you review the PI.", time: "10:08 AM" },
+  { sender: "system", text: "Session complete — MSL Agent handled 2 DSE questions, detected 1 brand mention and compliantly redirected, escalated to Tier 2 live MSL with full context transfer. PI link delivered. Transcript archived for compliance.", time: "10:09 AM" },
 ];
 
 const mslTierStats = [
-  { label: "MSL Agent Resolution", value: "84%", detail: "Questions handled without escalation", icon: Bot, accent: "#0deefd" },
+  { label: "DSE Resolution Rate", value: "84%", detail: "Unbranded questions handled at Tier 1", icon: Bot, accent: "#0deefd" },
   { label: "Avg Response Time", value: "< 3s", detail: "Instant MSL Agent responses", icon: Zap, accent: "#0deefd" },
-  { label: "Compliance Rate", value: "100%", detail: "All interactions within guardrails", icon: Shield, accent: "#75dfa6" },
+  { label: "Brand Mentions Detected", value: "31", detail: "HCP brand mentions compliantly redirected", icon: AlertCircle, accent: "#f79009" },
+  { label: "Compliance Rate", value: "100%", detail: "All interactions within DSE guardrails", icon: Shield, accent: "#75dfa6" },
   { label: "Tier 2 Escalations (30d)", value: "47", detail: "Complex cases routed to live MSL", icon: ArrowRight, accent: "#75dfa6" },
   { label: "Avg Connect Time (Tier 2)", value: "1.4m", detail: "Time to live MSL via Connect", icon: Video, accent: "#75dfa6" },
 ];
@@ -370,58 +369,58 @@ interface TrainingSubmission {
 const trainingSubmissions: TrainingSubmission[] = [
   {
     id: "TS-001",
-    question: "What is the recommended monitoring schedule for hepatic function during Stelazio treatment?",
-    answer: "Hepatic function tests (ALT, AST) should be performed at baseline and as clinically indicated thereafter. In clinical trials, hepatic enzyme elevations >3x ULN occurred in 2.1% of Stelazio-treated patients vs 1.8% placebo. If persistent, clinically significant increases are detected, dose reduction or discontinuation should be considered per clinical judgment.",
+    question: "What hepatic monitoring is recommended when initiating PCSK9 inhibitor therapy?",
+    answer: "Per published guidelines, hepatic function tests (ALT, AST) should be performed at baseline and as clinically indicated thereafter. Across the PCSK9 inhibitor class, hepatic enzyme elevations >3x ULN have occurred at rates comparable to placebo in large cardiovascular outcomes trials. If persistent, clinically significant increases are detected, dose reduction or discontinuation should be considered per clinical judgment.",
     category: "Safety",
-    source: "Stelazio PI Section 5.2, ODYSSEY LONG TERM Safety Analysis",
+    source: "ACC/AHA Lipid Guidelines, PCSK9 Class Safety Meta-Analysis",
     submittedBy: "Dr. Amanda Torres, MSL",
     submittedAt: "Feb 22, 2026",
     status: "Live",
-    coordinator: "Stelazio V1.1",
+    coordinator: "Lipid DSE V1.1",
   },
   {
     id: "TS-002",
-    question: "How does Stelazio compare to ezetimibe in patients who cannot tolerate any statin?",
-    answer: "In the ODYSSEY ALTERNATIVE trial, completely statin-intolerant patients receiving Stelazio achieved 45.0% LDL-C reduction vs 14.6% with ezetimibe at week 24 (p<0.0001). Skeletal muscle-related events were 32.5% with Stelazio vs 41.1% with ezetimibe, though this was not a pre-specified comparison.",
+    question: "What are the LDL-C reduction expectations for PCSK9 inhibitors vs ezetimibe in statin-intolerant patients?",
+    answer: "In published clinical trials of statin-intolerant populations, PCSK9 inhibitors as monotherapy have demonstrated LDL-C reductions of approximately 45-55% at week 24, compared to approximately 15% with ezetimibe. Skeletal muscle-related events were numerically lower with PCSK9 inhibitor therapy compared to rechallenge with statins.",
     category: "Clinical Data",
-    source: "ODYSSEY ALTERNATIVE Phase III Data, Stelazio PI Section 14.2",
+    source: "Statin Intolerance Clinical Trials, Published Meta-Analysis",
     submittedBy: "Dr. James Rivera, MSL",
     submittedAt: "Feb 20, 2026",
     status: "Approved",
-    coordinator: "Stelazio V1.1",
+    coordinator: "Lipid DSE V1.1",
   },
   {
     id: "TS-003",
-    question: "Can Stelazio be self-administered by patients, and what injection training is recommended?",
-    answer: "Yes, Stelazio is designed for subcutaneous self-injection after proper training. Healthcare providers should instruct patients on proper subcutaneous injection technique, including aseptic technique, and how to use the pre-filled pen correctly. The injection should be administered into the thigh, abdomen (excluding 2-inch area around navel), or upper arm. Injection sites should be rotated with each injection.",
-    category: "Dosing",
-    source: "Stelazio PI Section 2.3, Patient Injection Guide",
+    question: "What patient education is recommended for subcutaneous injectable lipid-lowering therapies?",
+    answer: "For injectable PCSK9 inhibitors, healthcare providers should instruct patients on proper subcutaneous injection technique, including aseptic technique and correct use of the delivery device. Injection should be administered into the thigh, abdomen (excluding 2-inch area around navel), or upper arm. Injection sites should be rotated with each injection to minimize injection site reactions.",
+    category: "Patient Education",
+    source: "General Injectable Therapy Best Practices, FDA Patient Counseling Guidance",
     submittedBy: "Sarah Mitchell, MSL",
     submittedAt: "Feb 19, 2026",
     status: "Under Review",
-    coordinator: "Stelazio V1.1",
+    coordinator: "Lipid DSE V1.1",
   },
   {
     id: "TS-004",
-    question: "What real-world evidence exists for Neurovia in treatment-resistant epilepsy?",
-    answer: "Post-marketing registry data from the EXTEND-RWE study (n=2,847) showed a 52% responder rate (≥50% seizure reduction) in patients with treatment-resistant focal epilepsy at 12 months. Median time to response was 8.2 weeks. Quality of life improvements (QOLIE-31) were significant from month 3 onward.",
+    question: "What real-world evidence supports the use of novel anti-seizure medications in treatment-resistant epilepsy?",
+    answer: "Post-marketing registry data from large real-world studies (n>2,500) have shown responder rates (≥50% seizure reduction) of approximately 50-55% in patients with treatment-resistant focal epilepsy at 12 months. Median time to response was approximately 8 weeks. Quality of life improvements have been significant from month 3 onward across multiple validated instruments.",
     category: "Clinical Data",
-    source: "EXTEND-RWE Registry, 12-Month Interim Analysis",
+    source: "Published RWE Epilepsy Registries, Epilepsia 2024",
     submittedBy: "Dr. Patricia Huang, MSL",
     submittedAt: "Feb 18, 2026",
     status: "Live",
-    coordinator: "Neurovia",
+    coordinator: "Epilepsy DSE",
   },
   {
     id: "TS-005",
-    question: "What is the drug interaction profile of Stelazio with commonly prescribed cardiovascular medications?",
-    answer: "Stelazio has no clinically significant drug-drug interactions with commonly prescribed cardiovascular medications including warfarin, digoxin, and atorvastatin based on dedicated PK studies. No dose adjustments are needed when co-administering with these agents.",
+    question: "What are the known drug interactions for the PCSK9 inhibitor class with cardiovascular medications?",
+    answer: "Published pharmacokinetic studies indicate that PCSK9 inhibitors have no clinically significant drug-drug interactions with commonly prescribed cardiovascular medications including warfarin, digoxin, and statins. No dose adjustments are needed when co-administering with these agents. This favorable interaction profile is consistent across the class.",
     category: "Safety",
-    source: "Stelazio PI Section 7, Drug Interaction Studies",
+    source: "PCSK9 Inhibitor Class Drug Interaction Reviews, Clin Pharmacol Ther 2023",
     submittedBy: "Dr. Amanda Torres, MSL",
     submittedAt: "Feb 15, 2026",
     status: "Submitted",
-    coordinator: "Stelazio V1.1",
+    coordinator: "Lipid DSE V1.1",
   },
 ];
 
@@ -439,20 +438,20 @@ interface TrainingCorrection {
 const trainingCorrections: TrainingCorrection[] = [
   {
     id: "TC-001",
-    originalQuestion: "What are the most common adverse events with Stelazio?",
-    originalAnswer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis (6.1%), upper respiratory tract infection (5.8%), and injection site reactions (5.2%).",
-    suggestedAnswer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis (6.1%), upper respiratory tract infection (5.8%), and injection site reactions (5.2%). Additionally, in the ODYSSEY OUTCOMES trial, local injection site reactions were reported at 3.8% vs 2.1% placebo. Most reactions were mild and transient, with a discontinuation rate due to injection site reactions of only 0.2%.",
-    reason: "Added quantitative injection site data from ODYSSEY OUTCOMES that HCPs frequently ask about in follow-up",
+    originalQuestion: "What are the most common adverse events associated with the PCSK9 inhibitor class?",
+    originalAnswer: "In clinical trials, the most common adverse reactions (≥5%) were nasopharyngitis, upper respiratory tract infection, and injection site reactions. Serious adverse events were comparable to placebo.",
+    suggestedAnswer: "In large clinical trial programs, the most common adverse reactions (≥5%) were nasopharyngitis (5-6%), upper respiratory tract infection (5-6%), and injection site reactions (3-5%). In cardiovascular outcomes trials, local injection site reactions ranged from 3-5% vs ~2% placebo. Most reactions were mild and transient, with discontinuation rates due to injection site reactions below 1%.",
+    reason: "Added quantitative injection site data from published outcomes trials that HCPs frequently ask about in follow-up",
     submittedBy: "Dr. James Rivera, MSL",
     submittedAt: "Feb 21, 2026",
     status: "Accepted",
   },
   {
     id: "TC-002",
-    originalQuestion: "Is Stelazio approved for use in pediatric patients?",
-    originalAnswer: "Stelazio is approved for use in pediatric patients aged 10 years and older with HeFH.",
-    suggestedAnswer: "Stelazio is approved for use in pediatric patients aged 10 years and older with heterozygous familial hypercholesterolemia (HeFH). In the pediatric Phase III study, LDL-C reduction at week 24 was 44.7% vs placebo. Weight-based dosing is not required; the same adult dose (75mg or 150mg Q2W) is used in the pediatric population.",
-    reason: "Added pediatric efficacy data and clarified dosing — this is a common follow-up question from pediatric cardiologists",
+    originalQuestion: "What is the evidence for PCSK9 inhibitors in pediatric patients with FH?",
+    originalAnswer: "PCSK9 inhibitors have been studied in pediatric patients aged 10 years and older with heterozygous familial hypercholesterolemia (HeFH).",
+    suggestedAnswer: "PCSK9 inhibitors have been studied in pediatric patients aged 10 years and older with heterozygous familial hypercholesterolemia (HeFH). In published pediatric Phase III studies, LDL-C reductions of approximately 40-45% were observed at week 24 vs placebo. Published guidelines recommend consideration in pediatric HeFH patients who do not reach goal on maximally tolerated statin plus ezetimibe.",
+    reason: "Added pediatric efficacy data and guideline context — this is a common follow-up question from pediatric cardiologists",
     submittedBy: "Sarah Mitchell, MSL",
     submittedAt: "Feb 17, 2026",
     status: "Pending",
@@ -486,27 +485,27 @@ interface MslTrainingSource {
 const mslTrainedEngagements: Record<string, MslTrainingSource> = {
   "1234567890": {
     submissionId: "TS-001",
-    question: "Hepatic monitoring during Stelazio treatment",
+    question: "Hepatic monitoring during PCSK9 inhibitor therapy",
     trainedBy: "Dr. Amanda Torres, MSL",
     approvedDate: "Feb 22, 2026",
     confidenceBoost: "+12% → 97%",
-    coordinator: "Stelazio V1.1",
+    coordinator: "Lipid DSE V1.1",
   },
   "9012345678": {
     submissionId: "TS-002",
-    question: "Stelazio vs ezetimibe in statin-intolerant patients",
+    question: "PCSK9 inhibitors vs ezetimibe in statin-intolerant patients",
     trainedBy: "Dr. James Rivera, MSL",
     approvedDate: "Feb 20, 2026",
     confidenceBoost: "+18% → 95%",
-    coordinator: "Stelazio V1.1",
+    coordinator: "Lipid DSE V1.1",
   },
   "3344556677": {
     submissionId: "TS-004",
-    question: "Real-world evidence for Neurovia in treatment-resistant epilepsy",
+    question: "Real-world evidence for novel ASMs in treatment-resistant epilepsy",
     trainedBy: "Dr. Patricia Huang, MSL",
     approvedDate: "Feb 18, 2026",
     confidenceBoost: "+22% → 91%",
-    coordinator: "Neurovia",
+    coordinator: "Epilepsy DSE",
   },
 };
 
@@ -559,10 +558,10 @@ function MslVirtualCoordinatorDemo() {
               </div>
             </div>
             <p className="text-xs leading-relaxed mb-4" style={{ color: c.textSecondary }}>
-              Trained on approved PI, published clinical data, and standard MSL responses with built-in compliance guardrails. Handles on-label inquiries, appropriately redirects comparative and off-label questions, and captures adverse events for pharmacovigilance.
+              Operates in fully unbranded Disease State Education (DSE) mode. Trained on published clinical data, guidelines, and standard MSL responses. If an HCP mentions a brand, the agent compliantly redirects — either sending a PI link or escalating to a live MSL — without confirming or discussing the brand itself.
             </p>
             <div className="space-y-2">
-              {["Prescribing Information (full PI)", "Published clinical trial data", "Safety profiles & adverse event handling", "Compliance guardrails & fair balance", "Appropriate redirect & escalation logic"].map((item) => (
+              {["Unbranded disease state education", "Published clinical data & guidelines", "Brand-mention detection & compliant redirect", "PI link delivery or live MSL escalation", "Adverse event capture & pharmacovigilance"].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-xs" style={{ color: c.textPrimary }}>
                   <CheckCircle2 className="h-3 w-3 shrink-0" style={{ color: c.accent }} />
                   {item}
@@ -683,7 +682,7 @@ function MslVirtualCoordinatorDemo() {
                 <Layers className="h-4 w-4" style={{ color: c.accent }} />
                 <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Live Demo — MSL Agent → Live MSL Escalation</span>
               </div>
-              <span className="text-xs" style={{ color: c.textSecondary }}>Stelazio Virtual Coordinator · Dr. Sarah Chen</span>
+              <span className="text-xs" style={{ color: c.textSecondary }}>Lipid DSE Coordinator · Dr. Sarah Chen</span>
             </div>
             <div className="p-5 space-y-4 max-h-[600px] overflow-y-auto">
               {tier1DemoConversation.slice(0, visibleMessages).map((msg, i) => {
@@ -750,7 +749,7 @@ function MslVirtualCoordinatorDemo() {
             <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor: "#131720" }}>
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4" style={{ color: c.accent }} />
-                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Tier 1 Knowledge Base — Stelazio</span>
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textPrimary }}>Tier 1 Knowledge Base — Lipid DSE</span>
               </div>
               <span className="text-xs" style={{ color: c.textSecondary }}>{mslFaqs.length} trained responses</span>
             </div>
@@ -822,7 +821,7 @@ function MslVirtualCoordinatorDemo() {
                       <div>
                         <label className="text-[10px] font-bold uppercase tracking-widest block mb-1.5" style={{ color: c.textMuted }}>Coordinator</label>
                         <div className="rounded-lg border px-3 py-2 text-xs" style={{ background: "#0c0e12", borderColor: c.divider, color: c.textSecondary }}>
-                          Stelazio Virtual Coordinator V1.1
+                          Lipid DSE Virtual Coordinator V1.1
                         </div>
                       </div>
                       <div>
@@ -1332,11 +1331,11 @@ interface SmsFlowDetail {
 
 const smsFlowSources: Record<string, SmsFlowDetail> = {
   "1234567890": {
-    campaignName: "Stelazio HCP Awareness — Q1 2026",
+    campaignName: "Lipid Management HCP Awareness — Q1 2026",
     flowName: "High-Value Cardiology Re-engagement",
     triggerEvent: "14-day post-sample delivery follow-up",
     sentAt: "Feb 20, 2026 · 9:58 AM EST",
-    messagePreview: "Hi Dr. Chen, following up on your Stelazio samples. New real-world data shows 42% improvement in LDL reduction at 12 weeks. Want to see the full results? Reply YES or tap here →",
+    messagePreview: "Hi Dr. Chen, following up on your recent samples. New real-world data shows 42% improvement in LDL reduction at 12 weeks. Want to see the full results? Reply YES or tap here →",
     deliveryStatus: "Delivered · 9:58 AM",
     responseStatus: "Replied",
     responsePreview: "YES — also curious about the titration protocol for patients already on statins",
@@ -1837,7 +1836,7 @@ function EngagementTableRow({ row, onView, onRowClick, hasDetail, detailIcon, is
 
 const imCampaigns = [
   { id: "IM-2601", client: "Neurovia", brand: "Epilepsy Portfolio", placement: "Billboard DOOH", region: "Los Angeles Metro", status: "Active" as const, scans: 1842, uniqueHcps: 623, avgSession: "5m 12s", followUpRate: "34%", engagementRate: "68%" },
-  { id: "IM-2602", client: "Stelazio", brand: "Cardiology Portfolio", placement: "Conference Leave-Behind", region: "National (AAN, ACC, AHA)", status: "Active" as const, scans: 3241, uniqueHcps: 1187, avgSession: "6m 48s", followUpRate: "41%", engagementRate: "74%" },
+  { id: "IM-2602", client: "Lipid DSE", brand: "Cardiology Portfolio", placement: "Conference Leave-Behind", region: "National (AAN, ACC, AHA)", status: "Active" as const, scans: 3241, uniqueHcps: 1187, avgSession: "6m 48s", followUpRate: "41%", engagementRate: "74%" },
   { id: "IM-2603", client: "Oncurel", brand: "Oncology Portfolio", placement: "Physician Lounge Display", region: "NYC Metro Hospitals", status: "Active" as const, scans: 967, uniqueHcps: 412, avgSession: "4m 33s", followUpRate: "29%", engagementRate: "61%" },
   { id: "IM-2604", client: "Respira", brand: "Pulmonology Portfolio", placement: "Journal Ad QR", region: "NEJM, JAMA, Chest", status: "Active" as const, scans: 2156, uniqueHcps: 891, avgSession: "7m 21s", followUpRate: "38%", engagementRate: "71%" },
   { id: "IM-2605", client: "Cardiovex", brand: "Cardiology Portfolio", placement: "Email Embedded QR", region: "National — Tier 1 Cardiologists", status: "Scheduled" as const, scans: 0, uniqueHcps: 0, avgSession: "—", followUpRate: "—", engagementRate: "—" },
@@ -1853,14 +1852,14 @@ const imPlacementPerformance = [
 
 const imRecentActivity = [
   { hcp: "Dr. Rachel Adams", specialty: "Oncology", action: "Scanned physician lounge QR — viewed Oncurel dosing calculator", time: "3m ago", placement: "Physician Lounge", deepEngagement: "Virtual Coordinator" },
-  { hcp: "Dr. Steven Nguyen", specialty: "Cardiology", action: "Scanned conference flyer — completed Stelazio MOA module", time: "8m ago", placement: "Conference Leave-Behind", deepEngagement: "SMS Sample Order" },
+  { hcp: "Dr. Steven Nguyen", specialty: "Cardiology", action: "Scanned conference flyer — completed Lipid DSE MOA module", time: "8m ago", placement: "Conference Leave-Behind", deepEngagement: "SMS Sample Order" },
   { hcp: "Dr. Patricia Huang", specialty: "Neurology", action: "Scanned I-405 billboard — accessed Neurovia RWE portal", time: "14m ago", placement: "Billboard DOOH", deepEngagement: "Impiricus Connect" },
   { hcp: "Dr. Mark Sullivan", specialty: "Pulmonology", action: "Scanned NEJM journal ad — reviewed Respira Phase III data", time: "22m ago", placement: "Journal Ad QR", deepEngagement: "Virtual Coordinator" },
   { hcp: "Dr. Angela Torres", specialty: "Endocrinology", action: "Scanned conference leave-behind — ran dosing scenarios", time: "31m ago", placement: "Conference Leave-Behind", deepEngagement: "SMS Sample Order" },
 ];
 
 const imClientInsights = [
-  { client: "Stelazio", brand: "Cardiology", totalScans: 3241, uniqueHcps: 1187, topSpecialty: "Cardiology (68%)", topPlacement: "Conference Leave-Behind", deepEngagementRate: "41%", roi: "4.2x" },
+  { client: "Lipid DSE", brand: "Cardiology", totalScans: 3241, uniqueHcps: 1187, topSpecialty: "Cardiology (68%)", topPlacement: "Conference Leave-Behind", deepEngagementRate: "41%", roi: "4.2x" },
   { client: "Respira", brand: "Pulmonology", totalScans: 2156, uniqueHcps: 891, topSpecialty: "Pulmonology (72%)", topPlacement: "Journal Ad QR", deepEngagementRate: "38%", roi: "3.8x" },
   { client: "Neurovia", brand: "Neurology", totalScans: 1842, uniqueHcps: 623, topSpecialty: "Neurology (81%)", topPlacement: "Billboard DOOH", deepEngagementRate: "34%", roi: "3.1x" },
   { client: "Oncurel", brand: "Oncology", totalScans: 967, uniqueHcps: 412, topSpecialty: "Dermatology (54%)", topPlacement: "Physician Lounge", deepEngagementRate: "29%", roi: "2.7x" },
@@ -1890,7 +1889,7 @@ function IntelligentMediaView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: 
             <div className="flex items-center gap-3">
               <div className="rounded-xl border px-4 py-2.5 text-center" style={{ borderColor: c.divider, background: `${c.card}80` }}>
                 <p className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: c.textMuted }}>Agency Partner</p>
-                <p className="text-sm font-bold" style={{ color: c.textPrimary }}>Publicis Health</p>
+                <p className="text-sm font-bold" style={{ color: c.textPrimary }}>Agency Partner</p>
               </div>
               <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold cursor-pointer" style={{ background: c.accent, color: "#1a1a1a" }}>
                 <Share2 className="h-4 w-4" />
@@ -2785,6 +2784,8 @@ function DemoWalkthrough({
 export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("dashboard");
   const [mslEnabled, setMslEnabled] = useState(true);
+  const [imVisible, setImVisible] = useState(true);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [focusedHcp, setFocusedHcp] = useState<string | undefined>();
   const [activeDemo, setActiveDemo] = useState<string | null>(null);
   const [demoHcpTab, setDemoHcpTab] = useState<"engagements" | "agentic" | "persona" | undefined>();
@@ -2831,7 +2832,7 @@ export default function Home() {
 
         {/* Nav */}
         <nav className="mt-4 space-y-1 px-3">
-          {navItems.map((item) => {
+          {navItems.filter((item) => imVisible || item.tab !== "intelligent-media").map((item) => {
             const Icon = item.icon;
             const isActive = item.tab === activeTab;
             const isVc = item.tab === "virtual-coordinator";
@@ -2900,7 +2901,8 @@ export default function Home() {
             return (
               <div
                 key={item.label}
-                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold cursor-pointer"
+                onClick={item.label === "Settings" ? () => setShowSettingsModal(true) : undefined}
+                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold cursor-pointer transition-colors hover:opacity-80"
                 style={{ color: c.textSecondary }}
               >
                 <Icon className="h-5 w-5" />
@@ -2963,7 +2965,7 @@ export default function Home() {
           {activeTab === "msl-coordinator" && <MslCoordinatorView onNavigateToEngagements={() => setActiveTab("engagements")} />}
 
           {/* ═══ Intelligent Media Tab ═══ */}
-          {activeTab === "intelligent-media" && <IntelligentMediaView onNavigateToHcp={handleNavigateToHcp} />}
+          {activeTab === "intelligent-media" && imVisible && <IntelligentMediaView onNavigateToHcp={handleNavigateToHcp} />}
 
           {/* ═══ Engagements Tab ═══ */}
           {activeTab === "engagements" && <EngagementsView focusedHcp={focusedHcp} onClearFocus={clearFocusedHcp} demoHcpTab={demoHcpTab} />}
@@ -2977,6 +2979,73 @@ export default function Home() {
           onApplyStep={handleApplyDemoStep}
           onExit={handleExitDemo}
         />
+      )}
+
+      {/* ── Hidden Settings Modal ── */}
+      {showSettingsModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowSettingsModal(false)}>
+          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,.6)", backdropFilter: "blur(4px)" }} />
+          <div
+            className="relative w-full max-w-sm rounded-2xl border p-6"
+            style={{ background: c.card, borderColor: c.divider }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <Settings className="h-4 w-4" style={{ color: c.accent }} />
+                <h3 className="text-sm font-bold" style={{ color: c.textPrimary }}>Module Visibility</h3>
+              </div>
+              <button
+                onClick={() => setShowSettingsModal(false)}
+                className="flex h-7 w-7 items-center justify-center rounded-full cursor-pointer transition-colors"
+                style={{ background: `${c.textMuted}15` }}
+              >
+                <X className="h-3.5 w-3.5" style={{ color: c.textSecondary }} />
+              </button>
+            </div>
+            <div className="space-y-4">
+              <div
+                className="flex items-center justify-between rounded-xl border px-4 py-3"
+                style={{ background: c.bg, borderColor: c.divider }}
+              >
+                <div className="flex items-center gap-3">
+                  <Sparkles className="h-4 w-4" style={{ color: imVisible ? c.accent : c.textMuted }} />
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: c.textPrimary }}>Intelligent Media</p>
+                    <p className="text-[10px]" style={{ color: c.textSecondary }}>{imVisible ? "Visible in navigation" : "Hidden from navigation"}</p>
+                  </div>
+                </div>
+                <div
+                  role="switch"
+                  aria-checked={imVisible}
+                  tabIndex={0}
+                  onClick={() => {
+                    const next = !imVisible;
+                    setImVisible(next);
+                    if (!next && activeTab === "intelligent-media") setActiveTab("dashboard");
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      const next = !imVisible;
+                      setImVisible(next);
+                      if (!next && activeTab === "intelligent-media") setActiveTab("dashboard");
+                    }
+                  }}
+                  className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full transition-colors"
+                  style={{ background: imVisible ? c.accent : c.divider }}
+                >
+                  <span
+                    className="inline-block h-4 w-4 rounded-full transition-transform mt-0.5"
+                    style={{
+                      background: imVisible ? "#1a1a1a" : c.textMuted,
+                      transform: imVisible ? "translateX(18px)" : "translateX(2px)",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

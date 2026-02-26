@@ -92,7 +92,7 @@ const integrationDetails: Record<string, { description: string; metrics: { label
       { label: "Sync Frequency", value: "Real-time" },
     ],
     recentEvents: [
-      { event: "Low stock alert: Stelazio 10mg", time: "12m ago", status: "warning" },
+      { event: "Low stock alert: Lipid therapy 10mg", time: "12m ago", status: "warning" },
       { event: "Shipment #4892 delivered", time: "45m ago", status: "success" },
       { event: "Reorder triggered for Respira 25mg", time: "1h ago", status: "success" },
       { event: "Fulfillment delay: Region NE-2", time: "2h ago", status: "warning" },
@@ -204,7 +204,7 @@ const integrationDetails: Record<string, { description: string; metrics: { label
     recentEvents: [
       { event: "3 materials flagged: MLR expiring soon", time: "1h ago", status: "error" },
       { event: "Order #892 pending review", time: "2h ago", status: "warning" },
-      { event: "Digital delivery: Stelazio brochure (14 HCPs)", time: "3h ago", status: "success" },
+      { event: "Digital delivery: Lipid DSE brochure (14 HCPs)", time: "3h ago", status: "success" },
       { event: "New material uploaded: Respira dosing guide", time: "5h ago", status: "success" },
       { event: "MLR approval received: Cardiovex patient card", time: "8h ago", status: "success" },
     ],
@@ -279,7 +279,7 @@ const channelDetails: Record<string, ChannelDetail> = {
     ],
     weeklyVolume: [310, 328, 362, 398, 354, 382, 346],
     sampleEngagements: [
-      { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Replied to Stelazio dosing reminder with question about titration schedule", time: "2m ago", outcome: "Engaged — routed to medical" },
+      { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Replied to lipid therapy dosing reminder with question about titration schedule", time: "2m ago", outcome: "Engaged — routed to medical" },
       { hcp: "Dr. David Park", specialty: "Neurology", summary: "Confirmed interest in Neurovia lunch-and-learn event", time: "32m ago", outcome: "Event RSVP confirmed" },
       { hcp: "Dr. Amy Walsh", specialty: "Cardiology", summary: "Requested callback re: patient access issue for Respira", time: "1h ago", outcome: "Concierge follow-up scheduled" },
       { hcp: "Dr. Robert Kim", specialty: "Cardiology", summary: "Opened sample request link from SMS", time: "2h ago", outcome: "Sample order placed" },
@@ -312,7 +312,7 @@ const channelDetails: Record<string, ChannelDetail> = {
     weeklyVolume: [220, 248, 272, 298, 284, 310, 258],
     sampleEngagements: [
       { hcp: "Dr. Maria Garcia", specialty: "Oncology", summary: "Completed Oncurel MOA interactive module (score: 92%)", time: "15m ago", outcome: "Certificate generated" },
-      { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Viewed Stelazio patient case studies (3 of 5 completed)", time: "45m ago", outcome: "Partial completion — nudge scheduled" },
+      { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Viewed lipid management patient case studies (3 of 5 completed)", time: "45m ago", outcome: "Partial completion — nudge scheduled" },
       { hcp: "Dr. Alan Foster", specialty: "Neurology", summary: "Downloaded Neurovia prescribing information PDF", time: "1h ago", outcome: "Resource accessed" },
       { hcp: "Dr. Emily Zhang", specialty: "Dermatology", summary: "Used Oncurel dosing calculator for 2 patient scenarios", time: "2h ago", outcome: "Clinical tool engaged" },
     ],
@@ -360,7 +360,7 @@ const channelDetails: Record<string, ChannelDetail> = {
     weeklyVolume: [58, 64, 72, 78, 68, 82, 54],
     sampleEngagements: [
       { hcp: "Dr. Alan Foster", specialty: "Neurology", summary: "MSL call: discussed Neurovia long-term efficacy data from extension study", time: "45m ago", outcome: "F2F meeting requested" },
-      { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Rep call: reviewed Stelazio titration protocol with office staff", time: "1h ago", outcome: "Samples requested" },
+      { hcp: "Dr. Sarah Chen", specialty: "Cardiology", summary: "Rep call: reviewed lipid therapy titration protocol with office staff", time: "1h ago", outcome: "Samples requested" },
       { hcp: "Dr. Kevin Morris", specialty: "Pulmonology", summary: "MSL call: answered questions on Respira in special populations", time: "3h ago", outcome: "Follow-up data package sent" },
       { hcp: "Dr. Maria Garcia", specialty: "Oncology", summary: "Rep call: coordinated Oncurel lunch-and-learn logistics", time: "5h ago", outcome: "Event confirmed for next week" },
     ],

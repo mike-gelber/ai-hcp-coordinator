@@ -61,11 +61,11 @@ interface Touchpoint {
 
 const touchpointsByNpi: Record<string, Touchpoint[]> = {
   "1234567890": [
-    { channel: "SMS", icon: MessageSquare, direction: "Outbound", summary: "Stelazio dosing reminder — replied with titration question", time: "2m ago", outcome: "Routed to medical affairs" },
-    { channel: "Email", icon: Mail, direction: "Outbound", summary: "Stelazio Phase III results email — opened, clicked full study link", time: "2d ago", outcome: "Content engaged" },
+    { channel: "SMS", icon: MessageSquare, direction: "Outbound", summary: "Lipid therapy dosing reminder — replied with titration question", time: "2m ago", outcome: "Routed to medical affairs" },
+    { channel: "Email", icon: Mail, direction: "Outbound", summary: "Lipid DSE Phase III results email — opened, clicked full study link", time: "2d ago", outcome: "Content engaged" },
     { channel: "Concierge", icon: Headphones, direction: "Inbound", summary: "Called about sample availability for new patient starts", time: "5d ago", outcome: "Samples shipped" },
-    { channel: "Direct Mail", icon: Send, direction: "Outbound", summary: "Stelazio clinical evidence portfolio mailed", time: "8d ago", outcome: "Delivered — QR scanned" },
-    { channel: "AI Assistant", icon: Radio, direction: "Inbound", summary: "Asked about Stelazio drug interactions with existing statin regimen", time: "12d ago", outcome: "Resolved in-session" },
+    { channel: "Direct Mail", icon: Send, direction: "Outbound", summary: "Lipid clinical evidence portfolio mailed", time: "8d ago", outcome: "Delivered — QR scanned" },
+    { channel: "AI Assistant", icon: Radio, direction: "Inbound", summary: "Asked about lipid therapy drug interactions with existing statin regimen", time: "12d ago", outcome: "Resolved in-session" },
     { channel: "SMS", icon: MessageSquare, direction: "Outbound", summary: "7-day post-sample check-in — opened, no reply", time: "14d ago", outcome: "No response" },
     { channel: "Samples", icon: Package, direction: "Outbound", summary: "2 starter packs delivered to office", time: "20d ago", outcome: "Delivery confirmed" },
   ],
@@ -126,9 +126,9 @@ interface AgentMessage {
 
 const agentConversationsByNpi: Record<string, AgentMessage[]> = {
   "1234567890": [
-    { agent: "strategist", text: "Dr. Chen has 14 touchpoints and is highly active. She just asked a clinical question about Stelazio titration after receiving samples 20 days ago. This signals she's actively considering prescribing but has a knowledge gap we need to close." },
+    { agent: "strategist", text: "Dr. Chen has 14 touchpoints and is highly active. She just asked a clinical question about lipid therapy titration after receiving samples 20 days ago. This signals she's actively considering prescribing but has a knowledge gap we need to close." },
     { agent: "engagement", text: "Agreed. The titration question is a strong intent signal. I recommend we route this to the MSL team for a callback within 4 hours and simultaneously send the titration guide PDF via the channel she's most responsive to — SMS has a 100% open rate with her." },
-    { agent: "strategist", text: "Good call. Looking at her engagement pattern, she responds best to clinical data delivered via SMS with supporting detail in email. She's also engaged with the AI Assistant for drug interaction questions. We should position her for the upcoming Stelazio speaker program — she fits the KOL profile." },
+    { agent: "strategist", text: "Good call. Looking at her engagement pattern, she responds best to clinical data delivered via SMS with supporting detail in email. She's also engaged with the AI Assistant for drug interaction questions. We should position her for the upcoming lipid management speaker program — she fits the KOL profile." },
     { agent: "engagement", text: "I'll draft a multi-touch sequence: (1) MSL callback today addressing titration, (2) follow-up SMS in 48h with real-world outcomes data, (3) email with the full speaker program invitation next week. We should avoid direct mail — she hasn't engaged with physical materials." },
     { agent: "strategist", text: "Approved. Let's also flag her for the cardiology advisory board. With 14 touches and increasing clinical depth in her questions, she's transitioning from evaluator to potential advocate. Set a checkpoint at 30 days to assess prescribing behavior change." },
   ],
