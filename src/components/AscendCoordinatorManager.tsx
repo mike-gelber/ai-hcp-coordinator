@@ -41,6 +41,7 @@ import {
   Lock,
   BadgeCheck,
   ExternalLink,
+  Users,
 } from "lucide-react";
 
 const c = {
@@ -240,6 +241,7 @@ const moduleCatalog: CatalogModule[] = [
   { name: "Adverse Event Reporting", description: "Capture, triage, and escalate adverse events with automated regulatory submission workflows.", icon: AlertTriangle, category: "Compliance & Safety", tags: ["adverse events", "pharmacovigilance", "safety"] },
   { name: "Consent Management", description: "Track and enforce HCP communication consent preferences across all channels and touchpoints.", icon: Lock, category: "Compliance & Safety", tags: ["consent", "opt-in", "preferences"] },
   { name: "Credentialing", description: "Verify HCP credentials, state licenses, and DEA registrations with automated renewal alerts.", icon: BadgeCheck, category: "Compliance & Safety", tags: ["credentials", "licenses", "verification"] },
+  { name: "Connect", description: "Enable direct connections between HCPs and your field teams — Reps, MSLs, FRMs, Peer-to-Peer networks, and more.", icon: Users, category: "Field Operations", tags: ["connect", "reps", "msl", "frm", "peer-to-peer", "field teams"], popular: true },
 ];
 
 const allCategories: ModuleCategory[] = ["Patient Services", "Field Operations", "Clinical", "Analytics", "Compliance & Safety"];
@@ -423,12 +425,26 @@ function DashedConnector({ side }: { side: "left" | "right" }) {
   );
 }
 
-export default function AscendCoordinatorManager({ onNavigateToHcp }: { onNavigateToHcp?: (hcpName: string) => void } = {}) {
+interface DemoVcOverrides {
+  hiddenIntegrations: string[];
+  showAddModal: boolean;
+  configModule: string | null;
+  moduleActivated: boolean;
+  scrollToModule?: string;
+}
+
+export default function AscendCoordinatorManager({ onNavigateToHcp, demoOverrides }: { onNavigateToHcp?: (hcpName: string) => void; demoOverrides?: DemoVcOverrides } = {}) {
   const [integrations, setIntegrations] = useState<Integration[]>(initialIntegrationData);
   const [selectedIntegration, setSelectedIntegration] = useState<Integration | null>(null);
   const [selectedChannel, setSelectedChannel] = useState<Channel | null>(null);
   const [showAddModule, setShowAddModule] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  const displayedIntegrations = demoOverrides?.hiddenIntegrations?.length
+    ? integrations.filter((i) => !demoOverrides.hiddenIntegrations.includes(i.name))
+    : integrations;
+
+  const effectiveShowAddModal = demoOverrides ? demoOverrides.showAddModal : showAddModule;
 
   const handleAddModule = useCallback((mod: CatalogModule) => {
     setIntegrations((prev) => {
@@ -517,7 +533,7 @@ export default function AscendCoordinatorManager({ onNavigateToHcp }: { onNaviga
             </div>
 
             <div className="space-y-3">
-              {integrations.map((intg, i) => (
+              {displayedIntegrations.map((intg, i) => (
                 <IntegrationRow key={intg.name} integration={intg} onClick={() => setSelectedIntegration(intg)} index={i} />
               ))}
             </div>
@@ -554,7 +570,7 @@ export default function AscendCoordinatorManager({ onNavigateToHcp }: { onNaviga
           className="flex items-center justify-between px-6 py-3 border-t text-xs font-mono"
           style={{ borderColor: c.cardBorder, color: c.textSecondary, background: c.card }}
         >
-          <span>{integrations.length} / {integrations.length} modules active</span>
+          <span>{displayedIntegrations.length} / {displayedIntegrations.length} modules active</span>
           <span>6 channels routing</span>
           <span style={{ color: c.accent }}>Real-time sync enabled</span>
         </div>
@@ -573,11 +589,14 @@ export default function AscendCoordinatorManager({ onNavigateToHcp }: { onNaviga
           onNavigateToHcp={onNavigateToHcp}
         />
       )}
-      {showAddModule && (
+      {effectiveShowAddModal && (
         <AddModuleModal
           onClose={() => setShowAddModule(false)}
           onAdd={handleAddModule}
-          activeNames={new Set(integrations.map((i) => i.name))}
+          activeNames={new Set(displayedIntegrations.map((i) => i.name))}
+          demoConfigModule={demoOverrides?.configModule ?? undefined}
+          demoActivated={demoOverrides?.moduleActivated}
+          demoScrollToModule={demoOverrides?.scrollToModule}
         />
       )}
     </>
@@ -1163,10 +1182,13 @@ function EventStatusIcon({ status }: { status: "success" | "warning" | "error" }
 }
 
 /* ── Add Module Modal ── */
-function AddModuleModal({ onClose, onAdd, activeNames }: { onClose: () => void; onAdd: (mod: CatalogModule) => void; activeNames: Set<string> }) {
+function AddModuleModal({ onClose, onAdd, activeNames, demoConfigModule, demoActivated, demoScrollToModule }: { onClose: () => void; onAdd: (mod: CatalogModule) => void; activeNames: Set<string>; demoConfigModule?: string; demoActivated?: boolean; demoScrollToModule?: string }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<ModuleCategory | "All">("All");
   const [configuring, setConfiguring] = useState<CatalogModule | null>(null);
+
+  const demoConfigMod = demoConfigModule ? moduleCatalog.find((m) => m.name === demoConfigModule) ?? null : null;
+  const effectiveConfiguring = demoConfigMod || configuring;
 
   const filtered = moduleCatalog.filter((m) => {
     if (activeCategory !== "All" && m.category !== activeCategory) return false;
@@ -1177,10 +1199,10 @@ function AddModuleModal({ onClose, onAdd, activeNames }: { onClose: () => void; 
     return true;
   });
 
-  if (configuring) {
+  if (effectiveConfiguring) {
     return (
       <ModalBackdrop onClose={onClose}>
-        <ModuleConfigPanel module={configuring} onBack={() => setConfiguring(null)} onClose={onClose} onAdd={onAdd} />
+        <ModuleConfigPanel module={effectiveConfiguring} onBack={() => setConfiguring(null)} onClose={onClose} onAdd={onAdd} demoActivated={demoActivated} />
       </ModalBackdrop>
     );
   }
@@ -1251,17 +1273,19 @@ function AddModuleModal({ onClose, onAdd, activeNames }: { onClose: () => void; 
               <p className="text-xs mt-1" style={{ color: c.textSecondary, opacity: 0.6 }}>Try a different keyword or category</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3">
+            <div data-demo="add-modal-catalog" className="grid grid-cols-2 gap-3">
               {filtered.map((mod) => {
                 const Icon = mod.icon;
                 const isActive = activeNames.has(mod.name);
+                const isTarget = mod.name === demoScrollToModule;
                 return (
                   <div
                     key={mod.name}
+                    data-demo={isTarget ? "add-modal-module" : undefined}
                     className="group relative rounded-xl border p-4 transition-all"
                     style={{
                       background: c.card,
-                      borderColor: isActive ? `${c.green}30` : c.cardBorder,
+                      borderColor: isActive ? `${c.green}30` : isTarget ? `${c.accent}50` : c.cardBorder,
                       opacity: isActive ? 0.7 : 1,
                     }}
                   >
@@ -1328,11 +1352,22 @@ function AddModuleModal({ onClose, onAdd, activeNames }: { onClose: () => void; 
   );
 }
 
+/* ── Connect sub-types ── */
+const connectSubTypes = [
+  { id: "reps", label: "Reps", description: "Field sales representatives managing HCP relationships and product messaging" },
+  { id: "msls", label: "MSLs", description: "Medical Science Liaisons providing scientific exchange and clinical data" },
+  { id: "frms", label: "FRMs", description: "Field Reimbursement Managers supporting access and coverage barriers" },
+  { id: "p2p", label: "Peer-to-Peer", description: "HCP-to-HCP peer networks for clinical exchange and speaker programs" },
+  { id: "other", label: "Other", description: "Custom connection types for specialized field team roles" },
+];
+
 /* ── Module Config Panel (step 2 of Add Module) ── */
-function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: CatalogModule; onBack: () => void; onClose: () => void; onAdd: (mod: CatalogModule) => void }) {
+function ModuleConfigPanel({ module, onBack, onClose, onAdd, demoActivated }: { module: CatalogModule; onBack: () => void; onClose: () => void; onAdd: (mod: CatalogModule) => void; demoActivated?: boolean }) {
   const Icon = module.icon;
   const [activating, setActivating] = useState(false);
   const [activated, setActivated] = useState(false);
+  const [connectEnabled, setConnectEnabled] = useState<Record<string, boolean>>({ reps: true, msls: true, frms: false, p2p: false, other: false });
+  const effectiveActivated = demoActivated || activated;
 
   const handleActivate = () => {
     setActivating(true);
@@ -1343,8 +1378,12 @@ function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: Catalog
     }, 1800);
   };
 
+  const isConnect = module.name === "Connect";
+  const connectCount = Object.values(connectEnabled).filter(Boolean).length;
+
   return (
     <div
+      data-demo="add-modal-config"
       className="w-full max-w-2xl rounded-2xl border overflow-hidden flex flex-col"
       style={{ background: c.bg, borderColor: c.cardBorder, maxHeight: "90vh" }}
     >
@@ -1375,23 +1414,72 @@ function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: Catalog
       <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6">
         <p className="text-sm leading-relaxed" style={{ color: c.textSecondary }}>{module.description}</p>
 
-        {/* Pre-configured settings preview */}
-        <div>
-          <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: c.textSecondary }}>Default Configuration</h3>
-          <div className="rounded-xl border" style={{ background: c.card, borderColor: c.cardBorder }}>
-            {[
-              { label: "Sync Mode", value: "Real-time" },
-              { label: "Auto-Routing", value: "Enabled" },
-              { label: "Notifications", value: "All events" },
-              { label: "Data Retention", value: "90 days" },
-            ].map((cfg, i, arr) => (
-              <div key={cfg.label} className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: i < arr.length - 1 ? `1px solid ${c.cardBorder}` : undefined }}>
-                <span className="text-sm" style={{ color: c.textSecondary }}>{cfg.label}</span>
-                <span className="text-sm font-semibold" style={{ color: c.textPrimary }}>{cfg.value}</span>
-              </div>
-            ))}
+        {/* Connect sub-type selector */}
+        {isConnect ? (
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: c.textSecondary }}>Connection Types</h3>
+              <span className="text-[10px] font-semibold rounded-full px-2 py-0.5" style={{ background: `${c.accent}15`, color: c.accent }}>
+                {connectCount} selected
+              </span>
+            </div>
+            <div className="rounded-xl border overflow-hidden" style={{ background: c.card, borderColor: c.cardBorder }}>
+              {connectSubTypes.map((sub, i) => {
+                const on = connectEnabled[sub.id];
+                return (
+                  <div
+                    key={sub.id}
+                    data-demo={sub.id === "reps" ? "connect-reps-toggle" : undefined}
+                    className="flex items-center gap-3 px-4 py-3 transition-colors"
+                    style={{
+                      borderBottom: i < connectSubTypes.length - 1 ? `1px solid ${c.cardBorder}` : undefined,
+                      background: on ? `${c.accent}05` : "transparent",
+                    }}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold" style={{ color: on ? c.textPrimary : c.textSecondary }}>{sub.label}</p>
+                      <p className="text-xs mt-0.5 leading-relaxed" style={{ color: c.textSecondary, opacity: on ? 1 : 0.6 }}>{sub.description}</p>
+                    </div>
+                    <div
+                      role="switch"
+                      aria-checked={on}
+                      tabIndex={0}
+                      onClick={() => setConnectEnabled((prev) => ({ ...prev, [sub.id]: !prev[sub.id] }))}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setConnectEnabled((prev) => ({ ...prev, [sub.id]: !prev[sub.id] })); } }}
+                      className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full transition-colors"
+                      style={{ background: on ? c.accent : c.cardBorder }}
+                    >
+                      <span
+                        className="inline-block h-4 w-4 rounded-full transition-transform mt-0.5"
+                        style={{
+                          background: on ? c.bg : c.textSecondary,
+                          transform: on ? "translateX(18px)" : "translateX(2px)",
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: c.textSecondary }}>Default Configuration</h3>
+            <div className="rounded-xl border" style={{ background: c.card, borderColor: c.cardBorder }}>
+              {[
+                { label: "Sync Mode", value: "Real-time" },
+                { label: "Auto-Routing", value: "Enabled" },
+                { label: "Notifications", value: "All events" },
+                { label: "Data Retention", value: "90 days" },
+              ].map((cfg, i, arr) => (
+                <div key={cfg.label} className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: i < arr.length - 1 ? `1px solid ${c.cardBorder}` : undefined }}>
+                  <span className="text-sm" style={{ color: c.textSecondary }}>{cfg.label}</span>
+                  <span className="text-sm font-semibold" style={{ color: c.textPrimary }}>{cfg.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Connected systems */}
         <div>
@@ -1428,8 +1516,9 @@ function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: Catalog
         </div>
 
         {/* Activation success state */}
-        {activated && (
+        {effectiveActivated && (
           <div
+            data-demo="add-modal-success"
             className="flex items-center gap-3 rounded-xl border px-4 py-3"
             style={{ borderColor: `${c.green}30`, background: `${c.green}08` }}
           >
@@ -1445,7 +1534,7 @@ function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: Catalog
       </div>
 
       {/* Footer */}
-      <div className="shrink-0 flex items-center justify-end gap-3 px-6 py-4 border-t" style={{ borderColor: c.cardBorder, background: c.card }}>
+      <div data-demo="add-modal-activate" className="shrink-0 flex items-center justify-end gap-3 px-6 py-4 border-t" style={{ borderColor: c.cardBorder, background: c.card }}>
         <button
           onClick={onBack}
           className="rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-white/5"
@@ -1453,7 +1542,7 @@ function ModuleConfigPanel({ module, onBack, onClose, onAdd }: { module: Catalog
         >
           Back
         </button>
-        {!activated ? (
+        {!effectiveActivated ? (
           <button
             onClick={handleActivate}
             disabled={activating}

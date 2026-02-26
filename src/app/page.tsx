@@ -1049,7 +1049,7 @@ function MslCoordinatorView({ onNavigateToEngagements }: { onNavigateToEngagemen
   );
 }
 
-function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName: string) => void }) {
+function VirtualCoordinatorView({ onNavigateToHcp, demoOverrides }: { onNavigateToHcp: (hcpName: string) => void; demoOverrides?: { hiddenIntegrations: string[]; showAddModal: boolean; configModule: string | null; moduleActivated: boolean; scrollToModule?: string } | null }) {
   return (
     <>
       {/* Page title row */}
@@ -1068,7 +1068,7 @@ function VirtualCoordinatorView({ onNavigateToHcp }: { onNavigateToHcp: (hcpName
 
       {/* Virtual Coordinator Manager */}
       <section data-demo="vc-manager" className="mb-8">
-        <AscendCoordinatorManager onNavigateToHcp={onNavigateToHcp} />
+        <AscendCoordinatorManager onNavigateToHcp={onNavigateToHcp} demoOverrides={demoOverrides ?? undefined} />
       </section>
 
       {/* Virtual Coordinators Table */}
@@ -2442,11 +2442,13 @@ const autoDemoSteps: Record<string, AutoDemoStep[]> = {
     { tab: "engagements", target: "hcp-detail-pane", narration: "Exploring Dr. Chen's prescriber profile", dwell: 4000, action: "hcp-tab:persona" },
   ],
   "vc-setup": [
-    { tab: "virtual-coordinator", target: "vc-manager", narration: "Exploring the coordinator command center", dwell: 3500 },
+    { tab: "virtual-coordinator", target: "vc-manager", narration: "Exploring the coordinator command center", dwell: 3500, action: "vc-prep:Samples" },
     { tab: "virtual-coordinator", target: "vc-channels", narration: "Reviewing active engagement channels", dwell: 3000 },
-    { tab: "virtual-coordinator", target: "vc-orb", narration: "Examining the central intelligence hub", dwell: 3500 },
-    { tab: "virtual-coordinator", target: "vc-integrations", narration: "Checking system integrations", dwell: 3000 },
-    { tab: "virtual-coordinator", target: "vc-add-module", narration: "Adding a new module", dwell: 2500 },
+    { tab: "virtual-coordinator", target: "vc-add-module", narration: "Adding a new integration module", dwell: 2500 },
+    { tab: "virtual-coordinator", target: "add-modal-module", narration: "Selecting Samples from the catalog", dwell: 3000, action: "vc-modal:catalog:Samples" },
+    { tab: "virtual-coordinator", target: "add-modal-config", narration: "Configuring Samples ordering", dwell: 3500, action: "vc-modal:config:Samples" },
+    { tab: "virtual-coordinator", target: "add-modal-activate", narration: "Activating the Samples module", dwell: 3000, action: "vc-modal:activate" },
+    { tab: "virtual-coordinator", target: "vc-integrations", narration: "Samples now connected to the coordinator", dwell: 3000, action: "vc-done" },
     { tab: "virtual-coordinator", target: "vc-table", narration: "Managing the coordinator portfolio", dwell: 3000 },
   ],
   "rep-engagement": [
@@ -2457,11 +2459,23 @@ const autoDemoSteps: Record<string, AutoDemoStep[]> = {
     { tab: "engagements", target: "hcp-detail-pane", narration: "Reviewing AI-powered recommendations", dwell: 5000, action: "hcp-tab:agentic" },
     { tab: "engagements", target: "hcp-detail-pane", narration: "Exploring Dr. Chen's physician profile", dwell: 4000, action: "hcp-tab:persona" },
   ],
+  "rep-connect": [
+    { tab: "virtual-coordinator", target: "vc-manager", narration: "Starting from the coordinator command center", dwell: 3000 },
+    { tab: "virtual-coordinator", target: "vc-add-module", narration: "Adding the Connect module for Reps", dwell: 2500 },
+    { tab: "virtual-coordinator", target: "add-modal-module", narration: "Selecting Connect from the catalog", dwell: 3000, action: "vc-modal:catalog:Connect" },
+    { tab: "virtual-coordinator", target: "connect-reps-toggle", narration: "Enabling Rep connections", dwell: 3500, action: "vc-modal:config:Connect" },
+    { tab: "virtual-coordinator", target: "add-modal-activate", narration: "Activating Connect for Reps", dwell: 3000, action: "vc-modal:activate" },
+    { tab: "virtual-coordinator", target: "vc-integrations", narration: "Connect now in the integrations panel", dwell: 2500, action: "vc-done" },
+    { tab: "engagements", target: "all-engagements", narration: "Navigating to HCP engagements", dwell: 2500 },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Viewing Rep-to-HCP conversation history", dwell: 4000, action: "open-hcp" },
+    { tab: "engagements", target: "hcp-detail-pane", narration: "Reviewing the full interaction timeline", dwell: 4000, action: "hcp-tab:engagements" },
+  ],
 };
 
 const demoModules = [
   { id: "brand-manager", title: "Brand Manager Day-in-the-Life", description: "Watch a brand manager monitor campaigns, review HCP engagement, and optimize channel strategy.", icon: Briefcase, duration: "~1 min", steps: autoDemoSteps["brand-manager"].length },
-  { id: "vc-setup", title: "Virtual Coordinator Set Up", description: "See how to configure a virtual coordinator — channels, rules, and integrations.", icon: Wand2, duration: "~30 sec", steps: autoDemoSteps["vc-setup"].length },
+  { id: "vc-setup", title: "Virtual Coordinator Set Up", description: "Walk through adding a Samples module, configuring it, and activating it on the coordinator.", icon: Wand2, duration: "~40 sec", steps: autoDemoSteps["vc-setup"].length },
+  { id: "rep-connect", title: "Rep Connect", description: "Add the Connect module for field reps and view a rep-to-HCP conversation in the engagement timeline.", icon: Users, duration: "~45 sec", steps: autoDemoSteps["rep-connect"].length },
   { id: "rep-engagement", title: "Rep Engagement Manager", description: "Follow a field rep reviewing interactions, prioritizing follow-ups, and planning next-best-actions.", icon: Repeat, duration: "~35 sec", steps: autoDemoSteps["rep-engagement"].length },
 ];
 
@@ -2723,25 +2737,28 @@ function DemoWalkthrough({
         className="fixed bottom-8 left-1/2 z-[101] pointer-events-none"
         style={{
           opacity: narrationVisible ? 1 : 0,
-          transform: `translateX(-50%) translateY(${narrationVisible ? 0 : 8}px)`,
-          transition: "opacity 0.3s, transform 0.3s",
+          transform: `translateX(-50%) translateY(${narrationVisible ? 0 : 10}px)`,
+          transition: "opacity 0.35s, transform 0.35s",
         }}
       >
         <div
-          className="rounded-full px-6 py-3 flex items-center gap-3"
+          className="rounded-2xl px-7 py-4 flex items-center gap-4"
           style={{
-            background: "rgba(12, 14, 18, 0.92)",
-            border: `1px solid ${c.divider}`,
-            backdropFilter: "blur(12px)",
-            boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 16px ${c.accent}08`,
+            background: "rgba(10, 12, 16, 0.95)",
+            border: `1px solid ${c.accent}20`,
+            backdropFilter: "blur(16px)",
+            boxShadow: `0 12px 40px rgba(0,0,0,0.5), 0 0 24px ${c.accent}12, inset 0 1px 0 rgba(255,255,255,0.04)`,
           }}
         >
-          <div className="h-2 w-2 rounded-full shrink-0 animate-pulse" style={{ background: c.accent }} />
-          <span className="text-sm font-medium whitespace-nowrap" style={{ color: c.textPrimary }}>
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg" style={{ background: `${c.accent}18` }}>
+            <div className="h-2 w-2 rounded-full animate-pulse" style={{ background: c.accent }} />
+          </div>
+          <span className="text-base font-semibold whitespace-nowrap tracking-tight" style={{ color: c.textPrimary }}>
             {current.narration}
           </span>
-          <span className="text-xs font-mono shrink-0 tabular-nums" style={{ color: c.textMuted }}>
-            {stepIdx + 1}/{totalSteps}
+          <div className="h-4 w-px shrink-0" style={{ background: `${c.textMuted}40` }} />
+          <span className="text-xs font-semibold shrink-0 tabular-nums" style={{ color: c.accent }}>
+            {stepIdx + 1} / {totalSteps}
           </span>
         </div>
       </div>
@@ -2789,6 +2806,13 @@ export default function Home() {
   const [focusedHcp, setFocusedHcp] = useState<string | undefined>();
   const [activeDemo, setActiveDemo] = useState<string | null>(null);
   const [demoHcpTab, setDemoHcpTab] = useState<"engagements" | "agentic" | "persona" | undefined>();
+  const [demoVcState, setDemoVcState] = useState<{
+    hiddenIntegrations: string[];
+    showAddModal: boolean;
+    configModule: string | null;
+    moduleActivated: boolean;
+    scrollToModule?: string;
+  } | null>(null);
 
   const handleNavigateToHcp = useCallback((hcpName: string) => {
     setFocusedHcp(hcpName);
@@ -2803,6 +2827,7 @@ export default function Home() {
 
   const handleApplyDemoStep = useCallback((step: AutoDemoStep) => {
     setActiveTab(step.tab);
+
     if (step.action === "open-hcp") {
       setFocusedHcp("Dr. Sarah Chen");
       setDemoHcpTab("engagements");
@@ -2811,11 +2836,28 @@ export default function Home() {
     } else {
       setDemoHcpTab(undefined);
     }
+
+    const defaultVcState = { hiddenIntegrations: [] as string[], showAddModal: false, configModule: null as string | null, moduleActivated: false };
+    if (step.action?.startsWith("vc-prep:")) {
+      const modName = step.action.split(":")[1];
+      setDemoVcState({ ...defaultVcState, hiddenIntegrations: [modName] });
+    } else if (step.action === "vc-modal:catalog" || step.action?.startsWith("vc-modal:catalog:")) {
+      const scroll = step.action.includes(":catalog:") ? step.action.split(":")[2] : undefined;
+      setDemoVcState((prev) => ({ ...(prev || defaultVcState), showAddModal: true, configModule: null, moduleActivated: false, scrollToModule: scroll }));
+    } else if (step.action?.startsWith("vc-modal:config:")) {
+      const modName = step.action.split(":")[2];
+      setDemoVcState((prev) => ({ ...(prev || defaultVcState), showAddModal: true, configModule: modName, moduleActivated: false }));
+    } else if (step.action === "vc-modal:activate") {
+      setDemoVcState((prev) => prev ? { ...prev, moduleActivated: true } : null);
+    } else if (step.action === "vc-done") {
+      setDemoVcState(null);
+    }
   }, []);
 
   const handleExitDemo = useCallback(() => {
     setActiveDemo(null);
     setDemoHcpTab(undefined);
+    setDemoVcState(null);
   }, []);
 
   return (
@@ -2959,7 +3001,7 @@ export default function Home() {
           {activeTab === "dashboard" && <DashboardView onNavigateToHcp={handleNavigateToHcp} />}
 
           {/* ═══ Virtual Coordinator Tab ═══ */}
-          {activeTab === "virtual-coordinator" && <VirtualCoordinatorView onNavigateToHcp={handleNavigateToHcp} />}
+          {activeTab === "virtual-coordinator" && <VirtualCoordinatorView onNavigateToHcp={handleNavigateToHcp} demoOverrides={demoVcState} />}
 
           {/* ═══ MSL Coordinator Tab ═══ */}
           {activeTab === "msl-coordinator" && <MslCoordinatorView onNavigateToEngagements={() => setActiveTab("engagements")} />}
